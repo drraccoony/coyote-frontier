@@ -2,8 +2,7 @@
   id: GauzeLefteyePatch
   bodyPart: Eyes
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Dwarf, Human, Arachnid, Goblin, Felinid, Oni, Vulpkanin, Rodentia, Rodentia, Feroxi] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
+  speciesRestriction: [Dwarf, Human, Arachnid, Felinid, Oni, Vulpkanin, Rodentia] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
   coloring:
     default:
       type:
@@ -17,8 +16,7 @@
   id: GauzeLefteyePad
   bodyPart: Eyes
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Goblin, Felinid, Oni, Vulpkanin, Rodentia, Rodentia, Feroxi] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
+  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Felinid, Oni, Vulpkanin, Rodentia] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
   coloring:
     default:
       type:
@@ -32,8 +30,7 @@
   id: GauzeRighteyePatch
   bodyPart: Eyes
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Dwarf, Human, Arachnid, Goblin, Felinid, Oni, Vulpkanin, Rodentia, Rodentia, Feroxi] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
+  speciesRestriction: [Dwarf, Human, Arachnid, Felinid, Oni, Vulpkanin, Rodentia] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
   coloring:
     default:
       type:
@@ -47,8 +44,7 @@
   id: GauzeRighteyePad
   bodyPart: Eyes
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Goblin, Felinid, Oni, Vulpkanin, Rodentia, Rodentia, Feroxi] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
+  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Felinid, Oni, Vulpkanin, Rodentia] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
   coloring:
     default:
       type:
@@ -62,8 +58,7 @@
   id: GauzeBlindfold
   bodyPart: Eyes
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Dwarf, Human, Arachnid, Goblin, Felinid, Oni, Harpy, Vulpkanin, Rodentia, Rodentia, Feroxi] # Delta V - Felinid, Oni, Harpy, Vulpkanin, Rodentia
+  speciesRestriction: [Dwarf, Human, Arachnid, Felinid, Oni, Harpy, Vulpkanin, Rodentia] # Delta V - Felinid, Oni, Harpy, Vulpkanin, Rodentia
   coloring:
     default:
       type:
@@ -77,8 +72,7 @@
   id: GauzeShoulder
   bodyPart: Chest
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Goblin, Felinid, Oni, Vulpkanin, Rodentia, Rodentia, Feroxi] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
+  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Felinid, Oni, Vulpkanin, Rodentia] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
   coloring:
     default:
       type:
@@ -92,8 +86,7 @@
   id: GauzeStomach
   bodyPart: Chest
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Goblin, Felinid, Oni, Vulpkanin, Rodentia, Rodentia, Feroxi] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
+  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Felinid, Oni, Vulpkanin, Rodentia] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
   coloring:
     default:
       type:
@@ -107,8 +100,7 @@
   id: GauzeUpperArmRight
   bodyPart: RArm
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Goblin, SlimePerson, Felinid, Oni, Vulpkanin, Rodentia, Rodentia, Feroxi] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
+  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, SlimePerson, Felinid, Oni, Vulpkanin, Rodentia] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
   coloring:
     default:
       type:
@@ -122,8 +114,7 @@
   id: GauzeLowerArmRight
   bodyPart: RArm, RHand
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Goblin, SlimePerson, Felinid, Oni, Vulpkanin, Rodentia, Rodentia, Feroxi] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
+  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, SlimePerson, Felinid, Oni, Vulpkanin, Rodentia] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
   coloring:
     default:
       type:
@@ -137,8 +128,7 @@
   id: GauzeLeftArm
   bodyPart: LArm, LHand
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Goblin, Felinid, Oni, Vulpkanin, Rodentia, Rodentia, Feroxi] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
+  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Felinid, Oni, Vulpkanin, Rodentia] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
   coloring:
     default:
       type:
@@ -152,8 +142,7 @@
   id: GauzeLowerLegLeft
   bodyPart: LFoot
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Dwarf, Human, Arachnid, Goblin, Felinid, Oni, Vulpkanin, Rodentia, Rodentia, Feroxi] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
+  speciesRestriction: [Dwarf, Human, Arachnid, Felinid, Oni, Vulpkanin, Rodentia] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
   coloring:
     default:
       type:
@@ -167,8 +156,7 @@
   id: GauzeUpperLegLeft
   bodyPart: LLeg
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Goblin, Felinid, Oni, Vulpkanin, Rodentia, Rodentia, Feroxi] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
+  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Felinid, Oni, Vulpkanin, Rodentia] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
   coloring:
     default:
       type:
@@ -182,8 +170,7 @@
   id: GauzeUpperLegRight
   bodyPart: RLeg
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Goblin, Felinid, Oni, Vulpkanin, Rodentia, Rodentia, Feroxi] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
+  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Felinid, Oni, Vulpkanin, Rodentia] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
   coloring:
     default:
       type:
@@ -197,8 +184,7 @@
   id: GauzeLowerLegRight
   bodyPart: RFoot
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Dwarf, Human, Arachnid, Goblin, Felinid, Oni, Vulpkanin, Rodentia, Rodentia, Feroxi] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
+  speciesRestriction: [Dwarf, Human, Arachnid, Felinid, Oni, Vulpkanin, Rodentia] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
   coloring:
     default:
       type:
@@ -212,8 +198,7 @@
   id: GauzeBoxerWrapRight
   bodyPart: RHand
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, SlimePerson, Goblin, Felinid, Oni, Vulpkanin, Rodentia, Rodentia, Feroxi] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
+  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, SlimePerson, Felinid, Oni, Vulpkanin, Rodentia] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
   coloring:
     default:
       type:
@@ -227,8 +212,7 @@
   id: GauzeBoxerWrapLeft
   bodyPart: LHand
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, SlimePerson, Goblin, Felinid, Oni, Vulpkanin, Rodentia, Rodentia, Feroxi] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
+  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, SlimePerson, Felinid, Oni, Vulpkanin, Rodentia] # Delta V - Felinid, Oni, Vulpkanin, Rodentia
   coloring:
     default:
       type:
@@ -243,7 +227,7 @@
   bodyPart: Head
   markingCategory: Overlay
   kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Moth, Goblin, Sheleg, Felinid, Oni, Vulpkanin, Rodentia] # Frontier - added Goblin and afterwards
+  speciesRestriction: [Dwarf, Human, Reptilian, Arachnid, Moth, Goblin, Sheleg, Felinid, Oni, Vulpkanin, Rodentia, Chitinid] # Frontier - added Goblin and afterwards, Chitinid from Delta V
   coloring:
     default:
       type:
@@ -258,7 +242,6 @@
   id: GauzeLizardLefteyePatch
   bodyPart: Eyes
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
   speciesRestriction: [Reptilian]
   coloring:
     default:
@@ -273,7 +256,6 @@
   id: GauzeLizardRighteyePatch
   bodyPart: Eyes
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
   speciesRestriction: [Reptilian]
   coloring:
     default:
@@ -288,7 +270,6 @@
   id: GauzeLizardFootRight
   bodyPart: RFoot
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
   speciesRestriction: [Reptilian]
   coloring:
     default:
@@ -303,7 +284,6 @@
   id: GauzeLizardFootLeft
   bodyPart: LFoot
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
   speciesRestriction: [Reptilian]
   coloring:
     default:
@@ -318,7 +298,6 @@
   id: GauzeLizardBlindfold
   bodyPart: Eyes
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
   speciesRestriction: [Reptilian]
   coloring:
     default:
@@ -334,8 +313,7 @@
   id: GauzeMothBlindfold
   bodyPart: Eyes
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, Chitinid] # Delta V - Chitinid
   coloring:
     default:
       type:
@@ -349,8 +327,7 @@
   id: GauzeMothShoulder
   bodyPart: Chest
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, Chitinid] # Delta V - Chitinid
   coloring:
     default:
       type:
@@ -364,8 +341,7 @@
   id: GauzeMothStomach
   bodyPart: Chest
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, Chitinid] # Delta V - Chitinid
   coloring:
     default:
       type:
@@ -379,8 +355,7 @@
   id: GauzeMothLeftEyePatch
   bodyPart: Eyes
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, Chitinid] # Delta V - Chitinid
   coloring:
     default:
       type:
@@ -394,8 +369,7 @@
   id: GauzeMothLeftEyePad
   bodyPart: Eyes
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, Chitinid] # Delta V - Chitinid
   coloring:
     default:
       type:
@@ -409,8 +383,7 @@
   id: GauzeMothRightEyePatch
   bodyPart: Eyes
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, Chitinid] # Delta V - Chitinid
   coloring:
     default:
       type:
@@ -424,8 +397,7 @@
   id: GauzeMothRightEyePad
   bodyPart: Eyes
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, Chitinid] # Delta V - Chitinid
   coloring:
     default:
       type:
@@ -439,8 +411,7 @@
   id: GauzeMothUpperArmRight
   bodyPart: RArm
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, Chitinid] # Delta V - Chitinid
   coloring:
     default:
       type:
@@ -454,8 +425,7 @@
   id: GauzeMothUpperArmLeft
   bodyPart: LArm
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, Chitinid] # Delta V - Chitinid
   coloring:
     default:
       type:
@@ -469,8 +439,7 @@
   id: GauzeMothUpperLegRight
   bodyPart: RLeg
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, Chitinid] # Delta V - Chitinid
   coloring:
     default:
       type:
@@ -484,8 +453,7 @@
   id: GauzeMothUpperLegLeft
   bodyPart: LLeg
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, Chitinid] # Delta V - Chitinid
   coloring:
     default:
       type:
@@ -499,8 +467,7 @@
   id: GauzeMothLowerLegRight
   bodyPart: RFoot
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, Chitinid] # Delta V - Chitinid
   coloring:
     default:
       type:
@@ -514,8 +481,7 @@
   id: GauzeMothLowerLegLeft
   bodyPart: LFoot
   markingCategory: Overlay
-  kindAllowance: [BasicHumanlike, BasicFurry]
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, Chitinid] # Delta V - Chitinid
   coloring:
     default:
       type:

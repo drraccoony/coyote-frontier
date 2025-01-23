@@ -19,6 +19,11 @@
   text: "/ServerInfo/Guidebook/Mobs/_DV/Oni.xml"
 
 - type: guideEntry
-  id: Feroxi
-  name: species-name-feroxi
-  text: "/ServerInfo/Guidebook/Mobs/_DV/Feroxi.xml"
+  id: Rodentia
+  name: species-name-rodentia
+  text: "/ServerInfo/Guidebook/Mobs/_DV/Rodentia.xml"
+
+- type: guideEntry
+  id: Chitinid
+  name: species-name-chitinid
+  text: "/ServerInfo/Guidebook/Mobs/_DV/Chitinid.xml"

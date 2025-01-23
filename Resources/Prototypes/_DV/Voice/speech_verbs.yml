@@ -6,7 +6,6 @@
   - chat-speech-verb-vulpkanin-2
   - chat-speech-verb-vulpkanin-3
   - chat-speech-verb-vulpkanin-4
-  - chat-speech-verb-vulpkanin-5
 
 - type: speechVerb
   id: Felinid
@@ -35,12 +34,11 @@
   - chat-speech-verb-rodentia-3
   - chat-speech-verb-rodentia-4
 
-
 - type: speechVerb
-  id: Feroxi
-  name: chat-speech-verb-name-feroxi
+  id: Chitinid
+  name: chat-speech-verb-name-chitinid
   speechVerbStrings:
-  - chat-speech-verb-feroxi-1
-  - chat-speech-verb-feroxi-2
-  - chat-speech-verb-feroxi-3
-  - chat-speech-verb-feroxi-4
+  - chat-speech-verb-chitinid-1
+  - chat-speech-verb-chitinid-2
+  - chat-speech-verb-chitinid-3
+  - chat-speech-verb-chitinid-4

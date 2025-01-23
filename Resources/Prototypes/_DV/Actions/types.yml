@@ -1,39 +1,63 @@
 - type: entity
-  id: ActionHairball
-  parent: BaseAction # Frontier, Wizden#27422 compliance
-  name: Cough Up Hairball
-  description: Purge some of your chemstream, and gain a cool hairball to throw at people.
+  id: ActionOpenRadioImplant
+  name: Open Radio Implant
+  description: Opens the bluespace key compartment of the radio implant embedded in your skull.
   components:
-  - type: Action # Frontier, Wizden#27422 compliance, InstantAction<Action
+  - type: InstantAction
+    itemIconStyle: BigAction
+    priority: -20
     icon:
-      sprite: Nyanotrasen/Objects/Specific/Species/felinid.rsi
+      sprite: Clothing/Ears/Headsets/base.rsi
       state: icon
-    useDelay: 30
-  - type: InstantAction # Frontier, Wizden#27422 compliance
-    event: !type:CoughItemActionEvent
+    event: !type:OpenStorageImplantEvent
 
 - type: entity
   id: ActionOpenMouthStorage
   name: Open cheek storage
-  description: Allows you to store items in your cheeks.
+  description: Allows you to store items in your cheeks. 
   components:
-  - type: Action
+  - type: InstantAction
     itemIconStyle: BigAction
     priority: -10
     icon: _DV/Interface/Actions/mouthStorageOpen.png
-  - type: InstantAction
     event: !type:OpenStorageImplantEvent
 
 - type: entity
   id: ActionToggleSneakMode
   name: Toggle sneak mode
-  description: Sneak underneath tables.
+  description: Sneak underneath tables. 
   components:
-  - type: Action
+  - type: InstantAction
     itemIconStyle: BigAction
     useDelay: 3
     icon:
       sprite: Structures/Furniture/Tables/generic.rsi
       state: full
-  - type: InstantAction
     event: !type:ToggleCrawlingStateEvent
+
+- type: entity
+  id: ActionPrecognition
+  name: Precognition
+  description: See into the future to get a hint about the next random event.
+  components:
+  - type: InstantAction
+    icon:
+      sprite: _DV/Interface/Actions/actions_psionics.rsi
+      state: precognition
+    useDelay: 240
+    checkCanInteract: false
+    checkConsciousness: false
+    event: !type:PrecognitionPowerActionEvent
+
+- type: entity
+  id: ActionChitzite
+  name: Cough Up Chitzite
+  description: Purge the excess radiation build-up from your body, and gain a cool danger rock.
+  components:
+  - type: InstantAction
+    charges: 0
+    enabled: false
+    maxCharges: 1
+    icon: { sprite: _DV/Objects/Specific/Species/chitinid.rsi, state: chitzite }
+    useDelay: 300
+    event: !type:ChitziteActionEvent
