@@ -25,6 +25,7 @@
     - NFBoxMREEmpty
     - NFHappyHonkEmpty
     - NFHappyHonkMimeEmpty
+    - NFHappyHonkMcCargoEmpty
     - NFFoodBoxPizza
     - NFFoodBoxDonutEmpty
     - NFFoodBoxNuggetEmpty
@@ -49,6 +50,7 @@
     - PowerCellMedium
   ## Basic electronics
     - SignalTimerElectronics
+    - CellRechargerCircuitboard
     - BorgChargerCircuitboard
     - WeaponCapacitorRechargerCircuitboard
     - AirTank
@@ -112,6 +114,7 @@
     - FoodCondimentSqueezeBottleClear
     - FoodFrozenPopsicleTrash
     - DrinkWaterCup
+    - BucketPaper # Mono
   ## EVA
     - ClothingOuterEVASuitHydro
     - ClothingOuterEVASuitJanitor
