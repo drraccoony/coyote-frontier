@@ -1243,7 +1243,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             return;
         if (numHeareded <= 0)
             return;
-        var ev = new RoleplayIncentiveEvent(source, channel, message, numHeareded);
+        var ev = new RpiChatEvent(source, channel, message, numHeareded);
         RaiseLocalEvent(source, ev, true);
     }
 

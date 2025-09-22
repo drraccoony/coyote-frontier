@@ -26,7 +26,8 @@
     prototype: FrontierBirthdayGift
   - !type:AddComponentSpecial
     components:
-    - type: CoolChef # 1.5x
+    - type: RpiJobModifier # 1.5x
+      modifier: 1.5
 
 # starting gear
 - type: startingGear

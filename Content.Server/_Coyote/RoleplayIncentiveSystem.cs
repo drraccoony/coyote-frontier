@@ -57,18 +57,10 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        // get the component this thing is attached to            v- my code my formatting
-        SubscribeLocalEvent<RoleplayIncentiveComponent,            ComponentInit>(OnComponentInit);
-        SubscribeLocalEvent<RoleplayIncentiveComponent,            RoleplayIncentiveEvent>(OnGotRoleplayIncentiveEvent);
-        SubscribeLocalEvent<RoleplayIncentiveComponent,            GetRoleplayIncentiveModifier>(OnSelfSucc);
-        SubscribeLocalEvent<RoleplayIncentiveComponent,            MobStateChangedEvent>(OnGotMobStateChanged);
-        // v- these are awful
-        SubscribeLocalEvent<CoolChefComponent,                     GetRoleplayIncentiveModifier>(AdjustRPI);
-        SubscribeLocalEvent<CoolPirateComponent,                   GetRoleplayIncentiveModifier>(AdjustRPI);
-        SubscribeLocalEvent<CoolStationRepComponent,               GetRoleplayIncentiveModifier>(AdjustRPI);
-        SubscribeLocalEvent<CoolStationTrafficControllerComponent, GetRoleplayIncentiveModifier>(AdjustRPI);
-        SubscribeLocalEvent<CoolStationDirectorOfCareComponent,    GetRoleplayIncentiveModifier>(AdjustRPI);
-        SubscribeLocalEvent<CoolSheriffComponent,                  GetRoleplayIncentiveModifier>(AdjustRPI);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, ComponentInit>          (OnComponentInit);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiChatEvent>           (OnGotRoleplayIncentiveEvent);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, GetRpiModifier>         (OnSelfSucc);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, MobStateChangedEvent>   (OnGotMobStateChanged);
         SortTaxBrackets();
     }
 
@@ -117,7 +109,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     private void OnGotRoleplayIncentiveEvent(
         EntityUid uid,
         RoleplayIncentiveComponent rpic,
-        RoleplayIncentiveEvent args)
+        RpiChatEvent args)
     {
         ProcessRoleplayIncentiveEvent(uid, args);
     }
@@ -153,7 +145,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     private void OnSelfSucc(
         EntityUid uid,
         RoleplayIncentiveComponent component,
-        ref GetRoleplayIncentiveModifier args)
+        ref GetRpiModifier args)
     {
         if (TryComp<SSDIndicatorComponent>(uid, out var ssd)
             && _ssdThing.IsInNashStation(uid))
@@ -226,7 +218,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
 
         var chatPay = chatJudgement * taxBracket.PayPerJudgement;
 
-        var modifyEvent = new GetRoleplayIncentiveModifier(uid);
+        var modifyEvent = new GetRpiModifier(uid);
         RaiseLocalEvent(
             uid,
             modifyEvent,
@@ -393,7 +385,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
 
     private void ProcessPaymentDetails(
         int basePay,
-        GetRoleplayIncentiveModifier modifyEvent,
+        GetRpiModifier modifyEvent,
         out PayoutDetails details)
     {
         var finalPay = basePay;
@@ -490,7 +482,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         }
     }
 
-    private void ProcessRoleplayIncentiveEvent(EntityUid uid, RoleplayIncentiveEvent args)
+    private void ProcessRoleplayIncentiveEvent(EntityUid uid, RpiChatEvent args)
     {
         // first, check if the uid has the component
         if (!TryComp<RoleplayIncentiveComponent>(uid, out var incentive))
@@ -677,61 +669,6 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         public bool HasModifier = hasModifier;
         public bool HasAdditive = hasAdditive;
         public bool HasMultiplier = hasMultiplier;
-    }
-    #endregion
-
-    #region Awgful Job RPI modifiers
-    private void AdjustRPI(
-        float mult,
-        ref GetRoleplayIncentiveModifier args)
-    {
-        args.Modify(mult, 0f);
-    }
-
-    private void AdjustRPI(
-        EntityUid uid,
-        CoolChefComponent component,
-        ref GetRoleplayIncentiveModifier args)
-    {
-        AdjustRPI(component.Multiplier, ref args);
-    }
-
-    private void AdjustRPI(
-        EntityUid uid,
-        CoolPirateComponent component,
-        ref GetRoleplayIncentiveModifier args)
-    {
-        AdjustRPI(component.Multiplier, ref args);
-    }
-
-    private void AdjustRPI(
-        EntityUid uid,
-        CoolStationRepComponent component,
-        ref GetRoleplayIncentiveModifier args)
-    {
-        AdjustRPI(component.Multiplier, ref args);
-    }
-
-    private void AdjustRPI(EntityUid uid,
-        CoolStationTrafficControllerComponent component,
-        ref GetRoleplayIncentiveModifier args)
-    {
-        AdjustRPI(component.Multiplier, ref args);
-    }
-
-    private void AdjustRPI(EntityUid uid,
-        CoolStationDirectorOfCareComponent component,
-        ref GetRoleplayIncentiveModifier args)
-    {
-        AdjustRPI(component.Multiplier, ref args);
-    }
-
-    private void AdjustRPI(
-        EntityUid uid,
-        CoolSheriffComponent component,
-        ref GetRoleplayIncentiveModifier args)
-    {
-        AdjustRPI(component.Multiplier, ref args);
     }
     #endregion
 }

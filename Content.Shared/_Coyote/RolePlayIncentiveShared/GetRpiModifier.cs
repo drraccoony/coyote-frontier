@@ -6,7 +6,7 @@ namespace Content.Shared._Coyote.RolePlayIncentiveShared;
 /// <summary>
 /// This is the event raised when a roleplay incentive action is taken.
 /// </summary>
-public sealed class GetRoleplayIncentiveModifier(EntityUid src)
+public sealed class GetRpiModifier(EntityUid src)
     : EntityEventArgs
 {
     public EntityUid Source = src;

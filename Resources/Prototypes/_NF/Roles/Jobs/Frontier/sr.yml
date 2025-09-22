@@ -26,7 +26,8 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
-      - type: CoolStationRep
+      - type: RpiJobModifier # 1.5x
+        modifier: 2.5
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift

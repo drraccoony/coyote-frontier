@@ -30,7 +30,8 @@
   - !type:AddComponentSpecial
     components:
     - type: CommandStaff
-    - type: CoolStationTrafficController
+    - type: RpiJobModifier # 1.5x
+      modifier: 2.0
 - type: startingGear
   id: StcGear
   equipment:
