@@ -1,3 +1,5 @@
+using Content.Server._Coyote;
+using Content.Server._Coyote.CoolIncentives;
 using Content.Shared._Coyote.RolePlayIncentiveShared;
 using Content.Shared.Destructible;
 using Content.Shared.Mining;
@@ -16,6 +18,7 @@ public sealed class MiningSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly RoleplayIncentiveSystem _RpiSystem = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -37,6 +40,15 @@ public sealed class MiningSystem : EntitySystem
 
         var proto = _proto.Index<OrePrototype>(component.CurrentOre);
 
+        if (args.Destroyer != null
+            && TryComp<RoleplayIncentiveComponent>(args.Destroyer, out var rpi))
+        {
+            PayoutLoser(
+                args.Destroyer.Value,
+                proto.Payout,
+                rpi);
+        }
+
         if (proto.OreEntity == null)
             return;
 
@@ -54,5 +66,29 @@ public sealed class MiningSystem : EntitySystem
             return;
 
         component.CurrentOre = _proto.Index<WeightedRandomOrePrototype>(component.OreRarityPrototypeId).Pick(_random);
+    }
+
+    private void PayoutLoser(EntityUid toPay, int payout, RoleplayIncentiveComponent rpi)
+    {
+        if (payout <= 0)
+            return;
+
+        _RpiSystem.GetTaxBracketDataForEntity(toPay, rpi, out var taxData);
+        var finalPayout = (int) (payout * taxData.MiningMultiplier);
+        if (finalPayout <= 0)
+            return;
+        // the paypig message
+        var msg = Loc.GetString(
+            "coyote-rpi-plus-fund-yellow",
+            ("amount", finalPayout));
+        var ev = new RpiActionEvent(
+            toPay,
+            RpiActionType.Mining,
+            RpiFunction.Immediate,
+            flatPay: finalPayout,
+            checkPeoplePresent: true,
+            peoplePresentModifier: 1.5f,
+            message: msg);
+        RaiseLocalEvent(toPay, ev);
     }
 }

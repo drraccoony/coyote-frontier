@@ -25,41 +25,48 @@ public sealed class RpiChatEvent(
 public sealed class RpiActionEvent(
     EntityUid source,
     RpiActionType action,
-    bool immediate = false,
+    RpiFunction function,
     int flatPay = 0,
     float multiplier = 1f,
-    bool checkPeoplePresent = true,
+    bool checkPeoplePresent = false,
+    float peoplePresentModifier = 1f,
     string? message = null
     ) : EntityEventArgs
 {
-    public readonly EntityUid Source = source;
-    public readonly RpiActionType Action = action;
+    public EntityUid Source = source;
+    public RpiActionType Action = action;
 
     /// <summary>
-    /// If true, the action should be processed immediately rather than waiting for the next payward.
+    /// How this action should be processed.
     /// </summary>
-    public readonly bool Immediate = immediate;
+    public RpiFunction Function = function;
 
     /// <summary>
     /// A flat pay bonus to apply to the action.
     /// </summary>
-    public readonly int FlatPay = flatPay;
+    public int FlatPay = flatPay;
 
     /// <summary>
     /// A multiplier to apply to the action.
     /// </summary>
-    public readonly float Multiplier = multiplier;
+    public float Multiplier = multiplier;
 
     /// <summary>
     /// If true, the number of people present should be checked when calculating the final modifier.
     /// </summary>
-    public readonly bool CheckPeoplePresent = checkPeoplePresent;
+    public bool CheckPeoplePresent = checkPeoplePresent;
+
+    public float PeoplePresentModifier = peoplePresentModifier;
 
     /// <summary>
     /// An optional message to display when the action is processed.
     /// </summary>
-    public readonly string? Message = message;
+    public string? Message = message;
 
+    /// <summary>
+    /// has this action been handled?
+    /// </summary>
+    public bool Handled = false;
 }
 
 
@@ -87,4 +94,35 @@ public enum RpiActionType : byte
     StationPrincess,
 }
 
+/// <summary>
+/// Enum for different functions thuis event can have.
+/// </summary>
+public enum RpiFunction : byte
+{
+    /// <summary>
+    /// Pay them immediately.
+    /// </summary>
+    Immediate,
 
+    /// <summary>
+    /// Provide a multiplier to the next payday.
+    /// </summary>
+    PaydayModifier,
+
+    /// <summary>
+    /// Just record the action for logging purposes.
+    /// </summary>
+    RecordOnly,
+}
+
+
+/// <summary>
+/// A message queued up to be sent to the player, regarding their roleplay incentive actions.
+/// </summary>
+public sealed class RpiMessageQueue(
+    string message,
+    TimeSpan timeToShow)
+{
+    public string Message = message;
+    public TimeSpan TimeToShow = timeToShow;
+}

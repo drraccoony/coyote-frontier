@@ -1,3 +1,5 @@
+using Content.Shared._Coyote.RolePlayIncentiveShared;
+
 namespace Content.Server._Coyote;
 
 /// <summary>
@@ -13,6 +15,12 @@ public sealed partial class RoleplayIncentiveComponent : Component
     /// </summary>
     [DataField]
     public List<RpiChatRecord> ChatActionsTaken = new();
+
+    [DataField]
+    public List<RpiActionRecord> MiscActionsTaken = new();
+
+    [DataField]
+    public List<RpiMessageQueue> MessagesToShow = new();
 
     /// <summary>
     /// The last time the system checked for actions, for paywards.

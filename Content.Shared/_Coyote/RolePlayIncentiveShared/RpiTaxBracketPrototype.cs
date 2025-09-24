@@ -35,4 +35,10 @@ public sealed partial class RpiTaxBracketPrototype : IPrototype
     /// </summary>
     [DataField("deepFriedPenalty", required: true)]
     public float DeepFriedPenalty = 0f;
+
+    /// <summary>
+    /// Whats the multiplier for getting paid for mining?
+    /// </summary>
+    [DataField("miningPayoutMult", required: true)]
+    public float MiningPayoutMult = 1f;
 }

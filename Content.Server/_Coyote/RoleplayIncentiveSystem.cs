@@ -8,11 +8,13 @@ using Content.Server.Popups;
 using Content.Shared._Coyote.RolePlayIncentiveShared;
 using Content.Shared._NF.Bank.Components;
 using Content.Shared.Chat;
+using Content.Shared.Ghost;
 using Content.Shared.Mobs;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
 using Content.Shared.SSDIndicator;
 using Robust.Server.Player;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -58,7 +60,8 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<RoleplayIncentiveComponent, ComponentInit>          (OnComponentInit);
-        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiChatEvent>           (OnGotRoleplayIncentiveEvent);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiChatEvent>           (OnGotRpiChatEvent);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiActionEvent>         (OnGotRpiActionEvent);
         SubscribeLocalEvent<RoleplayIncentiveComponent, GetRpiModifier>         (OnSelfSucc);
         SubscribeLocalEvent<RoleplayIncentiveComponent, MobStateChangedEvent>   (OnGotMobStateChanged);
         SortTaxBrackets();
@@ -106,12 +109,44 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     /// <remarks>
     /// piss
     /// </remarks>
-    private void OnGotRoleplayIncentiveEvent(
+    private void OnGotRpiChatEvent(
         EntityUid uid,
         RoleplayIncentiveComponent rpic,
         RpiChatEvent args)
     {
         ProcessRoleplayIncentiveEvent(uid, args);
+    }
+
+    private void OnGotRpiActionEvent(
+        EntityUid uid,
+        RoleplayIncentiveComponent? rpic,
+        RpiActionEvent args)
+    {
+        if (!Resolve(uid, ref rpic))
+            return;
+        if (args.Handled)
+            return;
+        args.Handled = true;
+        // make the record
+        var now = _timing.CurTime;
+        var peoplePresent = -1; // cant really know this one yet
+        if (args.CheckPeoplePresent)
+            peoplePresent = GetPeopleInRange(uid, 10f); // 10 tile radius
+        var action = new RpiActionRecord(
+            now,
+            args.Action,
+            args.Function,
+            peoplePresent,
+            args.FlatPay,
+            args.Multiplier,
+            args.Message);
+        // add it tothe actions taken
+        rpic.MiscActionsTaken.Add(action);
+        // if its not immediate, we are done
+        if (args.Function != RpiFunction.Immediate)
+            return;
+        // otherwise, process it now
+        ProcessMiscAction(uid, rpic, action);
     }
 
     /*
@@ -264,7 +299,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         rpic.LastDeathPunishment = _timing.CurTime;
         // tell them they got punished
         var message = Loc.GetString(
-            "coyote-rp-incentive-death-penalty-message",
+            "coyote-rpi-death-penalty-message",
             ("amount", (int)penalty));
         if (_playerManager.TryGetSessionByEntity(uid, out var session))
         {
@@ -287,6 +322,20 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     #endregion
 
     #region Helpers
+
+    private void ProcessMiscAction(
+        EntityUid uid,
+        RoleplayIncentiveComponent rpic,
+        RpiActionRecord action)
+    {
+        if (!_bank.TryGetBalance(uid, out var hasThisMuchMoney))
+            return; // no bank account, no pramgle
+        var taxBracket = GetTaxBracketData(rpic, hasThisMuchMoney);
+        // this can go
+
+    }
+
+
     private int GetChatActionJudgement(List<RpiChatRecord> actions)
     {
         var total = 0;
@@ -330,7 +379,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         RoleplayIncentiveComponent rpic,
         int hasThisMuchMoney)
     {
-        var taxBracket = new TaxBracketResult(0, 0, 0); // default values
+        var taxBracket = new TaxBracketResult(); // default values
         // go through the prototypes, and find the one that fits the player's money
         // if none fit, use the default
         if (!_prototype.TryIndex(TaxBracketDefault, out var defaultProto))
@@ -363,7 +412,8 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         taxBracket = new TaxBracketResult(
             proto.JudgementPointPayout,
             (int)(proto.DeathPenalty * hasThisMuchMoney),
-            (int)(proto.DeepFriedPenalty * hasThisMuchMoney));
+            (int)(proto.DeepFriedPenalty * hasThisMuchMoney),
+            proto.MiningPayoutMult);
 
         // and now the overrides
         if (rpic.TaxBracketPayoutOverride != -1)
@@ -381,6 +431,20 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             taxBracket.DeepFryPenalty = rpic.TaxBracketDeepFryerPenaltyOverride;
         }
         return taxBracket;
+    }
+
+    public bool GetTaxBracketDataForEntity(
+        EntityUid whomst,
+        RoleplayIncentiveComponent? rpic,
+        out TaxBracketResult taxBracket)
+    {
+        taxBracket = new TaxBracketResult(); // default values
+        if (!Resolve(whomst, ref rpic))
+            return false;
+        if (!_bank.TryGetBalance(whomst, out var hasThisMuchMoney))
+            return false; // no bank account, no pramgle
+        taxBracket = GetTaxBracketData(rpic, hasThisMuchMoney);
+        return true;
     }
 
     private void ProcessPaymentDetails(
@@ -421,7 +485,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         if (payDetails.FinalPay <= 0)
             return; // no pay, no popup
         var messageOverhead = Loc.GetString(
-            "coyote-rp-incentive-payward-message",
+            "coyote-rpi-payward-message",
             ("amount", payDetails.FinalPay));
         _popupSystem.PopupEntity(
             messageOverhead,
@@ -439,7 +503,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             if (payDetails.HasMultiplier && payDetails.HasAdditive)
             {
                 message = Loc.GetString(
-                    "coyote-rp-incentive-payward-message-multiplier-and-additive",
+                    "coyote-rpi-payward-message-multiplier-and-additive",
                     ("amount", payDetails.FinalPay),
                     ("basePay", payDetails.BasePay),
                     ("multiplier", payDetails.Multiplier),
@@ -448,7 +512,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             else if (payDetails.HasMultiplier)
             {
                 message = Loc.GetString(
-                    "coyote-rp-incentive-payward-message-multiplier",
+                    "coyote-rpi-payward-message-multiplier",
                     ("amount", payDetails.FinalPay),
                     ("basePay", payDetails.BasePay),
                     ("multiplier", payDetails.Multiplier));
@@ -456,7 +520,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             else if (payDetails.HasAdditive)
             {
                 message = Loc.GetString(
-                    "coyote-rp-incentive-payward-message-additive",
+                    "coyote-rpi-payward-message-additive",
                     ("amount", payDetails.FinalPay),
                     ("basePay", payDetails.BasePay),
                     ("additive", payDetails.AddedPay));
@@ -465,7 +529,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         else
         {
             message = Loc.GetString(
-                "coyote-rp-incentive-payward-message",
+                "coyote-rpi-payward-message",
                 ("amount", payDetails.FinalPay));
         }
 
@@ -638,17 +702,57 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             1,
             100);
     }
+
+    private int GetPeopleInRange(EntityUid origin, float range)
+    {
+        var recipients = 1; // you were there too
+        var xforms = GetEntityQuery<TransformComponent>();
+
+        var transformSource = xforms.GetComponent(origin);
+        var sourceMapId = transformSource.MapID;
+        var sourceCoords = transformSource.Coordinates;
+
+        foreach (var player in _playerManager.Sessions)
+        {
+            if (player.AttachedEntity is not { Valid: true } playerEntity)
+                continue;
+
+            if (playerEntity == origin)
+                continue;
+
+            var transformEntity = xforms.GetComponent(playerEntity);
+
+            if (transformEntity.MapID != sourceMapId)
+                continue;
+
+            // even if they are a ghost hearer, in some situations we still need the range
+            if (sourceCoords.TryDistance(
+                    EntityManager,
+                    transformEntity.Coordinates,
+                    out var distance)
+                && distance <= range)
+            {
+                recipients++;
+            }
+        }
+        return recipients;
+    }
+
     #endregion
 
     #region Data Holbies
     public sealed class TaxBracketResult(
         int payPerJudgement,
         int deathPenalty,
-        int deepFryPenalty)
+        int deepFryPenalty,
+        float miningMultiplier)
     {
         public int PayPerJudgement = payPerJudgement;
         public int DeathPenalty = deathPenalty;
         public int DeepFryPenalty = deepFryPenalty;
+        public float MiningMultiplier = miningMultiplier;
+
+        public TaxBracketResult() : this(10, 0, 0, 1f) { }
     }
 
     private struct PayoutDetails(

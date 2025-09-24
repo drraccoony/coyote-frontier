@@ -4,6 +4,7 @@
   judgementPointPayout: 80
   deathPenalty: 0.10
   deepFriedPenalty: 0.25
+  miningPayoutMult: 1.0
 
 - type: rpiTaxBracket
   id: rpiTaxBracketBroke
@@ -11,6 +12,7 @@
   judgementPointPayout: 300
   deathPenalty: 0.01
   deepFriedPenalty: 0.10
+  miningPayoutMult: 3.0
 
 - type: rpiTaxBracket
   id: rpiTaxBracketEstablished
@@ -18,6 +20,7 @@
   judgementPointPayout: 200
   deathPenalty: 0.05
   deepFriedPenalty: 0.15
+  miningPayoutMult: 2.0
 
 - type: rpiTaxBracket
   id: rpiTaxBracketWealthy
@@ -25,6 +28,7 @@
   judgementPointPayout: 100
   deathPenalty: 0.075
   deepFriedPenalty: 0.2
+  miningPayoutMult: 1.0
 
 
 

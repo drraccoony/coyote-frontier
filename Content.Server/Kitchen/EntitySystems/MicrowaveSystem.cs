@@ -568,10 +568,10 @@ namespace Content.Server.Kitchen.EntitySystems
             if (!HasContents(component) || HasComp<ActiveMicrowaveComponent>(uid) || !(TryComp<ApcPowerReceiverComponent>(uid, out var apc) && apc.Powered))
                 return;
 
-            if (HasComp<CoolChefComponent>(uid))
-            {
-                component.OperatedByTrueChef = true;
-            }
+            // if (HasComp<CoolChefComponent>(uid))
+            // {
+            //     component.OperatedByTrueChef = true;
+            // }
 
             var solidsDict = new Dictionary<string, int>();
             var reagentDict = new Dictionary<string, FixedPoint2>();
