@@ -62,6 +62,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         SubscribeLocalEvent<RoleplayIncentiveComponent, ComponentInit>          (OnComponentInit);
         SubscribeLocalEvent<RoleplayIncentiveComponent, RpiChatEvent>           (OnGotRpiChatEvent);
         SubscribeLocalEvent<RoleplayIncentiveComponent, RpiActionEvent>         (OnGotRpiActionEvent);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiImmediatePayEvent>   (OnRpiImmediatePayEvent);
         SubscribeLocalEvent<RoleplayIncentiveComponent, GetRpiModifier>         (OnSelfSucc);
         SubscribeLocalEvent<RoleplayIncentiveComponent, MobStateChangedEvent>   (OnGotMobStateChanged);
         SortTaxBrackets();
@@ -117,6 +118,13 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         ProcessRoleplayIncentiveEvent(uid, args);
     }
 
+    /// <summary>
+    /// Adds a modifier to the next payward, based on the event.
+    /// Duplicate events will take the highest modifier.
+    /// </summary>
+    /// <param name="uid"></param>
+    /// <param name="rpic"></param>
+    /// <param name="args"></param>
     private void OnGotRpiActionEvent(
         EntityUid uid,
         RoleplayIncentiveComponent? rpic,
@@ -130,23 +138,58 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         // make the record
         var now = _timing.CurTime;
         var peoplePresent = -1; // cant really know this one yet
-        if (args.CheckPeoplePresent)
+        if (args.PeoplePresentModifier > 0f)
             peoplePresent = GetPeopleInRange(uid, 10f); // 10 tile radius
         var action = new RpiActionRecord(
             now,
             args.Action,
             args.Function,
+            args.Multiplier,
             peoplePresent,
             args.FlatPay,
-            args.Multiplier,
-            args.Message);
+            args.Message,
+            args.Paywards);
         // add it tothe actions taken
         rpic.MiscActionsTaken.Add(action);
-        // if its not immediate, we are done
-        if (args.Function != RpiFunction.Immediate)
+    }
+
+    /// <summary>
+    /// Immediately pays the player, bypassing the normal payward system.
+    /// This is used for things like mining, which should give immediate rewards.
+    /// </summary>
+    private void OnRpiImmediatePayEvent(
+        EntityUid uid,
+        RoleplayIncentiveComponent? rpic,
+        RpiImmediatePayEvent args)
+    {
+        if (!Resolve(uid, ref rpic))
             return;
-        // otherwise, process it now
-        ProcessMiscAction(uid, rpic, action);
+        if (args.Handled)
+            return;
+        args.Handled = true;
+        // first, check if they have a bank account
+        if (!_bank.TryGetBalance(uid, out var hasThisMuchMoney))
+            return; // no bank account, no pramgle
+        var taxBracket = GetTaxBracketData(rpic, hasThisMuchMoney);
+        var basePay = args.FlatPay;
+        ModifyBasePayForMiscActions(
+            uid,
+            rpic,
+            args.Category,
+            ref basePay);
+        // process the payment details
+        ProcessPaymentDetails(
+            basePay,
+            new GetRpiModifier(uid), // no modifiers for immediate pay
+            out var payDetails);
+        // pay the player
+        if (!_bank.TryBankDeposit(uid, payDetails.FinalPay))
+        {
+            Log.Warning($"Failed to deposit {payDetails.FinalPay} into bank account of entity {uid}!");
+            return;
+        }
+        ShowPopup(uid, payDetails, "coyote-rpi-immediate-pay-message");
+        ShowChatMessageSimple(uid, payDetails, "coyote-rpi-immediate-pay-popup");
     }
 
     /*
@@ -252,6 +295,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         var taxBracket = GetTaxBracketData(rpic, hasThisMuchMoney);
 
         var chatPay = chatJudgement * taxBracket.PayPerJudgement;
+        var miscPay = GetMiscActionPay(uid, rpic, taxBracket);
 
         var modifyEvent = new GetRpiModifier(uid);
         RaiseLocalEvent(
@@ -323,18 +367,32 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
 
     #region Helpers
 
-    private void ProcessMiscAction(
+    private void ModifyBasePayForMiscActions(
         EntityUid uid,
-        RoleplayIncentiveComponent rpic,
-        RpiActionRecord action)
+        RoleplayIncentiveComponent? rpic,
+        RpiActionType action,
+        ref int basePay)
     {
-        if (!_bank.TryGetBalance(uid, out var hasThisMuchMoney))
-            return; // no bank account, no pramgle
-        var taxBracket = GetTaxBracketData(rpic, hasThisMuchMoney);
-        // this can go
-
+        if (!Resolve(uid, ref rpic))
+            return;
+        TaxBracketResult taxBracket; // default values
+        if (_bank.TryGetBalance(uid, out var hasThisMuchMoney))
+        {
+            taxBracket = GetTaxBracketData(rpic, hasThisMuchMoney);
+        }
+        else
+        {
+            taxBracket = new TaxBracketResult(); // default values
+        }
+        var multiplier = 1f;
+        switch (action)
+        {
+            case RpiActionType.Mining:
+                multiplier = taxBracket.MiningMultiplier;
+                break;
+        }
+        basePay = (int)(basePay * multiplier);
     }
-
 
     private int GetChatActionJudgement(List<RpiChatRecord> actions)
     {
@@ -480,12 +538,12 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             hasMultiplier);
     }
 
-    private void ShowPopup(EntityUid uid, PayoutDetails payDetails)
+    private void ShowPopup(EntityUid uid, PayoutDetails payDetails, string locale = "coyote-rpi-payward-message")
     {
-        if (payDetails.FinalPay <= 0)
+        if (payDetails.FinalPay == 0)
             return; // no pay, no popup
         var messageOverhead = Loc.GetString(
-            "coyote-rpi-payward-message",
+            locale,
             ("amount", payDetails.FinalPay));
         _popupSystem.PopupEntity(
             messageOverhead,
@@ -532,6 +590,27 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
                 "coyote-rpi-payward-message",
                 ("amount", payDetails.FinalPay));
         }
+
+        // cum it to chat
+        if (_playerManager.TryGetSessionByEntity(uid, out var session))
+        {
+            _chatManager.ChatMessageToOne(
+                ChatChannel.Notifications,
+                message,
+                message,
+                default,
+                false,
+                session.Channel);
+        }
+    }
+
+    private void ShowChatMessageSimple(EntityUid uid, PayoutDetails payDetails, string locale)
+    {
+        if (payDetails.FinalPay <= 0)
+            return; // no pay, no popup
+        var message = Loc.GetString(
+            locale,
+            ("amount", payDetails.FinalPay));
 
         // cum it to chat
         if (_playerManager.TryGetSessionByEntity(uid, out var session))

@@ -3,14 +3,19 @@ using Content.Shared._Coyote.RolePlayIncentiveShared;
 
 namespace Content.Server._Coyote;
 
+/// <summary>
+/// Holds the data for an action that will modify one or more RPI paywards.
+/// NOT immediate pay, thats somewhedre else.
+/// </summary>
 public sealed class RpiActionRecord(
     TimeSpan timeTaken,
     RpiActionType category,
     RpiFunction function,
-    float? peoplePresentModifier,
-    int flatPay = 0,
     float paywardMultiplier = 1f,
-    string? message = null)
+    float? peoplePresentModifier = -1f,
+    int? flatPay = 0,
+    string? message = null,
+    int? paywards = 1)
 {
     public TimeSpan TimeTaken = timeTaken;
     public RpiActionType Category = category;
@@ -19,6 +24,22 @@ public sealed class RpiActionRecord(
     public int? FlatPay = flatPay;
     public float? PaywardMultiplier = paywardMultiplier;
     public string? Message = message;
+    public int? Paywards = paywards;
 
     public bool Handled = false;
+
+    public bool IsValid()
+    {
+        return Paywards.HasValue && Paywards > 0 && !Handled;
+    }
+
+    public bool Handle()
+    {
+        Paywards -= 1;
+        if (Paywards <= 0)
+        {
+            Handled = true;
+        }
+        return Handled;
+    }
 }

@@ -28,9 +28,9 @@ public sealed class RpiActionEvent(
     RpiFunction function,
     int flatPay = 0,
     float multiplier = 1f,
-    bool checkPeoplePresent = false,
-    float peoplePresentModifier = 1f,
-    string? message = null
+    float peoplePresentModifier = 0f,
+    string? message = null,
+    int paywards = 1
     ) : EntityEventArgs
 {
     public EntityUid Source = source;
@@ -52,11 +52,14 @@ public sealed class RpiActionEvent(
     public float Multiplier = multiplier;
 
     /// <summary>
-    /// If true, the number of people present should be checked when calculating the final modifier.
+    /// If >0, how much should people present modify the action.
     /// </summary>
-    public bool CheckPeoplePresent = checkPeoplePresent;
-
     public float PeoplePresentModifier = peoplePresentModifier;
+
+    /// <summary>
+    /// Number of paywards this action should apply to.
+    /// </summary>
+    public int Paywards = paywards;
 
     /// <summary>
     /// An optional message to display when the action is processed.
@@ -99,11 +102,6 @@ public enum RpiActionType : byte
 /// </summary>
 public enum RpiFunction : byte
 {
-    /// <summary>
-    /// Pay them immediately.
-    /// </summary>
-    Immediate,
-
     /// <summary>
     /// Provide a multiplier to the next payday.
     /// </summary>
