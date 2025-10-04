@@ -266,8 +266,8 @@ public sealed partial class CryoSleepSystem : EntitySystem
             RequireCanInteract = false
         };
 
-        if (_doAfter.TryStartDoAfter(args))
-            cryopod.Comp.CryosleepDoAfter = ev.DoAfter.Id;
+        // if (_doAfter.TryStartDoAfter(args))
+        //     cryopod.Comp.CryosleepDoAfter = ev.DoAfter.Id;
 
         return true;
     }
@@ -349,8 +349,8 @@ public sealed partial class CryoSleepSystem : EntitySystem
 
         _container.Remove(toEject.Value, component.BodyContainer, force: true);
 
-        if (component.CryosleepDoAfter != null && _doAfter.GetStatus(component.CryosleepDoAfter) == DoAfterStatus.Running)
-            _doAfter.Cancel(component.CryosleepDoAfter);
+        // if (component.CryosleepDoAfter != null && _doAfter.GetStatus(component.CryosleepDoAfter) == DoAfterStatus.Running)
+        //     _doAfter.Cancel(component.CryosleepDoAfter);
 
         // set the mindcontainer's isInCryosleep to false
         if (TryComp<MindContainerComponent>(toEject.Value, out var mindContainer))

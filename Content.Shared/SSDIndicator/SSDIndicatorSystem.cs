@@ -22,6 +22,7 @@ public sealed class SSDIndicatorSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
     [Dependency] private readonly SharedStationSystem _stationSystem = default!;
+    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
 
     private bool _icSsdSleep;
     private float _icSsdSleepTime;
@@ -52,8 +53,8 @@ public sealed class SSDIndicatorSystem : EntitySystem
 
     private void OnPlayerAttached(EntityUid uid, SSDIndicatorComponent component, PlayerAttachedEvent args)
     {
+        WipeBraindeadStatus(uid, component);
         component.IsSSD = false;
-        component.WentBraindeadAt = TimeSpan.Zero;
 
         // Removes force sleep and resets the time to zero
         if (_icSsdSleep)
@@ -70,6 +71,7 @@ public sealed class SSDIndicatorSystem : EntitySystem
 
     private void OnPlayerDetached(EntityUid uid, SSDIndicatorComponent component, PlayerDetachedEvent args)
     {
+        WipeBraindeadStatus(uid, component);
         component.IsSSD = true;
         component.WentBraindeadAt = _timing.CurTime;
 
@@ -92,6 +94,17 @@ public sealed class SSDIndicatorSystem : EntitySystem
         }
     }
 
+    private void WipeBraindeadStatus(EntityUid uid, SSDIndicatorComponent component)
+    {
+        component.WentBraindeadAt = TimeSpan.Zero;
+        component.BraindeadNashTime = TimeSpan.Zero;
+    }
+
+    public bool IsActuallySsd(EntityUid uid, SSDIndicatorComponent component)
+    {
+        return _playerManager.TryGetSessionByEntity(uid, out var session);
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -104,6 +117,11 @@ public sealed class SSDIndicatorSystem : EntitySystem
 
         while (query.MoveNext(out var uid, out var ssd))
         {
+            if (!IsActuallySsd(uid, ssd))
+            {
+                WipeBraindeadStatus(uid, ssd);
+                continue;
+            }
             // Forces the entity to sleep when the time has come
             if(ssd.IsSSD)
             {

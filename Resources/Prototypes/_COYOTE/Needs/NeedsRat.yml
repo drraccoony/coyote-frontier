@@ -24,13 +24,13 @@
   satisfiedIcon: HungerIconOverfed
   # Low State
   lowMinutesFromFull: 45
-  lowSpeedMult: 0.70
+  lowSpeedMult: 0.85
   lowMultRPI: 0.75
   lowAlert: Peckish
   lowIcon: HungerIconPeckish
   # Critical State
   criticalMinutesFromFull: 60 # 1.5 hours of starvation after Low
-  criticalSpeedMult: 0.50
+  criticalSpeedMult: 0.75
   criticalMultRPI: 0.50
   criticalAlert: Starving
   criticalIcon: HungerIconStarving
@@ -62,13 +62,13 @@
   satisfiedIcon: ThirstIconOverhydrated
   # Low State
   lowMinutesFromFull: 45
-  lowSpeedMult: 0.70
+  lowSpeedMult: 0.85
   lowMultRPI: 0.75
   lowAlert: Thirsty
   lowIcon: ThirstIconThirsty
   # Critical State
   criticalMinutesFromFull: 60
-  criticalSpeedMult: 0.50
+  criticalSpeedMult: 0.75
   criticalMultRPI: 0.50
   criticalAlert: Parched
   criticalIcon: ThirstIconParched

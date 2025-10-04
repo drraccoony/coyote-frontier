@@ -8,6 +8,7 @@ using Content.Server.Popups;
 using Content.Shared._Coyote.RolePlayIncentiveShared;
 using Content.Shared._NF.Bank.Components;
 using Content.Shared.Chat;
+using Content.Shared.FixedPoint;
 using Content.Shared.Ghost;
 using Content.Shared.Mobs;
 using Content.Shared.Nutrition.Components;
@@ -228,7 +229,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         if (TryComp<SSDIndicatorComponent>(uid, out var ssd)
             && _ssdThing.IsInNashStation(uid))
         {
-            args.Modify(1.5f, 0f); // double pay if youre in nash!
+            args.Modify(1.5f, 0f); // 'double' pay if youre in nash!
         }
     }
 
@@ -302,6 +303,11 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             uid,
             modifyEvent,
             true);
+        if (Math.Abs(rpic.DebugMultiplier - 1f) > 0.001f)
+        {
+            Log.Info($"RPI Debug Multiplier applied: {rpic.DebugMultiplier}");
+            modifyEvent.Multiplier = rpic.DebugMultiplier;
+        }
         ProcessPaymentDetails(
             chatPay,
             modifyEvent,
@@ -523,7 +529,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
 
         var addedPay = (int) modifyEvent.Additive;
         // round the multiplier to 2 decimal places
-        var multiplier = (float) Math.Round(modifyEvent.Multiplier * 20f) / 20f;
+        var multiplier = modifyEvent.Multiplier;
         var hasMultiplier = Math.Abs(multiplier - 1f) > 0.01f;
         var hasAdditive = addedPay != 0;
         var hasModifier = hasMultiplier || hasAdditive;
@@ -556,6 +562,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         if (payDetails.FinalPay <= 0)
             return; // no pay, no popup
         var message = "Hi mom~";
+        // convert the multiplier to a string with 2 decimal places, if present
         if (payDetails.HasModifier)
         {
             if (payDetails.HasMultiplier && payDetails.HasAdditive)
@@ -838,8 +845,8 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         int basePay,
         int finalPay,
         int addedPay,
-        float multiplier,
-        float rawMultiplier,
+        FixedPoint2 multiplier,
+        FixedPoint2 rawMultiplier,
         bool hasModifier,
         bool hasAdditive,
         bool hasMultiplier)
@@ -847,8 +854,8 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         public int BasePay = basePay;
         public int FinalPay = finalPay;
         public int AddedPay = addedPay;
-        public float Multiplier = multiplier;
-        public float RawMultiplier = rawMultiplier;
+        public FixedPoint2 Multiplier = multiplier;
+        public FixedPoint2 RawMultiplier = rawMultiplier;
         public bool HasModifier = hasModifier;
         public bool HasAdditive = hasAdditive;
         public bool HasMultiplier = hasMultiplier;

@@ -8,7 +8,7 @@
       time: 43200 # 12 hours
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 108000 # frontier: 6 hours | CS: 30 hours / 5 shifts
+      time: 3600 # frontier: 6 hours | CS: 1 hour
 #  alternateRequirementSets: # NOTE: this is a frontier added workaround to let noncadets get into NFSD because they're doing some gmod military roleplay. Shit. COPILOT STOP OFFERING SUGGESTIONS I AM GOING CUM IN YOUR CIRCUITS.
 #    longerPlaytimeLessSec:
 #    - !type:OverallPlaytimeRequirement
@@ -27,6 +27,9 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
+  - !type:AddComponentSpecial
+    components:
+    - type: CoolNfsd
 
 - type: startingGear
   id: DeputyGear

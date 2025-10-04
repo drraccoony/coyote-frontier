@@ -548,7 +548,7 @@
       prototype: ComputerTabletopCloningConsole # Frontier
 
 - type: entity
-  parent: BaseComputerCircuitboard
+  parent: [BaseComputerCircuitboard, BaseC3Contraband]
   id: ComputerIFFCircuitboard
   name: IFF console board
   description: Allows you to control the IFF characteristics of this vessel.

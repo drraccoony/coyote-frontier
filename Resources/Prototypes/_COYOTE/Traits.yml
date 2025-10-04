@@ -16,3 +16,12 @@
   components:
   - type: AllicinIntolerance
 
+- type: trait
+  id: FatFoxTrait
+  name: trait-fat-fox-name
+  description: trait-fat-fox-desc
+  category: Disabilities
+  cost: 1
+  components:
+  - type: OverweightTrait
+

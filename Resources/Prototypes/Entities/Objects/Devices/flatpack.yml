@@ -186,6 +186,20 @@
 
 - type: entity
   parent: BaseFlatpack
+  id: ResearchComputerFlatpack
+  name: R&D Console flatpack
+  description: A flatpack used for constructing a grounding rod.
+  components:
+  - type: Flatpack
+    entity: ComputerResearchAndDevelopment
+  - type: Sprite
+    layers:
+    - state: grounding-rod
+  - type: StaticPrice
+    vendPrice: 14000
+
+- type: entity
+  parent: BaseFlatpack
   id: GyroscopeFlatpack
   name: gyroscope flatpack
   description: A flatpack used for constructing a gyroscope.

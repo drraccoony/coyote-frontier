@@ -6,6 +6,7 @@ using Content.Shared.Bed.Sleep;
 using Content.Shared.Examine;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Overlays;
@@ -14,6 +15,7 @@ using Content.Shared.Rejuvenate;
 using Content.Shared.SSDIndicator;
 using Content.Shared.StatusIcon;
 using Content.Shared.Verbs;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -26,6 +28,7 @@ namespace Content.Shared._Coyote.Needs;
 /// </summary>
 public abstract class SharedNeedsSystem : EntitySystem
 {
+    [Dependency] private readonly ISharedPlayerManager _players = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
@@ -136,8 +139,9 @@ public abstract class SharedNeedsSystem : EntitySystem
 
     #endregion
     #region Helpers
-    private void LoadNeeds(EntityUid uid, NeedsComponent component)
+    public void LoadNeeds(EntityUid uid, NeedsComponent component)
     {
+        component.Ready = false;
         component.Needs.Clear();
         foreach (var need in component.NeedPrototypes)
         {
@@ -168,6 +172,27 @@ public abstract class SharedNeedsSystem : EntitySystem
         component.MinUpdateTime = shortestDelay;
         component.NextUpdateTime = curTime + component.MinUpdateTime;
     }
+
+    private bool IsAsleeping(EntityUid uid)
+    {
+        // if the mob never had a mind, just count them as asleeping
+        if (TryComp<MindContainerComponent>(uid, out var mindComp))
+        {
+            if (!mindComp.HasHadMind)
+                return true;
+            if (mindComp.IsInCryosleep)
+                return true;
+        }
+        if (HasComp<SleepingComponent>(uid))
+            return true;
+        if (TryComp<SSDIndicatorComponent>(uid, out var ssd)
+           && ssd.IsSSD)
+            return true;
+        if (!_players.TryGetSessionByEntity(uid, out var _))
+            return true;
+        return false;
+    }
+
     #endregion
 
     #region Generic Need Helpers
@@ -345,6 +370,21 @@ public abstract class SharedNeedsSystem : EntitySystem
             return false;
         return component.Needs.ContainsKey(needType);
     }
+
+    /// <summary>
+    /// Compares two thresholds and returns the more severe one.
+    /// </summary>
+    public NeedThreshold? CompareThresholds(NeedThreshold? a, NeedThreshold? b)
+    {
+        if (a == null && b == null)
+            return null;
+        if (a == null)
+            return b;
+        if (b == null)
+            return a;
+        return (NeedThreshold)Math.Max((int)a, (int)b);
+    }
+
     #endregion
 
     #region Hunger Helpers
@@ -599,9 +639,7 @@ public abstract class SharedNeedsSystem : EntitySystem
 
             if (_mobState.IsDead(uid))
                 continue;
-            var sleeping = HasComp<SleepingComponent>(uid)
-                || (TryComp<SSDIndicatorComponent>(uid, out var ssd)
-                    && ssd.IsSSD);
+            var sleeping = IsAsleeping(uid);
 
             foreach (var need in component.Needs.Values)
             {

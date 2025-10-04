@@ -323,15 +323,9 @@ public sealed class NeedDatum
     {
         if (sleeping)
         {
-            if (CurrentValue <= Thresholds[NeedThreshold.Critical])
+            if (CurrentValue < Thresholds[NeedThreshold.Low])
             {
-                return; // dont decay if we're already at critical
-            }
-            // while asleeping, make it so that they will have at least 5 minutes until they hit Critical
-            var timeToCritical = GetDecayTime(CurrentValue, Thresholds[NeedThreshold.Critical]);
-            if (timeToCritical < TimeSpan.FromMinutes(5))
-            {
-                return;
+                return; // dont decay if we're already low or worse
             }
         }
         CurrentValue -= DecayRate * deltaTime;

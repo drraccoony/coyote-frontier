@@ -460,7 +460,6 @@
     - state: icon-nobeard
       map: [ "foldedLayer" ]
       visible: true
-    
 
 - type: entity
   parent: ClothingHeadBase
@@ -886,7 +885,7 @@
         Caustic: 0.95
 
 - type: entity
-  parent: [ClothingHeadBase, BaseC3SyndicateContraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband added ContrabandClothing as parent
+  parent: [ClothingHeadBase] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband added ContrabandClothing as parent # coyote: de contra'd it
   id: ClothingHeadHatSyndie
   name: syndicate hat
   description: A souvenir hat from "Syndieland", their production has already been closed.
@@ -897,7 +896,7 @@
     sprite: Clothing/Head/Hats/syndiecap.rsi
 
 - type: entity
-  parent: [ClothingHeadBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
+  parent: [ClothingHeadBase] # Frontier: added ContrabandClothing as parent # coyote: de conra'd
   id: ClothingHeadHatSyndieMAA
   name: master at arms hat
   description: Master at arms hat, looks intimidating, I doubt that you will like to communicate with its owner...

@@ -95,5 +95,17 @@ namespace Content.Server.Atmos.Portable
         [DataField("partRatingTransferRateModifier")]
         public float PartRatingTransferRateModifier = 1.4f;
         // End Frontier
+
+        /// <summary>
+        /// is it always on and works for free and is just a plant?
+        /// </summary>
+        [DataField("passive")]
+        public bool Passive = false;
+
+        /// <summary>
+        /// Is this literally just a plant?
+        /// </summary>
+        [DataField("amPlant")]
+        public bool AmPlant = false;
     }
 }

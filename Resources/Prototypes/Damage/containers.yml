@@ -33,7 +33,6 @@
     - Heat
     - Shock
     - Cold
-    - Structural
 
 - type: damageContainer
   id: Shield

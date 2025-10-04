@@ -34,14 +34,14 @@ public sealed class MaterialArbitrageTest
         "BaseChemistryEmptyVial", "DrinkShotGlass", "SodiumLightTube", "DrinkGlassCoupeShaped",
         "LedLightBulb", "ExteriorLightTube", "LightTube", "DrinkGlass", "DimLightBulb", "LightBulb", "LedLightTube",
         "SheetRGlass1", "ChemistryEmptyBottle01", "WarmLightBulb",
-        "ExteriorLightBulb", "SodiumLightBulb", "LightTubeUltraviolet" // Frontier
+        "ExteriorLightBulb", "SodiumLightBulb", "LightTubeUltraviolet", "Pole", // Frontier
     ];
 
     private readonly HashSet<string> _compositionArbitrageIgnore =
     [
         "FoodPlateSmall", "AirTank", "FoodPlateTin", "FoodPlateMuffinTin", "WeaponCapacitorRechargerCircuitboard",
         "WeaponCapacitorRechargerCircuitboard", "BorgChargerCircuitboard", "BorgChargerCircuitboard", "FoodPlate",
-        "CellRechargerCircuitboard", "CellRechargerCircuitboard",
+        "CellRechargerCircuitboard", "CellRechargerCircuitboard", "Pole",
     ];
 
     [Test]

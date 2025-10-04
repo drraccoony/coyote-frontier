@@ -54,6 +54,9 @@ namespace Content.Server.Atmos.Portable
         {
             var timeDelta = args.dt;
 
+            if (component.Passive)
+                component.Enabled = true;
+
             if (!component.Enabled)
                 return;
 
@@ -115,6 +118,8 @@ namespace Content.Server.Atmos.Portable
         {
             UpdateAppearance(uid, IsFull(component), args.Powered);
             component.Enabled = args.Powered;
+            if (component.Passive)
+                component.Enabled = true; // kj lol
         }
 
         /// <summary>
@@ -124,6 +129,12 @@ namespace Content.Server.Atmos.Portable
         {
             if (args.IsInDetailsRange)
             {
+                if (component.AmPlant)
+                {
+                    // screw localization
+                    var plantText = "There is a small label on the side:\n\"Hi! I'm a plant! I come grafted with a [color=green]Respergreen CO2 scrubber[/color]!\nI make it so you won't suffocate in your ship overnight!\nTo use me, just place me by your bed and [color=green]wrench[/color] me down!\nI don't produce oxygen, as I use that to power myself! Sleep tight, breathe right!\"";
+                    args.PushMarkup(plantText);
+                }
                 var percentage = Math.Round(((component.Air.Pressure) / component.MaxPressure) * 100);
                 args.PushMarkup(Loc.GetString("portable-scrubber-fill-level", ("percent", percentage)));
             }

@@ -28,6 +28,9 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
+  - !type:AddComponentSpecial
+    components:
+    - type: CoolNfsd
 
 - type: startingGear
   id: SecurityGuardGear

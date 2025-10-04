@@ -9,6 +9,10 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Buckle.Components;
 
+/// <summary>
+/// This component allows an entity to have things buckled to it.
+/// This is put on the SEAT OR BED, to allow it to have SITTERS buckled to it.
+/// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 [Access(typeof(SharedBuckleSystem), typeof(SharedVehicleSystem))] // Frontier: add SharedVehicleSystem
 public sealed partial class StrapComponent : Component

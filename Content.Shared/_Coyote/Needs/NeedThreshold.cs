@@ -8,20 +8,20 @@ public enum NeedThreshold : byte
     /// <summary>
     /// The need is in the best possible state
     /// </summary>
-    ExtraSatisfied,
+    ExtraSatisfied = 0,
 
     /// <summary>
     /// The need is satisfied
     /// </summary>
-    Satisfied,
+    Satisfied = 1,
 
     /// <summary>
     /// The need is low
     /// </summary>
-    Low,
+    Low = 2,
 
     /// <summary>
     /// The need is critical, threshold will be set to the minimum value automagestically
     /// </summary>
-    Critical,
+    Critical = 3,
 }

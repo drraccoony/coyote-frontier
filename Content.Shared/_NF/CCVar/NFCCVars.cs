@@ -18,13 +18,13 @@ public sealed class NFCCVars
     /// Respawn time, how long the player has to wait in seconds after going into cryosleep. Should be small, misclicks happen.
     /// </summary>
     public static readonly CVarDef<float> RespawnCryoFirstTime =
-        CVarDef.Create("nf14.respawn.cryo_first_time", 20.0f, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("nf14.respawn.cryo_first_time", 10.0f, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     /// Respawn time, how long the player has to wait in seconds after death, or on subsequent cryo attempts.
     /// </summary>
     public static readonly CVarDef<float> RespawnTime =
-        CVarDef.Create("nf14.respawn.time", 1200.0f, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("nf14.respawn.time", 10.0f, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     /// Whether or not returning from cryosleep is enabled.
@@ -36,7 +36,7 @@ public sealed class NFCCVars
     /// The time in seconds after which a cryosleeping body is considered expired and can be deleted from the storage map.
     /// </summary>
     public static readonly CVarDef<float> CryoExpirationTime =
-        CVarDef.Create("nf14.uncryo.maxtime", 180 * 60f, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("nf14.uncryo.maxtime", 259200f, CVar.SERVER | CVar.REPLICATED);
 
     /*
      *  Game
@@ -102,7 +102,7 @@ public sealed class NFCCVars
     /// Base sell rate (multiplier: 0.75 = 75%)
     /// </summary>
     public static readonly CVarDef<float> ShipyardSellRate =
-        CVarDef.Create("shuttle.shipyard_base_sell_rate", 0.75f, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.shipyard_base_sell_rate", 0.35f, CVar.SERVERONLY);
 
     /*
      * Salvage

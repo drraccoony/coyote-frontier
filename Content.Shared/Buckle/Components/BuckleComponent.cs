@@ -9,6 +9,7 @@ namespace Content.Shared.Buckle.Components;
 
 /// <summary>
 /// This component allows an entity to be buckled to an entity with a <see cref="StrapComponent"/>.
+/// This is put on the SITTER, to allow it to be buckled to a STRAP.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
 [Access(typeof(SharedBuckleSystem))]

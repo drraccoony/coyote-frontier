@@ -4,7 +4,7 @@
   needName: "Hunger"
   needKind: "Hunger"
   color: "Pink"
-  maxValue: 700
+  maxValue: 250
   minValue: 0
   minutesFromMaxToMin: 300 # 5 hours
   startingMinutesWorthOfDecay: 100
@@ -24,13 +24,13 @@
   satisfiedIcon: HungerIconOverfed
   # Low State
   lowMinutesFromFull: 270
-  lowSpeedMult: 0.70
+  lowSpeedMult: 0.85
   lowMultRPI: 0.75
   lowAlert: Peckish
   lowIcon: HungerIconPeckish
   # Critical State
   criticalMinutesFromFull: 300
-  criticalSpeedMult: 0.50
+  criticalSpeedMult: 0.75
   criticalMultRPI: 0.50
   criticalAlert: Starving
   criticalIcon: HungerIconStarving
@@ -42,7 +42,7 @@
   needName: "Thirst"
   needKind: "Thirst"
   color: "Cyan"
-  maxValue: 700
+  maxValue: 250
   minValue: 0
   minutesFromMaxToMin: 300
   startingMinutesWorthOfDecay: 100
@@ -62,13 +62,13 @@
   satisfiedIcon: ThirstIconOverhydrated
   # Low State
   lowMinutesFromFull: 270
-  lowSpeedMult: 0.70
+  lowSpeedMult: 0.85
   lowMultRPI: 0.75
   lowAlert: Thirsty
   lowIcon: ThirstIconThirsty
   # Critical State
   criticalMinutesFromFull: 300 # 1.5 hours of starvation after Low
-  criticalSpeedMult: 0.50
+  criticalSpeedMult: 0.75
   criticalMultRPI: 0.50
   criticalAlert: Parched
   criticalIcon: ThirstIconParched

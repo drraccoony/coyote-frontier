@@ -27,13 +27,13 @@
   satisfiedIcon: ThirstIconOverhydrated
   # Low State
   lowMinutesFromFull: 210
-  lowSpeedMult: 0.50
+  lowSpeedMult: 0.60
   lowMultRPI: 0.50
   lowAlert: Thirsty
   lowIcon: ThirstIconThirsty
   # Critical State
   criticalMinutesFromFull: 300 # 1.5 hours of starvation after Low
-  criticalSpeedMult: 0.10
+  criticalSpeedMult: 0.50
   criticalMultRPI: 0.10
   criticalAlert: Parched
   criticalIcon: ThirstIconParched

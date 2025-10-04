@@ -78,5 +78,7 @@ public sealed partial class RoleplayIncentiveComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public int TaxBracketDeepFryerPenaltyOverride = -1; // -1 means no override, use the default payouts
 
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float DebugMultiplier = 1.0f;
 
 }

@@ -5,7 +5,7 @@
   description: A little bit of nature contained in a pot.
   abstract: true
   components:
-  - type: SpriteFade
+#  - type: SpriteFade
   - type: Transform
     noRot: true
   - type: InteractionOutline
@@ -50,6 +50,25 @@
           path: /Audio/Effects/plant_rustle.ogg
   - type: StaticPrice
     price: 50
+    vendPrice: 2000 # eat it
+  - type: PortableScrubber
+    baseTransferRate: 1
+    amPlant: true
+    partRatingTransferRateModifier: 2.0
+    filterGases:
+    - CarbonDioxide
+    gasMixture:
+      volume: 125000
+    passive: true
+  - type: AtmosDevice
+    joinSystem: true
+  - type: NodeContainer
+    nodes:
+      port:
+        !type:PortablePipeNode
+        nodeGroupID: Pipe
+        rotationsEnabled: false
+        volume: 1
 
 - type: entity
   id: PottedPlant0
