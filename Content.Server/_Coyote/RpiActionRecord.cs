@@ -10,36 +10,44 @@ namespace Content.Server._Coyote;
 public sealed class RpiActionRecord(
     TimeSpan timeTaken,
     RpiActionType category,
-    RpiFunction function,
     float paywardMultiplier = 1f,
-    float? peoplePresentModifier = -1f,
-    int? flatPay = 0,
-    string? message = null,
-    int? paywards = 1)
+    int peoplePresent = 0,
+    float peoplePresentModifier = 0f,
+    int paywards = 1)
 {
     public TimeSpan TimeTaken = timeTaken;
     public RpiActionType Category = category;
-    public RpiFunction Function = function;
-    public float? PeoplePresentModifier = peoplePresentModifier;
-    public int? FlatPay = flatPay;
-    public float? PaywardMultiplier = paywardMultiplier;
-    public string? Message = message;
-    public int? Paywards = paywards;
+    private float _paywardMultiplier = paywardMultiplier;
+    public int PeoplePresent = peoplePresent;
+    private float _peoplePresentModifier = peoplePresentModifier;
+    private int _paywards = paywards;
 
-    public bool Handled = false;
+    public bool MiscActionIsSpent = false;
+
+    public float GetMultiplier()
+    {
+        var mult = _paywardMultiplier;
+        if (_peoplePresentModifier > 0.1f
+            && PeoplePresent > 0)
+        {
+            mult *= (_peoplePresentModifier * PeoplePresent);
+        }
+        return mult;
+    }
 
     public bool IsValid()
     {
-        return Paywards.HasValue && Paywards > 0 && !Handled;
+        var am = _paywards > 0;
+        if (!am)
+            MiscActionIsSpent = true;
+        return am;
     }
 
-    public bool Handle()
+    public bool TryPop()
     {
-        Paywards -= 1;
-        if (Paywards <= 0)
-        {
-            Handled = true;
-        }
-        return Handled;
+        if (!IsValid())
+            return false;
+        _paywards--;
+        return true;
     }
 }

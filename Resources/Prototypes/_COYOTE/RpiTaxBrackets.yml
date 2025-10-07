@@ -4,7 +4,21 @@
   judgementPointPayout: 80
   deathPenalty: 0.10
   deepFriedPenalty: 0.25
-  miningPayoutMult: 1.0
+  actionMultipliers:
+    Mining: 2.0
+    Combat: 2.0
+    Salvage: 2.0
+    Cooking: 2.0
+    Bartending: 2.0
+    Medical: 2.0
+    Janitorial: 2.0
+    Engineering: 2.0
+    Atmos: 2.0
+    Pilot: 2.0
+    Librarian: 2.0
+    Chaplain: 2.0
+    Horny: 2.0
+    StationPrincess: 2.0
 
 - type: rpiTaxBracket
   id: rpiTaxBracketBroke
@@ -12,7 +26,21 @@
   judgementPointPayout: 300
   deathPenalty: 0.01
   deepFriedPenalty: 0.10
-  miningPayoutMult: 3.0
+  actionMultipliers:
+    Mining: 2.0
+    Combat: 2.0
+    Salvage: 2.0
+    Cooking: 2.0
+    Bartending: 2.0
+    Medical: 2.0
+    Janitorial: 2.0
+    Engineering: 2.0
+    Atmos: 2.0
+    Pilot: 2.0
+    Librarian: 2.0
+    Chaplain: 2.0
+    Horny: 2.0
+    StationPrincess: 2.0
 
 - type: rpiTaxBracket
   id: rpiTaxBracketEstablished
@@ -20,7 +48,21 @@
   judgementPointPayout: 200
   deathPenalty: 0.05
   deepFriedPenalty: 0.15
-  miningPayoutMult: 2.0
+  actionMultipliers:
+    Mining: 2.0
+    Combat: 2.0
+    Salvage: 2.0
+    Cooking: 2.0
+    Bartending: 2.0
+    Medical: 2.0
+    Janitorial: 2.0
+    Engineering: 2.0
+    Atmos: 2.0
+    Pilot: 2.0
+    Librarian: 2.0
+    Chaplain: 2.0
+    Horny: 2.0
+    StationPrincess: 2.0
 
 - type: rpiTaxBracket
   id: rpiTaxBracketWealthy
@@ -28,8 +70,37 @@
   judgementPointPayout: 100
   deathPenalty: 0.075
   deepFriedPenalty: 0.2
-  miningPayoutMult: 1.0
+  actionMultipliers:
+    Mining: 1.0
+    Combat: 1.0
+    Salvage: 1.0
+    Cooking: 1.0
+    Bartending: 1.0
+    Medical: 1.0
+    Janitorial: 1.0
+    Engineering: 1.0
+    Atmos: 1.0
+    Pilot: 1.0
+    Librarian: 1.0
+    Chaplain: 1.0
+    Horny: 1.0
+    StationPrincess: 1.0
 
+
+
+#Mining
+#Salvage
+#Cooking
+#Bartending
+#Medical
+#Janitorial
+#Engineering
+#Atmos
+#Pilot
+#Librarian
+#Chaplain
+#Horny
+#StationPrincess
 
 
 #private const int TaxBracket1 = 40000

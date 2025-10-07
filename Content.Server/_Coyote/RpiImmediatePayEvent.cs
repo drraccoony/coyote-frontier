@@ -11,12 +11,14 @@ public sealed class RpiImmediatePayEvent(
     TimeSpan timeTaken,
     RpiActionType category,
     int flatPay = 0,
-    string? message = null) : EntityEventArgs
+    string? message = null,
+    bool suppressChat = false) : EntityEventArgs
 {
     public TimeSpan TimeTaken = timeTaken;
     public RpiActionType Category = category;
     public int FlatPay = flatPay;
     public string? Message = message;
+    public bool SuppressChat = suppressChat;
 
     public bool Handled = false;
 }

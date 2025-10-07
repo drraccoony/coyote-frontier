@@ -1,0 +1,19 @@
+- type: rpiContinuousProxyAction
+  id: rpiContinuousProxyActionLikesPirates
+  proxyTarget: BeNearPirate
+  minutesToMaxBonus: 10
+  maxMultiplier: 10.0
+  maxDistance: 10
+  optimalDistance: 5
+  optimalDistanceBonusMultiplier: 2.0
+  examineTextKey: capturebait
+
+- type: rpiContinuousProxyAction
+  id: rpiContinuousProxyActionLikesNonPiratesWhilePirate
+  proxyTarget: BeNearNonPirates
+  minutesToMaxBonus: 5
+  maxMultiplier: 10.0
+  maxDistance: 10
+  optimalDistance: 5
+  optimalDistanceBonusMultiplier: 2.0
+  examineTextKey: bottomnapper

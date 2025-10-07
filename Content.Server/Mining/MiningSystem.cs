@@ -8,6 +8,7 @@ using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Mining;
 
@@ -19,6 +20,7 @@ public sealed class MiningSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly RoleplayIncentiveSystem _RpiSystem = default!;
+    [Dependency] private readonly IGameTiming _timing = null!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -73,22 +75,20 @@ public sealed class MiningSystem : EntitySystem
         if (payout <= 0)
             return;
 
-        _RpiSystem.GetTaxBracketDataForEntity(toPay, rpi, out var taxData);
-        var finalPayout = (int) (payout * taxData.MiningMultiplier);
+        var taxData = _RpiSystem.GetTaxBracketData(toPay);
+        var finalPayout = (int) (payout * taxData.ActionMultipliers[RpiActionType.Mining]);
         if (finalPayout <= 0)
             return;
         // the paypig message
         var msg = Loc.GetString(
             "coyote-rpi-plus-fund-yellow",
             ("amount", finalPayout));
-        var ev = new RpiActionEvent(
-            toPay,
+        var ev = new RpiImmediatePayEvent(
+            _timing.CurTime,
             RpiActionType.Mining,
-            RpiFunction.Immediate,
-            flatPay: finalPayout,
-            checkPeoplePresent: true,
-            peoplePresentModifier: 1.5f,
-            message: msg);
-        RaiseLocalEvent(toPay, ev);
+            finalPayout,
+            msg,
+            true);
+        RaiseLocalEvent(toPay, ev); // make this loser feel like a winner
     }
 }

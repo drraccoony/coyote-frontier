@@ -1,0 +1,35 @@
+Welcome to my thoughts file! MY THOGUHTS ON KEANU REEVES
+
+Here are the ways the game interacts with RPI:
+1. Though chat actions
+    - When someone says or emotes something, it logs it to give a FlatRate
+2. Through discrete actions
+    - This also gives a FlatRate, modified by the taxBracket
+3. Through continuous actions
+    - This gives a modifier to the next Payward
+
+**Chat actions**
+- These are actions that are logged when a player says something in chat or performs an emote.
+- Most give more money if its a longer message, some also give more money if there are other people around
+- These use a FlatRate as the base, modified by taxBracket, multiplied by length and poeople around
+
+**Discrete actions**
+- These are actions that are logged when a player performs a specific action, like mining a rock
+- These use a FlatRate as the base, modified by taxBracket
+- Amount is usually determined by the system calling the action
+
+**Continuous actions**
+- These are things that track time spent doing them, like being close to a pirate or flying a ship
+- These have a goal amount both FlatRate and Modifier, which accumulate over a period of time
+- The resulting payward is calculated and locked in at the next Payward, then reset
+
+
+**Proximity Continuous Actions**
+- Handled by a ProximitySystem that does all the checking for components and distance
+- Determined with two types of component:
+    - A monolithic component that holds the component tags to check for, along with the relevant data
+    - A marker component that just marks an entity as something to check proximity against
+- The ProxyLiker component is added by jobs to players
+
+
+

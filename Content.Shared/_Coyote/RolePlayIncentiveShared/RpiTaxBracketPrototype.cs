@@ -39,6 +39,6 @@ public sealed partial class RpiTaxBracketPrototype : IPrototype
     /// <summary>
     /// Whats the multiplier for getting paid for mining?
     /// </summary>
-    [DataField("miningPayoutMult", required: true)]
-    public float MiningPayoutMult = 1f;
+    [DataField("actionMultipliers", required: true)]
+    public Dictionary<RpiActionType, float> ActionMultipliers = new();
 }

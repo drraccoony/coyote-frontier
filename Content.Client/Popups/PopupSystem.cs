@@ -96,7 +96,12 @@ namespace Content.Client.Popups
                 ("count", existingLabel.Repeats));
         }
 
-        private void PopupMessage(string? message, PopupType type, EntityCoordinates coordinates, EntityUid? entity, bool recordReplay)
+        private void PopupMessage(string? message,
+            PopupType type,
+            EntityCoordinates coordinates,
+            EntityUid? entity,
+            bool recordReplay,
+            bool suppressChat = false)
         {
             if (message == null)
                 return;
@@ -125,9 +130,13 @@ namespace Content.Client.Popups
 
             _aliveWorldLabels.Add(popupData, label);
 
-            if (_shouldLogInChat &&
-                _playerManager.LocalEntity != null &&
-                _examine.InRangeUnOccluded(_playerManager.LocalEntity.Value, coordinates, 10))
+            if (_shouldLogInChat
+                && _playerManager.LocalEntity != null
+                && !suppressChat
+                && _examine.InRangeUnOccluded(
+                    _playerManager.LocalEntity.Value,
+                    coordinates,
+                    10))
             {
                 var fontsize = FontSizeDict.GetValueOrDefault(type, "10");
                 var fontcolor = type is PopupType.LargeCaution or PopupType.MediumCaution or PopupType.SmallCaution
@@ -142,21 +151,50 @@ namespace Content.Client.Popups
         }
 
         #region Abstract Method Implementations
-        public override void PopupCoordinates(string? message, EntityCoordinates coordinates, PopupType type = PopupType.Small)
+        public override void PopupCoordinates(string? message,
+            EntityCoordinates coordinates,
+            PopupType type = PopupType.Small,
+            bool suppressChat = false)
         {
-            PopupMessage(message, type, coordinates, null, true);
+            PopupMessage(
+                message,
+                type,
+                coordinates,
+                null,
+                true,
+                suppressChat);
         }
 
-        public override void PopupCoordinates(string? message, EntityCoordinates coordinates, ICommonSession recipient, PopupType type = PopupType.Small)
+        public override void PopupCoordinates(string? message,
+            EntityCoordinates coordinates,
+            ICommonSession recipient,
+            PopupType type = PopupType.Small,
+            bool suppressChat = false)
         {
             if (_playerManager.LocalSession == recipient)
-                PopupMessage(message, type, coordinates, null, true);
+                PopupMessage(
+                    message,
+                    type,
+                    coordinates,
+                    null,
+                    true,
+                    suppressChat);
         }
 
-        public override void PopupCoordinates(string? message, EntityCoordinates coordinates, EntityUid recipient, PopupType type = PopupType.Small)
+        public override void PopupCoordinates(string? message,
+            EntityCoordinates coordinates,
+            EntityUid recipient,
+            PopupType type = PopupType.Small,
+            bool suppressChat = false)
         {
             if (_playerManager.LocalEntity == recipient)
-                PopupMessage(message, type, coordinates, null, true);
+                PopupMessage(
+                    message,
+                    type,
+                    coordinates,
+                    null,
+                    true,
+                    suppressChat);
         }
 
         public override void PopupPredictedCoordinates(string? message, EntityCoordinates coordinates, EntityUid? recipient, PopupType type = PopupType.Small)
@@ -219,29 +257,63 @@ namespace Content.Client.Popups
             PopupCursor(message, recipient, type);
         }
 
-        public override void PopupCoordinates(string? message, EntityCoordinates coordinates, Filter filter, bool replayRecord, PopupType type = PopupType.Small)
+        public override void PopupCoordinates(string? message,
+            EntityCoordinates coordinates,
+            Filter filter,
+            bool replayRecord,
+            PopupType type = PopupType.Small,
+            bool suppressChat = false)
         {
-            PopupCoordinates(message, coordinates, type);
+            PopupCoordinates(
+                message,
+                coordinates,
+                type,
+                suppressChat);
         }
 
-        public override void PopupEntity(string? message, EntityUid uid, EntityUid recipient, PopupType type = PopupType.Small)
+        public override void PopupEntity(string? message,
+            EntityUid uid,
+            EntityUid recipient,
+            PopupType type = PopupType.Small,
+            bool suppressChat = false)
         {
             if (_playerManager.LocalEntity == recipient)
-                PopupEntity(message, uid, type);
+                PopupEntity(
+                    message,
+                    uid,
+                    type,
+                    suppressChat);
         }
 
-        public override void PopupEntity(string? message, EntityUid uid, ICommonSession recipient, PopupType type = PopupType.Small)
+        public override void PopupEntity(string? message,
+            EntityUid uid,
+            ICommonSession recipient,
+            PopupType type = PopupType.Small,
+            bool suppressChat = false)
         {
             if (_playerManager.LocalSession == recipient)
-                PopupEntity(message, uid, type);
+                PopupEntity(
+                    message,
+                    uid,
+                    type,
+                    suppressChat);
         }
 
-        public override void PopupEntity(string? message, EntityUid uid, Filter filter, bool recordReplay, PopupType type = PopupType.Small)
+        public override void PopupEntity(string? message,
+            EntityUid uid,
+            Filter filter,
+            bool recordReplay,
+            PopupType type = PopupType.Small,
+            bool suppressChat = false)
         {
             if (!filter.Recipients.Contains(_playerManager.LocalSession))
                 return;
 
-            PopupEntity(message, uid, type);
+            PopupEntity(
+                message,
+                uid,
+                type,
+                suppressChat);
         }
 
         public override void PopupClient(string? message, EntityUid? recipient, PopupType type = PopupType.Small)
@@ -271,10 +343,20 @@ namespace Content.Client.Popups
                 PopupCoordinates(message, coordinates, recipient.Value, type);
         }
 
-        public override void PopupEntity(string? message, EntityUid uid, PopupType type = PopupType.Small)
+        public override void PopupEntity(
+            string? message,
+            EntityUid uid,
+            PopupType type = PopupType.Small,
+            bool suppressChat = false)
         {
             if (TryComp(uid, out TransformComponent? transform))
-                PopupMessage(message, type, transform.Coordinates, uid, true);
+                PopupMessage(
+                    message,
+                    type,
+                    transform.Coordinates,
+                    uid,
+                    true,
+                    suppressChat);
         }
 
         public override void PopupPredicted(string? message, EntityUid uid, EntityUid? recipient, PopupType type = PopupType.Small)
@@ -306,7 +388,13 @@ namespace Content.Client.Popups
 
         private void OnPopupCoordinatesEvent(PopupCoordinatesEvent ev)
         {
-            PopupMessage(ev.Message, ev.Type, GetCoordinates(ev.Coordinates), null, false);
+            PopupMessage(
+                ev.Message,
+                ev.Type,
+                GetCoordinates(ev.Coordinates),
+                null,
+                false,
+                false);
         }
 
         private void OnPopupEntityEvent(PopupEntityEvent ev)
@@ -314,7 +402,13 @@ namespace Content.Client.Popups
             var entity = GetEntity(ev.Uid);
 
             if (TryComp(entity, out TransformComponent? transform))
-                PopupMessage(ev.Message, ev.Type, transform.Coordinates, entity, false);
+                PopupMessage(
+                    ev.Message,
+                    ev.Type,
+                    transform.Coordinates,
+                    entity,
+                    false,
+                    false);
         }
 
         private void OnRoundRestart(RoundRestartCleanupEvent ev)

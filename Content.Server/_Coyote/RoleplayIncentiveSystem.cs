@@ -11,13 +11,16 @@ using Content.Shared.Chat;
 using Content.Shared.FixedPoint;
 using Content.Shared.Ghost;
 using Content.Shared.Mobs;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
 using Content.Shared.SSDIndicator;
+using Content.Shared.Tag;
 using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using YamlDotNet.Core.Tokens;
 
 // ReSharper disable InconsistentNaming
 
@@ -36,6 +39,8 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _playerManager = null!;
     [Dependency] private readonly SSDIndicatorSystem _ssdThing = null!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly TagSystem _tagSystem = default!;
+    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
 
     private List<ProtoId<RpiTaxBracketPrototype>> RpiDatumPrototypes = new()
     {
@@ -62,7 +67,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     {
         SubscribeLocalEvent<RoleplayIncentiveComponent, ComponentInit>          (OnComponentInit);
         SubscribeLocalEvent<RoleplayIncentiveComponent, RpiChatEvent>           (OnGotRpiChatEvent);
-        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiActionEvent>         (OnGotRpiActionEvent);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiActionMultEvent>     (OnGotRpiActionEvent);
         SubscribeLocalEvent<RoleplayIncentiveComponent, RpiImmediatePayEvent>   (OnRpiImmediatePayEvent);
         SubscribeLocalEvent<RoleplayIncentiveComponent, GetRpiModifier>         (OnSelfSucc);
         SubscribeLocalEvent<RoleplayIncentiveComponent, MobStateChangedEvent>   (OnGotMobStateChanged);
@@ -122,6 +127,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     /// <summary>
     /// Adds a modifier to the next payward, based on the event.
     /// Duplicate events will take the highest modifier.
+    /// Is a multiplier!!!
     /// </summary>
     /// <param name="uid"></param>
     /// <param name="rpic"></param>
@@ -129,7 +135,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     private void OnGotRpiActionEvent(
         EntityUid uid,
         RoleplayIncentiveComponent? rpic,
-        RpiActionEvent args)
+        RpiActionMultEvent args)
     {
         if (!Resolve(uid, ref rpic))
             return;
@@ -139,16 +145,14 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         // make the record
         var now = _timing.CurTime;
         var peoplePresent = -1; // cant really know this one yet
-        if (args.PeoplePresentModifier > 0f)
+        if (args.CheckForPeoplePresent())
             peoplePresent = GetPeopleInRange(uid, 10f); // 10 tile radius
         var action = new RpiActionRecord(
             now,
             args.Action,
-            args.Function,
             args.Multiplier,
             peoplePresent,
-            args.FlatPay,
-            args.Message,
+            args.GetPeoplePresentModifier(),
             args.Paywards);
         // add it tothe actions taken
         rpic.MiscActionsTaken.Add(action);
@@ -168,29 +172,35 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         if (args.Handled)
             return;
         args.Handled = true;
-        // first, check if they have a bank account
-        if (!_bank.TryGetBalance(uid, out var hasThisMuchMoney))
-            return; // no bank account, no pramgle
-        var taxBracket = GetTaxBracketData(rpic, hasThisMuchMoney);
         var basePay = args.FlatPay;
-        ModifyBasePayForMiscActions(
+        ModifyImmediatePay(
             uid,
             rpic,
-            args.Category,
+            args,
             ref basePay);
         // process the payment details
-        ProcessPaymentDetails(
+        var payDetails = ProcessPaymentDetails(
             basePay,
-            new GetRpiModifier(uid), // no modifiers for immediate pay
-            out var payDetails);
+            1f);
         // pay the player
         if (!_bank.TryBankDeposit(uid, payDetails.FinalPay))
         {
             Log.Warning($"Failed to deposit {payDetails.FinalPay} into bank account of entity {uid}!");
             return;
         }
-        ShowPopup(uid, payDetails, "coyote-rpi-immediate-pay-message");
-        ShowChatMessageSimple(uid, payDetails, "coyote-rpi-immediate-pay-popup");
+
+        ShowPopup(
+            uid,
+            payDetails,
+            "coyote-rpi-immediate-pay-message",
+            args.SuppressChat);
+        if (!args.SuppressChat)
+        {
+            ShowChatMessageSimple(
+                uid,
+                payDetails,
+                "coyote-rpi-immediate-pay-popup");
+        }
     }
 
     /*
@@ -260,17 +270,21 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         var query = EntityQueryEnumerator<RoleplayIncentiveComponent>();
         while (query.MoveNext(out var uid, out var rpic))
         {
-            if (_timing.CurTime < rpic.NextPayward)
-                continue;
-            rpic.NextPayward = _timing.CurTime + rpic.PaywardInterval;
-            // check if they have a bank account
-            if (!TryComp<BankAccountComponent>(uid, out _))
+            if (!_playerManager.TryGetSessionByEntity(uid, out var _))
+                return; // only players pls
+            if (TryComp<GhostComponent>(uid, out var ghost))
+                return; // no ghosts pls
+            if (_mobStateSystem.IsDead(uid))
+                return; // no dead ppl pls
+            if (_timing.CurTime >= rpic.NextProxyCheck)
             {
-                continue; // no bank account, no pramgle
+                ProcessContinuousProxies(uid, rpic);
             }
-
-            // pay the player
-            PayoutPaywardToPlayer(uid, rpic);
+            if (_timing.CurTime >= rpic.NextPayward)
+            {
+                rpic.NextPayward = _timing.CurTime + rpic.PaywardInterval;
+                PayoutPaywardToPlayer(uid, rpic);
+            }
         }
     }
 
@@ -292,13 +306,17 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             return;
         }
 
-        var chatJudgement = GetChatActionJudgement(rpic.ChatActionsTaken);
         var taxBracket = GetTaxBracketData(rpic, hasThisMuchMoney);
 
-        var chatPay = chatJudgement * taxBracket.PayPerJudgement;
-        var miscPay = GetMiscActionPay(uid, rpic, taxBracket);
-
-        var modifyEvent = new GetRpiModifier(uid);
+        // ChatPay gets an int as our base pay
+        var chatPay = GetChatActionPay(uid, rpic, taxBracket);
+        // MiscPay gets a multiplier to modify the base pay
+        var miscMult = GetMiscActionPayMult(uid, rpic, taxBracket);
+        // Continuous proxies are applied here too, as multipliers
+        var proxyMult = GetProxiesPayMult(rpic, true);
+        // other components wanteing to messing with me
+        var modMult = 1f;
+        var modifyEvent = new GetRpiModifier(uid, modMult);
         RaiseLocalEvent(
             uid,
             modifyEvent,
@@ -308,10 +326,14 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             Log.Info($"RPI Debug Multiplier applied: {rpic.DebugMultiplier}");
             modifyEvent.Multiplier = rpic.DebugMultiplier;
         }
-        ProcessPaymentDetails(
+
+        var finalMult = 1f;
+        finalMult += (miscMult - 1f);
+        finalMult += (proxyMult - 1f);
+        finalMult += (modifyEvent.Multiplier - 1f);
+        var payDetails = ProcessPaymentDetails(
             chatPay,
-            modifyEvent,
-            out var payDetails);
+            finalMult);
 
         // pay the player
         if (!_bank.TryBankDeposit(uid, payDetails.FinalPay))
@@ -322,6 +344,129 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         ShowPopup(uid, payDetails);
         ShowChatMessage(uid, payDetails);
         PruneOldActions(incentive);
+    }
+    #endregion
+
+    #region Continuous Proxy Actions
+    /// <summary>
+    /// Checks the component's continuous proxies, and processes them.
+    /// Easy peasy.
+    /// </summary>
+    private void ProcessContinuousProxies(EntityUid uid, RoleplayIncentiveComponent rpic)
+    {
+        rpic.NextProxyCheck = _timing.CurTime + rpic.ProxyCheckInterval;
+        if (rpic.Proxies.Count == 0) // now when I say proxy, I mean proximity
+            return; // no proxies, no pramgle
+        foreach (var (proxKind, proxData) in rpic.Proxies)
+        {
+            if (!_prototype.TryIndex(proxData.Proto, out var proxProto))
+            {
+                Log.Warning($"RpiProxyPrototype {proxData.Proto} not found!");
+                continue;
+            }
+
+            ProtoId<TagPrototype>? otherWantTag = default!;
+            ProtoId<TagPrototype>? otherExcludeTag = default!;
+            ProtoId<TagPrototype>? selfWantTag = default!;
+            ProtoId<TagPrototype>? selfExcludeTag = default!;
+            switch (proxData.Target)
+            {
+                case RpiProximityMode.BeNearPirate:
+                    otherWantTag = "Pirate";
+                    selfExcludeTag = "Pirate";
+                    break;
+                case RpiProximityMode.BeNearNonPirates:
+                    otherExcludeTag = "Pirate";
+                    selfWantTag = "Pirate";
+                    break;
+                case RpiProximityMode.None:
+                default:
+                    continue; // we dont care about the rest yet
+            }
+            // first first, check if ANY want tags are set
+            if (otherWantTag == null
+                && otherExcludeTag == null
+                && selfWantTag == null
+                && selfExcludeTag == null)
+            {
+                continue; // no tags to check, skip
+            }
+
+            // first, check if we have any self-exclude tags
+            if (selfExcludeTag != null
+                && _tagSystem.HasTag(uid, selfExcludeTag.Value))
+            {
+                continue; // we have a tag that excludes us from this proxy
+            }
+            // then, check if we have any self-want tags
+            if (selfWantTag != null
+                && !_tagSystem.HasTag(uid, selfWantTag.Value))
+            {
+                continue; // we dont have a tag that includes us in this proxy
+            }
+            // ok, lets roll through all the connected players,
+            // and poll them for tags and distance
+            var ourCoords = Transform(uid).Coordinates;
+            var somethingHappened = false;
+            foreach (var sesh in _playerManager.Sessions)
+            {
+                if (sesh.AttachedEntity is not { } otherEnt)
+                    continue; // no entity, no pramgle
+                if (otherEnt == uid)
+                    continue; // dont check ourselves
+                if (!_mobStateSystem.IsAlive(otherEnt))
+                    continue; // They must be alive and well to count
+                // check if they have any other-exclude tags
+                if (otherExcludeTag != null
+                    && _tagSystem.HasTag(otherEnt, otherExcludeTag.Value))
+                {
+                    continue; // they have a tag that excludes them from this proxy
+                }
+                // check if they have any other-want tags
+                if (otherWantTag != null
+                    && !_tagSystem.HasTag(otherEnt, otherWantTag.Value))
+                {
+                    continue; // they dont have a tag that includes them in this proxy
+                }
+                // now check distance
+                if (!ourCoords.TryDistance(
+                        EntityManager,
+                        Transform(otherEnt).Coordinates,
+                        out var dist))
+                    continue; // cant get distance, no pramgle
+                if (dist > proxProto.MaxDistance)
+                    continue; // too far away, no pramgle
+                var isOptimal = dist <= proxProto.OptimalDistance;
+                var optMult = isOptimal ? proxProto.OptimalDistanceBonusMultiplier : 1f;
+                proxData.TickInRange(optMult);
+                somethingHappened = true;
+            }
+
+            if (!somethingHappened)
+            {
+                // we didnt find anyone, so set inactive
+                proxData.TickOutOfRange();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Gets the total multiplier from all active proxies.
+    /// </summary>
+    private float GetProxiesPayMult(
+        RoleplayIncentiveComponent rpic,
+        bool pop = false
+        )
+    {
+        float totalMult = 1f;
+        var now = _timing.CurTime;
+        foreach (var (proxKind, proxData) in rpic.Proxies)
+        {
+            var mult = proxData.GetCurrentMultiplier();
+            // however we will be applying this to the total multiplier additively
+            totalMult += (mult.Float() - 1f);
+        }
+        return totalMult;
     }
     #endregion
 
@@ -373,39 +518,66 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
 
     #region Helpers
 
-    private void ModifyBasePayForMiscActions(
+    private void ModifyImmediatePay(
         EntityUid uid,
         RoleplayIncentiveComponent? rpic,
-        RpiActionType action,
+        RpiImmediatePayEvent args,
         ref int basePay)
     {
         if (!Resolve(uid, ref rpic))
             return;
-        TaxBracketResult taxBracket; // default values
-        if (_bank.TryGetBalance(uid, out var hasThisMuchMoney))
-        {
-            taxBracket = GetTaxBracketData(rpic, hasThisMuchMoney);
-        }
-        else
-        {
-            taxBracket = new TaxBracketResult(); // default values
-        }
-        var multiplier = 1f;
-        switch (action)
-        {
-            case RpiActionType.Mining:
-                multiplier = taxBracket.MiningMultiplier;
-                break;
-        }
+        var taxBracket = GetTaxBracketData(uid);
+        var multiplier = taxBracket.ActionMultipliers.GetValueOrDefault(args.Category, 1f);
         basePay = (int)(basePay * multiplier);
     }
 
-    private int GetChatActionJudgement(List<RpiChatRecord> actions)
+    private float GetMiscActionPayMult(
+        EntityUid uid,
+        RoleplayIncentiveComponent rpic,
+        TaxBracketResult taxBracket)
     {
+        // go through all the actions, and compile the BEST ONES EVER
+        Dictionary<RpiActionType, RpiActionRecord> bestActions = new();
+        foreach (var action in rpic.MiscActionsTaken.Where(action => action.IsValid()))
+        {
+            if (!action.TryPop())
+            {
+                continue;
+            }
+            // slot it into the best action for that type
+            if (bestActions.TryGetValue(action.Category, out var existing))
+            {
+                if (action.GetMultiplier() > existing.GetMultiplier())
+                {
+                    bestActions[action.Category] = action;
+                }
+            }
+            else
+            {
+                bestActions[action.Category] = action;
+            }
+        }
+        var multOut = 1f;
+        // now, sum up the best actions
+        foreach (var kvp in bestActions)
+        {
+            /// add mults ADDITIVFELY
+            multOut += (kvp.Value.GetMultiplier() - 1f);
+        }
+        return multOut;
+    }
+
+    private int GetChatActionPay(
+        EntityUid uid,
+        RoleplayIncentiveComponent? rpic,
+        TaxBracketResult taxBracket)
+    {
+        if (!Resolve(uid, ref rpic))
+            return 0;
         var total = 0;
         // go through all the actions, and compile the BEST ONES EVER
         Dictionary<RpiChatActionCategory, float> bestActions = new();
-        foreach (var action in actions.Where(action => !(action.Judgement > 0)))
+        foreach (var action in rpic.ChatActionsTaken.Where(action => !action.ChatActionIsSpent))
         {
             var judgement = JudgeChatAction(action);
             // slot it into the best action for that type
@@ -420,26 +592,34 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             {
                 bestActions[action.Action] = judgement;
             }
+            action.ChatActionIsSpent = true; // mark it for deletion
         }
         // now, sum up the best actions
         foreach (var kvp in bestActions)
         {
             total += (int)MathF.Ceiling(kvp.Value);
-            // also, mark the actions as judged
-            foreach (var action in actions.Where(a => a.Action == kvp.Key && a.Judgement == 0))
-            {
-                action.Judgement = kvp.Value;
-            }
         }
+        total *= taxBracket.PayPerJudgement;
         return total;
     }
 
+
     private void PruneOldActions(RoleplayIncentiveComponent rpic)
     {
-        rpic.ChatActionsTaken.Clear();
+        rpic.ChatActionsTaken.RemoveAll(action => action.ChatActionIsSpent);
+        rpic.MiscActionsTaken.RemoveAll(action => action.MiscActionIsSpent);
     }
 
-    private TaxBracketResult GetTaxBracketData(
+    public TaxBracketResult GetTaxBracketData(EntityUid uid)
+    {
+        if (!TryComp<RoleplayIncentiveComponent>(uid, out var rpic))
+            return new TaxBracketResult(); // default values
+        if (!_bank.TryGetBalance(uid, out var hasThisMuchMoney))
+            return new TaxBracketResult(); // no bank account, no pramgle
+        return GetTaxBracketData(rpic, hasThisMuchMoney);
+    }
+
+    public TaxBracketResult GetTaxBracketData(
         RoleplayIncentiveComponent rpic,
         int hasThisMuchMoney)
     {
@@ -472,12 +652,13 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             proto = protosHigherThanPlayer.OrderBy(p => p.CashThreshold).First();
         }
         // if we didnt find any, use the default
+        Dictionary<RpiChatActionCategory, RpiChatActionPrototype> chatActionPrototypes = new();
         proto ??= defaultProto;
         taxBracket = new TaxBracketResult(
             proto.JudgementPointPayout,
             (int)(proto.DeathPenalty * hasThisMuchMoney),
             (int)(proto.DeepFriedPenalty * hasThisMuchMoney),
-            proto.MiningPayoutMult);
+            proto.ActionMultipliers);
 
         // and now the overrides
         if (rpic.TaxBracketPayoutOverride != -1)
@@ -497,54 +678,44 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         return taxBracket;
     }
 
-    public bool GetTaxBracketDataForEntity(
-        EntityUid whomst,
-        RoleplayIncentiveComponent? rpic,
-        out TaxBracketResult taxBracket)
-    {
-        taxBracket = new TaxBracketResult(); // default values
-        if (!Resolve(whomst, ref rpic))
-            return false;
-        if (!_bank.TryGetBalance(whomst, out var hasThisMuchMoney))
-            return false; // no bank account, no pramgle
-        taxBracket = GetTaxBracketData(rpic, hasThisMuchMoney);
-        return true;
-    }
-
-    private void ProcessPaymentDetails(
+    private PayoutDetails ProcessPaymentDetails(
         int basePay,
-        GetRpiModifier modifyEvent,
-        out PayoutDetails details)
+        float baseMult)
     {
         var finalPay = basePay;
-        // apply the add first
-        finalPay += (int)modifyEvent.Additive;
         // then apply the multiplier
-        finalPay = (int)(finalPay * modifyEvent.Multiplier);
+        finalPay = (int)(finalPay * baseMult);
         // clamp the pay amount to a minimum of 20 and a maximum of int.MaxValue
         finalPay = Math.Clamp(
             (int)(Math.Ceiling(finalPay / 10.0) * 10),
             20,
             int.MaxValue);
 
-        var addedPay = (int) modifyEvent.Additive;
         // round the multiplier to 2 decimal places
-        var multiplier = modifyEvent.Multiplier;
+        var multiplier = baseMult;
         var hasMultiplier = Math.Abs(multiplier - 1f) > 0.01f;
-        var hasAdditive = addedPay != 0;
-        var hasModifier = hasMultiplier || hasAdditive;
-        details = new PayoutDetails(
+        return new PayoutDetails(
             basePay,
             finalPay,
-            addedPay,
             multiplier,
-            modifyEvent.Multiplier,
-            hasModifier,
-            hasAdditive,
+            baseMult,
             hasMultiplier);
     }
 
-    private void ShowPopup(EntityUid uid, PayoutDetails payDetails, string locale = "coyote-rpi-payward-message")
+    private void ShowPopup(EntityUid uid, string message, PopupType popupType = PopupType.LargeCaution)
+    {
+        _popupSystem.PopupEntity(
+            message,
+            uid,
+            uid,
+            popupType);
+    }
+
+    private void ShowPopup(
+        EntityUid uid,
+        PayoutDetails payDetails,
+        string locale = "coyote-rpi-payward-message",
+        bool suppressChat = false)
     {
         if (payDetails.FinalPay == 0)
             return; // no pay, no popup
@@ -554,7 +725,9 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         _popupSystem.PopupEntity(
             messageOverhead,
             uid,
-            uid);
+            uid,
+            PopupType.Small,
+            suppressChat);
     }
 
     private void ShowChatMessage(EntityUid uid, PayoutDetails payDetails)
@@ -563,33 +736,13 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             return; // no pay, no popup
         var message = "Hi mom~";
         // convert the multiplier to a string with 2 decimal places, if present
-        if (payDetails.HasModifier)
+        if (payDetails.HasMultiplier)
         {
-            if (payDetails.HasMultiplier && payDetails.HasAdditive)
-            {
-                message = Loc.GetString(
-                    "coyote-rpi-payward-message-multiplier-and-additive",
-                    ("amount", payDetails.FinalPay),
-                    ("basePay", payDetails.BasePay),
-                    ("multiplier", payDetails.Multiplier),
-                    ("additive", payDetails.AddedPay));
-            }
-            else if (payDetails.HasMultiplier)
-            {
-                message = Loc.GetString(
-                    "coyote-rpi-payward-message-multiplier",
-                    ("amount", payDetails.FinalPay),
-                    ("basePay", payDetails.BasePay),
-                    ("multiplier", payDetails.Multiplier));
-            }
-            else if (payDetails.HasAdditive)
-            {
-                message = Loc.GetString(
-                    "coyote-rpi-payward-message-additive",
-                    ("amount", payDetails.FinalPay),
-                    ("basePay", payDetails.BasePay),
-                    ("additive", payDetails.AddedPay));
-            }
+            message = Loc.GetString(
+                "coyote-rpi-payward-message-multiplier",
+                ("amount", payDetails.FinalPay),
+                ("basePay", payDetails.BasePay),
+                ("multiplier", payDetails.Multiplier));
         }
         else
         {
@@ -831,33 +984,33 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         int payPerJudgement,
         int deathPenalty,
         int deepFryPenalty,
-        float miningMultiplier)
+        Dictionary<RpiActionType, float> actionMultipliers)
     {
         public int PayPerJudgement = payPerJudgement;
         public int DeathPenalty = deathPenalty;
         public int DeepFryPenalty = deepFryPenalty;
-        public float MiningMultiplier = miningMultiplier;
+        public Dictionary<RpiActionType, float> ActionMultipliers = actionMultipliers;
 
-        public TaxBracketResult() : this(10, 0, 0, 1f) { }
+        public TaxBracketResult() : this(
+            payPerJudgement:   10,
+            deathPenalty:      0,
+            deepFryPenalty:    0,
+            actionMultipliers: new Dictionary<RpiActionType, float>())
+        {
+        }
     }
 
     private struct PayoutDetails(
         int basePay,
         int finalPay,
-        int addedPay,
         FixedPoint2 multiplier,
         FixedPoint2 rawMultiplier,
-        bool hasModifier,
-        bool hasAdditive,
         bool hasMultiplier)
     {
         public int BasePay = basePay;
         public int FinalPay = finalPay;
-        public int AddedPay = addedPay;
         public FixedPoint2 Multiplier = multiplier;
         public FixedPoint2 RawMultiplier = rawMultiplier;
-        public bool HasModifier = hasModifier;
-        public bool HasAdditive = hasAdditive;
         public bool HasMultiplier = hasMultiplier;
     }
     #endregion
