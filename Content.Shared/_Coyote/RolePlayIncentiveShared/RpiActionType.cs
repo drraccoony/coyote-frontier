@@ -20,4 +20,5 @@ public enum RpiActionType : byte
     Chaplain,
     Horny,
     StationPrincess,
+    Combat,
 }

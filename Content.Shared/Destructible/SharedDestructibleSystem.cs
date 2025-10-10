@@ -30,6 +30,8 @@ public sealed class DestructionEventArgs : EntityEventArgs
 {
     public EntityUid? Destroyer { get; }
 
+    public DestructionEventArgs() : this(null) { }
+
     public DestructionEventArgs(EntityUid? destroyer)
     {
         Destroyer = destroyer;

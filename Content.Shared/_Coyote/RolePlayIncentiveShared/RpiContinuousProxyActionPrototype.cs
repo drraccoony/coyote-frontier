@@ -13,12 +13,6 @@ public sealed partial class RpiContinuousProxyActionPrototype : IPrototype
     public string ID { get; } = default!;
 
     /// <summary>
-    /// Category of thing, cus I dont know how components work in yml
-    /// </summary>
-    [DataField("proxyTarget", required: true)]
-    public RpiProximityMode ProxyTarget = RpiProximityMode.None;
-
-    /// <summary>
     /// How long does it take to reach max RPI bonus?
     /// </summary>
     [DataField("minutesToMaxBonus", required: true)]
@@ -53,24 +47,16 @@ public sealed partial class RpiContinuousProxyActionPrototype : IPrototype
     /// </summary>
     [DataField("examineTextKey")]
     public string ExamineTextKey = string.Empty;
-}
 
-/// <summary>
-/// enum of things that can be proxied to
-/// </summary>
-public enum RpiProximityMode
-{
-    None,
+    [DataField("targetMustHaveTheseComponents", required: true)]
+    public ComponentRegistry TargetMustHaveTheseComponents = new();
 
-    /// <summary>
-    /// Likes to be near pirates, while not being a pirate.
-    /// For capturebait bottoms who love to be hostages uwu~
-    /// </summary>
-    BeNearPirate,
+    [DataField("userMustHaveTheseComponents")]
+    public ComponentRegistry UserMustHaveTheseComponents = new();
 
-    /// <summary>
-    /// Likes to be near non-pirates, while being a pirate.
-    /// For pirates who love to be surrounded by their prey~
-    /// </summary>
-    BeNearNonPirates,
+    [DataField("targetMustNotHaveTheseComponents")]
+    public ComponentRegistry TargetMustNotHaveTheseComponents = new();
+
+    [DataField("userMustNotHaveTheseComponents")]
+    public ComponentRegistry UserMustNotHaveTheseComponents = new();
 }

@@ -10,3 +10,7 @@
 - type: traitCategory
   id: Quirks
   name: trait-category-quirks
+
+- type: traitCategory
+  id: RPI
+  name: trait-category-rpi

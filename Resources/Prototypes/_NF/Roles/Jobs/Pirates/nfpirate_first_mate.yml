@@ -36,6 +36,7 @@
     - type: DisableSuitSensors
     - type: RpiJobModifier # 1.5x
       modifier: 1.5
+    - type: IsPirate
   - !type:AddImplantSpecial
     implants: [ FreelanceTrackingImplant ]
   - !type:GiveItemOnHolidaySpecial # Even pirates get a piece of cake.

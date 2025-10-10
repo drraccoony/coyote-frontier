@@ -59,6 +59,8 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         { RpiChatActionCategory.Radio, "rpiChatActionRadio" },
     };
 
+    private List<RpiContinuousProxyActionPrototype> AllContinuousProxies = new();
+
     private TimeSpan DeathPunishmentCooldown = TimeSpan.FromMinutes(30);
     private TimeSpan DeepFryerPunishmentCooldown = TimeSpan.FromMinutes(5); // please stop deep frying tesharis
 
@@ -271,20 +273,14 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         while (query.MoveNext(out var uid, out var rpic))
         {
             if (!_playerManager.TryGetSessionByEntity(uid, out var _))
-                return; // only players pls
+                continue; // only players pls
             if (TryComp<GhostComponent>(uid, out var ghost))
-                return; // no ghosts pls
+                continue; // no ghosts pls
             if (_mobStateSystem.IsDead(uid))
-                return; // no dead ppl pls
-            if (_timing.CurTime >= rpic.NextProxyCheck)
-            {
-                ProcessContinuousProxies(uid, rpic);
-            }
-            if (_timing.CurTime >= rpic.NextPayward)
-            {
-                rpic.NextPayward = _timing.CurTime + rpic.PaywardInterval;
-                PayoutPaywardToPlayer(uid, rpic);
-            }
+                continue; // no dead ppl pls
+            SyncContinuousComponentsAndProxies(uid, rpic);
+            ProcessContinuousProxies(uid, rpic);
+            PayoutPaywardToPlayer(uid, rpic);
         }
     }
 
@@ -297,6 +293,9 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     /// </summary>
     private void PayoutPaywardToPlayer(EntityUid uid, RoleplayIncentiveComponent rpic)
     {
+        if (_timing.CurTime < rpic.NextPayward)
+            return; // too soon to pay again
+        rpic.NextPayward = _timing.CurTime + rpic.PaywardInterval;
         if (!_bank.TryGetBalance(uid, out var hasThisMuchMoney))
             return; // no bank account, no pramgle
         //first check if this rpic is actually on the uid
@@ -354,6 +353,8 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     /// </summary>
     private void ProcessContinuousProxies(EntityUid uid, RoleplayIncentiveComponent rpic)
     {
+        if (_timing.CurTime < rpic.NextProxyCheck)
+            return; // too soon to check again
         rpic.NextProxyCheck = _timing.CurTime + rpic.ProxyCheckInterval;
         if (rpic.Proxies.Count == 0) // now when I say proxy, I mean proximity
             return; // no proxies, no pramgle
@@ -365,81 +366,87 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
                 continue;
             }
 
-            ProtoId<TagPrototype>? otherWantTag = default!;
-            ProtoId<TagPrototype>? otherExcludeTag = default!;
-            ProtoId<TagPrototype>? selfWantTag = default!;
-            ProtoId<TagPrototype>? selfExcludeTag = default!;
-            switch (proxData.Target)
+            if (proxProto.TargetMustHaveTheseComponents.Count == 0)
             {
-                case RpiProximityMode.BeNearPirate:
-                    otherWantTag = "Pirate";
-                    selfExcludeTag = "Pirate";
-                    break;
-                case RpiProximityMode.BeNearNonPirates:
-                    otherExcludeTag = "Pirate";
-                    selfWantTag = "Pirate";
-                    break;
-                case RpiProximityMode.None:
-                default:
-                    continue; // we dont care about the rest yet
+                Log.Warning($"RpiProxyPrototype {proxData.Proto} has no target components defined!");
+                continue;
             }
-            // first first, check if ANY want tags are set
-            if (otherWantTag == null
-                && otherExcludeTag == null
-                && selfWantTag == null
-                && selfExcludeTag == null)
-            {
-                continue; // no tags to check, skip
-            }
+            // Check if the user has any excluded components
+            if (proxProto.UserMustNotHaveTheseComponents.Any(comp => HasComp(uid, comp.Value.Component.GetType())))
+                continue; // they have a component that excludes them from this proxy
 
-            // first, check if we have any self-exclude tags
-            if (selfExcludeTag != null
-                && _tagSystem.HasTag(uid, selfExcludeTag.Value))
-            {
-                continue; // we have a tag that excludes us from this proxy
-            }
-            // then, check if we have any self-want tags
-            if (selfWantTag != null
-                && !_tagSystem.HasTag(uid, selfWantTag.Value))
-            {
-                continue; // we dont have a tag that includes us in this proxy
-            }
+            // Check if the user is missing any required components
+            if (proxProto.UserMustHaveTheseComponents.Any(comp => !HasComp(uid, comp.Value.Component.GetType())))
+                continue; // they don't have a component that includes them in this proxy
+
             // ok, lets roll through all the connected players,
-            // and poll them for tags and distance
+            // and poll them for components and distance
             var ourCoords = Transform(uid).Coordinates;
             var somethingHappened = false;
+            // foreach (var sesh in _playerManager.Sessions)
+            // var query = EntityQueryEnumerator<TransformComponent>();
+            // while (query.MoveNext(out var otherUid, out var xform))
+            // {
+            //     // if (!xform.Anchored)
+            //     //     continue; // only anchored entities count
+            //     if (otherUid == uid)
+            //         continue; // dont check ourselves
+            //     if (!_mobStateSystem.IsAlive(otherUid))
+            //         continue; // They must be alive and well to count
+            //
+            //     // Check if the entity is missing any required components
+            //     if (proxProto.TargetMustHaveTheseComponents.Any(comp => !HasComp(otherUid, comp.Value.Component.GetType())))
+            //         continue; // they don't have a component that includes them in this proxy
+            //     // Check if the entity has any excluded components
+            //     if (proxProto.TargetMustNotHaveTheseComponents.Any(comp => HasComp(otherUid, comp.Value.Component.GetType())))
+            //         continue; // they have a component that excludes them from this proxy
+            //
+            //     // now check distance
+            //     if (!ourCoords.TryDistance(
+            //             EntityManager,
+            //             xform.Coordinates,
+            //             out var dist))
+            //         continue; // cant get distance, no pramgle
+            //     if (dist > proxProto.MaxDistance)
+            //         continue; // too far away, no pramgle
+            //     var isOptimal = dist <= proxProto.OptimalDistance;
+            //     var optMult = isOptimal ? proxProto.OptimalDistanceBonusMultiplier : 1f;
+            //     proxData.TickInRange(optMult);
+            //     somethingHappened = true;
+            // }
             foreach (var sesh in _playerManager.Sessions)
             {
-                if (sesh.AttachedEntity is not { } otherEnt)
-                    continue; // no entity, no pramgle
-                if (otherEnt == uid)
-                    continue; // dont check ourselves
-                if (!_mobStateSystem.IsAlive(otherEnt))
-                    continue; // They must be alive and well to count
-                // check if they have any other-exclude tags
-                if (otherExcludeTag != null
-                    && _tagSystem.HasTag(otherEnt, otherExcludeTag.Value))
+                foreach (var wantcomp in proxProto.TargetMustHaveTheseComponents)
                 {
-                    continue; // they have a tag that excludes them from this proxy
+                    if (sesh.AttachedEntity is not { } otherEnt)
+                        continue; // no entity, no pramgle
+                    if (otherEnt == uid)
+                        continue; // dont check ourselves
+                    if (!_mobStateSystem.IsAlive(otherEnt))
+                        continue; // They must be alive and well to count
+
+                    // Check if the entity is missing any required components
+                    if (proxProto.TargetMustHaveTheseComponents.Any(
+                            comp => !HasComp(otherEnt, comp.Value.Component.GetType())))
+                        continue; // they don't have a component that includes them in this proxy
+                    // Check if the entity has any excluded components
+                    if (proxProto.TargetMustNotHaveTheseComponents.Any(
+                            comp => HasComp(otherEnt, comp.Value.Component.GetType())))
+                        continue; // they have a component that excludes them from this proxy
+
+                    // now check distance
+                    if (!ourCoords.TryDistance(
+                            EntityManager,
+                            Transform(otherEnt).Coordinates,
+                            out var dist))
+                        continue; // cant get distance, no pramgle
+                    if (dist > proxProto.MaxDistance)
+                        continue; // too far away, no pramgle
+                    var isOptimal = dist <= proxProto.OptimalDistance;
+                    var optMult = isOptimal ? proxProto.OptimalDistanceBonusMultiplier : 1f;
+                    proxData.TickInRange(optMult);
+                    somethingHappened = true;
                 }
-                // check if they have any other-want tags
-                if (otherWantTag != null
-                    && !_tagSystem.HasTag(otherEnt, otherWantTag.Value))
-                {
-                    continue; // they dont have a tag that includes them in this proxy
-                }
-                // now check distance
-                if (!ourCoords.TryDistance(
-                        EntityManager,
-                        Transform(otherEnt).Coordinates,
-                        out var dist))
-                    continue; // cant get distance, no pramgle
-                if (dist > proxProto.MaxDistance)
-                    continue; // too far away, no pramgle
-                var isOptimal = dist <= proxProto.OptimalDistance;
-                var optMult = isOptimal ? proxProto.OptimalDistanceBonusMultiplier : 1f;
-                proxData.TickInRange(optMult);
-                somethingHappened = true;
             }
 
             if (!somethingHappened)
@@ -448,6 +455,55 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
                 proxData.TickOutOfRange();
             }
         }
+    }
+
+    /// <summary>
+    /// Goes through the user's components, and update the existence of our proxy list.
+    /// gives it a vague sense of synchronicity.
+    /// </summary>
+    private void SyncContinuousComponentsAndProxies(EntityUid uid, RoleplayIncentiveComponent rpic)
+    {
+        if (_timing.CurTime < rpic.NextProxySync)
+            return; // too soon to check again
+        rpic.NextProxySync = _timing.CurTime + rpic.ProxySyncInterval;
+        // first, go through all the RpiContinuousProxyActionPrototypes in existence
+        foreach (var proxo in rpic.AllowedProxies)
+        {
+            if (!_prototype.TryIndex(proxo, out var proxProto))
+            {
+                Log.Warning($"RpiProxyPrototype {proxo} not found!");
+                continue;
+            }
+            // we are just interested if the user has all the component this proot wants,
+            // and none of the ones it doesnt want
+            if (proxProto.UserMustNotHaveTheseComponents.Any(comp => HasComp(uid, comp.Value.Component.GetType())))
+            {
+                KillProxyIfExists(rpic, proxProto.ID);
+                continue; // they have a component that excludes them from this proxy
+            }
+            if (proxProto.UserMustHaveTheseComponents.Any(comp => !HasComp(uid, comp.Value.Component.GetType())))
+            {
+                KillProxyIfExists(rpic, proxProto.ID);
+                continue;
+            }
+            AddProxyIfNotExists(rpic, proxProto.ID);
+        }
+    }
+
+    private static bool KillProxyIfExists(RoleplayIncentiveComponent rpic, ProtoId<RpiContinuousProxyActionPrototype> proto)
+    {
+        if (!rpic.Proxies.ContainsKey(proto))
+            return false;
+        rpic.Proxies.Remove(proto);
+        return true;
+    }
+
+    private static bool AddProxyIfNotExists(RoleplayIncentiveComponent rpic, ProtoId<RpiContinuousProxyActionPrototype> proto)
+    {
+        if (rpic.Proxies.ContainsKey(proto))
+            return false;
+        rpic.Proxies[proto] = new RpiContinuousActionProxyDatum(proto);
+        return true;
     }
 
     /// <summary>
@@ -465,6 +521,8 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             var mult = proxData.GetCurrentMultiplier();
             // however we will be applying this to the total multiplier additively
             totalMult += (mult.Float() - 1f);
+            if (pop)
+                proxData.Reset(); // reset it after we use it
         }
         return totalMult;
     }

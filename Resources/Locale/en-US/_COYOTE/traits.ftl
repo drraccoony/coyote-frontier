@@ -15,3 +15,12 @@ trait-fat-fox-desc =
     You require 2-3 times the amount of food to feel satiated.
     While you are fully satiated, you'll move considerably slower, but get a 300% boost to your passive income.
 
+trait-capture-bait-name = Capture Bait
+trait-capture-bait-desc =
+    Marks your character as being a higher value target for capture by pirates.
+    As such, you will receive a bonus to your payward income, based on how long
+    you stay within 5 meters of someone who is a pirate. In addition, the pirates
+    around you will also receive a bonus to their payward income while you are nearby.
+    Pirates will also know that you're open for being captured by examining you!
+    This does nothing if you happen to *be* a pirate yourself!
+capture-bait-examine-text = They look like they'd be a great person to capture!

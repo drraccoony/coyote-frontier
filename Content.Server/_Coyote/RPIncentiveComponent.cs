@@ -47,12 +47,25 @@ public sealed partial class RoleplayIncentiveComponent : Component
     /// Continuous proxy datums
     /// </summary>
     [DataField]
-    public Dictionary<RpiProximityMode, RpiContinuousActionProxyDatum> Proxies = new();
+    [ViewVariables(VVAccess.ReadWrite)]
+    public Dictionary<ProtoId<RpiContinuousProxyActionPrototype>, RpiContinuousActionProxyDatum> Proxies = new();
+
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public List<ProtoId<RpiContinuousProxyActionPrototype>> AllowedProxies = new()
+    {
+        "rpiContinuousProxyActionLikesPirates",
+        "rpiContinuousProxyActionLikesNonPiratesWhilePirate",
+    };
 
     [ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan NextProxyCheck = TimeSpan.Zero;
     [ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan ProxyCheckInterval = TimeSpan.FromSeconds(10);
+    [ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan NextProxySync = TimeSpan.Zero;
+    [ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan ProxySyncInterval = TimeSpan.FromSeconds(5);
 
     /// <summary>
     /// Interval between paywards when offline.
@@ -103,32 +116,17 @@ public sealed partial class RoleplayIncentiveComponent : Component
 /// A RPI Continuous Action Proxy Datum.
 /// This is used to track continuous actions that should give paywards over time.
 /// </summary>
-public sealed class RpiContinuousActionProxyDatum
+[Serializable]
+public sealed class RpiContinuousActionProxyDatum(ProtoId<RpiContinuousProxyActionPrototype> proto)
 {
-    public ProtoId<RpiContinuousProxyActionPrototype> Proto;
-    public RpiProximityMode Target = RpiProximityMode.None;
+    public ProtoId<RpiContinuousProxyActionPrototype> Proto = proto;
     public TimeSpan TotalAccumulated = TimeSpan.Zero;
     public TimeSpan LastAccumulated = TimeSpan.Zero;
     public bool IsActive = true;
     public FixedPoint2 CurrentMultiplier = 1.0f;
 
-    private IGameTiming _gameTiming;
-    private IPrototypeManager _prototypeManager;
-
-    public RpiContinuousActionProxyDatum(ProtoId<RpiContinuousProxyActionPrototype> proto)
-    {
-        Proto = proto;
-        _prototypeManager = IoCManager.Resolve<IPrototypeManager>();
-        if (!_prototypeManager.TryIndex(proto, out var target))
-        {
-            Target = RpiProximityMode.None;
-        }
-        else
-        {
-            Target = target.ProxyTarget;
-        }
-        _gameTiming = IoCManager.Resolve<IGameTiming>();
-    }
+    private IGameTiming _gameTiming = IoCManager.Resolve<IGameTiming>();
+    private IPrototypeManager _prototypeManager = IoCManager.Resolve<IPrototypeManager>();
 
     /// <summary>
     /// Call this every tick to accumulate time.
@@ -171,7 +169,7 @@ public sealed class RpiContinuousActionProxyDatum
         SetInactive();
     }
 
-    private void Reset()
+    public void Reset()
     {
         TotalAccumulated = TimeSpan.Zero;
         LastAccumulated = TimeSpan.Zero;
@@ -210,4 +208,6 @@ public sealed class RpiContinuousActionProxyDatum
         CurrentMultiplier = FixedPoint2.New(mult);
         return CurrentMultiplier;
     }
+
 }
+
