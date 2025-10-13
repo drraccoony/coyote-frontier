@@ -1,5 +1,5 @@
+using Content.Server._Coyote;
 using Content.Shared.Chat;
-using Content.Shared.Radio;
 
 namespace Content.Shared._Coyote.RolePlayIncentiveShared;
 
@@ -17,4 +17,32 @@ public sealed class RpiChatEvent(
     public readonly ChatChannel Channel = channel;
     public readonly string Message = message;
     public readonly int PeoplePresent = peoplePresent;
+}
+
+
+/// <summary>
+/// Event to modify the event that is being recorded.
+/// </summary>
+public sealed class RpiModifyChatRecordEvent(RpiChatRecord record) : EntityEventArgs
+{
+    public RpiChatRecord Record = record;
+
+    public bool IsAction(RpiChatActionCategory action)
+    {
+        return Record.Action == action;
+    }
+
+    // screw you im, dumb as hell
+    public void AddMultIfAction(RpiChatActionCategory action, float mod)
+    {
+        if (IsAction(action))
+        {
+            AddMultiplier(mod);
+        }
+    }
+
+    public void AddMultiplier(float mod)
+    {
+        Record.ModifyMultiplier(mod);
+    }
 }

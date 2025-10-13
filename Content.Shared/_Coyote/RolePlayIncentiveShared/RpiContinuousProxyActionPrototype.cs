@@ -59,4 +59,7 @@ public sealed partial class RpiContinuousProxyActionPrototype : IPrototype
 
     [DataField("userMustNotHaveTheseComponents")]
     public ComponentRegistry UserMustNotHaveTheseComponents = new();
+
+    [DataField("isNonPlayerComponentQuery")]
+    public bool IsNonPlayerComponentQuery = false;
 }

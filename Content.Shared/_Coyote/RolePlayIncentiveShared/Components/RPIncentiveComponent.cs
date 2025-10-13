@@ -43,6 +43,7 @@ public sealed partial class RoleplayIncentiveComponent : Component
     [DataField]
     public TimeSpan PaywardInterval = TimeSpan.FromMinutes(20);
 
+    #region Continuous Action Proxies
     /// <summary>
     /// Continuous proxy datums
     /// </summary>
@@ -66,13 +67,16 @@ public sealed partial class RoleplayIncentiveComponent : Component
     public TimeSpan NextProxySync = TimeSpan.Zero;
     [ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan ProxySyncInterval = TimeSpan.FromSeconds(5);
+    #endregion
 
+    #region Aura Farming
     /// <summary>
-    /// Interval between paywards when offline.
-    /// hey guess what doesnt work? this thing!
+    /// The sources of auras that have been detected.
+    /// Dictionary of (aura comp ID, multiplier)
     /// </summary>
     [DataField]
-    public TimeSpan PaywardIntervalOffline = TimeSpan.FromMinutes(30); // TimeSpan.FromMinutes(15);
+    public Dictionary<string, RpiAuraData> DetectedAuraSources = new();
+    #endregion
 
     #region Death and Deep Fryer Punishments
     /// <summary>

@@ -313,6 +313,8 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         var miscMult = GetMiscActionPayMult(uid, rpic, taxBracket);
         // Continuous proxies are applied here too, as multipliers
         var proxyMult = GetProxiesPayMult(rpic, true);
+        // Aura mults! mobs who give you more money for being around them
+        var auraMult = GetAuraPayMult(uid);
         // other components wanteing to messing with me
         var modMult = 1f;
         var modifyEvent = new GetRpiModifier(uid, modMult);
@@ -383,70 +385,36 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             // and poll them for components and distance
             var ourCoords = Transform(uid).Coordinates;
             var somethingHappened = false;
-            // foreach (var sesh in _playerManager.Sessions)
-            // var query = EntityQueryEnumerator<TransformComponent>();
-            // while (query.MoveNext(out var otherUid, out var xform))
-            // {
-            //     // if (!xform.Anchored)
-            //     //     continue; // only anchored entities count
-            //     if (otherUid == uid)
-            //         continue; // dont check ourselves
-            //     if (!_mobStateSystem.IsAlive(otherUid))
-            //         continue; // They must be alive and well to count
-            //
-            //     // Check if the entity is missing any required components
-            //     if (proxProto.TargetMustHaveTheseComponents.Any(comp => !HasComp(otherUid, comp.Value.Component.GetType())))
-            //         continue; // they don't have a component that includes them in this proxy
-            //     // Check if the entity has any excluded components
-            //     if (proxProto.TargetMustNotHaveTheseComponents.Any(comp => HasComp(otherUid, comp.Value.Component.GetType())))
-            //         continue; // they have a component that excludes them from this proxy
-            //
-            //     // now check distance
-            //     if (!ourCoords.TryDistance(
-            //             EntityManager,
-            //             xform.Coordinates,
-            //             out var dist))
-            //         continue; // cant get distance, no pramgle
-            //     if (dist > proxProto.MaxDistance)
-            //         continue; // too far away, no pramgle
-            //     var isOptimal = dist <= proxProto.OptimalDistance;
-            //     var optMult = isOptimal ? proxProto.OptimalDistanceBonusMultiplier : 1f;
-            //     proxData.TickInRange(optMult);
-            //     somethingHappened = true;
-            // }
-            foreach (var sesh in _playerManager.Sessions)
+
+            var entsWithComponents = proxProto.IsNonPlayerComponentQuery
+                ? GetEntitiesWithComponents(
+                    uid,
+                    proxProto.TargetMustHaveTheseComponents,
+                    proxProto.TargetMustNotHaveTheseComponents)
+                : GetPlayersWithComponents(
+                    uid,
+                    proxProto.TargetMustHaveTheseComponents,
+                    proxProto.TargetMustNotHaveTheseComponents);
+            if (entsWithComponents.Count == 0)
             {
-                foreach (var wantcomp in proxProto.TargetMustHaveTheseComponents)
-                {
-                    if (sesh.AttachedEntity is not { } otherEnt)
-                        continue; // no entity, no pramgle
-                    if (otherEnt == uid)
-                        continue; // dont check ourselves
-                    if (!_mobStateSystem.IsAlive(otherEnt))
-                        continue; // They must be alive and well to count
-
-                    // Check if the entity is missing any required components
-                    if (proxProto.TargetMustHaveTheseComponents.Any(
-                            comp => !HasComp(otherEnt, comp.Value.Component.GetType())))
-                        continue; // they don't have a component that includes them in this proxy
-                    // Check if the entity has any excluded components
-                    if (proxProto.TargetMustNotHaveTheseComponents.Any(
-                            comp => HasComp(otherEnt, comp.Value.Component.GetType())))
-                        continue; // they have a component that excludes them from this proxy
-
-                    // now check distance
-                    if (!ourCoords.TryDistance(
-                            EntityManager,
-                            Transform(otherEnt).Coordinates,
-                            out var dist))
-                        continue; // cant get distance, no pramgle
-                    if (dist > proxProto.MaxDistance)
-                        continue; // too far away, no pramgle
-                    var isOptimal = dist <= proxProto.OptimalDistance;
-                    var optMult = isOptimal ? proxProto.OptimalDistanceBonusMultiplier : 1f;
-                    proxData.TickInRange(optMult);
-                    somethingHappened = true;
-                }
+                // we didnt find anyone, so set inactive
+                proxData.TickOutOfRange();
+                continue;
+            }
+            foreach (var otherEnt in entsWithComponents)
+            {
+                // now check distance
+                if (!ourCoords.TryDistance(
+                        EntityManager,
+                        Transform(otherEnt).Coordinates,
+                        out var dist))
+                    continue; // cant get distance, no pramgle
+                if (dist > proxProto.MaxDistance)
+                    continue; // too far away, no pramgle
+                var isOptimal = dist <= proxProto.OptimalDistance;
+                var optMult = isOptimal ? proxProto.OptimalDistanceBonusMultiplier : 1f;
+                proxData.TickInRange(optMult);
+                somethingHappened = true;
             }
 
             if (!somethingHappened)
@@ -455,6 +423,70 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
                 proxData.TickOutOfRange();
             }
         }
+    }
+
+    /// <summary>
+    /// Entities with a set of components, and lacking excluded components.
+    /// Does not check if they are players.
+    /// Is efficient too!
+    /// </summary>
+    private HashSet<EntityUid> GetEntitiesWithComponents(
+        EntityUid uid,
+        ComponentRegistry mustHave,
+        ComponentRegistry mustLack,
+        bool shouldBeAlive = false)
+    {
+        // Go through all the components in mustHave,
+        // and get the entities that have them.
+        // skip duplicates.
+        HashSet<EntityUid> entsWithComponents = new();
+        foreach (var comp in mustHave)
+        {
+            var query = EntityManager.AllEntityQueryEnumerator(comp.Value.Component.GetType());
+            while (query.MoveNext(out var otherEnt, out var checkComp))
+            {
+                if (otherEnt == uid)
+                    continue; // dont check ourselves
+                entsWithComponents.Add(otherEnt);
+            }
+        }
+
+        // then go through them and remove any that lack a mustHave component
+        entsWithComponents.RemoveWhere(
+            ent =>
+                mustHave.Any(comp => !HasComp(ent, comp.Value.Component.GetType()))
+                || (shouldBeAlive && !_mobStateSystem.IsAlive(ent))
+                || mustLack.Any(comp => HasComp(ent, comp.Value.Component.GetType())));
+        return entsWithComponents;
+    }
+
+    /// <summary>
+    /// A slightly optimized version of GetEntitiesWithComponents that only checks players.
+    /// </summary>
+    private HashSet<EntityUid> GetPlayersWithComponents(
+        EntityUid uid,
+        ComponentRegistry mustHave,
+        ComponentRegistry mustLack)
+    {
+        // Go through all the active sessions,
+        // and get the entities that have the components.
+        // skip duplicates.
+        HashSet<EntityUid> entsWithComponents = new();
+        foreach (var session in _playerManager.Sessions)
+        {
+            if (session.AttachedEntity is not { } otherEnt)
+                continue; // no entity, no pramgle
+            if (otherEnt == uid)
+                continue; // dont check ourselves
+            if (!_mobStateSystem.IsAlive(otherEnt))
+                continue; // They must be alive and well to count
+            if (mustHave.Any(comp => !HasComp(otherEnt, comp.Value.Component.GetType())))
+                continue; // they don't have a component that includes them in this proxy
+            if (mustLack.Any(comp => HasComp(otherEnt, comp.Value.Component.GetType())))
+                continue; // they have a component that excludes them from this proxy
+            entsWithComponents.Add(otherEnt);
+        }
+        return entsWithComponents;
     }
 
     /// <summary>
@@ -490,20 +522,16 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         }
     }
 
-    private static bool KillProxyIfExists(RoleplayIncentiveComponent rpic, ProtoId<RpiContinuousProxyActionPrototype> proto)
+    private static void KillProxyIfExists(RoleplayIncentiveComponent rpic, ProtoId<RpiContinuousProxyActionPrototype> proto)
     {
-        if (!rpic.Proxies.ContainsKey(proto))
-            return false;
         rpic.Proxies.Remove(proto);
-        return true;
     }
 
-    private static bool AddProxyIfNotExists(RoleplayIncentiveComponent rpic, ProtoId<RpiContinuousProxyActionPrototype> proto)
+    private static void AddProxyIfNotExists(RoleplayIncentiveComponent rpic, ProtoId<RpiContinuousProxyActionPrototype> proto)
     {
         if (rpic.Proxies.ContainsKey(proto))
-            return false;
+            return;
         rpic.Proxies[proto] = new RpiContinuousActionProxyDatum(proto);
-        return true;
     }
 
     /// <summary>
@@ -523,6 +551,34 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             totalMult += (mult.Float() - 1f);
             if (pop)
                 proxData.Reset(); // reset it after we use it
+        }
+        return totalMult;
+    }
+    #endregion
+
+    #region Aura Farming
+    /// <summary>
+    /// Gets the total multiplier from all nearby things with RpiAuraComponent.
+    /// </summary>
+    private float GetAuraPayMult(EntityUid uid)
+    {
+        float totalMult = 1f;
+        var query = EntityQueryEnumerator<RoleplayIncentiveComponent>();
+        var ourCoords = Transform(uid).Coordinates;
+        while (query.MoveNext(out var otherUid, out var rpiss))
+        {
+            if (otherUid == uid)
+                continue; // dont check ourselves
+            if (!ourCoords.TryDistance(
+                    EntityManager,
+                    Transform(otherUid).Coordinates,
+                    out var dist))
+                continue; // cant get distance, no pramgle
+            if (dist > aura.MaxDistance)
+                continue; // too far away, no pramgle
+            var isOptimal = dist <= aura.OptimalDistance;
+            var optMult = isOptimal ? aura.OptimalDistanceBonusMultiplier : 1f;
+            totalMult += (aura.AuraMultiplier * optMult) - 1f;
         }
         return totalMult;
     }

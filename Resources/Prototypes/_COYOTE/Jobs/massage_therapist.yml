@@ -1,0 +1,58 @@
+# The job itself
+# massage therapist + ERPer + touchytouchy
+- type: job
+  id: MassageTherapist
+  name: job-name-massage-therapist
+  description: job-description-massage-therapist
+  playTimeTracker: JobMassageTherapist
+  startingGear: MassageTherapistGear
+  icon: "JobIconPassenger"
+  supervisors: job-supervisors-massage-therapist
+  weight: 40 # Prioritize station & department jobs
+  displayWeight: 3 # idk
+  access:
+  - Service
+  - Janitor
+  - Maintenance
+  - External
+  - Frontier
+  accessGroups:
+  - GeneralAccess
+  special:
+  - !type:AddImplantSpecial
+    implants: [ TrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+  - !type:AddComponentSpecial
+    components:
+    - type: PaywardAuraMassageTherapist
+    - type: PaywardModifierERPMassageTherapist # 2x
+
+# play time tracker
+- type: playTimeTracker
+  id: JobMassageTherapist
+
+- type: entity
+  id: SpawnPointMassageTherapist
+  parent: SpawnPointPassenger
+  name: massage therapist spawn point
+  components:
+  - type: SpawnPoint
+    job_id: MassageTherapist
+
+- type: roleLoadout
+  id: JobMassageTherapist
+  groups:
+  - GroupTankHarness
+  - PassengerJumpsuit
+  - CommonBackpack
+  - PassengerNeck
+  - PassengerFace
+  - PassengerGloves
+  - PassengerOuterClothing
+  - PassengerShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
