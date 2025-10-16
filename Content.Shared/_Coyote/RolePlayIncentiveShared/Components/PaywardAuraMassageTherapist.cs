@@ -6,7 +6,7 @@ namespace Content.Shared._Coyote;
 /// This is used for...
 /// </summary>
 [RegisterComponent]
-public sealed partial class PaywardAuraMassageTherapist : Component
+public sealed partial class PaywardAuraMassageTherapistComponent : Component
 {
     /// <summary>
     /// The range at which the aura applies.
@@ -29,11 +29,11 @@ public sealed partial class PaywardAuraMassageTherapistSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<PaywardAuraMassageTherapist, RpiCheckAurasEvent>(OnGetAuraData);
+        SubscribeLocalEvent<PaywardAuraMassageTherapistComponent, RpiCheckAurasEvent>(OnGetAuraData);
     }
 
     // copypaste this into all your aura systems
-    private void OnGetAuraData(EntityUid uid, PaywardAuraMassageTherapist c, ref RpiCheckAurasEvent args)
+    private void OnGetAuraData(EntityUid uid, PaywardAuraMassageTherapistComponent c, ref RpiCheckAurasEvent args)
     {
         args.AddAura(
             c.GetType().Name,

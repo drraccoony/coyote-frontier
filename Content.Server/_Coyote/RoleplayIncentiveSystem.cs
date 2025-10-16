@@ -562,23 +562,25 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     /// </summary>
     private float GetAuraPayMult(EntityUid uid)
     {
-        float totalMult = 1f;
+        var totalMult = 1f;
         var query = EntityQueryEnumerator<RoleplayIncentiveComponent>();
         var ourCoords = Transform(uid).Coordinates;
         while (query.MoveNext(out var otherUid, out var rpiss))
         {
-            if (otherUid == uid)
-                continue; // dont check ourselves
-            if (!ourCoords.TryDistance(
-                    EntityManager,
-                    Transform(otherUid).Coordinates,
-                    out var dist))
-                continue; // cant get distance, no pramgle
-            if (dist > aura.MaxDistance)
-                continue; // too far away, no pramgle
-            var isOptimal = dist <= aura.OptimalDistance;
-            var optMult = isOptimal ? aura.OptimalDistanceBonusMultiplier : 1f;
-            totalMult += (aura.AuraMultiplier * optMult) - 1f;
+            var ev = new RpiCheckAurasEvent();
+            RaiseLocalEvent(otherUid, ev);
+            rpiss.UpdateAuras(ev);
+            foreach (var (nameA, auraData) in rpiss.DetectedAuraSources)
+            {
+                if (!ourCoords.TryDistance(
+                        EntityManager,
+                        Transform(auraData.Source).Coordinates,
+                        out var dist))
+                    continue; // cant get distance, no pramgle
+                if (dist > auraData.MaxDistance)
+                    continue; // too far away, no pramgle
+                totalMult += (auraData.Multiplier - 1f); // additively
+            }
         }
         return totalMult;
     }
@@ -998,7 +1000,9 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     /// </summary>
     private int JudgeChatAction(RpiChatRecord chatRecord)
     {
-        var lengthMult = GetMessageLengthMultiplier(chatRecord.Action, chatRecord.Message?.Length ?? 1);
+        var longth = chatRecord.Message?.Length ?? 1;
+        var longgth = longth * chatRecord.Multiplier;
+        var lengthMult = GetMessageLengthMultiplier(chatRecord.Action, (int) longgth);
         var listenerMult = GetListenerMultiplier(chatRecord.Action, chatRecord.PeoplePresent);
         // if the action is a quick emote, it gets no judgement
         var judgement = lengthMult + listenerMult + 1f;

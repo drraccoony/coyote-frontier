@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared._Coyote.RolePlayIncentiveShared;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
@@ -114,7 +115,15 @@ public sealed partial class RoleplayIncentiveComponent : Component
     public float DebugMultiplier = 1.0f;
     #endregion
 
+    /// <summary>
+    /// Command to update the Auras on a player.
+    /// </summary>
+    public void UpdateAuras(RpiCheckAurasEvent coolEvent)
+    {
+        DetectedAuraSources = coolEvent.DetectedAuras.ToDictionary(x => x.Key, x => x.Value);
+    }
 }
+
 
 /// <summary>
 /// A RPI Continuous Action Proxy Datum.

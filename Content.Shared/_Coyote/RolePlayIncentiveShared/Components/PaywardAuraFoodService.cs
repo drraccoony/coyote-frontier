@@ -6,7 +6,7 @@ namespace Content.Shared._Coyote;
 /// This is used for...
 /// </summary>
 [RegisterComponent]
-public sealed partial class PaywardAuraFoodService : Component
+public sealed partial class PaywardAuraFoodServiceComponent : Component
 {
     /// <summary>
     /// The range at which the aura applies.
@@ -29,11 +29,11 @@ public sealed partial class PaywardAuraFoodServiceSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<PaywardAuraFoodService, RpiCheckAurasEvent>(OnGetAuraData);
+        SubscribeLocalEvent<PaywardAuraFoodServiceComponent, RpiCheckAurasEvent>(OnGetAuraData);
     }
 
     // copypaste this into all your aura systems
-    private void OnGetAuraData(EntityUid uid, PaywardAuraFoodService c, ref RpiCheckAurasEvent args)
+    private void OnGetAuraData(EntityUid uid, PaywardAuraFoodServiceComponent c, ref RpiCheckAurasEvent args)
     {
         args.AddAura(
             c.GetType().Name,

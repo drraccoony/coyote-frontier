@@ -7,7 +7,7 @@ namespace Content.Shared._Coyote;
 /// This is used for...
 /// </summary>
 [RegisterComponent]
-    public sealed partial class PaywardModifierERPMassageTherapist : Component
+    public sealed partial class PaywardModifierERPMassageTherapistComponent : Component
 {
     /// <summary>
     /// The message category this applies to.
@@ -30,13 +30,13 @@ namespace Content.Shared._Coyote;
     public override void Initialize()
     {
         base.Initialize();
-            SubscribeLocalEvent<PaywardModifierERPMassageTherapist, RpiModifyChatRecordEvent>(OnModifyChatRecord);
+            SubscribeLocalEvent<PaywardModifierERPMassageTherapistComponent, RpiModifyChatRecordEvent>(OnModifyChatRecord);
     }
 
     // copypaste this into all your ERPM systems
     private void OnModifyChatRecord(
         EntityUid uid,
-        PaywardModifierERPMassageTherapist c,
+        PaywardModifierERPMassageTherapistComponent c,
         ref RpiModifyChatRecordEvent args)
     {
         args.AddMultIfAction(c.WorksOn, c.Multiplier);
