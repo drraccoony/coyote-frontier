@@ -368,7 +368,6 @@
     - type: Tag
       tags:
       - DroneUsable
-      - HighRiskItem
     - type: ComputerTabletopBoard # Frontier
       prototype: ComputerTabletopId # Frontier
 

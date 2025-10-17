@@ -294,7 +294,6 @@
   - type: Tag
     tags:
     - Raw
-    - HighRiskItem
     - Meat
   - type: Sprite
     state: corgi
