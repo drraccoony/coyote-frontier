@@ -68,6 +68,7 @@ public sealed class ModifyUndiesSystem : EntitySystem
             {
                 HumanoidVisualLayers.UndergarmentTop => new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/bra.png")),
                 HumanoidVisualLayers.UndergarmentBottom => new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/underpants.png")),
+                HumanoidVisualLayers.Genital => new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/undies.png")),
                 _ => new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/undies.png"))
             };
             // add the verb

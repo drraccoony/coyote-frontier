@@ -3366,3 +3366,9 @@
     clothingVisuals:
       jumpsuit:
       - state: gearharness
+  - type: ToggleableClothing
+    clothingPrototype: ClothingBeltCock
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+
