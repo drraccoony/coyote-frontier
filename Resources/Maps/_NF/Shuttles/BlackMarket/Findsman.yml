@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 10/18/2025 04:27:02
-  entityCount: 472
+  time: 10/18/2025 23:52:25
+  entityCount: 473
 maps: []
 grids:
 - 1
@@ -1297,6 +1297,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -3.5,0.5
+      parent: 1
+- proto: DefibrillatorCabinetFilled
+  entities:
+  - uid: 471
+    components:
+    - type: Transform
+      pos: -1.5,-3.5
       parent: 1
 - proto: DiceBag
   entities:

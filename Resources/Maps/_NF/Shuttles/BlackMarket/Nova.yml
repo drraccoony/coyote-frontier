@@ -4,7 +4,7 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 10/18/2025 18:13:10
+  time: 10/18/2025 23:51:31
   entityCount: 670
 maps: []
 grids:
@@ -2032,6 +2032,13 @@ entities:
     - type: Transform
       pos: -0.5,2.5
       parent: 1
+- proto: DefibrillatorCabinetFilled
+  entities:
+  - uid: 433
+    components:
+    - type: Transform
+      pos: 2.5,-1.5
+      parent: 1
 - proto: DiceBag
   entities:
   - uid: 76
@@ -3543,13 +3550,6 @@ entities:
     components:
     - type: Transform
       pos: 2.5,3.5
-      parent: 1
-- proto: PosterLegitPeriodicTable
-  entities:
-  - uid: 433
-    components:
-    - type: Transform
-      pos: -4.5,2.5
       parent: 1
 - proto: PottedPlantRandom
   entities:
