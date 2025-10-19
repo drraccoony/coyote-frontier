@@ -46,6 +46,9 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Brigmedic
 
 - type: listing
   id: UplinkSecurityHardsuitWarden
