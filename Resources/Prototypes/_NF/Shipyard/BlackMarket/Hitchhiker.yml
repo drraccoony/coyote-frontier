@@ -2,12 +2,12 @@
 # GitHub: R3N0mon
 
 # Shuttle Notes:
-# Modified surveyor for stealthy raiding of miners
+# Modified Camper for RPing
 - type: vessel
   id: Hitchhiker
   parent: BaseVesselAntag
   name: Hitchhiker
-  description: Once a simple mining Surveyor, now a light little raiding ship with some teeth
+  description: A Modified Camper to designed to sell companionship
   price: 20000 #29313 1.25 65954.25
   category: Small
   group: BlackMarket
