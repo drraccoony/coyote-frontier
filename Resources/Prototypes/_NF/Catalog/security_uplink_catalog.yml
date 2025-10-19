@@ -636,10 +636,6 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Brigmedic
-        - Sheriff
 
 - type: listing
   id: UplinkSecurityInspector
