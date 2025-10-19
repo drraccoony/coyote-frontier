@@ -76,6 +76,17 @@
     sprite: Clothing/Shoes/Boots/magboots-science.rsi
 
 - type: entity
+  parent: ClothingShoesBootsMag
+  id: ClothingShoesBootsMagHydro
+  name: hydroponics magboots
+  description: Keeps your feet planted!
+  components:
+  - type: Sprite
+    sprite: Clothing/Shoes/Boots/magboots-hydroponics.rsi
+  - type: Clothing
+    sprite: Clothing/Shoes/Boots/magboots-hydroponics.rsi
+
+- type: entity
   parent: ClothingShoesBootsMagBase
   id: ClothingShoesBootsMagBlinding
   name: magboots of blinding speed

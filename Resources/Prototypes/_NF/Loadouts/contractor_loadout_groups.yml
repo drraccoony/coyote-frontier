@@ -847,6 +847,7 @@
   - ContractorFlashlightUmbrella
   - ContractorDawInstrumentFlatpack
   - ContractorHoverbikeFlatpack
+  - ContractorHoverchairFlatpack
   - ContractorEmotionalPetCarrier
   - ContractorAppraisalTool
   - ContractorPickaxe
@@ -906,13 +907,14 @@
   id: ContractorEncryptionKey
   name: loadout-group-contractor-encryption-key
   minLimit: 0
-  maxLimit: 5
+  maxLimit: 6 # Coyote Edit
   loadouts:
   - ContractorEncryptionKeyTraffic
   - ContractorEncryptionKeyMedical
   - ContractorEncryptionKeyCargo
   - ContractorEncryptionKeyEngineering
   - ContractorEncryptionKeyScience
+  - ContractorEncryptionKeyCommon # Coyote Edit
   fallbacks:
   - ContractorEncryptionKeyTraffic
 

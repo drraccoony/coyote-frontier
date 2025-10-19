@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Grid
+  engineVersion: 255.1.0
+  forkId: ""
+  forkVersion: ""
+  time: 10/17/2025 01:42:57
+  entityCount: 1131
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
 tilemap:
   0: Space
   30: FloorDark
@@ -19,6 +30,7 @@ entities:
     components:
     - type: MetaData
     - type: Transform
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -47,10 +59,14 @@ entities:
           version: 6
     - type: Broadphase
     - type: Physics
+      bodyStatus: InAir
+      fixedRotation: False
+      bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
     - type: Shuttle
+      dampingModifier: 2
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -3065,6 +3081,18 @@ entities:
     - type: Transform
       pos: -2.5,2.5
       parent: 1
+- proto: CargoTelepad
+  entities:
+  - uid: 1129
+    components:
+    - type: Transform
+      pos: -0.5,0.5
+      parent: 1
+  - uid: 1130
+    components:
+    - type: Transform
+      pos: 1.5,0.5
+      parent: 1
 - proto: CarpetBlue
   entities:
   - uid: 422
@@ -3511,6 +3539,21 @@ entities:
     - type: Transform
       pos: 4.5,10.5
       parent: 1
+- proto: ComputerCargoOrders
+  entities:
+  - uid: 1131
+    components:
+    - type: Transform
+      pos: 0.5,0.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        1129:
+        - - OrderSender
+          - OrderReceiver
+        1130:
+        - - OrderSender
+          - OrderReceiver
 - proto: ComputerPalletConsoleNFLowMarket
   entities:
   - uid: 508

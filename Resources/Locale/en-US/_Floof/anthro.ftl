@@ -1060,7 +1060,7 @@ marking-SnoutLCanidStripe = Husky Snout L
 
 marking-SpeciesAdaptorVulpkaninHeadMale    = Base Sprite - Vulpkanin Head (Male)
 marking-SpeciesAdaptorVulpkaninHeadFemale  = Base Sprite - Vulpkanin Head (Female)
-marking-SpeciesAdaptorVulpkaninTorsoMale   = Base Sprite - Vulpkanin Chest (Female)
+marking-SpeciesAdaptorVulpkaninTorsoMale   = Base Sprite - Vulpkanin Chest (Male)
 marking-SpeciesAdaptorVulpkaninTorsoFemale = Base Sprite - Vulpkanin Chest (Female)
 marking-SpeciesAdaptorVulpkaninLArm        = Base Sprite - Vulpkanin Left Arm
 marking-SpeciesAdaptorVulpkaninLHand       = Base Sprite - Vulpkanin Left Hand

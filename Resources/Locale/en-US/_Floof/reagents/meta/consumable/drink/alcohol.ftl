@@ -192,3 +192,6 @@ reagent-desc-gin-and-pussy = A Sapphic twist on the classic Gin and Tonic, featu
 
 reagent-name-pussytonic = Pussy Tonic
 reagent-desc-pussytonic = Natural Lubrican with some tonic, for pussy lovers.
+
+reagent-name-superheavycream = Superheavy Cream
+reagent-desc-superheavycream = The creamiest of creams, known to rise up to the top.

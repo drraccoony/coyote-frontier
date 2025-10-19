@@ -95,6 +95,7 @@
       - NewsReaderCartridge
       - BountyContractsCartridge # Frontier
       - AstroNavCartridge # Frontier
+      - NanoChatCartridge # DeltaV
     cartridgeSlot:
       priority: -1
       name: device-pda-slot-component-slot-name-cartridge
@@ -180,6 +181,7 @@
     - BountyContractsCartridge # Frontier
     - AstroNavCartridge # Frontier
     - WantedListCartridge
+    - NanoChatCartridge # DeltaV
   - type: BlipCartridge
     defaultPreset: BlipPresetSecurity
 
@@ -940,6 +942,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+    - NanoChatCartridge # DeltaV
   - type: BlipCartridge
     defaultPreset: BlipPresetCommand
 
@@ -1013,6 +1016,7 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+      - NanoChatCartridge # DeltaV
   - type: BlipCartridge
     defaultPreset: BlipPresetCommand
 
@@ -1042,6 +1046,7 @@
       - WantedListCartridge
       - MedTekCartridge
       - AstroNavCartridge
+      - NanoChatCartridge # DeltaV
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -1164,6 +1169,7 @@
     uiKey: enum.PdaUiKey.Key
     preinstalled:
       - NotekeeperCartridge
+      - NanoChatCartridge # DeltaV
       - NanoTaskCartridge
       - AstroNavCartridge # Frontier
   - type: BlipCartridge
@@ -1201,6 +1207,7 @@
       - LogProbeCartridge
       - AstroNavCartridge
       - MailMetricsCartridge # Frontier
+      - NanoChatCartridge # DeltaV
 
 - type: entity
   parent: ERTLeaderPDA
@@ -1371,6 +1378,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+    - NanoChatCartridge # DeltaV
 
 - type: entity
   parent: BaseMedicalPDA
@@ -1399,6 +1407,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - MedTekCartridge
+    - NanoChatCartridge # DeltaV
 
 - type: entity
   parent: ClownPDA
@@ -1551,6 +1560,7 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - MedTekCartridge
+      - NanoChatCartridge # DeltaV
 
 - type: entity
   parent: BasePDA

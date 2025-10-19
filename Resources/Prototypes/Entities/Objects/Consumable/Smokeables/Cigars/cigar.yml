@@ -87,6 +87,9 @@
     equippedPrefix: unlit
   - type: Item
     size: Tiny
+  - type: StaticPrice
+    price: 500
+    vendPrice: 2000
   - type: SolutionContainerManager
     solutions:
       smokable:

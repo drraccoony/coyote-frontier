@@ -8,6 +8,7 @@ using Content.Shared.Medical.Cryogenics;
 using Content.Shared.Mind.Components;
 using Content.Shared.Station;
 using Robust.Shared.Configuration;
+using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
@@ -26,7 +27,7 @@ public sealed class SSDIndicatorSystem : EntitySystem
 
     private bool _icSsdSleep;
     private float _icSsdSleepTime;
-    private float _jobReopenMinutes = 120f;
+    private float _jobReopenMinutes = 15f;
 
     private TimeSpan _updateInterval = TimeSpan.FromSeconds(10);
     private TimeSpan _nextUpdateTime = TimeSpan.Zero;
@@ -102,7 +103,8 @@ public sealed class SSDIndicatorSystem : EntitySystem
 
     public bool IsActuallySsd(EntityUid uid, SSDIndicatorComponent component)
     {
-        return _playerManager.TryGetSessionByEntity(uid, out var session);
+        _playerManager.TryGetSessionByEntity(uid, out var session);
+        return session?.Status != SessionStatus.InGame;
     }
 
     public override void Update(float frameTime)
@@ -282,6 +284,7 @@ public sealed class ForceCryoSleepEvent : EntityEventArgs
 {
     public EntityUid User { get; set; }
     public EntityUid Cryopod { get; set; }
+    public bool Handled { get; set; } = false;
 
     public ForceCryoSleepEvent(EntityUid user, EntityUid cryopod)
     {

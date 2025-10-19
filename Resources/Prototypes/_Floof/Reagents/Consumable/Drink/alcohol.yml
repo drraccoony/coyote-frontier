@@ -107,7 +107,7 @@
         reagent: Ethanol
         amount: 0.06
       - !type:AdjustReagent
-        reagent: Cum
+        reagent: Milk
         amount: 0.15
 
 - type: reagent
@@ -133,7 +133,7 @@
         reagent: Pomelustine
         amount: 0.5
       - !type:AdjustReagent
-        reagent: Cum
+        reagent: Milk
         amount: 0.14
 
 - type: reagent
@@ -162,7 +162,7 @@
         reagent: Philterex
         amount: 0.5
       - !type:AdjustReagent
-        reagent: Cum
+        reagent: Milk
         amount: 0.14
 
 - type: reagent
@@ -329,7 +329,7 @@
         reagent: Pomelustine
         amount: 1
       - !type:AdjustReagent
-        reagent: Cum
+        reagent: Milk
         amount: 0.08
       - !type:AdjustReagent
         reagent: Blood
@@ -378,7 +378,7 @@
       - !type:SatiateThirst
         factor: 3
       - !type:AdjustReagent
-        reagent: Cum
+        reagent: Milk
         amount: 0.15
 
 - type: reagent
@@ -453,7 +453,7 @@
         reagent: Ethanol
         amount: 0.07
       - !type:AdjustReagent
-        reagent: Cum
+        reagent: Milk
         amount: 0.12
 
 - type: reagent
@@ -640,7 +640,7 @@
       - !type:SatiateThirst
         factor: 3
       - !type:AdjustReagent
-        reagent: Cum
+        reagent: Milk
         amount: 0.15
 
 - type: reagent
@@ -773,7 +773,7 @@
         reagent: Ethanol
         amount: 0.06
       - !type:AdjustReagent
-        reagent: Cum
+        reagent: Milk
         amount: 0.15
 
 - type: reagent
@@ -878,7 +878,7 @@
         reagent: Ethanol
         amount: 0.05
       - !type:AdjustReagent
-        reagent: Cum
+        reagent: Milk
         amount: 0.1
 
 - type: reagent
@@ -1010,7 +1010,7 @@
       - !type:SatiateThirst
         factor: 3
       - !type:AdjustReagent
-        reagent: Cum
+        reagent: Milk
         amount: 0.12
 
 - type: reagent
@@ -1109,7 +1109,7 @@
         reagent: Ethanol
         amount: 0.04
       - !type:AdjustReagent
-        reagent: Cum
+        reagent: Milk
         amount: 0.15
 
 - type: reagent
@@ -1135,7 +1135,7 @@
         reagent: Ethanol
         amount: 0.03
       - !type:AdjustReagent
-        reagent: Cum
+        reagent: Milk
         amount: 0.15
 
 - type: reagent
@@ -1161,7 +1161,7 @@
         reagent: Ethanol
         amount: 0.05
       - !type:AdjustReagent
-        reagent: Cum
+        reagent: Milk
         amount: 0.15
 
 - type: reagent
@@ -1223,7 +1223,7 @@
       - !type:SatiateThirst
         factor: 3
       - !type:AdjustReagent
-        reagent: Cum
+        reagent: Milk
         amount: 0.12
 
 - type: reagent
@@ -1249,7 +1249,7 @@
         reagent: Pomelustine
         amount: 0.05
       - !type:AdjustReagent
-        reagent: Cum
+        reagent: Milk
         amount: 0.15
 
 - type: reagent
@@ -1364,7 +1364,7 @@
         reagent: Ethanol
         amount: 0.07
       - !type:AdjustReagent
-        reagent: Cum
+        reagent: Milk
         amount: 0.1
 
 - type: reagent
@@ -1390,7 +1390,7 @@
         reagent: Ethanol
         amount: 0.07
       - !type:AdjustReagent
-        reagent: Cum
+        reagent: Milk
         amount: 0.15
 
 - type: reagent
@@ -1587,6 +1587,20 @@
   metamorphicMaxFillLevels: 6
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+
+- type: reagent
+  id: SuperheavyCream
+  name: reagent-name-superheavycream
+  parent: BaseDrink
+  desc: reagent-desc-superheavycream
+  physicalDesc: reagent-physical-desc-very-creamy
+  flavor: superheavycream
+  color: "#ffffff"
   metabolisms:
     Drink:
       effects:

@@ -1311,15 +1311,179 @@
   - sprite: Floof/Mobs/Customization/honkers_over.rsi
     state: shapelyttfn_hyper_south
 
+### Shapely Shirts
+- type: marking
+  id: UndershirtShapelyShirtBackbreakerOver
+  bodyPart: UndergarmentTop
+  markingCategory: UndergarmentTop
+  speciesRestriction: [Human]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  layering:
+    pshapelybra_backbreaker: UndergarmentTop # bink
+    pshapelybra_backbreaker_south: UndershirtOverclothes
+  colorLinks:
+    pshapelybra_backbreaker: shapelyss_backbreaker_south
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Floof/Mobs/Customization/honkers_over.rsi
+    state: shapelyss_backbreaker
+  - sprite: Floof/Mobs/Customization/honkers_over.rsi
+    state: shapelyss_backbreaker_south
 
+- type: marking
+  id: UndershirtShapelyShirtBustyOver
+  bodyPart: UndergarmentTop
+  markingCategory: UndergarmentTop
+  speciesRestriction: [Human]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  layering:
+    pshapelybra_backbreaker: UndergarmentTop # bink
+    pshapelybra_backbreaker_south: UndershirtOverclothes
+  colorLinks:
+    pshapelybra_backbreaker: shapelyss_busty_south
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Floof/Mobs/Customization/honkers_over.rsi
+    state: shapelyss_busty
+  - sprite: Floof/Mobs/Customization/honkers_over.rsi
+    state: shapelyss_busty_south
 
+- type: marking
+  id: UndershirtShapelyShirtCurvyOver
+  bodyPart: UndergarmentTop
+  markingCategory: UndergarmentTop
+  speciesRestriction: [Human]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  layering:
+    pshapelybra_backbreaker: UndergarmentTop # bink
+    pshapelybra_backbreaker_south: UndershirtOverclothes
+  colorLinks:
+    pshapelybra_backbreaker: shapelyss_curvy_south
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Floof/Mobs/Customization/honkers_over.rsi
+    state: shapelyss_curvy
+  - sprite: Floof/Mobs/Customization/honkers_over.rsi
+    state: shapelyss_curvy_south
 
+- type: marking
+  id: UndershirtShapelyShirtGirlishOver
+  bodyPart: UndergarmentTop
+  markingCategory: UndergarmentTop
+  speciesRestriction: [Human]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  layering:
+    pshapelybra_backbreaker: UndergarmentTop # bink
+    pshapelybra_backbreaker_south: UndershirtOverclothes
+  colorLinks:
+    pshapelybra_backbreaker: shapelyss_girlish_south
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Floof/Mobs/Customization/honkers_over.rsi
+    state: shapelyss_girlish
+  - sprite: Floof/Mobs/Customization/honkers_over.rsi
+    state: shapelyss_girlish_south
 
+- type: marking
+  id: UndershirtShapelyShirtHumongousOver
+  bodyPart: UndergarmentTop
+  markingCategory: UndergarmentTop
+  speciesRestriction: [Human]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  layering:
+    pshapelybra_backbreaker: UndergarmentTop # bink
+    pshapelybra_backbreaker_south: UndershirtOverclothes
+  colorLinks:
+    pshapelybra_backbreaker: shapelyss_humongous_south
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Floof/Mobs/Customization/honkers_over.rsi
+    state: shapelyss_humongous
+  - sprite: Floof/Mobs/Customization/honkers_over.rsi
+    state: shapelyss_humongous_south
 
+- type: marking
+  id: UndershirtShapelyShirtHyperOver
+  bodyPart: UndergarmentTop
+  markingCategory: UndergarmentTop
+  speciesRestriction: [Human]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  layering:
+    pshapelybra_backbreaker: UndergarmentTop # bink
+    pshapelybra_backbreaker_south: UndershirtOverclothes
+  colorLinks:
+    pshapelybra_backbreaker: shapelyss_hyper_south
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Floof/Mobs/Customization/honkers_over.rsi
+    state: shapelyss_hyper
+  - sprite: Floof/Mobs/Customization/honkers_over.rsi
+    state: shapelyss_hyper_south
 
+- type: marking
+  id: UndershirtShapelyShirtMassiveOver
+  bodyPart: UndergarmentTop
+  markingCategory: UndergarmentTop
+  speciesRestriction: [Human]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  layering:
+    pshapelybra_backbreaker: UndergarmentTop # bink
+    pshapelybra_backbreaker_south: UndershirtOverclothes
+  colorLinks:
+    pshapelybra_backbreaker: shapelyss_massive_south
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Floof/Mobs/Customization/honkers_over.rsi
+    state: shapelyss_massive
+  - sprite: Floof/Mobs/Customization/honkers_over.rsi
+    state: shapelyss_massive_south
 
-
-
-
-
-
+- type: marking
+  id: UndershirtShapelyShirtPetiteOver
+  bodyPart: UndergarmentTop
+  markingCategory: UndergarmentTop
+  speciesRestriction: [Human]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  layering:
+    pshapelybra_backbreaker: UndergarmentTop # bink
+    pshapelybra_backbreaker_south: UndershirtOverclothes
+  colorLinks:
+    pshapelybra_backbreaker: shapelyss_petite_south
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#FFFFFF"
+  sprites:
+  - sprite: Floof/Mobs/Customization/honkers_over.rsi
+    state: shapelyss_petite
+  - sprite: Floof/Mobs/Customization/honkers_over.rsi
+    state: shapelyss_petite_south

@@ -59,6 +59,7 @@ reagent-physical-desc-burning = burning
 reagent-physical-desc-porous = porous
 reagent-physical-desc-powdery = powdery
 reagent-physical-desc-creamy = creamy
+reagent-physical-desc-very-creamy = really really creamy
 reagent-physical-desc-sticky = sticky
 reagent-physical-desc-bubbly = bubbly
 reagent-physical-desc-rocky = rocky

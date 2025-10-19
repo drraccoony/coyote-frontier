@@ -22,10 +22,6 @@
       Min: 1
       Max: 5
       PotencyDivisor: 4
-    Cum:
-      Min: 1
-      Max: 20
-      PotencyDivisor: 10
     Nutriment:
       Min: 1
       Max: 5
@@ -53,10 +49,6 @@
       Min: 1
       Max: 2
       PotencyDivisor: 4
-    Cum:
-      Min: 1
-      Max: 20
-      PotencyDivisor: 20
     Philterex:
       Min: 1
       Max: 4

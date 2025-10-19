@@ -21,10 +21,16 @@
         conditions:
         - !type:ReagentThreshold
           max: 10.0
+        - !type:Consent
+          consentId: Aphrodisiacs
+          desc: "aphrodisiacs"
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
           min: 10.0
+        - !type:Consent
+          consentId: Aphrodisiacs
+          desc: "aphrodisiacs"
         damage:
           types:
             Poison: 0.05
@@ -40,6 +46,9 @@
         conditions:
         - !type:ReagentThreshold
           min: 10.0
+        - !type:Consent
+          consentId: Aphrodisiacs
+          desc: "aphrodisiacs"
       - !type:PopupMessage
         type: Local
         visualType: Small
@@ -49,3 +58,6 @@
         conditions:
           - !type:ReagentThreshold
             max: 0.1
+          - !type:Consent
+            consentId: Aphrodisiacs
+            desc: "aphrodisiacs"

@@ -9,6 +9,7 @@
         <BoxContainer Name="ModeButtons"
                        Orientation="Horizontal"
                        HorizontalAlignment="Stretch"
+                       HorizontalExpand="True"
                        MinSize="52 52"
                        Margin="5">
             <Button Name="NavModeButton"
@@ -16,19 +17,19 @@
                     HorizontalExpand="True"
                     VerticalExpand="True"
                     Text="NAV"
-                    Margin="5"/>
+                    StyleClasses="ButtonSquare"/>
             <Button Name="MapModeButton"
                     ToggleMode="True"
                     HorizontalExpand="True"
                     VerticalExpand="True"
                     Text="MAP"
-                    Margin="5"/>
+                    StyleClasses="ButtonSquare"/>
             <Button Name="DockModeButton"
                     ToggleMode="True"
                     HorizontalExpand="True"
                     VerticalExpand="True"
                     Text="DOCK"
-                    Margin="5"/>
+                    StyleClasses="ButtonSquare"/>
         </BoxContainer>
         <!-- Contents box -->
         <BoxContainer Name="Contents"

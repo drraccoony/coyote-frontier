@@ -239,3 +239,146 @@
   - ClothingUniformJumpsuitRepairmanSyndieNF # Frontier
   - ClothingOuterCoatSyndieCap # Frontier
   - ClothingShoesBootsWinterSyndicate # Frontier
+
+- type: latheRecipePack
+  id: ClothingSocksAndSuch
+  recipes:
+  - ClothingHandsBeeWarmers
+  - ClothingUniformBeeThong
+  - ClothingHandsCoderWarmers
+  - ClothingUniformCoderThong
+  - ClothingHandsCoderValidWarmers
+  - ClothingUnderSocksCoderValid
+  - ClothingUniformCoderValidThong
+  - ClothingHandsPlainWarmers
+  - ClothingUnderSocksPlain
+  - ClothingUniformPlainThong
+  - ClothingHandsPlainWhiteWarmers
+  - ClothingUnderSocksPlainWhite
+  - ClothingUniformPlainWhiteThong
+  - ClothingHandsStripedPurpleWarmers
+  - ClothingUnderSocksStripedPurple
+  - ClothingUniformStripedPurpleThong
+  - ClothingHandsStripedRainbowWarmers
+  - ClothingUnderSocksStripedRainbow
+  - ClothingUniformStripedRainbowThong
+  - ClothingHandsStripedWhiteWarmers
+  - ClothingUnderSocksStripedWhite
+  - ClothingUniformStripedWhiteThong
+  - ClothingOuterCyberJacket
+  - ClothingOuterCyberJacketPurple
+  - ClothingOuterCyberJacketYellow
+  - ClothingUniformloincloth
+  - ClothingUniformloinclothWhite
+  - ClothingOuterBeltedWear
+  - ClothingOuterTransparentOuterwear
+  - ClothingUniformMusicKing
+  - ClothingUniformMusicKingBlack
+  - ClothingUniformCasualSuit
+  - ClothingUniformEveDress
+  - ClothingUniformEveDressBlue
+  - ClothingUniformEveDressRed
+  - ClothingUniformEveDressWhite
+  - ClothingUniformEveSuit
+  - ClothingUniformEveSuitBlue
+  - ClothingUniformEveSuitRed
+  - ClothingUniformEveSuitWhite
+
+- type: latheRecipePack
+  id: ClothingCollars
+  recipes:
+  - ClothingNeckCollarBlue
+  - ClothingNeckCollarBlack
+  - ClothingNeckCollarPink
+  - ClothingNeckCollarEpi
+  - ClothingNeckCollarEngi
+  - ClothingNeckCollarLogi
+  - ClothingNeckCollarMed
+  - ClothingNeckCollarSec
+  - ClothingNeckCollarCmd
+  - ClothingNeckCollarSyndi
+  - ClothingNeckShockCollar
+  - ClothingNeckBellCollar
+
+- type: latheRecipePack
+  id: ClothingBags
+  recipes:
+  - ClothingBackpackDuffelTrauma
+  - NFClothingBackpackDuffelColorBlack
+  - NFClothingBackpackDuffelColorBlue
+  - NFClothingBackpackDuffelColorGreen
+  - NFClothingBackpackDuffelColorOrange
+  - NFClothingBackpackDuffelColorRed
+  - NFClothingBackpackDuffelColorPurple
+  - NFClothingBackpackDuffelColorBrownLight
+  - NFClothingBackpackDuffelColorBrown
+  - NFClothingBackpackDuffelColorWhite
+  - ClothingBackpack # 18 total
+  - ClothingBackpackClown
+  - ClothingBackpackIan
+  - ClothingBackpackSecurity
+  - ClothingBackpackBrigmedic
+  - ClothingBackpackEngineering
+  - ClothingBackpackAtmospherics
+  - ClothingBackpackMedical
+  - ClothingBackpackCaptain
+  - ClothingBackpackMime
+  - ClothingBackpackChemistry
+  - ClothingBackpackHydroponics
+  - ClothingBackpackScience
+  - ClothingBackpackVirology
+  - ClothingBackpackGenetics
+  - ClothingBackpackCargo
+  - ClothingBackpackSalvage
+  - ClothingBackpackMercenary
+  - ClothingBackpackSatchel # Satchels begin here
+  - ClothingBackpackSatchelEngineering
+  - ClothingBackpackSatchelAtmospherics
+  - ClothingBackpackSatchelMedical
+  - ClothingBackpackSatchelCaptain
+  - ClothingBackpackSatchelMime
+  - ClothingBackpackSatchelChemistry
+  - ClothingBackpackSatchelHydroponics
+  - ClothingBackpackSatchelScience
+  - ClothingBackpackSatchelVirology 
+  - ClothingBackpackSatchelGenetics
+  - ClothingBackpackSatchelCargo
+  - ClothingBackpackSatchelSalvage # 13 satchels 31 total
+  - ClothingBackpackMessenger # Messenger Bags begin here
+  - ClothingBackpackMessengerCaptain
+  - ClothingBackpackMessengerSalvage
+  - ClothingBackpackMessengerCargo
+  - ClothingBackpackMessengerHydroponics
+  - ClothingBackpackMessengerScience
+  - ClothingBackpackMessengerMedical
+  - ClothingBackpackMessengerChemistry
+  - ClothingBackpackMessengerGenetics
+  - ClothingBackpackMessengerVirology
+  - ClothingBackpackMessengerEngineering
+  - ClothingBackpackMessengerChiefEngineer # Why is there no CE backpack or satchel - What
+  - ClothingBackpackMessengerChaplain
+  - ClothingBackpackMessengerColorBlack
+  - ClothingBackpackMessengerColorWhite
+  - ClothingBackpackMessengerColorBlue
+  - ClothingBackpackMessengerColorGreen
+  - ClothingBackpackMessengerColorOrange
+  - ClothingBackpackMessengerColorRed
+  - ClothingBackpackMessengerColorPurple
+  - ClothingBackpackMessengerColorBrownLight
+  - ClothingBackpackMessengerColorBrown
+  - ClothingBackpackMessengerClown
+  - ClothingBackpackMessengerMime #24 messengers 54 total
+  - ClothingBackpackDuffel # Department Duffels here
+  - ClothingBackpackDuffelCaptain 
+  - ClothingBackpackDuffelSalvage
+  - ClothingBackpackDuffelCargo
+  - ClothingBackpackDuffelHydroponics
+  - ClothingBackpackDuffelScience
+  - ClothingBackpackDuffelMedical
+  - ClothingBackpackDuffelChemistry
+  - ClothingBackpackDuffelGenetics
+  - ClothingBackpackDuffelVirology
+  - ClothingBackpackDuffelEngineering
+  - ClothingBackpackDuffelAtmospherics
+  - NFClothingBackpackDuffelChaplain #13 department duffels 67 total
+  

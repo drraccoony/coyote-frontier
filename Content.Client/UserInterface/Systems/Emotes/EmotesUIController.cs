@@ -4,6 +4,7 @@ using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Input;
 using Content.Shared.Speech;
+using Content.Shared.Speech.Components;
 using Content.Shared.Whitelist;
 using JetBrains.Annotations;
 using Robust.Client.Player;
@@ -28,10 +29,24 @@ public sealed class EmotesUIController : UIController, IOnStateChanged<GameplayS
     private static readonly Dictionary<EmoteCategory, (string Tooltip, SpriteSpecifier Sprite)> EmoteGroupingInfo
         = new Dictionary<EmoteCategory, (string Tooltip, SpriteSpecifier Sprite)>
         {
-            [EmoteCategory.Sex] = ("emote-menu-category-sex", new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Emotes/lewdemotes.png"))),
-            [EmoteCategory.General] = ("emote-menu-category-general", new SpriteSpecifier.Texture(new ResPath("/Textures/Clothing/Head/Soft/mimesoft.rsi/icon.png"))),
-            [EmoteCategory.Hands] = ("emote-menu-category-hands", new SpriteSpecifier.Texture(new ResPath("/Textures/Clothing/Hands/Gloves/latex.rsi/icon.png"))),
-            [EmoteCategory.Vocal] = ("emote-menu-category-vocal", new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Emotes/vocal.png"))),
+            [EmoteCategory.Sex]      = ("emote-menu-category-sex",      new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Emotes/lewdemotes.png"))),
+            [EmoteCategory.General]  = ("emote-menu-category-general",  new SpriteSpecifier.Texture(new ResPath("/Textures/Clothing/Head/Soft/mimesoft.rsi/icon.png"))),
+            [EmoteCategory.Hands]    = ("emote-menu-category-hands",    new SpriteSpecifier.Texture(new ResPath("/Textures/Clothing/Hands/Gloves/latex.rsi/icon.png"))),
+            [EmoteCategory.Vocal]    = ("emote-menu-category-vocal",    new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Emotes/vocal.png"))),
+            [EmoteCategory.Harpy]    = ("emote-menu-category-harpy",    new SpriteSpecifier.Texture(new ResPath("/Textures/_CS/Emojis/cock.png"))),
+            [EmoteCategory.Goblin]   = ("emote-menu-category-goblin",   new SpriteSpecifier.Texture(new ResPath("/Textures/_CS/Emojis/goblin.png"))),
+            [EmoteCategory.Vulp]     = ("emote-menu-category-vulp",     new SpriteSpecifier.Texture(new ResPath("/Textures/_CS/Emojis/fox.png"))),
+            [EmoteCategory.Rodentia] = ("emote-menu-category-rodentia", new SpriteSpecifier.Texture(new ResPath("/Textures/_CS/Emojis/rat.png"))),
+            [EmoteCategory.Diona]    = ("emote-menu-category-diona",    new SpriteSpecifier.Texture(new ResPath("/Textures/_CS/Emojis/plant.png"))),
+            [EmoteCategory.Sheleg]   = ("emote-menu-category-sheleg",   new SpriteSpecifier.Texture(new ResPath("/Textures/_CS/Emojis/icecream.png"))),
+            [EmoteCategory.Male]     = ("emote-menu-category-male",     new SpriteSpecifier.Texture(new ResPath("/Textures/_CS/Emojis/male.png"))),
+            [EmoteCategory.Female]   = ("emote-menu-category-female",   new SpriteSpecifier.Texture(new ResPath("/Textures/_CS/Emojis/female.png"))),
+            [EmoteCategory.Avali]    = ("emote-menu-category-avali",    new SpriteSpecifier.Texture(new ResPath("/Textures/_CS/Emojis/dodo.png"))),
+            [EmoteCategory.Lizard]   = ("emote-menu-category-lizard",   new SpriteSpecifier.Texture(new ResPath("/Textures/_CS/Emojis/trex.png"))),
+            [EmoteCategory.Vox]      = ("emote-menu-category-vox",      new SpriteSpecifier.Texture(new ResPath("/Textures/_CS/Emojis/goose.png"))),
+            [EmoteCategory.Moth]     = ("emote-menu-category-moth",     new SpriteSpecifier.Texture(new ResPath("/Textures/_CS/Emojis/butterfly.png"))),
+            [EmoteCategory.Borg]     = ("emote-menu-category-borg",     new SpriteSpecifier.Texture(new ResPath("/Textures/_CS/Emojis/plug.png"))),
+            [EmoteCategory.Felinid]  = ("emote-menu-category-felinid",  new SpriteSpecifier.Texture(new ResPath("/Textures/_CS/Emojis/cat.png"))),
         };
 
     public void OnStateEntered(GameplayState state)
@@ -142,6 +157,9 @@ public sealed class EmotesUIController : UIController, IOnStateChanged<GameplayS
             if (emote.Category == EmoteCategory.Invalid)
                 continue;
 
+            if (!emote.ShowInWheel)
+                continue;
+
             // only valid emotes that have ways to be triggered by chat and player have access / no restriction on
             if (emote.Category == EmoteCategory.Invalid
                 || emote.ChatTriggers.Count == 0
@@ -149,9 +167,7 @@ public sealed class EmotesUIController : UIController, IOnStateChanged<GameplayS
                 || whitelistSystem.IsBlacklistPass(emote.Blacklist, player.Value))
                 continue;
 
-            if (!emote.Available
-                && EntityManager.TryGetComponent<SpeechComponent>(player.Value, out var speech)
-                && !speech.AllowedEmotes.Contains(emote.ID))
+            if (!CanHasUseEmote(emote, player.Value))
                 continue;
 
             if (!emotesByCategory.TryGetValue(emote.Category, out var list))
@@ -183,6 +199,22 @@ public sealed class EmotesUIController : UIController, IOnStateChanged<GameplayS
         }
 
         return models;
+    }
+
+    private bool CanHasUseEmote(EmotePrototype emote, EntityUid player)
+    {
+        if (emote.Available)
+            return true; // available emotes are always allowed
+        if (!EntityManager.TryGetComponent<SpeechComponent>(player, out var speech))
+            return false; // non-available emotes require speech component
+        if (speech.AllowedEmotes.Contains(emote.ID))
+            return true; // explicitly allowed emotes are allowed
+        // check the supplemental sounds for vocal emotes
+        if (!EntityManager.TryGetComponent<VocalComponent>(player, out var vocal))
+            return false; // no vocal component, no vocal emotes
+        if (!_prototypeManager.TryIndex<EmoteSoundsPrototype>(vocal.SupplementalSounds, out var esp))
+            return false; // no supplemental sounds, no vocal emotes
+        return esp.Sounds.ContainsKey(emote.ID); // only allow if we have sounds for them
     }
 
     private void HandleRadialButtonClick(EmotePrototype prototype)

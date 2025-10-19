@@ -9,7 +9,7 @@
 - type: emote
   id: Boop
   name: chat-emote-name-boop
-  category: Vocal
+  category: Borg
   chatMessages: [ boops ]
   chatTriggers:
     - boops
@@ -17,6 +17,7 @@
 - type: emote
   id: Whirr # uncategorized as it is generic
   name: chat-emote-name-whirr
+  category: Borg
   chatMessages: [ whirrs ]
   chatTriggers:
     - whirrs

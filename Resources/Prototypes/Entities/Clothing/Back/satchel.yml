@@ -161,6 +161,15 @@
 
 - type: entity
   parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelRed
+  name: brooding red satchel
+  description: A sturdy red satchel.
+  components:
+    - type: Sprite
+      sprite: Clothing/Back/Satchels/satchel-red.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchel
   id: ClothingBackpackSatchelHolding
   name: satchel of holding
   description: A satchel that opens into a localized pocket of bluespace.

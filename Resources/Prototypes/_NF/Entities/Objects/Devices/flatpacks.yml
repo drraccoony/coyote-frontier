@@ -921,6 +921,35 @@
     - state: command_airlock
 
 - type: entity
+  parent: BaseNFFlatpack
+  id: HoverchairFlatpack
+  name: hoverchair flatpack
+  description: A folded up hoverchair, ready to carry around your lazy butt.
+  components:
+  - type: Flatpack
+    entity: VehicleHoverchair
+  - type: StaticPrice
+    price: 2000
+  - type: Sprite
+    layers:
+    - state: command_airlock
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WheelchairFlatpack
+  name: wheelchair flatpack
+  description: A folded up wheelchair to allow accessibility.
+  components:
+  - type: Flatpack
+    entity: VehicleWheelchair
+  - type: StaticPrice
+    price: 500 # Coyote: lets not be cruel for people that loose the roundstart wheelchair
+    vendPrice: 1000
+  - type: Sprite
+    layers:
+    - state: command_airlock
+
+- type: entity
   parent: HoverbikeFlatpack
   id: HoverbikeMailcarrierFlatpack
   name: mail carrier hoverbike flatpack

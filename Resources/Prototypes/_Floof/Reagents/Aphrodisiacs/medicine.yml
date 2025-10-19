@@ -23,6 +23,9 @@
         conditions:
           - !type:ReagentThreshold
             max: 50
+          - !type:Consent
+            consentId: Aphrodisiacs
+            desc: "aphrodisiacs"
       - !type:PopupMessage # Overdose causes nausea and vomiting
         type: Local
         visualType: Medium
@@ -32,14 +35,23 @@
         conditions:
           - !type:ReagentThreshold
             min: 50
+          - !type:Consent
+            consentId: Aphrodisiacs
+            desc: "aphrodisiacs"
       - !type:Drunk
         conditions:
         - !type:ReagentThreshold
           min: 50
+        - !type:Consent
+          consentId: Aphrodisiacs
+          desc: "aphrodisiacs"
       - !type:ChemVomit
         conditions:
         - !type:ReagentThreshold
           min: 60
+        - !type:Consent
+          consentId: Aphrodisiacs
+          desc: "aphrodisiacs"
         probability: 0.05
       - !type:PopupMessage
         type: Local
@@ -50,6 +62,9 @@
         conditions:
           - !type:ReagentThreshold
             max: 0.1
+          - !type:Consent
+            consentId: Aphrodisiacs
+            desc: "aphrodisiacs"
 
 - type: reagent
   id: Philterex
@@ -76,6 +91,9 @@
         conditions:
         - !type:ReagentThreshold
           max: 16.5
+        - !type:Consent
+          consentId: Aphrodisiacs
+          desc: "aphrodisiacs"
       - !type:PopupMessage
         type: Local
         visualType: MediumCaution
@@ -90,10 +108,16 @@
         conditions:
         - !type:ReagentThreshold
           min: 16.5
+        - !type:Consent
+          consentId: Aphrodisiacs
+          desc: "aphrodisiacs"
       - !type:Emote
         conditions:
         - !type:ReagentThreshold
           min: 16.5
+        - !type:Consent
+          consentId: Aphrodisiacs
+          desc: "aphrodisiacs"
         emote: Yawn
         showInChat: true
         probability: 0.02
@@ -103,10 +127,16 @@
         conditions:
         - !type:ReagentThreshold
           min: 16.5
+        - !type:Consent
+          consentId: Aphrodisiacs
+          desc: "aphrodisiacs"
       - !type:GenericStatusEffect
         conditions:
         - !type:ReagentThreshold
           min: 30.0
+        - !type:Consent
+          consentId: Aphrodisiacs
+          desc: "aphrodisiacs"
         key: ForcedSleep
         component: ForcedSleeping
         refresh: false
@@ -116,6 +146,9 @@
         conditions:
         - !type:ReagentThreshold
           min: 30
+        - !type:Consent
+          consentId: Aphrodisiacs
+          desc: "aphrodisiacs"
         damage:
           types:
             Poison: 1
@@ -128,3 +161,6 @@
         conditions:
           - !type:ReagentThreshold
             max: 0.1
+          - !type:Consent
+            consentId: Aphrodisiacs
+            desc: "aphrodisiacs"

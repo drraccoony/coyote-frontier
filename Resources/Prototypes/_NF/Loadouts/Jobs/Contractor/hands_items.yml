@@ -95,6 +95,15 @@
   - HoverbikeFlatpack
 
 - type: loadout
+  id: ContractorHoverchairFlatpack
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT3
+  price: 65000
+  inhand:
+  - HoverchairFlatpack
+
+- type: loadout
   id: ContractorEmotionalPetCarrier
   name: emotional support pet
   effects:

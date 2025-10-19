@@ -362,3 +362,8 @@
   id: pussytonic
   flavorType: Complex
   description: flavor-complex-pussytonic
+
+- type: flavor
+  id: superheavycream
+  flavorType: Complex
+  description: flavor-complex-superheavycream

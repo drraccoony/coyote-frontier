@@ -21,6 +21,7 @@
     TobaccoPouchPurpleFilled: 2 # Frontier
   contrabandInventory:
     TobaccoPouchRedFilled: 2 # Frontier
+    CigarBluespace: 2
     GroundTobacco: 3
     CigarGold: 2
     Igniter: 1

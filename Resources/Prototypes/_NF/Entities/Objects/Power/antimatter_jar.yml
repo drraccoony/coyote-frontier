@@ -10,7 +10,8 @@
   - type: Sprite
     sprite: _NF/Objects/Power/big_ame_jar.rsi
   - type: AmeFuelContainer
-    fuelAmount: 1500
-    fuelCapacity: 1500 # ~ 900 MJ
+    fuelAmount: 2000
+    fuelCapacity: 2000 # ~ 1200 MJ
   - type: StaticPrice
-    price: 800 # 1k at 1.25
+    price: 1200 # 1.5k at 1.25
+    vendPrice: 8000 # Frontier: FuelVend price

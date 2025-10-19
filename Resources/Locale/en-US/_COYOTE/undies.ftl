@@ -524,6 +524,23 @@ marking-UndershirtShapelyTubetopFishnetMassive-shapelyttfn_massive = Shapely Fis
 marking-UndershirtShapelyTubetopFishnetPetite = Shapely Fishy Tubetop, Petite (M)
 marking-UndershirtShapelyTubetopFishnetPetite-shapelyttfn_petite = Shapely Fishy Tubetop, Petite (M)
 
+marking-UndershirtShapelyShirtBackbreakerOver = Shapely Top, Backbreakers (XXXL) - Overclothes
+marking-UndershirtShapelyShirtBackbreakerOver-pshapely_backbreaker = Shapely Top, Backbreakers (XXXL) - Overclothes
+marking-UndershirtShapelyShirtBustyOver = Shapely Top, Busty (XL) - Overclothes
+marking-UndershirtShapelyShirtBustyOver-pshapely_busty = Shapely Top, Busty (XL) - Overclothes
+marking-UndershirtShapelyShirtCurvyOver = Shapely Top, Curvy (L) - Overclothes
+marking-UndershirtShapelyShirtCurvyOver-pshapely_curvy = Shapely Top, Curvy (L) - Overclothes
+marking-UndershirtShapelyShirtGirlishOver = Shapely Top, Girlish (S) - Overclothes
+marking-UndershirtShapelyShirtGirlishOver-pshapely_girlish = Shapely Top, Girlish (S) - Overclothes
+marking-UndershirtShapelyShirtHumongousOver = Shapely Top, Humongous (4X) - Overclothes
+marking-UndershirtShapelyShirtHumongousOver-pshapely_humongous = Shapely Top, Humongous (4X) - Overclothes
+marking-UndershirtShapelyShirtHyperOver = Shapely Top, Hyper (5X) - Overclothes
+marking-UndershirtShapelyShirtHyperOver-pshapely_hyper = Shapely Top, Hyper (5X) - Overclothes
+marking-UndershirtShapelyShirtMassiveOver = Shapely Top, Massive (XXL) - Overclothes
+marking-UndershirtShapelyShirtMassiveOver-pshapely_massive = Shapely Top, Massive (XXL) - Overclothes
+marking-UndershirtShapelyShirtPetiteOver = Shapely Top, Petite (M) - Overclothes
+marking-UndershirtShapelyShirtPetiteOver-pshapely_petite = Shapely Top, Petite (M) - Overclothes
+
 marking-UnderwearBraBow = Bra w/ Bow
 marking-UnderwearBraBow-bowbra = Bra w/ Bow
 marking-UnderwearBraBowAlt = Bra w/ Bow (alt)

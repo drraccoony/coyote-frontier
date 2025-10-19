@@ -30,11 +30,11 @@ shuttle-console-map-track = ⌖
 
 shuttle-console-network-ports = Network Ports
 
-shuttle-console-device-button-1 = Button 1
-shuttle-console-device-button-2 = Button 2
-shuttle-console-device-button-3 = Button 3
-shuttle-console-device-button-4 = Button 4
-shuttle-console-device-button-5 = Button 5
-shuttle-console-device-button-6 = Button 6
-shuttle-console-device-button-7 = Button 7
-shuttle-console-device-button-8 = Button 8
+shuttle-console-device-button-1 = Port 1
+shuttle-console-device-button-2 = Port 2
+shuttle-console-device-button-3 = Port 3
+shuttle-console-device-button-4 = Port 4
+shuttle-console-device-button-5 = Port 5
+shuttle-console-device-button-6 = Port 6
+shuttle-console-device-button-7 = Port 7
+shuttle-console-device-button-8 = Port 8

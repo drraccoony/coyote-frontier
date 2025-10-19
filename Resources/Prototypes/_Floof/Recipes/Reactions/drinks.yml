@@ -9,7 +9,7 @@
       amount: 1
     Sugar:
       amount: 1
-    TableSalt:
+    Saline:
       amount: 1
     Tequila:
       amount: 2
@@ -53,7 +53,7 @@
       amount: 1
     BlueCuracao:
       amount: 1
-    Cum:
+    Saline:
       amount: 1
   products:
     BandE: 3
@@ -63,7 +63,7 @@
   requiredMixerCategories:
   - Shake
   reactants:
-    Cum:
+    Saline:
       amount: 4
     Pomelustine:
       amount: 3
@@ -187,7 +187,7 @@
   reactants:
     Blood:
       amount: 2
-    Cum:
+    Saline:
       amount: 1
     Pomelustine:
       amount: 2
@@ -215,7 +215,7 @@
   reactants:
     Cream:
       amount: 1
-    Cum:
+    Saline:
       amount: 1
     RootBeer:
       amount: 1
@@ -257,7 +257,7 @@
   reactants:
     CapsaicinOil:
       amount: 1
-    Cum:
+    Saline:
       amount: 1
     JuiceOrange:
       amount: 1
@@ -367,7 +367,7 @@
   requiredMixerCategories:
   - Shake
   reactants:
-    Cum:
+    Saline:
       amount: 1
     JuiceOrange:
       amount: 1
@@ -439,7 +439,7 @@
   requiredMixerCategories:
   - Shake
   reactants:
-    Cum:
+    SuperheavyCream:
       amount: 1
     HotCocoa:
       amount: 1
@@ -495,7 +495,7 @@
   requiredMixerCategories:
   - Shake
   reactants:
-    Cum:
+    Saline:
       amount: 1
     JuiceOrange:
       amount: 2
@@ -557,7 +557,7 @@
       amount: 1
     Hotsauce:
       amount: 1
-    TableSalt:
+    Saline:
       amount: 1
     Vinegar:
       amount: 1
@@ -587,11 +587,11 @@
   reactants:
     Cream:
       amount: 1
-    Cum:
+    SuperheavyCream:
       amount: 1
     IceCream:
       amount: 1
-    Milk:
+    Saline:
       amount: 1
   products:
     QuadrupleCreamChalice: 4
@@ -647,7 +647,7 @@
   reactants:
     Ale:
       amount: 2
-    Cum:
+    Saline:
       amount: 1
   products:
     SemenBomb: 3
@@ -657,7 +657,7 @@
   requiredMixerCategories:
   - Shake
   reactants:
-    Cum:
+    Saline:
       amount: 1
     Grenadine:
       amount: 1
@@ -673,7 +673,7 @@
   reactants:
     Coffee:
       amount: 1
-    Cum:
+    Saline:
       amount: 1
     SodaWater:
       amount: 1
@@ -700,7 +700,7 @@
   requiredMixerCategories:
   - Shake
   reactants:
-    Cum:
+    Saline:
       amount: 1
     Ice:
       amount: 2
@@ -714,7 +714,7 @@
   requiredMixerCategories:
   - Shake
   reactants:
-    Cum:
+    Saline:
       amount: 1
     IceCream:
       amount: 1
@@ -730,7 +730,7 @@
       amount: 1
     Egg:
       amount: 1
-    Milk:
+    SuperheavyCream:
       amount: 1
     Rum:
       amount: 1
@@ -802,7 +802,7 @@
   requiredMixerCategories:
   - Shake
   reactants:
-    Cum:
+    Saline:
       amount: 1
     JuiceWatermelon:
       amount: 2
@@ -820,7 +820,7 @@
   reactants:
     Beer:
       amount: 1
-    Cum:
+    Saline:
       amount: 1
     Water:
       amount: 1
@@ -917,7 +917,7 @@
   reactants:
     Gin:
       amount: 1
-    NaturalLubricant:
+    Saline:
       amount: 2
   products:
     GinandPussy: 3
@@ -929,7 +929,17 @@
   reactants:
     TonicWater:
       amount: 1
-    NaturalLubricant:
+    Saline:
       amount: 1
   products:
     PussyTonic: 2
+
+- type: reaction
+  id: SuperheavyCream
+  reactants:
+    Cream:
+      amount: 1
+    OilGhee:
+      amount: 1
+  products:
+    SuperheavyCream: 2

@@ -1917,6 +1917,7 @@
   sprite: /Textures/Tiles/hull.png
   baseTurf: Plating
   isSubfloor: false
+  deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepHull
   itemDrop: FloorTileItemSteel #probably should not be normally obtainable, but the game shits itself and dies when you try to put null here
@@ -1928,6 +1929,7 @@
   sprite: /Textures/Tiles/hull_reinforced.png
   baseTurf: Plating
   isSubfloor: false
+  deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepHull
   itemDrop: FloorTileItemSteel

@@ -13,7 +13,7 @@
   - type: AmeFuelContainer
   - type: StaticPrice
     price: 400
-    vendPrice: 4000 # Frontier: FuelVend price
+    vendPrice: 2000 # Frontier: FuelVend price
   - type: GuideHelp
     guides: [ AME, Power ]
   - type: Tag # Frontier

@@ -27,6 +27,7 @@
       - MailMetricsCartridge
       - AppraisalCartridge
       - NetProbeCartridge
+      - NanoChatCartridge # DeltaV
   - type: BlipCartridge
     enabled: false
 
@@ -164,6 +165,7 @@
     - AstroNavCartridge
     - WantedListCartridge
     - LedgerCartridge
+    - NanoChatCartridge # DeltaV
 
 - type: entity
   parent: BaseSecurityPDA
@@ -386,6 +388,7 @@
     - AstroNavCartridge
     - LedgerCartridge
     - MailMetricsCartridge
+    - NanoChatCartridge # DeltaV
   - type: BlipCartridge
     defaultPreset: BlipPresetCommand
 
@@ -505,6 +508,7 @@
     - AstroNavCartridge
     - LedgerCartridge
     - MedTekCartridge
+    - NanoChatCartridge # DeltaV
 
 - type: entity
   parent: BasePDA
@@ -551,5 +555,6 @@
     - BountyContractsCartridge
     - AstroNavCartridge
     - LedgerCartridge
+    - NanoChatCartridge # DeltaV
   - type: BlipCartridge
     defaultPreset: BlipPresetCommand

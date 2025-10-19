@@ -156,7 +156,11 @@ public sealed partial class ConsentWindow : FancyWindow
         consentprototypelist.Sort();
 
         foreach (var prototype in consentprototypelist)
+        {
+            if (prototype.Unused)
+                continue;
             AddConsentEntry(prototype);
+        }
 
         SaveConsentSettings.Disabled = true;
         SaveLabel.Text = "";

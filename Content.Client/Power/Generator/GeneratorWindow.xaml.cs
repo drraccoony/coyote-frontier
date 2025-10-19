@@ -65,15 +65,14 @@ public sealed partial class GeneratorWindow : FancyWindow
 
         if (!TargetPower.LineEditControl.HasKeyboardFocus())
             TargetPower.OverrideValue((int)(state.TargetPower / 1000.0f));
-        var efficiency = SharedGeneratorSystem.CalcFuelEfficiency(state.TargetPower, state.OptimalPower, component);
-        Efficiency.Text = efficiency.ToString("P1");
+        var eff = SharedGeneratorSystem.CalcFuelEfficiency(state.TargetPower, state.OptimalPower, component);
+        Efficiency.Text = eff.ToString("P1");
 
-        var burnRate = component.OptimalBurnRate / efficiency;
-        var left = state.RemainingFuel / burnRate;
+        var eta = state.RemainingFuel * eff * state.OptimalPower / (component.OptimalBurnRate * state.TargetPower);
 
         Eta.Text = Loc.GetString(
             "portable-generator-ui-eta",
-            ("minutes", Math.Ceiling(left / 60.0)));
+            ("minutes", Math.Ceiling(eta / 60.0)));
         FuelFraction.Value = state.RemainingFuel - (int) state.RemainingFuel;
         FuelLeft.Text = ((int) MathF.Floor(state.RemainingFuel)).ToString();
 

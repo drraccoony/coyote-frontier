@@ -1,7 +1,9 @@
 using System.Collections.Frozen;
 using System.Collections.Immutable;
+using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Speech;
+using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -133,30 +135,75 @@ public partial class ChatSystem
     /// <returns>True if emote sound was played.</returns>
     public bool TryPlayEmoteSound(EntityUid uid, EmoteSoundsPrototype? proto, EmotePrototype emote)
     {
-        return TryPlayEmoteSound(uid, proto, emote.ID);
+        return TryPlayEmoteSound(
+            uid,
+            proto,
+            null,
+            emote.ID);
+    }
+
+    public bool TryPlayEmoteSound(
+        EntityUid uid,
+        EmoteSoundsPrototype? proto,
+        ProtoId<EmoteSoundsPrototype>? supplement,
+        EmotePrototype emote)
+    {
+        return TryPlayEmoteSound(
+            uid,
+            proto,
+            supplement,
+            emote.ID);
     }
 
     /// <summary>
     ///     Tries to find and play relevant emote sound in emote sounds collection.
     /// </summary>
     /// <returns>True if emote sound was played.</returns>
-    public bool TryPlayEmoteSound(EntityUid uid, EmoteSoundsPrototype? proto, string emoteId)
+    public bool TryPlayEmoteSound(
+        EntityUid uid,
+        EmoteSoundsPrototype? proto,
+        ProtoId<EmoteSoundsPrototype>? supplement,
+        string emoteId)
     {
-        if (proto == null)
-            return false;
-
-        // try to get specific sound for this emote
-        if (!proto.Sounds.TryGetValue(emoteId, out var sound))
+        SoundSpecifier? sound = null;
+        SoundSpecifier? fallbackSound = null;
+        if (proto != null)
         {
-            // no specific sound - check fallback
-            sound = proto.FallbackSound;
-            if (sound == null)
-                return false;
+            if (!proto.Sounds.TryGetValue(emoteId, out sound))
+            {
+                // no specific sound - check fallback
+                fallbackSound = proto.FallbackSound;
+            }
         }
 
-        // if general params for all sounds set - use them
-        var param = proto.GeneralParams ?? sound.Params;
-        _audio.PlayPvs(sound, uid, param);
+        if (sound == null
+            && supplement != null
+            && _prototypeManager.TryIndex(supplement, out var supProto))
+        {
+            // try to get specific sound for this emote from Supplemental prototype second
+            supProto.Sounds.TryGetValue(emoteId, out sound);
+            if (sound == null)
+            {
+                // no specific sound - check fallback
+                fallbackSound = supProto.FallbackSound;
+            }
+        }
+
+        if (sound == null
+            && fallbackSound != null)
+        {
+            sound = fallbackSound;
+        }
+
+        if (sound == null)
+            return false;
+
+        var param = proto?.GeneralParams ?? sound.Params;
+
+        _audio.PlayPvs(
+            sound,
+            uid,
+            param);
         return true;
     }
     /// <summary>
@@ -213,24 +260,24 @@ public partial class ChatSystem
     private bool AllowedToUseEmote(EntityUid source, EmotePrototype emote)
     {
         // If emote is in AllowedEmotes, it will bypass whitelist and blacklist
-        if (TryComp<SpeechComponent>(source, out var speech) &&
-            speech.AllowedEmotes.Contains(emote.ID))
-        {
-            return true;
-        }
-
-        // Check the whitelist and blacklist
-        if (_whitelistSystem.IsWhitelistFail(emote.Whitelist, source) ||
-            _whitelistSystem.IsBlacklistPass(emote.Blacklist, source))
-        {
-            return false;
-        }
-
-        // Check if the emote is available for all
-        if (!emote.Available)
-        {
-            return false;
-        }
+        // if (TryComp<SpeechComponent>(source, out var speech) &&
+        //     speech.AllowedEmotes.Contains(emote.ID))
+        // {
+        //     return true;
+        // }
+        //
+        // // Check the whitelist and blacklist
+        // if (_whitelistSystem.IsWhitelistFail(emote.Whitelist, source) ||
+        //     _whitelistSystem.IsBlacklistPass(emote.Blacklist, source))
+        // {
+        //     return false;
+        // }
+        //
+        // // Check if the emote is available for all
+        // if (!emote.Available)
+        // {
+        //     return false;
+        // } // COYOTE SECTOR -- lemme squeak as a vulpkanin dammit
 
         return true;
     }

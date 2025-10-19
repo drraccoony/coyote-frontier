@@ -14,8 +14,6 @@
         reagents:
         - ReagentId: Philterex
           Quantity: 5
-        - ReagentId: Cum
-          Quantity: 20
         - ReagentId: Nutriment
           Quantity: 5
   - type: Sprite
@@ -44,8 +42,6 @@
         reagents:
         - ReagentId: Libidozenithizine
           Quantity: 2
-        - ReagentId: Cum
-          Quantity: 20
         - ReagentId: Philterex
           Quantity: 4
         - ReagentId: Happiness
