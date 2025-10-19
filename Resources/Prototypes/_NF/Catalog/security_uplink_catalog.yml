@@ -415,6 +415,7 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
+        - Bailiff
         - Sheriff
 
 - type: listing
