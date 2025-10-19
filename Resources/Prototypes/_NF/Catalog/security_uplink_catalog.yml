@@ -940,11 +940,6 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
 
 - type: listing
   id: UplinkSecurityHoverbikeNfsdFlatpack
