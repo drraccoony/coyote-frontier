@@ -119,14 +119,3 @@
     contents:
       - id: NFGrenadeEMP
         amount: 4
-
-- type: entity
-  name: EMP projectiles box
-  parent: BoxMagazine
-  id: BoxEmpGrenadesAmmoMags
-  description: A box of EMP grenade magazines.
-  components:
-  - type: StorageFill
-    contents:
-      - id: NFMagazineGrenadeEMP
-        amount: 4
