@@ -332,10 +332,6 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - Sheriff
 
 - type: listing
   id: UplinkSecurityEmpRpg
