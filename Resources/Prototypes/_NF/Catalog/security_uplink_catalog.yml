@@ -284,9 +284,6 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Sheriff
 
 - type: listing
   id: UplinkSecurityDisablerSMG
