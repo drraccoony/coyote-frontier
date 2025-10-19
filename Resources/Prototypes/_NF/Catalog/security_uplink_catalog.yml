@@ -139,9 +139,6 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Sheriff
 
 #region weapons
 - type: listing
