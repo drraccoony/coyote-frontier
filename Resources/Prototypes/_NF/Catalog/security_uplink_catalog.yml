@@ -1048,6 +1048,22 @@
           - SecurityUplink
 
 - type: listing
+  id: UplinkSecurityEmpGrenadeAmmoMags
+  name:  uplink-security-emp-ammo-mags-name
+  description: uplink-security-emp-ammo-mags-desc
+  productEntity: BoxEmpGrenadesAmmoMags
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
   id: UplinkSecurityTrackingDartsAmmo
   name:  uplink-security-trackingdart-ammo-name
   description: uplink-security-trackingdart-ammo-desc
