@@ -73,6 +73,9 @@
     UndergarmentBottom:
       points: 35
       required: false
+    Genital:
+      points: 35
+      required: false
     Chest:
       points: 35
       required: false
