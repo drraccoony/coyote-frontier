@@ -84,11 +84,11 @@
     - state: full
       shader: unshaded
   - type: UpgradeBattery
-    maxChargeMultiplier: 2
-    baseMaxCharge: 2500000
+    maxChargeMultiplier: 3
+    baseMaxCharge: 2000000
   - type: UpgradePowerSupplyRamping
     scaling: Linear
-    supplyRampingMultiplier: 1
+    supplyRampingMultiplier: 1.25
   - type: Battery
     startingCharge: 0
   - type: PointLight
@@ -188,7 +188,7 @@
     - state: screen
       shader: unshaded
   - type: Battery
-    maxCharge: 2000000
+    maxCharge: 1500000
     startingCharge: 0
   - type: PowerMonitoringDevice
     sprite: Structures/Power/substation.rsi
@@ -226,11 +226,11 @@
 - type: entity
   parent: BaseSubstation
   id: SubstationBasic
-  suffix: Basic, 2.5MJ
+  suffix: Basic, 2MJ
   components:
   - type: Battery
-    maxCharge: 2500000
-    startingCharge: 2500000
+    maxCharge: 2000000
+    startingCharge: 2000000
 
 - type: entity
   parent: SubstationBasic

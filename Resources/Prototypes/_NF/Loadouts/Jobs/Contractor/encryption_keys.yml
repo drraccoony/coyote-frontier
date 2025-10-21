@@ -33,3 +33,10 @@
   price: 20
   encryptionKeys:
   - EncryptionKeyScience
+
+- type: loadout # Coyote Edit
+  id: ContractorEncryptionKeyCommon
+  price: 20
+  encryptionKeys:
+  - EncryptionKeyCommon
+  

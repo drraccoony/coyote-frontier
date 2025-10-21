@@ -275,8 +275,8 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
 
             supplier.MaxSupply = gen.TargetPower * upgradeMultiplier;
 
-            var eff = 1 / CalcFuelEfficiency(gen.TargetPower, gen.OptimalPower, gen);
-            var consumption = gen.OptimalBurnRate * frameTime * eff;
+            var eff = CalcFuelEfficiency(gen.TargetPower, gen.OptimalPower, gen);
+            var consumption = gen.OptimalBurnRate * gen.TargetPower * frameTime / (eff * gen.OptimalPower);
             RaiseLocalEvent(uid, new GeneratorUseFuel(consumption));
         }
     }

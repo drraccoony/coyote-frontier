@@ -25,6 +25,7 @@
     - NFBoxMREEmpty
     - NFHappyHonkEmpty
     - NFHappyHonkMimeEmpty
+    - NFHappyHonkMcCargoEmpty
     - NFFoodBoxPizza
     - NFFoodBoxDonutEmpty
     - NFFoodBoxNuggetEmpty
@@ -112,6 +113,7 @@
     - FoodCondimentSqueezeBottleClear
     - FoodFrozenPopsicleTrash
     - DrinkWaterCup
+    - BucketPaper # Mono
   ## EVA
     - ClothingOuterEVASuitHydro
     - ClothingOuterEVASuitJanitor

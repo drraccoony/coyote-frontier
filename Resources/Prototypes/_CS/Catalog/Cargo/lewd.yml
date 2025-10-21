@@ -1,0 +1,10 @@
+
+- type: cargoProduct
+  id: LewdCrateRestraints
+  icon:
+    sprite: Objects/Misc/handcuffs.rsi
+    state: handcuff
+  product: CrateLewdRestraints
+  cost: 8000
+  category: cargoproduct-category-name-fun
+  group: market

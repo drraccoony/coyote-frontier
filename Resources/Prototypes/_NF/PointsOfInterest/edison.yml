@@ -23,6 +23,9 @@
   - type: SolarPoweredGrid
     trackOnInit: true
     doNotCull: true
+  - type: StationTransit
+    routes:
+      SpawnPoints: 40
 
 - type: gameMap
   id: Edison

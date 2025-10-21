@@ -1,0 +1,37 @@
+# Author Info
+# GitHub: R3N0mon
+
+# Shuttle Notes:
+# Modified Dove for stealing cargo crates and hauling weapons
+- type: vessel
+  id: Raven
+  parent: BaseVesselAntag
+  name: Raven
+  description: Modified Dove designed to steal or smuggle cargo crates, fits between 3-4 crew.
+  price: 82000 #29313 1.25 65954.25
+  category: Medium
+  group: BlackMarket
+  shuttlePath: /Maps/_NF/Shuttles/BlackMarket/Raven.yml
+  guidebookPage: Null
+  class:
+  - Pirate
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Raven
+  mapName: 'Raven'
+  mapPath: /Maps/_NF/Shuttles/BlackMarket/Raven.yml
+  minPlayers: 0
+  stations:
+    Raven:
+      stationProto: StandardFrontierAntagVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Dove {1}' # Very fake name
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            NFPirate: [ 0, 0 ]
