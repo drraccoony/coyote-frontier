@@ -41,6 +41,18 @@ public sealed class RpiModifyChatRecordEvent(RpiChatRecord record) : EntityEvent
         }
     }
 
+    public void AddMultIfActions(List<RpiChatActionCategory> actions, float mod)
+    {
+        foreach (var action in actions)
+        {
+            if (IsAction(action))
+            {
+                AddMultiplier(mod);
+                return;
+            }
+        }
+    }
+
     public void AddMultiplier(float mod)
     {
         Record.ModifyMultiplier(mod);

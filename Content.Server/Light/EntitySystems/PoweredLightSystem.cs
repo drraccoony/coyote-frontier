@@ -1,3 +1,4 @@
+using Content.Server._Coyote;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.DeviceNetwork;
 using Content.Server.DeviceNetwork.Systems;
@@ -5,6 +6,7 @@ using Content.Server.Emp;
 using Content.Server.Ghost;
 using Content.Server.Light.Components;
 using Content.Server.Power.Components;
+using Content.Shared._Coyote.RolePlayIncentiveShared;
 using Content.Shared.Audio;
 using Content.Shared.Damage;
 using Content.Shared.DeviceLinking.Events;
@@ -21,6 +23,7 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.Damage.Components;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Events;
+using Content.Shared.Examine;
 using Content.Shared.Power;
 using Robust.Shared.Random; // Frontier
 
@@ -42,6 +45,7 @@ namespace Content.Server.Light.EntitySystems
         [Dependency] private readonly PointLightSystem _pointLight = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly DamageOnInteractSystem _damageOnInteractSystem = default!;
+        [Dependency] private readonly RoleplayIncentiveSystem _rpi = default!;
 
         [Dependency] private readonly IRobustRandom _random = default!; // Frontier
 
@@ -63,6 +67,7 @@ namespace Content.Server.Light.EntitySystems
             SubscribeLocalEvent<PoweredLightComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
 
             SubscribeLocalEvent<PoweredLightComponent, PowerChangedEvent>(OnPowerChanged);
+            SubscribeLocalEvent<PoweredLightComponent, ExaminedEvent>(OnExamined);
 
             SubscribeLocalEvent<PoweredLightComponent, PoweredLightDoAfterEvent>(OnDoAfter);
             SubscribeLocalEvent<PoweredLightComponent, EmpPulseEvent>(OnEmpPulse);
@@ -91,7 +96,7 @@ namespace Content.Server.Light.EntitySystems
             if (args.Handled)
                 return;
 
-            args.Handled = InsertBulb(uid, args.Used, component);
+            args.Handled = InsertBulb(uid, args.Used, component, args.User);
         }
 
         private void OnInteractHand(EntityUid uid, PoweredLightComponent light, InteractHandEvent args)
@@ -122,12 +127,49 @@ namespace Content.Server.Light.EntitySystems
             args.Handled = true;
         }
 
+        private void OnExamined(EntityUid uid, PoweredLightComponent liy, ExaminedEvent args)
+        {
+            if (!liy.GiveFixReward)
+                return;
+            var timeBroken = _gameTiming.CurTime - liy.BrokenTime;
+            var payData = _rpi.AppraiseBrokenLight(
+                uid,
+                timeBroken,
+                null,
+                true);
+            if (payData.FinalPay <= 0)
+                return;
+            if (payData.SpreeBonus > 0)
+            {
+                args.PushMarkup(
+                    Loc.GetString(
+                        "powered-light-examine-fix-reward-spree",
+                        ("amount", payData.FinalPay),
+                        ("time", (int)timeBroken.TotalMinutes),
+                        ("spreeamount", payData.SpreeBonus),
+                        ("spreecount", payData.SpreeCount)));
+            }
+            else
+            {
+                args.PushMarkup(
+                    Loc.GetString(
+                        "powered-light-examine-fix-reward",
+                        ("amount", payData.FinalPay),
+                        ("time", (int)timeBroken.TotalMinutes)));
+            }
+
+        }
+
         #region Bulb Logic API
         /// <summary>
         ///     Inserts the bulb if possible.
         /// </summary>
         /// <returns>True if it could insert it, false if it couldn't.</returns>
-        public bool InsertBulb(EntityUid uid, EntityUid bulbUid, PoweredLightComponent? light = null)
+        public bool InsertBulb(
+            EntityUid uid,
+            EntityUid bulbUid,
+            PoweredLightComponent? light = null,
+            EntityUid? userUid = null)
         {
             if (!Resolve(uid, ref light))
                 return false;
@@ -145,7 +187,14 @@ namespace Content.Server.Light.EntitySystems
             // try to insert bulb in container
             if (!_containerSystem.Insert(bulbUid, light.LightBulbContainer))
                 return false;
-
+            if (lightBulb.State == LightBulbState.Normal)
+            {
+                RewardFixing(
+                    light,
+                    userUid,
+                    uid);
+                ResetBrokenStuff(light);
+            }
             UpdateLight(uid, light);
             return true;
         }
@@ -174,6 +223,44 @@ namespace Content.Server.Light.EntitySystems
             return bulb;
         }
 
+        private void SetRewardFixing(PoweredLightComponent light, bool rewardFixing)
+        {
+            light.GiveFixReward = rewardFixing;
+        }
+
+        private void SetTimeBroken(PoweredLightComponent light, bool reset = false)
+        {
+            if (reset)
+            {
+                light.BrokenTime = TimeSpan.Zero;
+                return;
+            }
+            light.BrokenTime = _gameTiming.CurTime;
+        }
+
+        private void ResetBrokenStuff(PoweredLightComponent light)
+        {
+            light.BrokenTime = TimeSpan.Zero;
+            light.GiveFixReward = false;
+        }
+
+        private void RewardFixing(
+            PoweredLightComponent light,
+            EntityUid? userUid,
+            EntityUid lightUid)
+        {
+            var giveReward = light.GiveFixReward;
+            var broketime = light.BrokenTime;
+            ResetBrokenStuff(light);
+            if (userUid == null || !giveReward)
+                return;
+            var ev = new FixedLightEvent(
+                _gameTiming.CurTime - broketime,
+                userUid.Value,
+                lightUid);
+            RaiseLocalEvent(userUid.Value, ev);
+        }
+
         /// <summary>
         ///     Replaces the spawned prototype of a pre-mapinit powered light with a different variant.
         /// </summary>
@@ -186,6 +273,7 @@ namespace Content.Server.Light.EntitySystems
                 return false;
 
             light.Comp.HasLampOnSpawn = bulb;
+            ResetBrokenStuff(light);
             return true;
         }
 
@@ -193,10 +281,20 @@ namespace Content.Server.Light.EntitySystems
         ///     Try to replace current bulb with a new one
         ///     If succeed old bulb just drops on floor
         /// </summary>
-        public bool ReplaceBulb(EntityUid uid, EntityUid bulb, PoweredLightComponent? light = null)
+        public bool ReplaceBulb(EntityUid uid,
+            EntityUid bulb,
+            PoweredLightComponent? light = null,
+            EntityUid? userUid = null)
         {
-            EjectBulb(uid, null, light);
-            return InsertBulb(uid, bulb, light);
+            EjectBulb(
+                uid,
+                null,
+                light);
+            return InsertBulb(
+                uid,
+                bulb,
+                light,
+                userUid);
         }
 
         /// <summary>
@@ -214,10 +312,15 @@ namespace Content.Server.Light.EntitySystems
         /// <summary>
         ///     Try to break bulb inside light fixture
         /// </summary>
-        public bool TryDestroyBulb(EntityUid uid, PoweredLightComponent? light = null)
+        public bool TryDestroyBulb(
+            EntityUid uid,
+            PoweredLightComponent? light = null,
+            bool rewardFixing = false)
         {
             if (!Resolve(uid, ref light, false))
                 return false;
+            if (light.DebugAlwaysReward)
+                rewardFixing = true;
 
             // if we aren't mapinited,
             // just null the spawned bulb
@@ -238,6 +341,8 @@ namespace Content.Server.Light.EntitySystems
             _bulbSystem.SetState(bulbUid.Value, LightBulbState.Broken, lightBulb);
             _bulbSystem.PlayBreakSound(bulbUid.Value, lightBulb);
             UpdateLight(uid, light);
+            SetTimeBroken(light);
+            SetRewardFixing(light, rewardFixing);
             return true;
         }
         #endregion
@@ -439,7 +544,9 @@ namespace Content.Server.Light.EntitySystems
             // Frontier: break lights probabilistically
             if (_random.Prob(component.LightBreakChance))
             {
-                if (TryDestroyBulb(uid, component))
+                if (TryDestroyBulb(
+                        uid,
+                        component))
                     args.Affected = true;
             }
             // End Frontier: break lights probabilistically

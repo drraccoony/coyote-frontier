@@ -79,6 +79,46 @@ public sealed partial class RoleplayIncentiveComponent : Component
     public Dictionary<string, RpiAuraData> DetectedAuraSources = new();
     #endregion
 
+    #region Journalism
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan LastArticleTime = TimeSpan.Zero;
+    #endregion
+
+    #region Janitation
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public int LightFixPay = 200;
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public int LightFixOnNashBonus = 100;
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public int LightFixByJanitorBonus = 200;
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public int LightFixOnOtherShuttlesBonus = 50;
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public int LightFixOnOtherStationsBonus = 150;
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan LightFixTimeBrokenBonusThreshold = TimeSpan.FromHours(1);
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan LightFixTimeBrokenMaxBonusThreshold = TimeSpan.FromHours(5);
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public int LightFixCashPerHourBroken = 100;
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public List<TimeSpan> LightSpree = new();
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public float LightSpreeBonusPerLight = 0.1f;
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan MaxLightSpreeTime = TimeSpan.FromMinutes(10);
+    #endregion
+
     #region Death and Deep Fryer Punishments
     /// <summary>
     /// The last time they were PUNISHED for DYING like a noob.

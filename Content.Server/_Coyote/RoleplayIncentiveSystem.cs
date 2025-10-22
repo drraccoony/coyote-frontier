@@ -4,10 +4,14 @@ using Content.Server._Coyote.CoolIncentives;
 using Content.Server._NF.Bank;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
+using Content.Server.Light.Components;
 using Content.Server.Popups;
+using Content.Shared._Coyote;
 using Content.Shared._Coyote.RolePlayIncentiveShared;
+using Content.Shared._Coyote.RolePlayIncentiveShared.Components;
 using Content.Shared._NF.Bank.Components;
 using Content.Shared.Chat;
+using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
 using Content.Shared.Ghost;
 using Content.Shared.Mobs;
@@ -16,10 +20,12 @@ using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
 using Content.Shared.SSDIndicator;
 using Content.Shared.Tag;
+using Content.Shared.Verbs;
 using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 using YamlDotNet.Core.Tokens;
 
 // ReSharper disable InconsistentNaming
@@ -41,6 +47,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+    [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
 
     private List<ProtoId<RpiTaxBracketPrototype>> RpiDatumPrototypes = new()
     {
@@ -67,15 +74,19 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<RoleplayIncentiveComponent, ComponentInit>          (OnComponentInit);
-        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiChatEvent>           (OnGotRpiChatEvent);
-        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiActionMultEvent>     (OnGotRpiActionEvent);
-        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiImmediatePayEvent>   (OnRpiImmediatePayEvent);
-        SubscribeLocalEvent<RoleplayIncentiveComponent, GetRpiModifier>         (OnSelfSucc);
-        SubscribeLocalEvent<RoleplayIncentiveComponent, MobStateChangedEvent>   (OnGotMobStateChanged);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, ComponentInit>                (OnComponentInit);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiChatEvent>                 (OnGotRpiChatEvent);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiActionMultEvent>           (OnGotRpiActionEvent);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiImmediatePayEvent>         (OnRpiImmediatePayEvent);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, GetRpiModifier>               (OnSelfSucc);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, MobStateChangedEvent>         (OnGotMobStateChanged);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiNewsArticleCreatedEvent>   (OnNewsArticleCreated);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, FixedLightEvent>              (OnLightGotFixed);
+        // SubscribeLocalEvent<RoleplayIncentiveComponent, GetVerbsEvent<ExamineVerb>>   (OnGetExamineVerbs);
         SortTaxBrackets();
     }
 
+    #region Setup stuff
     /// <summary>
     /// Sorts the tax brackets by cash threshold, lowest to highest.
     /// This is done so that we can easily find the correct tax bracket for a player.
@@ -100,6 +111,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
                 return protoA.CashThreshold.CompareTo(protoB.CashThreshold);
             });
     }
+    #endregion
 
     #region Event Handlers
     private void OnComponentInit(EntityUid uid, RoleplayIncentiveComponent component, ComponentInit args)
@@ -180,30 +192,21 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             rpic,
             args,
             ref basePay);
-        // process the payment details
-        var payDetails = ProcessPaymentDetails(
-            basePay,
-            1f);
-        // pay the player
-        if (!_bank.TryBankDeposit(uid, payDetails.FinalPay))
-        {
-            Log.Warning($"Failed to deposit {payDetails.FinalPay} into bank account of entity {uid}!");
-            return;
-        }
-
-        ShowPopup(
+        PaymentifySimple(
             uid,
-            payDetails,
+            rpic,
+            basePay,
             "coyote-rpi-immediate-pay-message",
-            args.SuppressChat);
-        if (!args.SuppressChat)
-        {
-            ShowChatMessageSimple(
-                uid,
-                payDetails,
-                "coyote-rpi-immediate-pay-popup");
-        }
+            "coyote-rpi-immediate-pay-popup");
     }
+
+    // private void OnGetExamineVerbs(
+    //     EntityUid uid,
+    //     RoleplayIncentiveComponent rpic,
+    //     GetVerbsEvent<ExamineVerb> args)
+    // {
+    //     HandleExamineRpiVerb(uid, rpic, args);
+    // }
 
     /*
      * None
@@ -263,8 +266,306 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             return;
         PunishPlayerForDeath(uid, rpic);
     }
+
+    /// <summary>
+    /// When a news article is created, give a payward for it.
+    /// Extra if they are a journalist.
+    /// </summary>
+    private void OnNewsArticleCreated(
+        EntityUid uid,
+        RoleplayIncentiveComponent rpic,
+        RpiNewsArticleCreatedEvent args)
+    {
+        var taxBracket = GetTaxBracketData(args.Doer);
+        var jDat = taxBracket.JournalismData;
+        RpiJournalismPayResult paypig; // NOTHING
+        var lengf =
+              args.NArticle.Content.Length
+            + args.NArticle.Title.Length;
+        var amJournalist = HasComp<PaywardActionNewsArticleCreationComponent>(args.Doer);
+        paypig = jDat.GetPaypig(
+            amJournalist,
+            lengf,
+            rpic.LastArticleTime);
+
+        rpic.LastArticleTime = _timing.CurTime;
+        _popupSystem.PopupEntity(
+            Loc.GetString(
+                "coyote-rpi-journalism-pay-popup",
+                ("amount", paypig.TotalPay)),
+            args.Doer,
+            args.Doer,
+            PopupType.Large);
+        // the chat message is a bit more complicated
+        var showCooldown = paypig.MinsTillCooled > 0;
+        var showLengthBonus = amJournalist && paypig.BasePay != paypig.TotalPay;
+        string chessage;
+        if (showCooldown)
+        {
+            if (showLengthBonus)
+            {
+                chessage = Loc.GetString(
+                    "coyote-rpi-journalism-pay-message-bonus-cooldown",
+                    ("amount", paypig.TotalPay),
+                    ("lengthBonus", paypig.TotalPay - paypig.BasePay),
+                    ("charCount", lengf),
+                    ("baseAmount", paypig.BasePay),
+                    ("cooldownMult", paypig.CooldownMultiplier.ToString("0.00")),
+                    ("minsTillCooled", paypig.MinsTillCooled));
+            }
+            else
+            {
+                chessage = Loc.GetString(
+                    "coyote-rpi-journalism-pay-message-cooldown",
+                    ("amount", paypig.TotalPay),
+                    ("cooldownMult", paypig.CooldownMultiplier.ToString("0.00")),
+                    ("minsTillCooled", paypig.MinsTillCooled));
+            }
+        }
+        else
+        {
+            if (showLengthBonus)
+            {
+                chessage = Loc.GetString(
+                    "coyote-rpi-journalism-pay-message-bonus",
+                    ("amount", paypig.TotalPay),
+                    ("lengthBonus", paypig.TotalPay - paypig.BasePay),
+                    ("charCount", lengf),
+                    ("baseAmount", paypig.BasePay));
+            }
+            else
+            {
+                chessage = Loc.GetString(
+                    "coyote-rpi-journalism-pay-message",
+                    ("amount", paypig.TotalPay));
+            }
+        }
+        if (_playerManager.TryGetSessionByEntity(uid, out var session))
+        {
+            _chatManager.ChatMessageToOne(
+                ChatChannel.Notifications,
+                chessage,
+                chessage,
+                default,
+                false,
+                session.Channel);
+        }
+    }
+
+    /// <summary>
+    /// When a light is fixed, give a small payward for it.
+    /// </summary>
+    private void OnLightGotFixed(
+        EntityUid uid,
+        RoleplayIncentiveComponent rpic,
+        FixedLightEvent args)
+    {
+        // SO HOW HERES HOWS IT GONNA GO
+        // You get a base payward for fixing a light thats been broken by Solar Flares
+        // You get a bonus if:
+        // 1. You are a janitor (big bonus)
+        // 2. The light is on Nash (small bonus) - to do
+        // 3. The light is on some other station (Big bonus) - to do
+        // 4. The light is on a shuttle that is NOT yours (medium bonus) - also to do
+        // 5. The light has been broken for a long time (small bonus)
+        var paydata = AppraiseBrokenLight(
+            args.Source,
+            args.TimeSpentBroken,
+            rpic);
+        if (paydata.FinalPay <= 0)
+            return; // no pay, no pramgle
+        PayPlayer(args.Source, paydata.FinalPay);
+        // popup
+        // _popupSystem.PopupEntity(
+        //     Loc.GetString(
+        //         "coyote-rpi-light-fix-pay-popup",
+        //         ("amount", paydata.FinalPay)),
+        //     args.Source,
+        //     args.Source,
+        //     PopupType.Large);
+        // chat message
+        string outtext;
+        if (!paydata.IsJanitor)
+        {
+            outtext = Loc.GetString(
+                "coyote-rpi-light-fix-pay-message-no-janitor",
+                ("amount", paydata.FinalPay));
+        }
+        else
+        {
+            switch (paydata.SpreeCount)
+            {
+                case > 1
+                    when paydata.TimeBroken > rpic.LightFixTimeBrokenBonusThreshold:
+                    outtext = Loc.GetString(
+                        "coyote-rpi-light-fix-pay-message-janitor-spree-timebroken",
+                        ("amount", paydata.FinalPay),
+                        ("baseAmount", paydata.BasePay),
+                        ("janitorBonus", paydata.JanitorBonus),
+                        ("spreeBonus", paydata.SpreeBonus),
+                        ("spreeCount", paydata.SpreeCount),
+                        ("timeBrokenBonus", paydata.TimeBrokenBonus),
+                        ("timeBrokenMinutes", (int)paydata.TimeBroken.TotalMinutes));
+                    break;
+                case > 1:
+                    outtext = Loc.GetString(
+                        "coyote-rpi-light-fix-pay-message-janitor-spree",
+                        ("amount", paydata.FinalPay),
+                        ("baseAmount", paydata.BasePay),
+                        ("janitorBonus", paydata.JanitorBonus),
+                        ("spreeBonus", paydata.SpreeBonus),
+                        ("spreeCount", paydata.SpreeCount));
+                    break;
+                default:
+                {
+                    if (paydata.TimeBroken > rpic.LightFixTimeBrokenBonusThreshold)
+                    {
+                        outtext = Loc.GetString(
+                            "coyote-rpi-light-fix-pay-message-janitor-timebroken",
+                            ("amount", paydata.FinalPay),
+                            ("baseAmount", paydata.BasePay),
+                            ("janitorBonus", paydata.JanitorBonus),
+                            ("timeBrokenBonus", paydata.TimeBrokenBonus),
+                            ("timeBrokenMinutes", (int)paydata.TimeBroken.TotalMinutes));
+                    }
+                    else
+                    {
+                        outtext = Loc.GetString(
+                            "coyote-rpi-light-fix-pay-message-janitor",
+                            ("amount", paydata.FinalPay),
+                            ("baseAmount", paydata.BasePay),
+                            ("janitorBonus", paydata.JanitorBonus));
+                    }
+                    break;
+                }
+            }
+        }
+        if (_playerManager.TryGetSessionByEntity(args.Source, out var session))
+        {
+            _chatManager.ChatMessageToOne(
+                ChatChannel.Notifications,
+                outtext,
+                outtext,
+                default,
+                false,
+                session.Channel);
+        }
+    }
+
+    public RpiLightFixData AppraiseBrokenLight(
+        EntityUid doer,
+        TimeSpan TimeSpentBroken,
+        RoleplayIncentiveComponent? rpic = null,
+        bool justChecking = false)
+    {
+        if (!Resolve(doer, ref rpic))
+            return new RpiLightFixData(0);
+        var paydata = new RpiLightFixData(rpic.LightFixPay);
+        // janitor bonus
+        if (HasComp<PaywardActionMaintenanceComponent>(doer))
+        {
+            paydata.ApplyJanitorBonus(rpic.LightFixByJanitorBonus);
+            if (!justChecking)
+                rpic.LightSpree.Add(_timing.CurTime);
+            if (TimeSpentBroken >= rpic.LightFixTimeBrokenBonusThreshold)
+            {
+                var timeBrokenPastThreshold = TimeSpentBroken - rpic.LightFixTimeBrokenBonusThreshold;
+                // after an hour, give a linear bonus up to the max time, counting per minute
+                var minutesPastThreshold = Math.Min(
+                    timeBrokenPastThreshold.TotalMinutes,
+                    (rpic.LightFixTimeBrokenMaxBonusThreshold - rpic.LightFixTimeBrokenBonusThreshold).TotalMinutes);
+                var timeBrokenBonus = (int)(minutesPastThreshold * (rpic.LightFixCashPerHourBroken / 60.0f));
+                paydata.ApplyTimeBrokenBonus(timeBrokenBonus, TimeSpentBroken);
+            }
+            // recalculate the spree
+            rpic.LightSpree = rpic.LightSpree
+                .Where(t => _timing.CurTime - t <= rpic.MaxLightSpreeTime)
+                .ToList();
+            // for each light fixed in the spree, give a small bonus
+            // uses an exponential asymptotic formula that follows:
+            // up to 100% bonus easily, but past that, it will asymptotically approach a max of 300% bonus
+            // so you can never get more than 3x bonus, but its really hard to get past 2x
+            // formula: bonus = 1 - e^(-k * n), where k is a constant and n is the number of lights fixed in the spree
+            // solving for k when n = 10 and bonus = 0.9 gives k = 0.2302585093
+            // idfk what any of this is, its just algovomit and seems to work
+            const double k = 0.2302585093;
+            var spreeCount = rpic.LightSpree.Count;
+            if (spreeCount > 1)
+            {
+                var bonusMult = 1 - Math.Exp(-k * spreeCount);
+                var spreeBonus = (int)(paydata.BasePay * bonusMult);
+                paydata.ApplySpreeBonus(spreeBonus, spreeCount);
+            }
+        }
+        return paydata;
+    }
+
+    public sealed class RpiLightFixData(int basePay)
+    {
+        public int BasePay            = basePay;
+        public int FinalPay           = basePay;
+        public bool IsJanitor         = false;
+        public int JanitorBonus       = 0;
+        public int SpreeBonus         = 0;
+        public int SpreeCount         = 0;
+        // public int StationBonus       = 0;
+        // public int OtherStationBonus  = 0;
+        // public int ShuttleBonus       = 0;
+        public int TimeBrokenBonus    = 0;
+        public TimeSpan TimeBroken    = TimeSpan.Zero;
+
+        public void ApplyJanitorBonus(int amount)
+        {
+            IsJanitor = true;
+            amount = Roundify(amount);
+            JanitorBonus = amount;
+            FinalPay += amount;
+        }
+
+        public void ApplySpreeBonus(int amount, int spreeCount)
+        {
+            amount = Roundify(amount);
+            SpreeBonus = amount;
+            SpreeCount = spreeCount;
+            FinalPay += amount;
+        }
+
+        // public void ApplyStationBonus(int amount)
+        // {
+        //     StationBonus = amount;
+        //     FinalPay += amount;
+        // }
+        //
+        // public void ApplyOtherStationBonus(int amount)
+        // {
+        //     OtherStationBonus = amount;
+        //     FinalPay += amount;
+        // }
+        //
+        // public void ApplyShuttleBonus(int amount)
+        // {
+        //     ShuttleBonus = amount;
+        //     FinalPay += amount;
+        // }
+
+        public void ApplyTimeBrokenBonus(int amount, TimeSpan timeBroken)
+        {
+            amount = Roundify(amount);
+            TimeBroken = timeBroken;
+            TimeBrokenBonus = amount;
+            FinalPay += amount;
+        }
+
+        // Rounds the amount to the nearest 10
+        public int Roundify(int amtount)
+        {
+            return (int)(Math.Round(amtount / 10.0) * 10);
+        }
+    }
+
     #endregion
 
+    #region Main Update Loop
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -283,6 +584,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             PayoutPaywardToPlayer(uid, rpic);
         }
     }
+    #endregion
 
     #region Payward Action
     /// <summary>
@@ -337,11 +639,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             finalMult);
 
         // pay the player
-        if (!_bank.TryBankDeposit(uid, payDetails.FinalPay))
-        {
-            Log.Warning($"Failed to deposit {payDetails.FinalPay} into bank account of entity {uid}!");
-            return;
-        }
+        PayPlayer(uid, payDetails.FinalPay);
         ShowPopup(uid, payDetails);
         ShowChatMessage(uid, payDetails);
         PruneOldActions(incentive);
@@ -634,6 +932,79 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
 
     #region Helpers
 
+    // private void HandleExamineRpiVerb(
+    //     EntityUid uid,
+    //     RoleplayIncentiveComponent rpic,
+    //     GetVerbsEvent<ExamineVerb> args)
+    // {
+    //     if (args.User != args.Target
+    //         && !HasComp<AdminGhostComponent>(args.User))
+    //         return; // only self examine, if not admin ghost
+    //
+    //     var verb = new ExamineVerb()
+    //     {
+    //         Text = Loc.GetString("coyote-rpi-examine-verb-text"),
+    //         Category = VerbCategory.Examine,
+    //         Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/info.svg.192dpi.png")),
+    //         Act = () =>
+    //         {
+    //             var markup = GetRpiExamineText(uid, rpic, args);
+    //             _examineSystem.SendExamineTooltip(
+    //                 args.User,
+    //                 uid,
+    //                 markup,
+    //                 false,
+    //                 false);
+    //         },
+    //     };
+    //     args.Verbs.Add(verb);
+    // }
+
+    // private FormattedMessage GetRpiExamineText(
+    //     EntityUid uid,
+    //     RoleplayIncentiveComponent rpic,
+    //     GetVerbsEvent<ExamineVerb> args)
+    // {
+    //     var msg = new FormattedMessage();
+    //     msg.AddMarkup(Loc.GetString("coyote-rpi-examine-header"));
+    // }
+
+    private void PaymentifySimple(
+        EntityUid uid,
+        RoleplayIncentiveComponent rpic,
+        int basePay,
+        string? popupLocKey,
+        string? chatLocKey)
+    {
+        var payDetails = ProcessPaymentDetails(
+            basePay,
+            1f);
+        // pay the player
+        PayPlayer(uid, payDetails.FinalPay);
+        if (popupLocKey != null)
+        {
+            ShowPopup(
+                uid,
+                payDetails,
+                popupLocKey);
+        }
+        if (chatLocKey != null)
+        {
+            ShowChatMessageSimple(
+                uid,
+                payDetails,
+                chatLocKey);
+        }
+    }
+
+    private void PayPlayer(EntityUid uid, int amount)
+    {
+        if (!_bank.TryBankDeposit(uid, amount))
+        {
+            Log.Warning($"Failed to deposit {amount} into bank account of entity {uid}!");
+        }
+    }
+
     private void ModifyImmediatePay(
         EntityUid uid,
         RoleplayIncentiveComponent? rpic,
@@ -677,7 +1048,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         // now, sum up the best actions
         foreach (var kvp in bestActions)
         {
-            /// add mults ADDITIVFELY
+            // add mults ADDITIVFELY
             multOut += (kvp.Value.GetMultiplier() - 1f);
         }
         return multOut;
@@ -774,7 +1145,8 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             proto.JudgementPointPayout,
             (int)(proto.DeathPenalty * hasThisMuchMoney),
             (int)(proto.DeepFriedPenalty * hasThisMuchMoney),
-            proto.ActionMultipliers);
+            proto.ActionMultipliers,
+            proto.JournalismDat);
 
         // and now the overrides
         if (rpic.TaxBracketPayoutOverride != -1)
@@ -1102,19 +1474,23 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         int payPerJudgement,
         int deathPenalty,
         int deepFryPenalty,
-        Dictionary<RpiActionType, float> actionMultipliers)
+        Dictionary<RpiActionType, float> actionMultipliers,
+        RpiJournalismData journalismData)
     {
         public int PayPerJudgement = payPerJudgement;
         public int DeathPenalty = deathPenalty;
         public int DeepFryPenalty = deepFryPenalty;
         public Dictionary<RpiActionType, float> ActionMultipliers = actionMultipliers;
+        public RpiJournalismData JournalismData = journalismData;
 
         public TaxBracketResult() : this(
             payPerJudgement:   10,
             deathPenalty:      0,
             deepFryPenalty:    0,
-            actionMultipliers: new Dictionary<RpiActionType, float>())
+            actionMultipliers: new Dictionary<RpiActionType, float>(),
+            journalismData:    new RpiJournalismData())
         {
+            // piss
         }
     }
 

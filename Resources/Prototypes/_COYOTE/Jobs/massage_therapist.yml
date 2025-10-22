@@ -5,7 +5,6 @@
   name: job-name-massage-therapist
   description: job-description-massage-therapist
   playTimeTracker: JobMassageTherapist
-  startingGear: MassageTherapistGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-massage-therapist
   weight: 40 # Prioritize station & department jobs
@@ -40,19 +39,3 @@
   components:
   - type: SpawnPoint
     job_id: MassageTherapist
-
-- type: roleLoadout
-  id: JobMassageTherapist
-  groups:
-  - GroupTankHarness
-  - PassengerJumpsuit
-  - CommonBackpack
-  - PassengerNeck
-  - PassengerFace
-  - PassengerGloves
-  - PassengerOuterClothing
-  - PassengerShoes
-  - Glasses
-  - Survival
-  - Trinkets
-  - GroupSpeciesBreathTool

@@ -79,5 +79,23 @@ namespace Content.Server.Light.Components
 
         [DataField("lightBreakChance")]
         public float LightBreakChance = 0.1f;
+
+        /// <summary>
+        /// Time it was broken
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite)]
+        public TimeSpan BrokenTime = TimeSpan.Zero;
+
+        /// <summary>
+        /// Give a reward for fixing the light
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite)]
+        public bool GiveFixReward;
+
+        /// <summary>
+        /// Debug always make it reward
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite)]
+        public bool DebugAlwaysReward = false;
     }
 }

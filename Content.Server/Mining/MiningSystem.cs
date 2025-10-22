@@ -42,14 +42,14 @@ public sealed class MiningSystem : EntitySystem
 
         var proto = _proto.Index<OrePrototype>(component.CurrentOre);
 
-        if (args.Destroyer != null
-            && TryComp<RoleplayIncentiveComponent>(args.Destroyer, out var rpi))
-        {
-            PayoutLoser(
-                args.Destroyer.Value,
-                proto.Payout,
-                rpi);
-        }
+        // if (args.Destroyer != null
+        //     && TryComp<RoleplayIncentiveComponent>(args.Destroyer, out var rpi))
+        // {
+        //     PayoutLoser(
+        //         args.Destroyer.Value,
+        //         proto.Payout,
+        //         rpi);
+        // }
 
         if (proto.OreEntity == null)
             return;

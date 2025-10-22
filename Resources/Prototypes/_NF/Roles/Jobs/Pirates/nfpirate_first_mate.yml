@@ -35,7 +35,7 @@
       recordGeneration: FalseRecord
     - type: DisableSuitSensors
     - type: RpiJobModifier # 1.5x
-      modifier: 1.5
+      modifier: 3
     - type: IsPirate
   - !type:AddImplantSpecial
     implants: [ FreelanceTrackingImplant ]

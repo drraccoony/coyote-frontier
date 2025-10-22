@@ -29,7 +29,8 @@
     prototype: FrontierBirthdayGift
   - !type:AddComponentSpecial
     components:
-    - type: CoolNfsd
+    - type: RpiJobModifier # 1.5x
+      modifier: 2.0
 
 - type: startingGear
   id: CadetGear

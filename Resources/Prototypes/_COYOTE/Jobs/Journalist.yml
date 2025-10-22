@@ -1,0 +1,74 @@
+# The job itself
+# Journalist - ERP RPI boost, aura, free legman
+- type: job
+  id: Journalist
+  name: job-name-journalist
+  description: job-description-journalist
+  playTimeTracker: JobJournalist
+  startingGear: JournalistGear
+  icon: "JobIconPassenger"
+  supervisors: job-supervisors-journalist
+  weight: 40 # Prioritize station & department jobs
+  displayWeight: 3 # idk
+  access:
+  - Service
+  - Janitor
+  - Maintenance
+  - External
+  - Frontier
+  accessGroups:
+  - GeneralAccess
+  special:
+  - !type:AddImplantSpecial
+    implants: [ TrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+  - !type:AddComponentSpecial
+    components:
+    - type: PaywardAuraJournalist
+    - type: PaywardModifierERPJournalist # 2x
+    - type: PaywardActionNewsArticleCreation # basically this
+      # they have a ship, thats their office
+
+# play time tracker
+- type: playTimeTracker
+  id: JobJournalist
+
+- type: entity
+  id: SpawnPointJournalist
+  parent: SpawnPointPassenger
+  name: journalist spawn point
+  components:
+  - type: SpawnPoint
+    job_id: Journalist
+
+
+# starting gear
+- type: startingGear
+  id: JournalistGear
+  storage:
+    back:
+    - EncryptionKeyService
+    - ShipVoucherCoyoteJournalist
+
+# Food Service Ship Voucher
+- type: entity
+  parent: BaseShipVoucher
+  id: ShipVoucherCoyoteJournalist
+  name: journalist ship voucher
+  description: Allows for one (1) free rental of the illustrious Legman Interview Cruiser!
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+    - state: vouchervalet
+  - type: Item
+    heldPrefix: blue
+  - type: ShipyardVoucher
+    destroyOnEmpty: true
+    consoleType: Sr
+    useAnywhere: true
+    vessels:
+    - Legman
+

@@ -4,6 +4,13 @@
   judgementPointPayout: 80
   deathPenalty: 0.10
   deepFriedPenalty: 0.25
+  journalismDat:
+    baseFlatPayout: 5000
+    charCountDivisor: 100 # 1 point per 100 characters
+    multPerDivisor: 1.50
+    maxPay: 15000
+    cooldownPenalty: 0.90
+    cooldownTimeMinutes: 20
   actionMultipliers:
     Mining: 2.0
     Combat: 2.0
@@ -26,6 +33,13 @@
   judgementPointPayout: 300
   deathPenalty: 0.01
   deepFriedPenalty: 0.10
+  journalismDat:
+    baseFlatPayout: 7000
+    charCountDivisor: 50 # 1 point per 100 characters
+    multPerDivisor: 1.75
+    maxPay: 25000
+    cooldownPenalty: 0.90
+    cooldownTimeMinutes: 20
   actionMultipliers:
     Mining: 2.0
     Combat: 2.0
@@ -44,10 +58,17 @@
 
 - type: rpiTaxBracket
   id: rpiTaxBracketEstablished
-  cashThreshold: 100000
+  cashThreshold: 250000
   judgementPointPayout: 200
   deathPenalty: 0.05
   deepFriedPenalty: 0.15
+  journalismDat:
+    baseFlatPayout: 6000
+    charCountDivisor: 100 # 1 point per 100 characters
+    multPerDivisor: 1.60
+    maxPay: 20000
+    cooldownPenalty: 0.90
+    cooldownTimeMinutes: 20
   actionMultipliers:
     Mining: 2.0
     Combat: 2.0
@@ -66,10 +87,17 @@
 
 - type: rpiTaxBracket
   id: rpiTaxBracketWealthy
-  cashThreshold: 250000
+  cashThreshold: 500000
   judgementPointPayout: 100
   deathPenalty: 0.075
   deepFriedPenalty: 0.2
+  journalismDat:
+      baseFlatPayout: 5000
+      charCountDivisor: 100 # 1 point per 100 characters
+      multPerDivisor: 1.50
+      maxPay: 15000
+      cooldownPenalty: 0.90
+      cooldownTimeMinutes: 20
   actionMultipliers:
     Mining: 1.0
     Combat: 1.0
