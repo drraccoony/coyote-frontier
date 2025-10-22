@@ -23,9 +23,13 @@
   id: Aphrodisiacs
   priority: 4
 
+- type: consentToggle
+  id: SizeManipulation
+  priority: 5
+
 #- type: consentToggle
 #  id: Cum
-#  priority: 5
+#  priority: 6
 #
 #- type: consentToggle
 #  id: NaturalLubricant
