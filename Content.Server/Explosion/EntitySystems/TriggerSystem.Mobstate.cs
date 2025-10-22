@@ -4,6 +4,7 @@ using Content.Shared.FloofStation;
 using Content.Shared.Implants;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs;
+using Content.Shared.Verbs;
 
 namespace Content.Server.Explosion.EntitySystems;
 
@@ -16,6 +17,7 @@ public sealed partial class TriggerSystem
 
         SubscribeLocalEvent<TriggerOnMobstateChangeComponent, ImplantRelayEvent<SuicideEvent>>(OnSuicideRelay);
         SubscribeLocalEvent<TriggerOnMobstateChangeComponent, ImplantRelayEvent<MobStateChangedEvent>>(OnMobStateRelay);
+        SubscribeLocalEvent<TriggerOnMobstateChangeComponent, ImplantRelayEvent<GetVerbsEvent<Verb>>>(OnVerbRelay);
     }
 
     private void OnMobStateChanged(
@@ -24,6 +26,9 @@ public sealed partial class TriggerSystem
         MobStateChangedEvent args)
     {
         if (!component.MobState.Contains(args.NewMobState))
+            return;
+
+        if (!component.Enabled)
             return;
 
         if (component.PreventVore)
@@ -89,5 +94,40 @@ public sealed partial class TriggerSystem
             uid,
             component,
             args.Event);
+    }
+
+    private void OnVerbRelay(EntityUid uid,
+        TriggerOnMobstateChangeComponent component,
+        ImplantRelayEvent<GetVerbsEvent<Verb>> args)
+    {
+        OnGetVerbs(uid, component, args.Event);
+    }
+
+    private void OnGetVerbs(EntityUid uid,
+        TriggerOnMobstateChangeComponent component,
+        GetVerbsEvent<Verb> args)
+    {
+        if (args.User != args.Target)
+            return; // Self only, but usable in crit
+
+        var verb = new Verb()
+        {
+            Text = Loc.GetString(
+                "trigger-on-mobstate-verb-text",
+                ("state", component.Enabled ? "ON" : "OFF")),
+            Act = () =>
+            {
+                component.Enabled = !component.Enabled;
+                _popupSystem.PopupEntity(
+                    Loc.GetString(
+                        "trigger-on-mobstate-verb-popup",
+                        ("state", component.Enabled ? "ENABLED" : "DISABLED")),
+                    args.User,
+                    args.User);
+            },
+            Disabled = false,
+            Message = "Toggle whether or not this thing tells everyone you are dead both inside and outside."
+        };
+        args.Verbs.Add(verb);
     }
 }
