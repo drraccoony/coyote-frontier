@@ -1,5 +1,45 @@
 # Size Manipulator Projectiles
 
+# Impact Effects
+- type: entity
+  id: BulletImpactEffectGreen
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.2
+  - type: Sprite
+    drawdepth: Effects
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+      state: impact_laser_greyscale
+      color: "#00ff00"
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: BulletImpactEffectRed
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.2
+  - type: Sprite
+    drawdepth: Effects
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+      state: impact_laser_greyscale
+      color: "#ff0000"
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# Projectiles
 - type: entity
   id: BulletSizeManipulatorGrow
   name: grow beam

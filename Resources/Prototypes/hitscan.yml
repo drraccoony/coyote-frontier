@@ -3,11 +3,9 @@
 # Grow beam - green colored
 - type: hitscan
   id: GrowBeam
-  damage:
-    types:
-      # We use stamina damage as a "hit detection" mechanism
-      # The actual size change is applied by the system
-      Stamina: 0
+  muzzleFlash: MuzzleFlashOmni
+  travelFlash: TravelFlashOmni
+  impactFlash: ImpactFlashOmni
   sound:
     path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   maxLength: 20
@@ -15,9 +13,9 @@
 # Shrink beam - red colored
 - type: hitscan
   id: ShrinkBeam
-  damage:
-    types:
-      Stamina: 0
+  muzzleFlash: MuzzleFlashOmni
+  travelFlash: TravelFlashOmni
+  impactFlash: ImpactFlashOmni
   sound:
     path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   maxLength: 20
