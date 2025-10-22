@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Body.Components;
@@ -38,4 +39,10 @@ public sealed partial class SizeAffectedComponent : Component
     /// </summary>
     [DataField]
     public float BaseScale = 1.0f;
+
+    /// <summary>
+    /// Stores original fixture radii for scaling calculations (fixture id -> original radius)
+    /// </summary>
+    [DataField]
+    public Dictionary<string, float> OriginalFixtureRadii = new();
 }
