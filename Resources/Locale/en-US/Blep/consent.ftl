@@ -41,6 +41,9 @@ consent-GenitalMarkings-desc = Turn this on to allow showing/hiding genital mark
 consent-Aphrodisiacs-name = Be affected by aphrodisiacs
 consent-Aphrodisiacs-desc = Turn this on to be affected by pomelustine, philterex, and libidozenithine.
 
+consent-SizeManipulation-name = Allow size manipulation
+consent-SizeManipulation-desc = Turn this on to allow yourself to be grown or shrunk by size manipulation.
+
 consent-Cum-name = Interact with cum
 consent-Cum-desc = Turn this on for cum to have any meaningful interaction with you.
 

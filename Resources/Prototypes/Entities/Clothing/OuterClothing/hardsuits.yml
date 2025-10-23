@@ -382,7 +382,7 @@
         Radiation: 0.05 # Frontier - 0<0.05
         Caustic: 0.7
   - type: ClothingSpeedModifier
-    walkModifier: 0.75
+    walkModifier: 0.9
     sprintModifier: 0.8
   - type: HeldSpeedModifier
   - type: ToggleableClothing

@@ -48,9 +48,6 @@
       whitelist:
         tags:
           - PirateUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - NFPirateCaptain
 
 - type: listing
   id: UplinkPirateCaptainCrateFilled
@@ -67,9 +64,6 @@
       whitelist:
         tags:
           - PirateUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - NFPirateCaptain
 
 - type: listing
   id: UplinkPirateCrateFilled
@@ -134,9 +128,6 @@
       whitelist:
         tags:
           - PirateUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - NFPirateCaptain
 
 - type: listing
   id: UplinkPirateBlunderbuss
@@ -201,9 +192,6 @@
       whitelist:
         tags:
           - PirateUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - NFPirateCaptain
 
 - type: listing
   id: UplinkEnergyCutlass
@@ -220,9 +208,6 @@
       whitelist:
         tags:
           - PirateUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - NFPirateCaptain
 
 - type: listing
   id: UplinkPirateAnchor
@@ -448,9 +433,6 @@
       whitelist:
         tags:
           - PirateUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - NFPirateCaptain
   categories:
   - UplinkPirateUtility
 
@@ -499,10 +481,6 @@
       whitelist:
         tags:
           - PirateUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - NFPirateCaptain
-        - NFPirateFirstMate
   categories:
   - UplinkPirateUtility
 
@@ -556,3 +534,19 @@
       whitelist:
         tags:
           - PirateUplink
+
+- type: listing
+  id: UplinkTeleCrystal
+  name:  uplink-Telecrystal
+  description: uplink-Telecrystal-desc
+  productEntity: Telecrystal1
+  icon: { sprite: Objects/Specific/Syndicate/telecrystal.rsi, state: telecrystal }
+  cost:
+    Doubloon: 3
+  categories:
+    - UplinkPirateUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+       whitelist:
+          tags:
+            - PirateUplink
