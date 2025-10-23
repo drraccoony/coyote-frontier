@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 10/18/2025 05:13:26
-  entityCount: 982
+  time: 10/23/2025 01:01:27
+  entityCount: 983
 maps: []
 grids:
 - 1
@@ -761,7 +761,7 @@ entities:
       pos: 1.5,-7.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -1609.7028
+      secondsUntilStateChange: -1649.7026
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -783,7 +783,7 @@ entities:
       pos: -2.5,11.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -3978.6003
+      secondsUntilStateChange: -4018.6003
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -3183,6 +3183,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -8.5,-1.5
+      parent: 1
+- proto: FaxMachineShipAntag
+  entities:
+  - uid: 109
+    components:
+    - type: Transform
+      pos: 11.5,0.5
       parent: 1
 - proto: Firelock
   entities:

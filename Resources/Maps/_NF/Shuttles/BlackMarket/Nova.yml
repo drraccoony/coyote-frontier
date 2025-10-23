@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 10/18/2025 23:51:31
-  entityCount: 670
+  time: 10/23/2025 01:00:19
+  entityCount: 672
 maps: []
 grids:
 - 1
@@ -764,7 +764,7 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -0.5,12.5
+      pos: -2.5,12.5
       parent: 1
   - uid: 274
     components:
@@ -776,7 +776,13 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -2.5,12.5
+      pos: -0.5,12.5
+      parent: 1
+  - uid: 672
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,8.5
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
@@ -2163,6 +2169,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -2.5,-9.5
+      parent: 1
+- proto: FaxMachineShip
+  entities:
+  - uid: 671
+    components:
+    - type: Transform
+      pos: 5.5,4.5
       parent: 1
 - proto: FirelockEdge
   entities:

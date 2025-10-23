@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 10/19/2025 16:00:21
-  entityCount: 223
+  time: 10/23/2025 00:57:17
+  entityCount: 224
 maps: []
 grids:
 - 1
@@ -789,6 +789,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -2.5,-2.5
+      parent: 1
+- proto: FaxMachineShipAntag
+  entities:
+  - uid: 224
+    components:
+    - type: Transform
+      pos: -2.5,0.5
       parent: 1
 - proto: FloorDrain
   entities:
