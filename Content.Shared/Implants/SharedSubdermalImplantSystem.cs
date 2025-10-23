@@ -9,6 +9,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using System.Linq;
+using Content.Shared.Verbs;
 
 namespace Content.Shared.Implants;
 
@@ -34,6 +35,7 @@ public abstract class SharedSubdermalImplantSystem : EntitySystem
         SubscribeLocalEvent<ImplantedComponent, MobStateChangedEvent>(RelayToImplantEvent);
         SubscribeLocalEvent<ImplantedComponent, AfterInteractUsingEvent>(RelayToImplantEvent);
         SubscribeLocalEvent<ImplantedComponent, SuicideEvent>(RelayToImplantEvent);
+        SubscribeLocalEvent<ImplantedComponent, GetVerbsEvent<Verb>>(RelayToImplantEvent);
     }
 
     private void OnInsert(EntityUid uid, SubdermalImplantComponent component, EntGotInsertedIntoContainerMessage args)
