@@ -35,6 +35,9 @@ consent-NoClone-desc = Turn this on to disallow Paradox clones of yourself.
 consent-NSFWDescriptions-name = See NSFW Descriptions
 consent-NSFWDescriptions-desc = Turn this on to see any temporary descriptions that are flagged as NSFW.
 
+consent-GenitalMarkings-name = See Genital Markings
+consent-GenitalMarkings-desc = Turn this on to allow showing/hiding genital markings in-game.
+
 consent-Aphrodisiacs-name = Be affected by aphrodisiacs
 consent-Aphrodisiacs-desc = Turn this on to be affected by pomelustine, philterex, and libidozenithine.
 
