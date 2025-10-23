@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 10/18/2025 02:55:48
-  entityCount: 291
+  time: 10/23/2025 01:01:59
+  entityCount: 292
 maps: []
 grids:
 - 1
@@ -893,6 +893,13 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-4.5
+      parent: 1
+- proto: FaxMachineShipAntag
+  entities:
+  - uid: 19
+    components:
+    - type: Transform
+      pos: -0.5,-0.5
       parent: 1
 - proto: FirelockGlass
   entities:
