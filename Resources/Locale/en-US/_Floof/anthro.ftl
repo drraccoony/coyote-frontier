@@ -1125,7 +1125,7 @@ marking-SpeciesAdaptorReptilianRFoot       = Base Sprite - Reptilian Right Foot
 
 
 
-marking-Hairafrogeneric = Generic Afro Extension
+marking-Hairafrogeneric-hairafrogeneric = Generic Afro Extension
 
 
 

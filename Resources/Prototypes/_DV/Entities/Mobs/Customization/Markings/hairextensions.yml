@@ -5,5 +5,5 @@
   speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
   kindAllowance: [BasicHumanlike, BasicFurry]
   sprites:
-    - sprite: _CS/Hairmarkings/hairextensions.rsi
-      state: hairafrogeneric
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: hairafrogeneric
