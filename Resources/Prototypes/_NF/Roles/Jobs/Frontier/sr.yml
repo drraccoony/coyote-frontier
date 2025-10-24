@@ -28,6 +28,9 @@
       - type: CommandStaff
       - type: RpiJobModifier # 1.5x
         modifier: 2.5
+  - !type:AddRpiAuraSpecial
+    aurasToAdd:
+    - rpiAuraStationPrincess
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift

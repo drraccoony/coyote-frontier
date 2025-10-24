@@ -63,6 +63,12 @@ public sealed partial class RpiJournalismData
     public int BaseFlatPayout = 0;
 
     /// <summary>
+    /// baseNonJournalistFlatPayout?
+    /// </summary>
+    [DataField("baseNonJournalistFlatPayout", required: true)]
+    public int BaseNonJournalistFlatPayout = 0;
+
+    /// <summary>
     /// For every this many characters in the article, you get a bonus payout.
     /// </summary>
     [DataField("charCountDivisor", required: true)]
@@ -98,34 +104,47 @@ public sealed partial class RpiJournalismData
     // now some helpers
     public RpiJournalismPayResult GetPaypig(bool isJournal, int charCount, TimeSpan lastArticleTime)
     {
-        var pay = (double) BaseFlatPayout;
-        var basePay = (int) pay;
+        var basePay = isJournal ? BaseFlatPayout : BaseNonJournalistFlatPayout;
+        var pay = (double) basePay;
         if (isJournal)
         {
-            pay += ((float)charCount / CharCountDivisor) * MultPerDivisor;
-            if (pay > MaxPay)
-                pay = MaxPay;
+            if (charCount > CharCountDivisor)
+            {
+                var paymod = charCount / (double)CharCountDivisor;
+                var payCent = basePay * (MultPerDivisor - 1.0f);
+                paymod *= payCent;
+                pay += paymod;
+                if (pay > MaxPay)
+                    pay = MaxPay;
+            }
         }
         var cooldownMult = CooldownMult(lastArticleTime);
         pay *= cooldownMult;
-        var totalPay = (int) Math.Floor(pay);
-        var minsTillCooled = GetTimeWhenFullyCooledDown(lastArticleTime).TotalMinutes switch
-        {
-            <= 0 => 0,
-            var x => (int) Math.Ceiling(x),
-        };
+        var adjustedBasePay = (float) BaseFlatPayout;
+        adjustedBasePay *= cooldownMult;
+        basePay = (int) Math.Ceiling(adjustedBasePay);
+        var totalPay = (int) Math.Ceiling(pay);
+        var minsTillCooled = GetTimeWhenFullyCooledDown(lastArticleTime).TotalMinutes;
+        if (minsTillCooled < 0)
+            minsTillCooled = 0;
+        // cooldown mult is the resulting percent of their pay they are getting, after cooldown penalties.
+        // 0.1 means they are getting 90% less pay.
+        var cooldownMultPercent = 100 - (int) Math.Ceiling(cooldownMult * 100);
         return new RpiJournalismPayResult(
             isJournal,
             basePay,
             totalPay,
             cooldownMult,
-            minsTillCooled);
+            cooldownMultPercent,
+            (int) Math.Ceiling(minsTillCooled));
     }
 
     private float CooldownMult(TimeSpan lastArticleTime)
     {
+        if (lastArticleTime == TimeSpan.Zero)
+            return 1.0f;
         double mulTout = 1.0f;
-        var timeSys = IoCManager.Resolve<GameTiming>();
+        var timeSys = IoCManager.Resolve<IGameTiming>();
         var timeSinceLastArticle = timeSys.CurTime - lastArticleTime;
         var cooldownTime = TimeSpan.FromMinutes(CooldownTimeMinutes);
         if (timeSinceLastArticle < cooldownTime)
@@ -141,16 +160,22 @@ public sealed partial class RpiJournalismData
                 var adjFraction = (fraction - 0.5f) * 2;
                 // setup the curve equation
                 // y = -4(x-1)^2 + 1
+                // meaning that for x=0, y=0 and for x=1, y=1
+                // so at 0.6 fraction, we get 0.36 multiplier
+                // at 0.75 fraction, we get 0.75 multiplier
+                // at 0.9 fraction, we get 0.96 multiplier
                 var curveValue = -4 * Math.Pow(adjFraction - 1, 2) + 1;
                 mulTout = curveValue;
             }
         }
-        return (float) mulTout;
+        return (float)(1.0 - mulTout);
     }
 
     private TimeSpan GetTimeWhenFullyCooledDown(TimeSpan lastArticleTime)
     {
-        var timeSys = IoCManager.Resolve<GameTiming>();
+        if (lastArticleTime == TimeSpan.Zero)
+            return TimeSpan.Zero;
+        var timeSys = IoCManager.Resolve<IGameTiming>();
         var timeSinceLastArticle = timeSys.CurTime - lastArticleTime;
         var cooldownTime = TimeSpan.FromMinutes(CooldownTimeMinutes);
         if (timeSinceLastArticle >= cooldownTime)
@@ -168,11 +193,13 @@ public struct RpiJournalismPayResult(
     int basePay,
     int totalPay,
     float cooldownMultiplier,
+    int cooldownPercent,
     int minsTilCooled)
 {
     public bool IsJournalist = isJournalist;
     public int BasePay = basePay;
     public int TotalPay = totalPay;
     public float CooldownMultiplier = cooldownMultiplier;
+    public int CooldownPercent = cooldownPercent;
     public int MinsTillCooled = minsTilCooled;
 }

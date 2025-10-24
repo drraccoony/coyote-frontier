@@ -6,7 +6,7 @@
   description: job-description-journalist
   playTimeTracker: JobJournalist
   startingGear: JournalistGear
-  icon: "JobIconPassenger"
+  icon: "JobIconReporter"
   supervisors: job-supervisors-journalist
   weight: 40 # Prioritize station & department jobs
   displayWeight: 3 # idk
@@ -24,9 +24,11 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
+  - !type:AddRpiAuraSpecial
+    aurasToAdd:
+    - rpiAuraJournalist
   - !type:AddComponentSpecial
     components:
-    - type: PaywardAuraJournalist
     - type: PaywardModifierERPJournalist # 2x
     - type: PaywardActionNewsArticleCreation # basically this
       # they have a ship, thats their office
@@ -72,3 +74,28 @@
     vessels:
     - Legman
 
+# Food Service Role Loadout
+- type: roleLoadout
+  id: JobJournalist
+  groups:
+  - ContractorHead
+  - ContractorNeck
+  - FoodServiceJumpsuit
+  - ContractorGloves
+  - ContractorBackpack
+  - ContractorOuterClothing
+  - ContractorForcedOuterClothing
+  - ContractorShoes
+  - ContractorFace
+  - ContractorGlasses
+  - ContractorBelt
+  - ContractorEars
+  - ContractorEncryptionKey
+  - ContractorBoxSurvival
+  - ContractorPDA
+  - ContractorWallet
+  - ContractorCartridge
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
+  - NFSpeciesSpecific

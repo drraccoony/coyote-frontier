@@ -1,32 +1,28 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Server._Coyote.CoolIncentives;
 using Content.Server._NF.Bank;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
-using Content.Server.Light.Components;
 using Content.Server.Popups;
 using Content.Shared._Coyote;
 using Content.Shared._Coyote.RolePlayIncentiveShared;
 using Content.Shared._Coyote.RolePlayIncentiveShared.Components;
-using Content.Shared._NF.Bank.Components;
 using Content.Shared.Chat;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
 using Content.Shared.Ghost;
 using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
 using Content.Shared.SSDIndicator;
 using Content.Shared.Tag;
-using Content.Shared.Verbs;
+using Robust.Server.GameObjects;
 using Robust.Server.Player;
+using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Robust.Shared.Utility;
-using YamlDotNet.Core.Tokens;
 
 // ReSharper disable InconsistentNaming
 
@@ -37,17 +33,18 @@ namespace Content.Server._Coyote;
 /// </summary>
 public sealed class RoleplayIncentiveSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = null!;
-    [Dependency] private readonly BankSystem _bank = null!;
-    [Dependency] private readonly PopupSystem _popupSystem = null!;
-    [Dependency] private readonly ChatSystem _chatsys = null!;
-    [Dependency] private readonly IChatManager _chatManager = null!;
-    [Dependency] private readonly IPlayerManager _playerManager = null!;
-    [Dependency] private readonly SSDIndicatorSystem _ssdThing = null!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
+    [Dependency] private readonly IGameTiming          _timing = null!;
+    [Dependency] private readonly BankSystem           _bank = null!;
+    [Dependency] private readonly PopupSystem          _popupSystem = null!;
+    [Dependency] private readonly ChatSystem           _chatsys = null!;
+    [Dependency] private readonly IChatManager         _chatManager = null!;
+    [Dependency] private readonly IPlayerManager       _playerManager = null!;
+    [Dependency] private readonly SSDIndicatorSystem   _ssdThing = null!;
+    [Dependency] private readonly IPrototypeManager    _prototype = default!;
+    [Dependency] private readonly TagSystem            _tagSystem = default!;
+    [Dependency] private readonly MobStateSystem       _mobStateSystem = default!;
+    [Dependency] private readonly ExamineSystemShared  _examineSystem = default!;
+    [Dependency] private readonly TransformSystem      _transformSystem = default!;
 
     private List<ProtoId<RpiTaxBracketPrototype>> RpiDatumPrototypes = new()
     {
@@ -82,6 +79,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         SubscribeLocalEvent<RoleplayIncentiveComponent, MobStateChangedEvent>         (OnGotMobStateChanged);
         SubscribeLocalEvent<RoleplayIncentiveComponent, RpiNewsArticleCreatedEvent>   (OnNewsArticleCreated);
         SubscribeLocalEvent<RoleplayIncentiveComponent, FixedLightEvent>              (OnLightGotFixed);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiAddAurasEvent>             (OnAddAurasEvent);
         // SubscribeLocalEvent<RoleplayIncentiveComponent, GetVerbsEvent<ExamineVerb>>   (OnGetExamineVerbs);
         SortTaxBrackets();
     }
@@ -267,6 +265,20 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         PunishPlayerForDeath(uid, rpic);
     }
 
+    private void OnAddAurasEvent(
+        EntityUid uid,
+        RoleplayIncentiveComponent rpic,
+        RpiAddAurasEvent args)
+    {
+        foreach (var auraId in args.AurasToAdd)
+        {
+            AddAuraSource(
+                uid,
+                rpic,
+                auraId);
+        }
+    }
+
     /// <summary>
     /// When a news article is created, give a payward for it.
     /// Extra if they are a journalist.
@@ -289,6 +301,8 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             rpic.LastArticleTime);
 
         rpic.LastArticleTime = _timing.CurTime;
+        // pay the player
+        PayPlayer(args.Doer, paypig.TotalPay);
         _popupSystem.PopupEntity(
             Loc.GetString(
                 "coyote-rpi-journalism-pay-popup",
@@ -310,7 +324,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
                     ("lengthBonus", paypig.TotalPay - paypig.BasePay),
                     ("charCount", lengf),
                     ("baseAmount", paypig.BasePay),
-                    ("cooldownMult", paypig.CooldownMultiplier.ToString("0.00")),
+                    ("cooldownMult", paypig.CooldownPercent.ToString("0.00")),
                     ("minsTillCooled", paypig.MinsTillCooled));
             }
             else
@@ -318,7 +332,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
                 chessage = Loc.GetString(
                     "coyote-rpi-journalism-pay-message-cooldown",
                     ("amount", paypig.TotalPay),
-                    ("cooldownMult", paypig.CooldownMultiplier.ToString("0.00")),
+                    ("cooldownMult", paypig.CooldownPercent.ToString("0.00")),
                     ("minsTillCooled", paypig.MinsTillCooled));
             }
         }
@@ -376,13 +390,14 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             return; // no pay, no pramgle
         PayPlayer(args.Source, paydata.FinalPay);
         // popup
-        // _popupSystem.PopupEntity(
-        //     Loc.GetString(
-        //         "coyote-rpi-light-fix-pay-popup",
-        //         ("amount", paydata.FinalPay)),
-        //     args.Source,
-        //     args.Source,
-        //     PopupType.Large);
+        _popupSystem.PopupEntity(
+            Loc.GetString(
+                "coyote-rpi-light-fix-pay-popup",
+                ("amount", paydata.FinalPay)),
+            args.LightEntity, // show the popup on the light
+            args.Source,
+            PopupType.Large,
+            suppressChat: true);
         // chat message
         string outtext;
         if (!paydata.IsJanitor)
@@ -462,40 +477,39 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             return new RpiLightFixData(0);
         var paydata = new RpiLightFixData(rpic.LightFixPay);
         // janitor bonus
-        if (HasComp<PaywardActionMaintenanceComponent>(doer))
+        if (!HasComp<PaywardActionMaintenanceComponent>(doer))
+            return paydata;
+        paydata.ApplyJanitorBonus(rpic.LightFixByJanitorBonus);
+        if (!justChecking)
+            rpic.LightSpree.Add(_timing.CurTime);
+        if (TimeSpentBroken >= rpic.LightFixTimeBrokenBonusThreshold)
         {
-            paydata.ApplyJanitorBonus(rpic.LightFixByJanitorBonus);
-            if (!justChecking)
-                rpic.LightSpree.Add(_timing.CurTime);
-            if (TimeSpentBroken >= rpic.LightFixTimeBrokenBonusThreshold)
-            {
-                var timeBrokenPastThreshold = TimeSpentBroken - rpic.LightFixTimeBrokenBonusThreshold;
-                // after an hour, give a linear bonus up to the max time, counting per minute
-                var minutesPastThreshold = Math.Min(
-                    timeBrokenPastThreshold.TotalMinutes,
-                    (rpic.LightFixTimeBrokenMaxBonusThreshold - rpic.LightFixTimeBrokenBonusThreshold).TotalMinutes);
-                var timeBrokenBonus = (int)(minutesPastThreshold * (rpic.LightFixCashPerHourBroken / 60.0f));
-                paydata.ApplyTimeBrokenBonus(timeBrokenBonus, TimeSpentBroken);
-            }
-            // recalculate the spree
-            rpic.LightSpree = rpic.LightSpree
-                .Where(t => _timing.CurTime - t <= rpic.MaxLightSpreeTime)
-                .ToList();
-            // for each light fixed in the spree, give a small bonus
-            // uses an exponential asymptotic formula that follows:
-            // up to 100% bonus easily, but past that, it will asymptotically approach a max of 300% bonus
-            // so you can never get more than 3x bonus, but its really hard to get past 2x
-            // formula: bonus = 1 - e^(-k * n), where k is a constant and n is the number of lights fixed in the spree
-            // solving for k when n = 10 and bonus = 0.9 gives k = 0.2302585093
-            // idfk what any of this is, its just algovomit and seems to work
-            const double k = 0.2302585093;
-            var spreeCount = rpic.LightSpree.Count;
-            if (spreeCount > 1)
-            {
-                var bonusMult = 1 - Math.Exp(-k * spreeCount);
-                var spreeBonus = (int)(paydata.BasePay * bonusMult);
-                paydata.ApplySpreeBonus(spreeBonus, spreeCount);
-            }
+            var timeBrokenPastThreshold = TimeSpentBroken - rpic.LightFixTimeBrokenBonusThreshold;
+            // after an hour, give a linear bonus up to the max time, counting per minute
+            var minutesPastThreshold = Math.Min(
+                timeBrokenPastThreshold.TotalMinutes,
+                (rpic.LightFixTimeBrokenMaxBonusThreshold - rpic.LightFixTimeBrokenBonusThreshold).TotalMinutes);
+            var timeBrokenBonus = (int)(minutesPastThreshold * (rpic.LightFixCashPerHourBroken / 60.0f));
+            paydata.ApplyTimeBrokenBonus(timeBrokenBonus, TimeSpentBroken);
+        }
+        // recalculate the spree
+        rpic.LightSpree = rpic.LightSpree
+            .Where(t => _timing.CurTime - t <= rpic.MaxLightSpreeTime)
+            .ToList();
+        // for each light fixed in the spree, give a small bonus
+        // uses an exponential asymptotic formula that follows:
+        // up to 100% bonus easily, but past that, it will asymptotically approach a max of 300% bonus
+        // so you can never get more than 3x bonus, but its really hard to get past 2x
+        // formula: bonus = 1 - e^(-k * n), where k is a constant and n is the number of lights fixed in the spree
+        // solving for k when n = 10 and bonus = 0.9 gives k = 0.2302585093
+        // idfk what any of this is, its just algovomit and seems to work
+        const double k = 0.2302585093;
+        var spreeCount = rpic.LightSpree.Count;
+        if (spreeCount > 1)
+        {
+            var bonusMult = 1 - Math.Exp(-k * spreeCount);
+            var spreeBonus = (int)(paydata.BasePay * bonusMult);
+            paydata.ApplySpreeBonus(spreeBonus, spreeCount);
         }
         return paydata;
     }
@@ -573,14 +587,18 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         var query = EntityQueryEnumerator<RoleplayIncentiveComponent>();
         while (query.MoveNext(out var uid, out var rpic))
         {
-            if (!_playerManager.TryGetSessionByEntity(uid, out var _))
-                continue; // only players pls
-            if (TryComp<GhostComponent>(uid, out var ghost))
-                continue; // no ghosts pls
-            if (_mobStateSystem.IsDead(uid))
-                continue; // no dead ppl pls
+            if (!rpic.DebugIgnoreState)
+            {
+                if (!_playerManager.TryGetSessionByEntity(uid, out var _))
+                    continue; // only players pls
+                if (TryComp<GhostComponent>(uid, out var ghost))
+                    continue; // no ghosts pls
+                if (_mobStateSystem.IsDead(uid))
+                    continue; // no dead ppl pls
+            }
             SyncContinuousComponentsAndProxies(uid, rpic);
             ProcessContinuousProxies(uid, rpic);
+            ProcessAuras(uid, rpic);
             PayoutPaywardToPlayer(uid, rpic);
         }
     }
@@ -600,12 +618,6 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         rpic.NextPayward = _timing.CurTime + rpic.PaywardInterval;
         if (!_bank.TryGetBalance(uid, out var hasThisMuchMoney))
             return; // no bank account, no pramgle
-        //first check if this rpic is actually on the uid
-        if (!TryComp<RoleplayIncentiveComponent>(uid, out var incentive))
-        {
-            Log.Warning($"RoleplayIncentiveComponent not found on entity {uid}!");
-            return;
-        }
 
         var taxBracket = GetTaxBracketData(rpic, hasThisMuchMoney);
 
@@ -614,9 +626,9 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         // MiscPay gets a multiplier to modify the base pay
         var miscMult = GetMiscActionPayMult(uid, rpic, taxBracket);
         // Continuous proxies are applied here too, as multipliers
-        var proxyMult = GetProxiesPayMult(rpic, true);
+        var proxyMult = GetProxiesPayMult(uid, rpic, true);
         // Aura mults! mobs who give you more money for being around them
-        var auraMult = GetAuraPayMult(uid);
+        var auraMult = GetAuraPayMult(uid, rpic);
         // other components wanteing to messing with me
         var modMult = 1f;
         var modifyEvent = new GetRpiModifier(uid, modMult);
@@ -631,9 +643,10 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         }
 
         var finalMult = 1f;
-        finalMult += (miscMult - 1f);
-        finalMult += (proxyMult - 1f);
+        finalMult += miscMult;
+        finalMult += proxyMult;
         finalMult += (modifyEvent.Multiplier - 1f);
+        finalMult += auraMult;
         var payDetails = ProcessPaymentDetails(
             chatPay,
             finalMult);
@@ -642,7 +655,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         PayPlayer(uid, payDetails.FinalPay);
         ShowPopup(uid, payDetails);
         ShowChatMessage(uid, payDetails);
-        PruneOldActions(incentive);
+        PruneOldActions(rpic);
     }
     #endregion
 
@@ -699,6 +712,8 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
                 proxData.TickOutOfRange();
                 continue;
             }
+
+            var entsFound = 0;
             foreach (var otherEnt in entsWithComponents)
             {
                 // now check distance
@@ -713,6 +728,9 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
                 var optMult = isOptimal ? proxProto.OptimalDistanceBonusMultiplier : 1f;
                 proxData.TickInRange(optMult);
                 somethingHappened = true;
+                entsFound++;
+                if (entsFound >= proxProto.MaxTargets)
+                    break; // reached max targets, stop checking
             }
 
             if (!somethingHappened)
@@ -836,11 +854,12 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     /// Gets the total multiplier from all active proxies.
     /// </summary>
     private float GetProxiesPayMult(
+        EntityUid uid,
         RoleplayIncentiveComponent rpic,
         bool pop = false
         )
     {
-        float totalMult = 1f;
+        float totalMult = 0f;
         var now = _timing.CurTime;
         foreach (var (proxKind, proxData) in rpic.Proxies)
         {
@@ -855,33 +874,242 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     #endregion
 
     #region Aura Farming
+
     /// <summary>
-    /// Gets the total multiplier from all nearby things with RpiAuraComponent.
+    /// Checks all our tracked auras, and adds up their effects.
     /// </summary>
-    private float GetAuraPayMult(EntityUid uid)
+    private static float GetAuraPayMult(EntityUid uid, RoleplayIncentiveComponent rpic)
     {
-        var totalMult = 1f;
-        var query = EntityQueryEnumerator<RoleplayIncentiveComponent>();
-        var ourCoords = Transform(uid).Coordinates;
-        while (query.MoveNext(out var otherUid, out var rpiss))
+        float sum = 0;
+        foreach (var auraData in rpic.AuraTracker)
         {
-            var ev = new RpiCheckAurasEvent();
-            RaiseLocalEvent(otherUid, ev);
-            rpiss.UpdateAuras(ev);
-            foreach (var (nameA, auraData) in rpiss.DetectedAuraSources)
+            sum += auraData.GetCurrentMultiplier();
+        }
+
+        return sum;
+    }
+
+    public void ProcessAuras(
+        EntityUid uid,
+        RoleplayIncentiveComponent rpic)
+    {
+        if (_timing.CurTime < rpic.NextAuraCheck)
+            return; // too soon to check again
+        var timeSinceLastCheck = _timing.CurTime - rpic.NextAuraCheck + rpic.AuraCheckInterval;
+        rpic.NextAuraCheck = _timing.CurTime + rpic.AuraCheckInterval;
+        // if they are dead or disconnected, tick decay on all auras and return
+        if (!rpic.DebugIgnoreState)
+        {
+            if (_mobStateSystem.IsDead(uid) || !PlayerIsConnected(uid))
             {
-                if (!ourCoords.TryDistance(
-                        EntityManager,
-                        Transform(auraData.Source).Coordinates,
-                        out var dist))
-                    continue; // cant get distance, no pramgle
-                if (dist > auraData.MaxDistance)
-                    continue; // too far away, no pramgle
-                totalMult += (auraData.Multiplier - 1f); // additively
+                foreach (var auraData in rpic.AuraTracker)
+                {
+                    auraData.TickOutOfRange(timeSinceLastCheck);
+                    if (auraData.IsFullyDecayed())
+                    {
+                        RemoveAuraSource(
+                            uid,
+                            rpic,
+                            auraData.AuraId);
+                    }
+                }
+                return;
             }
         }
-        return totalMult;
+
+        // go through every RPI component in existence
+        var query = EntityQueryEnumerator<RoleplayIncentiveComponent>();
+        var myCoords = _transformSystem.GetMapCoordinates(uid);
+        while (query.MoveNext(out var otherUid, out var rpiss))
+        {
+            if (otherUid == uid)
+                continue; // dont check ourselves
+            if (rpiss.AuraHolder.Count == 0)
+                continue; // no auras to check
+            var theirId = GetRpiId(otherUid, rpiss);
+            var auraCoords = _transformSystem.GetMapCoordinates(otherUid);
+            foreach (var auraData in rpiss.AuraHolder)
+            {
+                // are we in range of their aura, and are they alive and connected?
+                // cus they have to actually *be* there to give us the aura
+                // whether they are through a wall is not important, just proximity
+                var allowTick = myCoords.InRange(auraCoords, auraData.MaxDistance);
+                if (allowTick && !rpic.DebugIgnoreState)
+                {
+                    if (_mobStateSystem.IsDead(otherUid) || !PlayerIsConnected(otherUid))
+                    {
+                        allowTick = false; // they are dead or disconnected, so no aura for us
+                    }
+                }
+
+                // do we have this aura source?
+                if (IsTrackingAura(
+                        uid,
+                        rpic,
+                        theirId,
+                        auraData.AuraId,
+                        out var ourAuraData))
+                {
+                    if (allowTick)
+                    {
+                        // we are in range, so update our tracking data
+                        ourAuraData.TickInRange(timeSinceLastCheck);
+                    }
+                    else
+                    {
+                        // we are out of range, so update our tracking data
+                        ourAuraData.TickOutOfRange(timeSinceLastCheck);
+                        // if we are fully decayed, remove the aura
+                        if (ourAuraData.IsFullyDecayed())
+                        {
+                            RemoveAuraSource(
+                                uid,
+                                rpic,
+                                auraData.AuraId);
+                        }
+                    }
+                }
+                else if (allowTick)
+                {
+                    // we are in range, but we dont have this aura yet
+                    StartTrackingAura(
+                        uid,
+                        rpic,
+                        auraData,
+                        out var newAuraData);
+                    newAuraData.TickInRange(rpic.AuraCheckInterval);
+                }
+            }
+        }
     }
+
+    public static bool IsTrackingAura(
+        EntityUid uid,
+        RoleplayIncentiveComponent rpic,
+        string rpiUid,
+        string auraProtoId,
+        [NotNullWhen(true)] out RpiAuraData? outData)
+    {
+        foreach (var auraData in rpic.AuraTracker
+                     .Where(auraData => auraData.RpiUid == rpiUid)
+                     .Where(auraData => auraData.AuraId == auraProtoId))
+        {
+            outData = auraData;
+            return true;
+        }
+        outData = null;
+        return false;
+    }
+
+    public void StartTrackingAura(
+        EntityUid uid,
+        RoleplayIncentiveComponent rpic,
+        RpiAuraData auraData,
+        out RpiAuraData newAuraData)
+    {
+        newAuraData = new RpiAuraData(
+            auraData.Source,
+            auraData.RpiUid,
+            auraData.AuraId,
+            auraData.Multiplier,
+            auraData.MaxDistance,
+            auraData.TimeTillFullEffect,
+            auraData.DecayDelay,
+            auraData.DecayToZeroTime);
+        rpic.AuraTracker.Add(newAuraData);
+    }
+
+    public void StopTrackingAura(
+        EntityUid uid,
+        RoleplayIncentiveComponent rpic,
+        string rpiUid,
+        string auraProtoId)
+    {
+        rpic.AuraTracker.RemoveAll(
+            auraData =>
+                auraData.RpiUid == rpiUid
+                && auraData.AuraId == auraProtoId);
+    }
+
+    public void RemoveAuraSource(
+        EntityUid uid,
+        RoleplayIncentiveComponent rpic,
+        string auraProtoId)
+    {
+        var rpicUid = GetRpiId(uid, rpic);
+        rpic.AuraHolder.RemoveAll(
+            auraData =>
+                auraData.RpiUid == rpicUid
+                && auraData.AuraId == auraProtoId);
+    }
+
+    public void AddAuraSource(
+        EntityUid uid,
+        RoleplayIncentiveComponent rpic,
+        ProtoId<RpiAuraPrototype> auraProtoId)
+    {
+        if (!_prototype.TryIndex(auraProtoId, out var auraProto))
+        {
+            Log.Warning($"RpiAuraPrototype {auraProtoId} not found!");
+            return;
+        }
+
+        var rpicUid = GetRpiId(uid, rpic);
+        if (HasAuraSource(
+                uid,
+                rpic,
+                auraProtoId.Id,
+                out var _))
+            return; // already have it
+        var auraData = new RpiAuraData(
+            uid,
+            rpicUid,
+            auraProto.ID,
+            auraProto.Multiplier,
+            auraProto.MaxDistance,
+            TimeSpan.FromMinutes(auraProto.MinutesTillFullEffect),
+            TimeSpan.FromMinutes(auraProto.MinutesUntilDecayDelay),
+            TimeSpan.FromMinutes(auraProto.MinutesUntilDecayToZero));
+        rpic.AuraHolder.Add(auraData);
+    }
+
+    public bool HasAuraSource(
+        EntityUid uid,
+        RoleplayIncentiveComponent rpic,
+        string auraProtoId,
+        out RpiAuraData? outData)
+    {
+        var rpicUid = GetRpiId(uid, rpic);
+        foreach (var auraData in rpic.AuraHolder
+                     .Where(auraData => auraData.RpiUid == rpicUid)
+                     .Where(auraData => auraData.AuraId == auraProtoId))
+        {
+            outData = auraData;
+            return true;
+        }
+        outData = null;
+        return false;
+    }
+
+    public string GetRpiId(EntityUid uid, RoleplayIncentiveComponent rpic)
+    {
+        if (!string.IsNullOrEmpty(rpic.RpiId))
+            return rpic.RpiId;
+        if (TryComp<ActorComponent>(uid, out var actor))
+        {
+            rpic.RpiId = actor.PlayerSession.UserId.ToString();
+            return rpic.RpiId;
+        }
+        rpic.RpiId = uid.ToString();
+        return rpic.RpiId;
+    }
+
+    public bool PlayerIsConnected(EntityUid uid)
+    {
+        return _playerManager.TryGetSessionByEntity(uid, out var sesh)
+               && sesh.Status == SessionStatus.Connected;
+    }
+
     #endregion
 
     #region Punishment Actions
@@ -1018,7 +1246,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         basePay = (int)(basePay * multiplier);
     }
 
-    private float GetMiscActionPayMult(
+    private static float GetMiscActionPayMult(
         EntityUid uid,
         RoleplayIncentiveComponent rpic,
         TaxBracketResult taxBracket)
@@ -1051,7 +1279,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             // add mults ADDITIVFELY
             multOut += (kvp.Value.GetMultiplier() - 1f);
         }
-        return multOut;
+        return multOut - 1f;
     }
 
     private int GetChatActionPay(
@@ -1066,6 +1294,8 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         Dictionary<RpiChatActionCategory, float> bestActions = new();
         foreach (var action in rpic.ChatActionsTaken.Where(action => !action.ChatActionIsSpent))
         {
+            if (action.ChatActionIsSpent)
+                continue; // just in case, no pramgle
             var judgement = JudgeChatAction(action);
             // slot it into the best action for that type
             if (bestActions.TryGetValue(action.Action, out var existing))
@@ -1091,7 +1321,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     }
 
 
-    private void PruneOldActions(RoleplayIncentiveComponent rpic)
+    private static void PruneOldActions(RoleplayIncentiveComponent rpic)
     {
         rpic.ChatActionsTaken.RemoveAll(action => action.ChatActionIsSpent);
         rpic.MiscActionsTaken.RemoveAll(action => action.MiscActionIsSpent);

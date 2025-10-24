@@ -10,6 +10,7 @@
   - type: IsPirate
   userMustNotHaveTheseComponents:
   - type: IsPirate
+  maxTargets: 5
 
 - type: rpiContinuousProxyAction
   id: rpiContinuousProxyActionLikesNonPiratesWhilePirate
@@ -23,6 +24,7 @@
   - type: CaptureBait
   userMustHaveTheseComponents:
   - type: IsPirate
+  maxTargets: 5
 
 - type: rpiContinuousProxyAction
   id: rpiContinuousProxyActionLikesShuttleConsoles
@@ -36,4 +38,5 @@
   - type: ShuttleConsole
   userMustHaveTheseComponents:
   - type: PaywardProximityShuttleConsole
-  IsNonPlayerComponentQuery: true
+  isNonPlayerComponentQuery: true
+  maxTargets: 1 # Only count the first valid console

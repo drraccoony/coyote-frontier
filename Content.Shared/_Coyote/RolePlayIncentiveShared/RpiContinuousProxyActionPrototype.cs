@@ -62,4 +62,7 @@ public sealed partial class RpiContinuousProxyActionPrototype : IPrototype
 
     [DataField("isNonPlayerComponentQuery")]
     public bool IsNonPlayerComponentQuery = false;
+
+    [DataField("maxTargets")]
+    public int MaxTargets = 1;
 }

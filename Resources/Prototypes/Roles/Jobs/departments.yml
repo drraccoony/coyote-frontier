@@ -35,6 +35,9 @@
   - Mercenary # Frontier
   - Pilot # Frontier
   - Borg # Frontier
+  - Journalist # Frontier # Frontier
+  - MassageTherapist # Frontier
+  - Chaplain # Frontier
 
 - type: department
   id: CentralCommand

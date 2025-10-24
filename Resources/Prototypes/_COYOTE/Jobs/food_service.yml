@@ -24,11 +24,13 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
+  - !type:AddRpiAuraSpecial
+    aurasToAdd:
+    - rpiAuraFoodService
   - !type:AddComponentSpecial
     components:
     - type: RpiJobModifier # 1.5x
       modifier: 1.5
-    - type: PaywardAuraFoodService
 
 # starting gear
 - type: startingGear

@@ -5,9 +5,10 @@
   deathPenalty: 0.10
   deepFriedPenalty: 0.25
   journalismDat:
-    baseFlatPayout: 5000
-    charCountDivisor: 100 # 1 point per 100 characters
-    multPerDivisor: 1.50
+    baseNonJournalistFlatPayout: 1000
+    baseFlatPayout: 2500
+    charCountDivisor: 250
+    multPerDivisor: 1.15
     maxPay: 15000
     cooldownPenalty: 0.90
     cooldownTimeMinutes: 20
@@ -34,10 +35,11 @@
   deathPenalty: 0.01
   deepFriedPenalty: 0.10
   journalismDat:
-    baseFlatPayout: 7000
-    charCountDivisor: 50 # 1 point per 100 characters
-    multPerDivisor: 1.75
-    maxPay: 25000
+    baseNonJournalistFlatPayout: 1500
+    baseFlatPayout: 4000
+    charCountDivisor: 75 # 1 point per 100 characters
+    multPerDivisor: 1.15
+    maxPay: 45000
     cooldownPenalty: 0.90
     cooldownTimeMinutes: 20
   actionMultipliers:
@@ -63,10 +65,11 @@
   deathPenalty: 0.05
   deepFriedPenalty: 0.15
   journalismDat:
-    baseFlatPayout: 6000
-    charCountDivisor: 100 # 1 point per 100 characters
-    multPerDivisor: 1.60
-    maxPay: 20000
+    baseNonJournalistFlatPayout: 1200
+    baseFlatPayout: 3000
+    charCountDivisor: 150 # 1 point per 100 characters
+    multPerDivisor: 1.15
+    maxPay: 35000
     cooldownPenalty: 0.90
     cooldownTimeMinutes: 20
   actionMultipliers:
@@ -92,12 +95,13 @@
   deathPenalty: 0.075
   deepFriedPenalty: 0.2
   journalismDat:
-      baseFlatPayout: 5000
-      charCountDivisor: 100 # 1 point per 100 characters
-      multPerDivisor: 1.50
-      maxPay: 15000
-      cooldownPenalty: 0.90
-      cooldownTimeMinutes: 20
+    baseNonJournalistFlatPayout: 1000
+    baseFlatPayout: 2500
+    charCountDivisor: 250
+    multPerDivisor: 1.15
+    maxPay: 25000
+    cooldownPenalty: 0.90
+    cooldownTimeMinutes: 20
   actionMultipliers:
     Mining: 1.0
     Combat: 1.0
