@@ -33,20 +33,5 @@ public sealed class RpiChatRecord(
     /// </summary>
     public int PeoplePresent = peoplePresent;
 
-    /// <summary>
-    /// A modifier on the payward for this action
-    /// Counts toward length uwu
-    /// </summary>
-    public float Multiplier = 1.0f;
-
     public bool ChatActionIsSpent = false;
-
-    /// <summary>
-    /// Additively modifies the multiplier for this action.
-    /// Assumes the mod is percent form, so 1.25 adds 25% to the multiplier.
-    /// </summary>
-    public void ModifyMultiplier(float mod)
-    {
-        Multiplier += (mod - 1.0f);
-    }
 }

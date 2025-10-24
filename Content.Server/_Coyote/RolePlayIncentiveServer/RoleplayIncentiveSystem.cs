@@ -80,6 +80,8 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         SubscribeLocalEvent<RoleplayIncentiveComponent, RpiNewsArticleCreatedEvent>   (OnNewsArticleCreated);
         SubscribeLocalEvent<RoleplayIncentiveComponent, FixedLightEvent>              (OnLightGotFixed);
         SubscribeLocalEvent<RoleplayIncentiveComponent, RpiAddAurasEvent>             (OnAddAurasEvent);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiAddJudgementsEvent>        (OnAddJudgementsEvent);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiAddJobModifierEvent>       (OnAddJobModifierEvent);
         // SubscribeLocalEvent<RoleplayIncentiveComponent, GetVerbsEvent<ExamineVerb>>   (OnGetExamineVerbs);
         SortTaxBrackets();
     }
@@ -263,6 +265,50 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         if (curTime < rpic.LastDeathPunishment + DeathPunishmentCooldown)
             return;
         PunishPlayerForDeath(uid, rpic);
+    }
+
+    private void OnAddJobModifierEvent(
+        EntityUid uid,
+        RoleplayIncentiveComponent rpic,
+        RpiAddJobModifierEvent args)
+    {
+        foreach (var jobMod in args.StuffToAdd)
+        {
+            AddJobModifier(
+                uid,
+                rpic,
+                jobMod);
+        }
+    }
+
+    public static void AddJobModifier(
+        EntityUid uid,
+        RoleplayIncentiveComponent rpic,
+        ProtoId<RpiJobModifierPrototype> jobMod)
+    {
+        rpic.JobModifiers.Add(jobMod);
+    }
+
+    private void OnAddJudgementsEvent(
+        EntityUid uid,
+        RoleplayIncentiveComponent rpic,
+        RpiAddJudgementsEvent args)
+    {
+        foreach (var judgement in args.StuffToAdd)
+        {
+            AddJudgementModifier(
+                uid,
+                rpic,
+                judgement);
+        }
+    }
+
+    public static void AddJudgementModifier(
+        EntityUid uid,
+        RoleplayIncentiveComponent rpic,
+        ProtoId<RpiChatJudgementModifierPrototype> judgement)
+    {
+        rpic.ChatJudgementModifiers.Add(judgement);
     }
 
     private void OnAddAurasEvent(
@@ -629,6 +675,8 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         var proxyMult = GetProxiesPayMult(uid, rpic, true);
         // Aura mults! mobs who give you more money for being around them
         var auraMult = GetAuraPayMult(uid, rpic);
+        // Job multipliers! my job gets cashpay for existing!
+        var jobMult = GetJobModifierPayMult(uid, rpic);
         // other components wanteing to messing with me
         var modMult = 1f;
         var modifyEvent = new GetRpiModifier(uid, modMult);
@@ -647,8 +695,9 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         finalMult += proxyMult;
         finalMult += (modifyEvent.Multiplier - 1f);
         finalMult += auraMult;
+        finalMult += jobMult;
         var payDetails = ProcessPaymentDetails(
-            chatPay,
+            (int) chatPay,
             finalMult);
 
         // pay the player
@@ -1246,6 +1295,23 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         basePay = (int)(basePay * multiplier);
     }
 
+    private float GetJobModifierPayMult(
+        EntityUid uid,
+        RoleplayIncentiveComponent rpic)
+    {
+        float jobMult = 0f;
+        foreach (var protid in rpic.JobModifiers)
+        {
+            if (!_prototype.TryIndex(protid, out var jobProto))
+            {
+                Log.Warning($"RpiJobModifierPrototype {protid} not found!");
+                continue;
+            }
+            jobMult += (jobProto.Multiplier - 1f);
+        }
+        return jobMult;
+    }
+
     private static float GetMiscActionPayMult(
         EntityUid uid,
         RoleplayIncentiveComponent rpic,
@@ -1282,21 +1348,21 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         return multOut - 1f;
     }
 
-    private int GetChatActionPay(
+    private float GetChatActionPay(
         EntityUid uid,
         RoleplayIncentiveComponent? rpic,
         TaxBracketResult taxBracket)
     {
         if (!Resolve(uid, ref rpic))
             return 0;
-        var total = 0;
+        float total = 0;
         // go through all the actions, and compile the BEST ONES EVER
         Dictionary<RpiChatActionCategory, float> bestActions = new();
         foreach (var action in rpic.ChatActionsTaken.Where(action => !action.ChatActionIsSpent))
         {
             if (action.ChatActionIsSpent)
                 continue; // just in case, no pramgle
-            var judgement = JudgeChatAction(action);
+            var judgement = JudgeChatAction(action, rpic);
             // slot it into the best action for that type
             if (bestActions.TryGetValue(action.Action, out var existing))
             {
@@ -1314,7 +1380,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         // now, sum up the best actions
         foreach (var kvp in bestActions)
         {
-            total += (int)MathF.Ceiling(kvp.Value);
+            total += kvp.Value;
         }
         total *= taxBracket.PayPerJudgement;
         return total;
@@ -1600,15 +1666,23 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     /// - How many people were present
     /// - and thats it for now lol
     /// </summary>
-    private int JudgeChatAction(RpiChatRecord chatRecord)
+    private float JudgeChatAction(RpiChatRecord chatRecord, RoleplayIncentiveComponent rpic)
     {
-        var longth = chatRecord.Message?.Length ?? 1;
-        var longgth = longth * chatRecord.Multiplier;
-        var lengthMult = GetMessageLengthMultiplier(chatRecord.Action, (int) longgth);
-        var listenerMult = GetListenerMultiplier(chatRecord.Action, chatRecord.PeoplePresent);
-        // if the action is a quick emote, it gets no judgement
-        var judgement = lengthMult + listenerMult + 1f;
-        return (int)Math.Floor(judgement);
+        float judgement = 0f;
+        float longMult = 1f;
+        foreach (var jMult in rpic.ChatJudgementModifiers)
+        {
+            if (!_prototype.TryIndex(jMult, out RpiChatJudgementModifierPrototype? proto))
+                continue;
+            longMult += proto.GetMod(chatRecord.Action) - 1f;
+        }
+
+        int longth = (int) ((chatRecord.Message?.Length ?? 1) * longMult);
+        float lengthMult = GetMessageLengthMultiplier(chatRecord.Action, longth);
+        float listenerMult = GetListenerMultiplier(chatRecord.Action, chatRecord.PeoplePresent);
+        judgement += lengthMult;
+        judgement += listenerMult;
+        return judgement;
     }
 
     /// <summary>
@@ -1620,18 +1694,17 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     {
         // if there are no listeners, return 0
         if (listeners <= 0)
-            return 1;
-        var numListeners = listeners;
+            return 0;
         if (!GetChatActionLookup(action, out var proto))
-            return 1;
+            return 0;
         if (!proto.MultiplyByPeoplePresent)
-            return 1;
+            return 0;
         // clamp the number of listeners to the max defined in the prototype
-        numListeners = Math.Clamp(
-            numListeners,
+        listeners = Math.Clamp(
+            listeners,
             0,
             proto.MaxPeoplePresent);
-        return numListeners;
+        return listeners;
     }
 
     /// <summary>
@@ -1639,26 +1712,31 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     /// </summary>
     /// <param name="action">The action being performed</param>
     /// <param name="messageLength">The length of the message</param>
-    private int GetMessageLengthMultiplier(RpiChatActionCategory action, int messageLength)
+    private float GetMessageLengthMultiplier(RpiChatActionCategory action, int messageLength)
     {
-        // if the message length is 0, return 1
+        // if the message length is 0, return 0 change
         if (messageLength <= 0)
-            return 1;
+            return 0;
 
         // get the prototype for the action
         if (!GetChatActionLookup(action, out var proto))
-            return 1;
+            return 0;
 
         if (proto.LengthPerPoint <= 0)
         {
-            return 1; // thingy isnt using length based judgement, also dont divide by 0
+            return 0; // thingy isnt using length based judgement, also dont divide by 0
         }
 
-        var rawLengthMult = messageLength / (float)proto.LengthPerPoint;
+        if (messageLength < proto.LengthPerPoint)
+        {
+            return 0; // too short to judge
+        }
+
+        var rawLengthMult = messageLength / (float) proto.LengthPerPoint;
         // floor it to the nearest whole number, with a minimum of 1 and max of who cares
         return Math.Clamp(
-            (int)Math.Floor(rawLengthMult),
-            1,
+            (float)Math.Floor(rawLengthMult),
+            0,
             100);
     }
 

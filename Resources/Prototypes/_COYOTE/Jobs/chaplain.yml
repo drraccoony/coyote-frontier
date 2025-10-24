@@ -26,6 +26,9 @@
   - !type:AddRpiAuraSpecial
     aurasToAdd:
     - rpiAuraChaplain
+  - !type:RpiChatJudgementModifierSpecial
+    modsToAdd:
+    - rpiChatJudgementModifierMassageChaplain
   - !type:AddComponentSpecial
     components:
     - type: PaywardModifierERPChaplain # 2x

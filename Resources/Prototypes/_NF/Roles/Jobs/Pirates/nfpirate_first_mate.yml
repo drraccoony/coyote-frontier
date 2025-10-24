@@ -34,9 +34,10 @@
     - type: SpecialSectorStationRecord # must be given on spawn
       recordGeneration: FalseRecord
     - type: DisableSuitSensors
-    - type: RpiJobModifier # 1.5x
-      modifier: 3
     - type: IsPirate
+  - !type:AddRpiJobModifierSpecial
+    modifiersToAdd:
+    - rpiJobModifierPirateFirstMate
   - !type:AddImplantSpecial
     implants: [ FreelanceTrackingImplant ]
   - !type:GiveItemOnHolidaySpecial # Even pirates get a piece of cake.

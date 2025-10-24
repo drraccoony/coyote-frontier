@@ -1,5 +1,4 @@
 using Content.Server._Coyote;
-using Content.Server._Coyote.CoolIncentives;
 using Content.Shared._Coyote.RolePlayIncentiveShared;
 using Content.Shared.Destructible;
 using Content.Shared.Mining;

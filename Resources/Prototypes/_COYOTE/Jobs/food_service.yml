@@ -27,10 +27,9 @@
   - !type:AddRpiAuraSpecial
     aurasToAdd:
     - rpiAuraFoodService
-  - !type:AddComponentSpecial
-    components:
-    - type: RpiJobModifier # 1.5x
-      modifier: 1.5
+  - !type:AddRpiJobModifierSpecial
+    modifiersToAdd:
+    - rpiJobModifierFoodService
 
 # starting gear
 - type: startingGear

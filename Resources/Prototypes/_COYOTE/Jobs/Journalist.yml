@@ -27,6 +27,9 @@
   - !type:AddRpiAuraSpecial
     aurasToAdd:
     - rpiAuraJournalist
+  - !type:RpiChatJudgementModifierSpecial
+    modsToAdd:
+    - rpiChatJudgementModifierJournalist
   - !type:AddComponentSpecial
     components:
     - type: PaywardModifierERPJournalist # 2x

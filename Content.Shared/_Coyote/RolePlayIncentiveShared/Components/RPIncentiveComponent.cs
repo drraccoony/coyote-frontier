@@ -48,6 +48,20 @@ public sealed partial class RoleplayIncentiveComponent : Component
     [DataField]
     public TimeSpan PaywardInterval = TimeSpan.FromMinutes(20);
 
+    /// <summary>
+    /// modifiers to chat action judgements!!!
+    /// </summary>
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public List<ProtoId<RpiChatJudgementModifierPrototype>> ChatJudgementModifiers = new();
+
+    ///  <summary>
+    ///  Job Modifiers that apply to this entity!!!
+    ///  </summary>
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public List<ProtoId<RpiJobModifierPrototype>> JobModifiers = new();
+
     #region Continuous Action Proxies
     /// <summary>
     /// Continuous proxy datums

@@ -3,21 +3,21 @@
   category: Speaking
   lengthPerPoint: 75
   multiplyByPeoplePresent: true
-  maxPeoplePresent: 5
+  maxPeoplePresent: 7
 
 - type: rpiChatAction
   id: rpiChatActionWhispering
   category: Whispering
   lengthPerPoint: 75
   multiplyByPeoplePresent: true
-  maxPeoplePresent: 5
+  maxPeoplePresent: 7
 
 - type: rpiChatAction
   id: rpiChatActionEmoting
   category: Emoting
   lengthPerPoint: 50
   multiplyByPeoplePresent: true
-  maxPeoplePresent: 5
+  maxPeoplePresent: 7
 
 - type: rpiChatAction
   id: rpiChatActionQuickEmoting
@@ -31,7 +31,7 @@
   category: Subtling
   lengthPerPoint: 100
   multiplyByPeoplePresent: true
-  maxPeoplePresent: 5
+  maxPeoplePresent: 7
 
 - type: rpiChatAction
   id: rpiChatActionRadio

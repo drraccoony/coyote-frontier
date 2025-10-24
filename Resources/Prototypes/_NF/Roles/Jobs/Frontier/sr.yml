@@ -26,11 +26,12 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
-      - type: RpiJobModifier # 1.5x
-        modifier: 2.5
   - !type:AddRpiAuraSpecial
     aurasToAdd:
     - rpiAuraStationPrincess
+  - !type:AddRpiJobModifierSpecial
+    modifiersToAdd:
+    - rpiJobModifierStationPrincess
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift

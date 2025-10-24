@@ -27,11 +27,12 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
+  - !type:AddRpiJobModifierSpecial
+    modifiersToAdd:
+    - rpiJobModifierStationTrafficController
   - !type:AddComponentSpecial
     components:
     - type: CommandStaff
-    - type: RpiJobModifier # 1.5x
-      modifier: 2.0
 - type: startingGear
   id: StcGear
   equipment:

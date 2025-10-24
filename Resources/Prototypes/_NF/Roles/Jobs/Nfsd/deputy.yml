@@ -27,10 +27,9 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
-  - !type:AddComponentSpecial
-    components:
-    - type: RpiJobModifier # 1.5x
-      modifier: 2.0
+  - !type:AddRpiJobModifierSpecial
+    modifiersToAdd:
+    - rpiJobModifierDeputy
 
 - type: startingGear
   id: DeputyGear

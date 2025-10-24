@@ -1,9 +1,8 @@
-using Content.Server._Coyote;
 using Content.Shared._Coyote.RolePlayIncentiveShared;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Jobs;
+namespace Content.Server._Coyote.RolePlayIncentiveServer.JobStuff;
 
 public sealed partial class AddRpiAuraSpecial : JobSpecial
 {

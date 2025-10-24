@@ -27,6 +27,9 @@
   - !type:AddRpiAuraSpecial
     aurasToAdd:
     - rpiAuraMassageTherapist
+  - !type:RpiChatJudgementModifierSpecial
+    modsToAdd:
+    - rpiChatJudgementModifierMassageTherapist
   - !type:AddComponentSpecial
     components:
     - type: PaywardModifierERPMassageTherapist # 2x
