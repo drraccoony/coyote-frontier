@@ -1125,10 +1125,29 @@ marking-SpeciesAdaptorReptilianRFoot       = Base Sprite - Reptilian Right Foot
 
 
 
-marking-Hairafrogeneric-hairafrogeneric = Generic Afro Extension
-
-
-
-
-
-
+marking-Hairafrogeneric = Afro Extension
+marking-Hairafrogeneric-hairafrogeneric = Afro Extension
+marking-Hairafro2generic = Afro Extension (alt)
+marking-Hairafro2generic-hairafro2generic = Afro Extension (alt)
+marking-Hairantennageneric = Antenna Extension
+marking-Hairantennageneric-hairantennageneric = Antenna Extension
+marking-Hairbedheadgeneric = Bedhead Extension
+marking-Hairbedheadgeneric-hairbedheadgeneric = Bedhead Extension
+marking-Hairbedheadv2generic = Bedhead v2 Extension
+marking-Hairbedheadv2generic-hairbedheadv2generic = Bedhead v2 Extension
+marking-Hairbedheadv3generic = Bedhead v3 Extension
+marking-Hairbedheadv3generic-hairbedheadv3generic = Bedhead v3 Extension
+marking-Hairbeehivegeneric = Beehive Extension
+marking-Hairbeehivegeneric-hairbeehiveeneric = Beehive Extension
+marking-Hairbeehivev2generic = Beehive v2 Extension
+marking-Hairbeehivev2generic-hairbeehiveeneric = Beehive v2 Extension
+marking-Hairbgeneric = Hair B. Extension
+marking-Hairbgeneric-hairbgeneric = Hair B. Extension
+marking-Hairbigafrogeneric = Big Afro Extension
+marking-Hairbigafrogeneric-hairbigafrogeneric = Big Afro Extension
+marking-Hairbigflattopgeneric = Big Flattop Extension
+marking-Hairbigflattopgeneric-hairbigflattopgeneric = Big Flattop Extension
+marking-Hairbigpompadourgeneric = Big Pompadour Extension
+marking-Hairbigpompadourgeneric-hairbigpompadourgeneric = Big Pompadour Extension
+marking-Hairbobcurlgeneric = Hair Bob Curl Extension
+marking-Hairbobcurlgeneric-hairbobcurlgeneric = Hair Bob Curl Extension
