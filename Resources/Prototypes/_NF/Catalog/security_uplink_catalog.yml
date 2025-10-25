@@ -986,7 +986,7 @@
         tags:
           - SecurityUplink
 
-- type: listing
+- type: listing # Coyote removed job restriction from this gear
   id: UplinkSecurityHoverbikeNfsdFlatpack
   name:  uplink-security-hoverbike-name
   description: uplink-security-hoverbike-desc
