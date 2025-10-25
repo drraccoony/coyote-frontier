@@ -17,7 +17,7 @@
     - state: stc_label
 
 - type: entity
-  parent: [EncryptionKey, BaseC2ContrabandUnredeemable]
+  parent: [EncryptionKey, BaseC2ContrabandUnredeemable] # Coyote: Add BaseC2ContrabandUnredeemable
   id: EncryptionKeyNfsd
   name: NFSD encryption key
   categories: [ DoNotMap ]
