@@ -127,7 +127,7 @@
       whitelist:
         - Sheriff
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this hardsuit
   id: UplinkSecurityHardsuitSyndieReverseEngineered
   name:  uplink-security-hardsuit-experimental-name
   description: uplink-security-hardsuit-experimental-desc
