@@ -562,7 +562,7 @@
         tags:
           - SecurityUplink
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this ammo
   id: UplinkSecurityMagazineSubMachineGunTopMounted35Overpressure
   name:  uplink-security-wt550magazine-name
   description: uplink-security-wt550magazine-desc
