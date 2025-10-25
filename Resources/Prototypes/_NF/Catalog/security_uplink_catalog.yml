@@ -730,7 +730,7 @@
         tags:
           - SecurityUplink
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this weapon
   id: UplinkSecurityCaptainSword
   name:  uplink-security-captainsword-name
   description: uplink-security-captainsword-desc
