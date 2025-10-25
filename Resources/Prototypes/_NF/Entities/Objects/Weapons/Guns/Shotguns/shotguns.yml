@@ -43,7 +43,7 @@
 
 - type: entity
   id: NFWeaponShotgunEnforcer
-  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponShotgunChamber50, NFBaseWeaponFrameShotgunWieldable ]
+  parent: [ NFBaseWeaponShotgunChamber50, NFBaseWeaponFrameShotgunWieldable ]
   name: Enforcer
   description: |-
     A premium semi-automatic shotgun, featuring an upgraded tube capacity.
