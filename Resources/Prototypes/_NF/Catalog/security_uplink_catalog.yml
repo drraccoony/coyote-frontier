@@ -260,7 +260,7 @@
   id: UplinkSecurityHristov
   name:  uplink-security-hristov-name
   description: uplink-security-hristov-desc
-  productEntity: NFWeaponRifleAssaultVulcan
+  productEntity: NFWeaponRifleSniperHristovNFSD
   icon: { sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi, state: base }
   cost:
     FrontierUplinkCoin: 5
