@@ -41,7 +41,7 @@
   - type: NFWeaponDetails
     class: weapon-details-manufacturer-cybersun-industries
 
-- type: entity
+- type: entity # Coyote added NFSD version of the Hristov
   id: NFBaseWeaponFrameRifleSniperNFSD
   parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponFrameRifleSniper ]
   abstract: true
