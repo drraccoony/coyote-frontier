@@ -1092,7 +1092,7 @@
         tags:
           - SecurityUplink
 
-- type: listing
+- type: listing # Coyote added EMP grenade mags for ship weapons
   id: UplinkSecurityEmpGrenadeAmmoMags
   name:  uplink-security-emp-ammo-mags-name
   description: uplink-security-emp-ammo-mags-desc
