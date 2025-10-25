@@ -1185,3 +1185,22 @@ marking-Hairdevillockgeneric = Hair Devil's Lock Extension
 marking-Hairdevillockgeneric-hairdevillockgeneric = Hair Devil's Lock Extension
 marking-Hairdrillhairextendedgeneric = Hair Drill Hair Extended Extension
 marking-Hairdrillhairextendedgeneric-hairdrillhairextendedgeneric = Hair Drill Hair Extended Extension
+
+
+
+marking-Hairdrillhairgeneric = Hair Drill Hair Extension
+marking-Hairdrillhairgeneric-hairdrillhairgeneric = Hair Drill Hair Extension
+marking-Hairemogeneric = Hair Emo Extension
+marking-Hairemogeneric-hairemogeneric = Hair Drill Hair Extension
+marking-Hairfeathergeneric = Hair Feather Extension
+marking-Hairfeathergeneric-hairfeathergeneric = Hair Feather Extension
+marking-Hairgelledgeneric = Hair Gelled Extension
+marking-Hairgelledgeneric-hairgelledgeneric = Hair Feather Extension
+marking-Hairgentlegeneric = Hair Gentle Extension
+marking-Hairgentlegeneric-hairgentlegeneric = Hair Gentle Extension
+marking-Hairhbraidgeneric = Hair H. Braid Extension
+marking-Hairhbraidgeneric-hairhbraidgeneric = Hair H. Braid Extension
+marking-Hairhedgehoggeneric = Hair Hedgehog Extension
+marking-Hairhedgehoggeneric-hairhedgehoggeneric = Hair Hedgehog Extension
+marking-Hairhighponytailgeneric = Hair High Ponytail Extension
+marking-Hairhighponytailgeneric-hairhighponytailgeneric = Hair High Ponytail Extension
