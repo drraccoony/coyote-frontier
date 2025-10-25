@@ -257,7 +257,7 @@
           - SecurityUplink
 
 - type: listing
-  id: UplinkSecurityVulcan
+  id: UplinkSecurityHristov
   name:  uplink-security-hristov-name
   description: uplink-security-hristov-desc
   productEntity: NFWeaponRifleAssaultVulcan
