@@ -257,6 +257,27 @@
           - SecurityUplink
 
 - type: listing
+  id: UplinkSecurityVulcan
+  name:  uplink-security-hristov-name
+  description: uplink-security-hristov-desc
+  productEntity: NFWeaponRifleAssaultVulcan
+  icon: { sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi, state: base }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Sheriff
+        - Bailiff
+        - SeniorOfficer
+
+- type: listing
   id: UplinkSecurityLaserCarbine
   name:  uplink-security-lasercarbine-name
   description: uplink-security-lasercarbine-desc

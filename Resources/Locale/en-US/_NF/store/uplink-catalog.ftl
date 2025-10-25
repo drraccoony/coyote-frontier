@@ -233,6 +233,9 @@ uplink-security-contraband-forensics-module-desc = A program for scanning and re
 uplink-security-lasercanon-name = Laser Cannon
 uplink-security-lasercanon-desc = A heavy duty, high powered laser sniper rifle.
 
+uplink-security-hristov-name = Antimaterial Rifle
+uplink-security-hristov-desc = A heavy, antimaterial rifle.
+
 # region Pirate
 uplink-pirate-hardsuit-name = Pirate Hardsuit
 uplink-pirate-hardsuit-desc = A heavy space suit that provides some basic protection from the cold harsh realities of deep space.

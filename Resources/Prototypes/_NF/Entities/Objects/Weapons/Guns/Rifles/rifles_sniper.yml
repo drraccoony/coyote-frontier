@@ -9,3 +9,14 @@
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
+
+- type: entity
+  id: NFWeaponRifleSniperHristovNFSD
+  parent: [ NFBaseWeaponRifleChamber60, NFBaseWeaponFrameRifleSniperCybersun ]
+  name: Hristov
+  description: A portable anti-materiel rifle, law enforcement issue.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
