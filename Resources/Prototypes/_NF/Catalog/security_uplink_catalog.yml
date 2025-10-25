@@ -530,7 +530,7 @@
         tags:
           - SecurityUplink
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this ammo
   id: UplinkSecurityMagazineRifle20Overpressure
   name:  uplink-security-20riflemagazine-name
   description: uplink-security-20riflemagazine-desc
