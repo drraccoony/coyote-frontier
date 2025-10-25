@@ -594,7 +594,7 @@
         tags:
           - SecurityUplink
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this ammo
   id: UplinkSecurity20RifleMagazineRubber
   name: uplink-security-20riflemagazine-rubber-name
   description: uplink-security-20riflemagazine-rubber-desc
