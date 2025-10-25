@@ -15,7 +15,7 @@
 #region Diasblers
 - type: entity
   id: NFWeaponEnergySubMachineGunDisabler
-  parent: [ BaseC2ContrabandUnredeemablem, NFBaseWeaponEnergySubMachineGunDisabler, NFBaseWeaponFrameEnergySubMachineGunNanotrasen ]
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponEnergySubMachineGunDisabler, NFBaseWeaponFrameEnergySubMachineGunNanotrasen ]
   name: disabler submachine gun
   suffix: Frontier
   description: |-
