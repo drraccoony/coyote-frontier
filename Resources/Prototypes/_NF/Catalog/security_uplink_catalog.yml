@@ -498,7 +498,7 @@
           - SecurityUplink
 
 - type: listing
-  id: UplinkSecurityThrusterKit
+  id: UplinkSecurityThrusterKit # Coyote removed job restrictions for this gear
   name:  uplink-security-thrusterkit-name
   description: uplink-security-thrusterkit-desc
   productEntity: BoxT3SuperCapacitor
