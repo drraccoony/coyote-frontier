@@ -666,7 +666,7 @@
         - Brigmedic
         - Sheriff
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this gear
   id: UplinkSecurityMedkit
   name:  uplink-security-medkit-name
   description: uplink-security-medkit-desc
