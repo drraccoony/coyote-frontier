@@ -298,7 +298,7 @@
         - Bailiff
         - SeniorOfficer
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this weapon
   id: UplinkSecurityLaserCarbine
   name:  uplink-security-lasercarbine-name
   description: uplink-security-lasercarbine-desc
