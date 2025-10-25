@@ -587,3 +587,133 @@
   sprites:
   - sprite: _CS/Hairmarkings/hairextensions.rsi
     state: hairmessygeneric
+
+- type: marking
+  id: Hairdangogeneric
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: hairdangogeneric
+
+- type: marking
+  id: Hairombregeneric
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: hairombregeneric
+
+- type: marking
+  id: Haironeshouldergeneric
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: haironeshouldergeneric
+
+- type: marking
+  id: Hairpartedgeneric
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: Hairpartedgeneric
+
+- type: marking
+  id: Hairpartgeneric
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: hairpartgeneric
+
+- type: marking
+  id: Hairpigtailsgeneric
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: hairpigtailsgeneric
+
+- type: marking
+  id: Hairpigtails2generic
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: hairpigtails2generic
+
+- type: marking
+  id: Hairpixiegeneric
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: hairpixiegeneric
+
+- type: marking
+  id: Hairpompadourgeneric
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: hairpompadourgeneric
+
+- type: marking
+  id: Hairponytail2generic
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: hairponytail2generic
+
+- type: marking
+  id: Hairponytail3generic
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: hairponytail3generic
+
+- type: marking
+  id: Hairponytail4generic
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: hairponytail4generic
+
+- type: marking
+  id: Hairponytail5generic
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: hairponytail5generic
