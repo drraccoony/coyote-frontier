@@ -281,7 +281,7 @@
   id: UplinkSecurityHristovAmmo
   name:  uplink-security-hristov-ammo-name
   description: uplink-security-hristov-ammo-desc
-  productEntity: NFBaseAmmunitionBoxRifle60
+  productEntity: NFAmmunitionBoxRifle60
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi, state: icon-60 }
   cost:
     FrontierUplinkCoin: 2
