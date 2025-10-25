@@ -208,7 +208,7 @@
         tags:
           - SecurityUplink
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this weapon
   id: UplinkSecurityEnforcer
   name:  uplink-security-enforcer-name
   description: uplink-security-enforcer-desc
