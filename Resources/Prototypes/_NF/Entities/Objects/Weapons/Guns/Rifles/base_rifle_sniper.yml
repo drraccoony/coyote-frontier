@@ -41,6 +41,16 @@
   - type: NFWeaponDetails
     class: weapon-details-manufacturer-cybersun-industries
 
+- type: entity
+  id: NFBaseWeaponFrameRifleSniperNFSD
+  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponFrameRifleSniper ]
+  abstract: true
+  components:
+  - type: Gun
+    angleIncrease: 0.5
+    angleDecay: 3.5
+    fireRate: 0.8
+
 #region chamber
 - type: entity
   id: NFBaseWeaponRifleChamber60
