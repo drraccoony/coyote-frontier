@@ -481,7 +481,7 @@
       whitelist:
         - Sheriff
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this ammo
   id: UplinkSecurityEmpRocket
   name:  uplink-security-emprocket-name
   description: uplink-security-emprocket-desc
