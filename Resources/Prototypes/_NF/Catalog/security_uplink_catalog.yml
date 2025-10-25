@@ -330,7 +330,7 @@
         tags:
           - SecurityUplink
 
-- type: listing
+- type: listing #Coyote removed job restrictions for this weapon
   id: UplinkSecurityDisablerSMG
   name:  uplink-security-disablersmg-name
   description: uplink-security-disablersmg-desc
