@@ -1302,3 +1302,16 @@ marking-Hairsidetail4generic = Hair Short Side Tail v4 Extension
 marking-Hairsidetail4generic-hairsidetail3generic = Hair Short Side Tail v4 Extension
 marking-Hairsidetailgeneric = Hair Short Side Tail Extension
 marking-Hairsidetailgeneric-hairsidetailgeneric = Hair Short Side Tail Extension
+
+marking-Hairspikeygeneric = Hair Spikey Extension
+marking-Hairspikeygeneric-hairspikeygeneric = Hair Spikey Extension
+marking-Hairspiky2generic = Hair Spikey v2 Extension
+marking-Hairspiky2generic-hairspiky2generic = Hair Spikey v2 Extension
+marking-Hairsweptgeneric = Hair Swept Extension
+marking-Hairsweptgeneric-hairsweptgeneric = Hair Swept Extension
+marking-Hairswept2generic = Hair Swept v2 Extension
+marking-Hairswept2generic-hairswept2generic = Hair Swept v2 Extension
+marking-Hairtressshouldergeneric = Hair Tresses Extension
+marking-Hairtressshouldergeneric-hairtressshouldergeneric = Hair Tresses Extension
+marking-Hairupdogeneric = Hair Updo Extension
+marking-Hairupdogeneric-hairupdogeneric = Hair Updo Extension
