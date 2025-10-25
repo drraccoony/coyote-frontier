@@ -40,4 +40,4 @@
     - Flash
     - NFMagazineHighCapacityPistol35Overpressure
     - NFMagazineHighCapacityPistol35Rubber
-    - BaseSecurityUplinkRadioOfficer
+    - BaseSecurityUplinkRadioOfficer # Coyote added uplink for deputies, removed their starting uplink coins
