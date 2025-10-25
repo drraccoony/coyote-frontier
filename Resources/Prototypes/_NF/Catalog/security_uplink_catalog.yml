@@ -1140,7 +1140,7 @@
         tags:
           - SecurityUplink
 
-- type: listing
+- type: listing # Coyote added Bailiff and Senior Officer jobs to this gear
   id: UplinkSecurityContrabandForensicsModule
   name:  uplink-security-contraband-forensics-module-name
   description: uplink-security-contraband-forensics-module-desc
