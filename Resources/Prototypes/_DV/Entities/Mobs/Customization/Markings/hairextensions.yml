@@ -46,7 +46,7 @@
   kindAllowance: [BasicHumanlike, BasicFurry]
   sprites:
   - sprite: _CS/Hairmarkings/hairextensions.rsi
-    state: hairbedheadv2generic
+    state: hairbedheadv2genric
 
 - type: marking
   id: Hairbedheadv3generic
@@ -127,3 +127,173 @@
   sprites:
   - sprite: _CS/Hairmarkings/hairextensions.rsi
     state: hairbobcurlgeneric
+
+- type: marking
+  id: Hairbobcutgeneric
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: hairbobcutgeneric
+
+- type: marking
+  id: Hairbobgeneric
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: hairbobgeneric
+
+- type: marking
+  id: Hairbraid2generic
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: hairbraid2generic
+
+- type: marking
+  id: Hairbraidgeneric
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: hairbraidgeneric
+
+- type: marking
+  id: Hairbraidtailgeneric
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: hairbraidtailgeneric
+
+- type: marking
+  id: Hairbungeneric
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: hairbungeneric
+
+- type: marking
+  id: Hairbunhead2generic
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: hairbunhead2generic
+
+- type: marking
+  id: Hairbusinessgeneric
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: hairbusinessgeneric
+
+- type: marking
+  id: Hairbusiness2generic
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: hairbusiness2generic
+
+- type: marking
+  id: Hairbusiness3generic
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: hairbusiness3generic
+
+- type: marking
+  id: Hairbusiness4generic
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: hairbusiness4generic
+
+- type: marking
+  id: Haircgeneric
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: haircgeneric
+
+- type: marking
+  id: Haircombovergeneric
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: haircombovergeneric
+
+- type: marking
+  id: Haircrewcutgeneric
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: haircrewcutgeneric
+
+- type: marking
+  id: Haircurlsgeneric
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: haircurlsgeneric
+
+- type: marking
+  id: Hairdevillockgeneric
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: hairdevillockgeneric
+
+- type: marking
+  id: Hairdrillhairextendedgeneric
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/hairextensions.rsi
+    state: hairdrillhairextendedgeneric
