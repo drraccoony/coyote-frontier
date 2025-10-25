@@ -314,7 +314,7 @@
         tags:
           - SecurityUplink
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this weapon
   id: UplinkSecurityLaserCannon
   name:  uplink-security-lasercanon-name
   description: uplink-security-lasercanon-desc
