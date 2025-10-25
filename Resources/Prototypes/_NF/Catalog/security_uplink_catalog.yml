@@ -378,7 +378,7 @@
         tags:
           - SecurityUplink
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this weapon
   id: UplinkSecurityEmpRpg
   name:  uplink-security-emprpg-name
   description: uplink-security-emprpg-desc
