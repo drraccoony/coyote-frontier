@@ -256,7 +256,7 @@
         tags:
           - SecurityUplink
 
-- type: listing
+- type: listing #Coyote added hristov to NFSD uplink
   id: UplinkSecurityHristov
   name:  uplink-security-hristov-name
   description: uplink-security-hristov-desc
@@ -277,7 +277,7 @@
         - Bailiff
         - SeniorOfficer
 
-- type: listing
+- type: listing # Coyote added hristov ammo to NFSD uplink
   id: UplinkSecurityHristovAmmo
   name:  uplink-security-hristov-ammo-name
   description: uplink-security-hristov-ammo-desc
