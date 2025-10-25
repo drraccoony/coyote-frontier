@@ -278,6 +278,27 @@
         - SeniorOfficer
 
 - type: listing
+  id: UplinkSecurityHristovAmmo
+  name:  uplink-security-hristov-ammo-name
+  description: uplink-security-hristov-ammo-desc
+  productEntity: NFBaseAmmunitionBoxRifle60
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi, state: icon-60 }
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Sheriff
+        - Bailiff
+        - SeniorOfficer
+
+- type: listing
   id: UplinkSecurityLaserCarbine
   name:  uplink-security-lasercarbine-name
   description: uplink-security-lasercarbine-desc
