@@ -746,7 +746,7 @@
         tags:
           - SecurityUplink
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this gear
   id: UplinkSecurityHammer
   name:  uplink-security-hammer-name
   description: uplink-security-hammer-desc
