@@ -1204,3 +1204,34 @@ marking-Hairhedgehoggeneric = Hair Hedgehog Extension
 marking-Hairhedgehoggeneric-hairhedgehoggeneric = Hair Hedgehog Extension
 marking-Hairhighponytailgeneric = Hair High Ponytail Extension
 marking-Hairhighponytailgeneric-hairhighponytailgeneric = Hair High Ponytail Extension
+
+marking-Hairhightoptailgeneric = Hair High Top Extension
+marking-Hairhightoptailgeneric-hairhightoptailgeneric = Hair High Top Extension
+marking-Hairhimecutgeneric = Hair Himecut Extension
+marking-Hairhimecutgeneric-hairhimecutgeneric = Hair Himecut Extension
+marking-Hairhimecut2generic = Hair Himecut v2 Extension
+marking-Hairhimecut2generic-hairhimecut2generic = Hair Himecut v2 Extension
+marking-Hairhimecutupgeneric = Hair Himecut Up Extension
+marking-Hairhimecutupgeneric-hairhimecutupgeneric = Hair Himecut Up Extension
+
+marking-Hairjensengeneric = Hair Jensen Extension
+marking-Hairjensengeneric-hairjensengeneric = Hair Jensen Extension
+marking-Hairkagamigeneric = Hair Kagami Extension
+marking-Hairkagamigeneric-hairkagamigeneric = Hair Kagami Extension
+marking-Hairkeanugeneric = Hair Keanu Extension
+marking-Hairkeanugeneric-hairkeanugeneric = Hair Keanu Extension
+marking-Hairkusanagigeneric = Hair Kusanagi Extension
+marking-Hairkusanagigeneric-hairkusanagigeneric = Hair Kusanagi Extension
+
+marking-Hairlargebungeneric = Hair Largebun Extension
+marking-Hairlargebungeneric-hairlargebungeneric = Hair Largebun Extension
+marking-Hairlong2generic = Hair Long v2 Extension
+marking-Hairlong2generic-hairlong2generic = Hair Long v2 Extension
+marking-Hairlong3generic = Hair Long v3 Extension
+marking-Hairlong3generic-hairlong3generic = Hair Long v3 Extension
+marking-Hairlongemogeneric = Hair Long Emo Extension
+marking-Hairlongemogeneric-hairlongemogeneric = Hair Long Emo Extension
+marking-Hairlongest2generic = Hair Longest v2 Extension
+marking-Hairlongest2generic-hairlongest2generic = Hair Longest v2 Extension
+marking-Hairlongestgeneric = Hair Longest Extension
+marking-Hairlongestgeneric-hairlongestgeneric = Hair Longest Extension
