@@ -429,8 +429,8 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         // 4. The light is on a shuttle that is NOT yours (medium bonus) - also to do
         // 5. The light has been broken for a long time (small bonus)
         var paydata = AppraiseBrokenLight(
-            args.Source,
-            args.TimeSpentBroken,
+            args.Source, // who is appraising
+            args.TimeSpentBroken, // how long it was broken
             rpic);
         if (paydata.FinalPay <= 0)
             return; // no pay, no pramgle

@@ -19,6 +19,8 @@
             MassageTherapist: [ -1, -1]
             Journalist: [ -1, -1]
             MedicalNurse: [ -1, -1]
+            Curator: [ -1, -1]
+            Therapist: [ -1, -1]
             Borg: [ -1, -1]
             StationRepresentative: [ -1, -1 ]
             StationTrafficController: [ -1, -1 ]

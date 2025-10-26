@@ -131,11 +131,13 @@ namespace Content.Server.Light.EntitySystems
         {
             if (!liy.GiveFixReward)
                 return;
+            if (!TryComp<RoleplayIncentiveComponent>(args.Examiner, out var rpiComp))
+                return;
             var timeBroken = _gameTiming.CurTime - liy.BrokenTime;
             var payData = _rpi.AppraiseBrokenLight(
-                uid,
+                args.Examiner,
                 timeBroken,
-                null,
+                rpiComp,
                 true);
             if (payData.FinalPay <= 0)
                 return;
@@ -148,7 +150,7 @@ namespace Content.Server.Light.EntitySystems
                         ("time", (int)timeBroken.TotalMinutes),
                         ("spreeamount", payData.SpreeBonus),
                         ("spreecount", payData.SpreeCount)));
-            }
+            }           //spermcount
             else
             {
                 args.PushMarkup(

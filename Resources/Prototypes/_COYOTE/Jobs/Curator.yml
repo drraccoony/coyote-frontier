@@ -1,13 +1,13 @@
 # The job itself
-# Medical Nurse - ERP RPI boost, aura
+# Curator - ERP RPI boost, aura, free nerd ships
 - type: job
-  id: MedicalNurse
-  name: job-name-medical-nurse
-  description: job-description-medical-nurse
-  playTimeTracker: JobMedicalNurse
-  startingGear: MedicalNurseGear
-  icon: "JobIconMedicalIntern"
-  supervisors: job-supervisors-medical-nurse
+  id: Curator
+  name: job-name-curator
+  description: job-description-curator
+  playTimeTracker: JobCurator
+  startingGear: CuratorGear
+  icon: "JobIconLibrarian"
+  supervisors: job-supervisors-curator
   weight: 40 # Prioritize station & department jobs
   displayWeight: 3 # idk
   access:
@@ -26,34 +26,42 @@
     prototype: FrontierBirthdayGift
   - !type:AddRpiAuraSpecial
     aurasToAdd:
-    - rpiAuraNurse
+    - rpiAuraCurator
   - !type:RpiChatJudgementModifierSpecial
     modsToAdd:
-    - rpiChatJudgementModifierNurse
+    - rpiChatJudgementModifierCurator
 
 # play time tracker
 - type: playTimeTracker
-  id: JobMedicalNurse
+  id: JobCurator
 
 - type: entity
-  id: SpawnPointMedicalNurse
+  id: SpawnPointCurator
   parent: SpawnPointPassenger
-  name: nurse spawn point
+  name: curator spawn point
   components:
   - type: SpawnPoint
-    job_id: MedicalNurse
+    job_id: Curator
 
 
 # starting gear
 - type: startingGear
-  id: MedicalNurseGear
+  id: CuratorGear
+  equipment:
+    shoes: ClothingShoesBootsLaceup
+    id: LibrarianPDA
+    ears: ClothingHeadsetService
+    pocket1: d20Dice
+    pocket2: HandLabeler # for making named bestsellers
   storage:
     back:
-    - EncryptionKeyMedical
+    - BookRandom
+    - EncryptionKeyService
+    - EncryptionKeyScience
 
 # Food Service Role Loadout
 - type: roleLoadout
-  id: JobMedicalNurse
+  id: JobCurator
   groups:
   - ContractorHead
   - ContractorNeck

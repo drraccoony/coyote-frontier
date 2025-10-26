@@ -1,13 +1,13 @@
 # The job itself
 # Medical Nurse - ERP RPI boost, aura
 - type: job
-  id: MedicalNurse
-  name: job-name-medical-nurse
-  description: job-description-medical-nurse
-  playTimeTracker: JobMedicalNurse
-  startingGear: MedicalNurseGear
-  icon: "JobIconMedicalIntern"
-  supervisors: job-supervisors-medical-nurse
+  id: Therapist
+  name: job-name-therapist
+  description: job-description-therapist
+  playTimeTracker: JobTherapist
+  startingGear: TherapistGear
+  icon: "JobIconPsychologist"
+  supervisors: job-supervisors-therapist
   weight: 40 # Prioritize station & department jobs
   displayWeight: 3 # idk
   access:
@@ -26,34 +26,35 @@
     prototype: FrontierBirthdayGift
   - !type:AddRpiAuraSpecial
     aurasToAdd:
-    - rpiAuraNurse
+    - rpiAuraTherapist
   - !type:RpiChatJudgementModifierSpecial
     modsToAdd:
-    - rpiChatJudgementModifierNurse
+    - rpiChatJudgementModifierTherapist
 
 # play time tracker
 - type: playTimeTracker
-  id: JobMedicalNurse
+  id: JobTherapist
 
 - type: entity
-  id: SpawnPointMedicalNurse
+  id: SpawnPointTherapist
   parent: SpawnPointPassenger
-  name: nurse spawn point
+  name: therapist spawn point
   components:
   - type: SpawnPoint
-    job_id: MedicalNurse
+    job_id: Therapist
 
 
 # starting gear
 - type: startingGear
-  id: MedicalNurseGear
+  id: TherapistGear
   storage:
     back:
-    - EncryptionKeyMedical
+    - EncryptionKeyService
+    - ShipVoucherCoyoteMassageTherapist
 
 # Food Service Role Loadout
 - type: roleLoadout
-  id: JobMedicalNurse
+  id: JobTherapist
   groups:
   - ContractorHead
   - ContractorNeck
