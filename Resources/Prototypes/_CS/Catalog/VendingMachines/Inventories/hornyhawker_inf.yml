@@ -72,7 +72,7 @@
     # Snacks
     FoodTinPeachesMaint: 8
     # Weapons
-    WeaponSizeManipulator: 4294967295 # Infinite
+    WeaponSizeManipulator: 0 # Removed for rollback
   contrabandInventory:
     # Snacks
     FoodTinPeachesMaint: 10
