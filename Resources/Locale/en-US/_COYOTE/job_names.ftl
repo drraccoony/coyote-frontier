@@ -18,6 +18,6 @@ job-name-curator = Curator
 job-description-curator = Explore, preserve, and showcase the rich cool history and artifacts of the frontier. Your role is to manage collections, organize exhibitions, and educate the public about the cultural heritage of the region. As a curator, you have access to exclusive historical information and artifacts, and you receive a bonus to your Payward Incentive for your dedication to preserving history!
 job-supervisors-curator = the Frontier Historical Society, and horny people everywhere
 
-job-name-therapist = Therapist
+job-name-therapist = Psychiatrist
 job-description-therapist = Provide mental health support and counseling to crew members and passengers. Your role is essential in maintaining the psychological well-being of everyone on board. As a therapist, you have access to confidential information and are often the first to know about personal struggles. You also receive a bonus to your Payward Incentive for being in such an important role!
 job-supervisors-therapist = the Frontier Wellness Council, and horny people everywhere
