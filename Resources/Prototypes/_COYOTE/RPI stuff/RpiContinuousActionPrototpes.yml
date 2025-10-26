@@ -29,7 +29,7 @@
 - type: rpiContinuousProxyAction
   id: rpiContinuousProxyActionLikesShuttleConsoles
   minutesToMaxBonus: 20
-  maxMultiplier: 5.0
+  maxMultiplier: 3.0
   maxDistance: 2.0
   optimalDistance: 1.0
   optimalDistanceBonusMultiplier: 1.0
