@@ -49,7 +49,7 @@
     defaultTarget: pipebomb
 
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, BaseC2ExpeditionContraband] #Coyote Added BaseC2ExpeditionContraband
   id: PipeBombCable
   name: pipe bomb
   description: An improvised explosive made from a pipe. This one has no cable.
