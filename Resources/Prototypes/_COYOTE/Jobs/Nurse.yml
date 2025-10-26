@@ -50,6 +50,29 @@
   storage:
     back:
     - EncryptionKeyMedical
+    - ShipVoucherCoyoteNurse
+
+# Food Service Ship Voucher
+- type: entity
+  parent: BaseShipVoucher
+  id: ShipVoucherCoyoteNurse
+  name: nurse ship voucher
+  description: Allows for one (1) free rental of some entry level medical ships!
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+    - state: vouchervalet
+  - type: Item
+    heldPrefix: blue
+  - type: ShipyardVoucher
+    destroyOnEmpty: true
+    consoleType: Sr
+    useAnywhere: true
+    vessels:
+    - Placebo
+    - Spirit
+    - Tyne
 
 # Food Service Role Loadout
 - type: roleLoadout

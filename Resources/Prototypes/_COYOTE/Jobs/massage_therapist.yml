@@ -70,6 +70,8 @@
     useAnywhere: true
     vessels:
     - Placebo
+    - Camper
+    - Nook
 
 # Food Service Role Loadout
 - type: roleLoadout
