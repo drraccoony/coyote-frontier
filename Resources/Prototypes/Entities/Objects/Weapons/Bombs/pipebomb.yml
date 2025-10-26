@@ -1,5 +1,5 @@
 - type: entity
-  parent: [GrenadeBase, BaseC2ContrabandUnredeemable] # Frontier: Added BaseC2ContrabandUnredeemable
+  parent: [GrenadeBase, BaseC2ExpeditionContraband] # Frontier: Added BaseC2ContrabandUnredeemable # Coyote Changed to BaseC2ExpeditionContraband
   id: PipeBomb
   name: pipe bomb
   description: An improvised explosive made from pipes and wire.
