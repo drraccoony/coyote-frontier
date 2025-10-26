@@ -10,7 +10,7 @@
     - type: Stomach
     - type: Metabolizer
       maxReagents: 3
-      metabolizerTypes: [ Slime ]
+      metabolizerTypes: [ Slime, Animal, Goblin, Moth ] # Coyote edit, makes slimes able to eat everything
       removeEmpty: true
       groups:
         - id: Food
