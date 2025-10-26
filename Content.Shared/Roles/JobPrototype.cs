@@ -190,15 +190,6 @@ namespace Content.Shared.Roles
         [DataField]
         public float RolePlayIncentiveMultiplier = 1.0f;
 
-        /// <summary>
-        /// RPI-based continuous action prototypes associated with this job.
-        /// </summary>
-        [DataField]
-        public List<ProtoId<RpiContinuousProxyActionPrototype>> RpiContinuousActions = new()
-        {
-            "RpiContinuousActionLikesPirates",
-        };
-
     }
 
     /// <summary>
