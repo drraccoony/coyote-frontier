@@ -10,7 +10,7 @@
     - type: Stomach
     - type: Metabolizer
       maxReagents: 6
-      metabolizerTypes: [ Slime ]
+      metabolizerTypes: [ Slime, Animal, Goblin, Moth ] # Coyote edit, makes slimes able to eat everything
       removeEmpty: true
       groups:
         - id: Food
@@ -38,7 +38,7 @@
       size: Small
       heldPrefix: brain
 
-      
+
 - type: entity
   id: OrganSlimeLungs
   parent: BaseHumanOrgan
