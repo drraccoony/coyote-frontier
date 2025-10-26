@@ -33,7 +33,7 @@
     node: pipebomb
 
 - type: entity
-  parent: [BaseItem, BaseC2ContrabandUnredeemable] # Frontier: Added BaseC2ContrabandUnredeemable
+  parent: [BaseItem, BaseC2ExpeditionContraband] # Frontier: Added BaseC2ContrabandUnredeemable # Coyote Changed to BaseC2ExpeditionContraband
   id: PipeBombGunpowder
   name: pipe bomb
   description: An improvised explosive made from a pipe. This one has no gunpowder.
