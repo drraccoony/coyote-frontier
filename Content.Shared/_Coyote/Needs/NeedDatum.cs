@@ -444,7 +444,7 @@ public sealed class NeedDatum
     /// <summary>
     /// Modifies the RPI event multiplier based on the current threshold
     /// </summary>
-    public void ModifyRpiEvent(ref GetRoleplayIncentiveModifier ev)
+    public void ModifyRpiEvent(ref GetRpiModifier ev)
     {
         if (RpiModifiers.TryGetValue(GetCurrentThreshold(), out var modifier))
         {

@@ -1,18 +1,17 @@
+using Content.Server._Coyote;
 using Content.Shared.Chat;
-using Content.Shared.Radio;
 
 namespace Content.Shared._Coyote.RolePlayIncentiveShared;
 
 /// <summary>
-/// This is the event raised when a roleplay incentive action is taken.
+/// This is the event raised when a chat action is taken.
 /// </summary>
-public sealed class RoleplayIncentiveEvent(
+public sealed class RpiChatEvent(
     EntityUid source,
     ChatChannel channel,
     string message,
     int peoplePresent = 0
-    )
-    : EntityEventArgs
+    ) : EntityEventArgs
 {
     public readonly EntityUid Source = source;
     public readonly ChatChannel Channel = channel;

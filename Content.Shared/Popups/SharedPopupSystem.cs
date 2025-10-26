@@ -50,7 +50,11 @@ namespace Content.Shared.Popups
         /// <param name="message">The message to display.</param>
         /// <param name="coordinates">The coordinates where to display the message.</param>
         /// <param name="type">Used to customize how this popup should appear visually.</param>
-        public abstract void PopupCoordinates(string? message, EntityCoordinates coordinates, PopupType type = PopupType.Small);
+        /// <param name="suppressChat">If true, this popup will not be sent to chat even if the user has that enabled.</param>
+        public abstract void PopupCoordinates(string? message,
+            EntityCoordinates coordinates,
+            PopupType type = PopupType.Small,
+            bool suppressChat = false);
 
         /// <summary>
         ///     Filtered variant of <see cref="PopupCoordinates(string, EntityCoordinates, PopupType)"/>, which should only be used
@@ -58,17 +62,31 @@ namespace Content.Shared.Popups
         /// </summary>
         /// <param name="filter">Filter for the players that will see the popup.</param>
         /// <param name="recordReplay">If true, this pop-up will be considered as a globally visible pop-up that gets shown during replays.</param>
-        public abstract void PopupCoordinates(string? message, EntityCoordinates coordinates, Filter filter, bool recordReplay, PopupType type = PopupType.Small);
+        /// <param name="suppressChat">If true, this popup will not be sent to chat even if the user has that enabled.</param>
+        public abstract void PopupCoordinates(string? message,
+            EntityCoordinates coordinates,
+            Filter filter,
+            bool recordReplay,
+            PopupType type = PopupType.Small,
+            bool suppressChat = false);
 
         /// <summary>
         ///     Variant of <see cref="PopupCoordinates(string, EntityCoordinates, PopupType)"/> that sends a pop-up to the player attached to some entity.
         /// </summary>
-        public abstract void PopupCoordinates(string? message, EntityCoordinates coordinates, EntityUid recipient, PopupType type = PopupType.Small);
+        public abstract void PopupCoordinates(string? message,
+            EntityCoordinates coordinates,
+            EntityUid recipient,
+            PopupType type = PopupType.Small,
+            bool suppressChat = false);
 
         /// <summary>
         ///     Variant of <see cref="PopupCoordinates(string, EntityCoordinates, PopupType)"/> that sends a pop-up to a specific player.
         /// </summary>
-        public abstract void PopupCoordinates(string? message, EntityCoordinates coordinates, ICommonSession recipient, PopupType type = PopupType.Small);
+        public abstract void PopupCoordinates(string? message,
+            EntityCoordinates coordinates,
+            ICommonSession recipient,
+            PopupType type = PopupType.Small,
+            bool suppressChat = false);
 
         /// <summary>
         ///    Variant of <see cref="PopupCoordinates(string, EntityCoordinates, PopupType)"/> for use with prediction. The local client will
@@ -83,23 +101,41 @@ namespace Content.Shared.Popups
         /// <param name="message">The message to display.</param>
         /// <param name="uid">The UID of the entity.</param>
         /// <param name="type">Used to customize how this popup should appear visually.</param>
-        public abstract void PopupEntity(string? message, EntityUid uid, PopupType type=PopupType.Small);
+        /// <param name="suppressChat">If true, this popup will not be sent to chat even if the user has that enabled.</param>
+        public abstract void PopupEntity(
+            string? message,
+            EntityUid uid,
+            PopupType type = PopupType.Small,
+            bool suppressChat = false);
 
         /// <summary>
         ///     Variant of <see cref="PopupEntity(string, EntityUid, PopupType)"/> that shows the popup only to some specific client.
         /// </summary>
-        public abstract void PopupEntity(string? message, EntityUid uid, EntityUid recipient, PopupType type = PopupType.Small);
+        public abstract void PopupEntity(string? message,
+            EntityUid uid,
+            EntityUid recipient,
+            PopupType type = PopupType.Small,
+            bool suppressChat = false);
 
         /// <summary>
         ///     Variant of <see cref="PopupEntity(string, EntityUid, PopupType)"/> that shows the popup only to some specific client.
         /// </summary>
-        public abstract void PopupEntity(string? message, EntityUid uid, ICommonSession recipient, PopupType type = PopupType.Small);
+        public abstract void PopupEntity(string? message,
+            EntityUid uid,
+            ICommonSession recipient,
+            PopupType type = PopupType.Small,
+            bool suppressChat = false);
 
         /// <summary>
         ///     Filtered variant of <see cref="PopupEntity(string, EntityUid, PopupType)"/>, which should only be used
         ///     if the filtering has to be more specific than simply PVS range based.
         /// </summary>
-        public abstract void PopupEntity(string? message, EntityUid uid, Filter filter, bool recordReplay, PopupType type = PopupType.Small);
+        public abstract void PopupEntity(string? message,
+            EntityUid uid,
+            Filter filter,
+            bool recordReplay,
+            PopupType type = PopupType.Small,
+            bool suppressChat = false);
 
         /// <summary>
         /// Variant of <see cref="PopupCursor(string, EntityUid, PopupType)"/> that only runs on the client, outside of prediction.
@@ -156,10 +192,19 @@ namespace Content.Shared.Popups
 
         public PopupType Type { get; }
 
+        public bool SuppressChat { get; init; } = false;
+
         protected PopupEvent(string message, PopupType type)
         {
             Message = message;
             Type = type;
+        }
+
+        protected PopupEvent(string message, PopupType type, bool suppressChat)
+        {
+            Message = message;
+            Type = type;
+            SuppressChat = suppressChat;
         }
     }
 
@@ -186,6 +231,11 @@ namespace Content.Shared.Popups
         {
             Coordinates = coordinates;
         }
+
+        public PopupCoordinatesEvent(string message, PopupType type, NetCoordinates coordinates, bool suppressChat) : base(message, type, suppressChat)
+        {
+            Coordinates = coordinates;
+        }
     }
 
     /// <summary>
@@ -197,6 +247,11 @@ namespace Content.Shared.Popups
         public NetEntity Uid { get; }
 
         public PopupEntityEvent(string message, PopupType type, NetEntity uid) : base(message, type)
+        {
+            Uid = uid;
+        }
+
+        public PopupEntityEvent(string message, PopupType type, NetEntity uid, bool suppressChat) : base(message, type, suppressChat)
         {
             Uid = uid;
         }

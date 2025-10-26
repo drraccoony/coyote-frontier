@@ -29,9 +29,9 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
-  - !type:AddComponentSpecial
-    components:
-    - type: CoolNfsd
+  - !type:AddRpiJobModifierSpecial
+    modifiersToAdd:
+    - rpiJobModifierBrigMedic
 
 - type: startingGear
   id: BrigmedicGear

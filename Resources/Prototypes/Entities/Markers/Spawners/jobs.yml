@@ -227,7 +227,7 @@
   id: SpawnPointChaplain
   parent: SpawnPointJobBase
   name: chaplain
-  categories: [ HideSpawnMenu ] # Frontier
+#  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: SpawnPoint
     job_id: Chaplain

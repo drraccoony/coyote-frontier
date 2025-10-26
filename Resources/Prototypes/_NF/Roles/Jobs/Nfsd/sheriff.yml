@@ -44,10 +44,12 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:AddRpiJobModifierSpecial
+    modifiersToAdd:
+    - rpiJobModifierSheriff
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
-      - type: CoolSheriff
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
