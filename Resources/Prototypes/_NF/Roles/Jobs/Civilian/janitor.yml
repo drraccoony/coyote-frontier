@@ -42,3 +42,4 @@
     back:
     - EncryptionKeyService
     - ShipVoucherFrontierJanitor
+    - TrashBag
