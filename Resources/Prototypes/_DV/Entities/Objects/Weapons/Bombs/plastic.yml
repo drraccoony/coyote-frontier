@@ -1,13 +1,12 @@
 - type: entity
   name: breaching charge
   description: A breaching explosive for security officers to break through walls.
-  parent:
-  - SeismicCharge
-  - BaseC2ContrabandUnredeemable # Frontier: added BaseC2ContrabandUnredeemable
+  parent: [SeismicCharge, BaseC2ContrabandUnredeemable] # Frontier: added BaseC2ContrabandUnredeemable
   id: BreachingCharge
   components:
-  - type: Contraband
-
+  - type: Contraband # Coyote: Added this in to stop breaching charges inheriting BaseC2ExpeditionContraband from Seismic Charges, this essentially forces them to be BaseC2ContrabandUnredeemable
+    severity: Class2
+    allowedDepartments: [ Security, Command ]
   - type: Sprite
     sprite: _DV/Objects/Weapons/Bombs/breaching.rsi
     state: icon
