@@ -31,7 +31,6 @@
     - rpiChatJudgementModifierMassageChaplain
   - !type:AddComponentSpecial
     components:
-    - type: PaywardModifierERPChaplain # 2x
     - type: BibleUser #Lets them heal with bibles
 
 # play time tracker
@@ -85,7 +84,7 @@
   groups:
   - ContractorHead
   - ContractorNeck
-  - FoodServiceJumpsuit
+  - PilotJumpsuit
   - ContractorGloves
   - ContractorBackpack
   - ContractorOuterClothing

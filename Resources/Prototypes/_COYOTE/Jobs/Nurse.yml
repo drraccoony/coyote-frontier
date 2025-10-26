@@ -1,13 +1,13 @@
 # The job itself
-# massage therapist + ERPer + touchytouchy
+# Medical Nurse - ERP RPI boost, aura
 - type: job
-  id: MassageTherapist
-  name: job-name-massage-therapist
-  description: job-description-massage-therapist
-  playTimeTracker: JobMassageTherapist
-  icon: "JobIconBoxer"
-  supervisors: job-supervisors-massage-therapist
-  startingGear: MassageTherapistGear
+  id: MedicalNurse
+  name: job-name-medical-nurse
+  description: job-description-medical-nurse
+  playTimeTracker: JobMedicalNurse
+  startingGear: MedicalNurseGear
+  icon: "JobIconMedicalIntern"
+  supervisors: job-supervisors-medical-nurse
   weight: 40 # Prioritize station & department jobs
   displayWeight: 3 # idk
   access:
@@ -26,54 +26,34 @@
     prototype: FrontierBirthdayGift
   - !type:AddRpiAuraSpecial
     aurasToAdd:
-    - rpiAuraMassageTherapist
+    - rpiAuraChaplain
   - !type:RpiChatJudgementModifierSpecial
     modsToAdd:
-    - rpiChatJudgementModifierMassageTherapist
+    - rpiChatJudgementModifierMassageChaplain
 
 # play time tracker
 - type: playTimeTracker
-  id: JobMassageTherapist
+  id: JobMedicalNurse
 
 - type: entity
-  id: SpawnPointMassageTherapist
+  id: SpawnPointMedicalNurse
   parent: SpawnPointPassenger
-  name: massage therapist spawn point
+  name: nurse spawn point
   components:
   - type: SpawnPoint
-    job_id: MassageTherapist
+    job_id: MedicalNurse
+
 
 # starting gear
 - type: startingGear
-  id: MassageTherapistGear
+  id: MedicalNurseGear
   storage:
     back:
-    - EncryptionKeyService
-    - ShipVoucherCoyoteMassageTherapist
-
-# Food Service Ship Voucher
-- type: entity
-  parent: BaseShipVoucher
-  id: ShipVoucherCoyoteMassageTherapist
-  name: massage therapist ship voucher
-  description: Allows for one (1) free rental of the cute and therapeutic Placebo!
-  components:
-  - type: Sprite
-    layers:
-    - state: blue
-    - state: vouchervalet
-  - type: Item
-    heldPrefix: blue
-  - type: ShipyardVoucher
-    destroyOnEmpty: true
-    consoleType: Sr
-    useAnywhere: true
-    vessels:
-    - Placebo
+    - EncryptionKeyMedical
 
 # Food Service Role Loadout
 - type: roleLoadout
-  id: JobMassageTherapist
+  id: JobMedicalNurse
   groups:
   - ContractorHead
   - ContractorNeck

@@ -38,6 +38,7 @@
   - Journalist # Frontier # Frontier
   - MassageTherapist # Frontier
   - Chaplain # Frontier
+  - MedicalNurse # Frontier
 
 - type: department
   id: CentralCommand

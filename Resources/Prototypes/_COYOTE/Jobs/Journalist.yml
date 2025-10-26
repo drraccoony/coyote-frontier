@@ -32,7 +32,6 @@
     - rpiChatJudgementModifierJournalist
   - !type:AddComponentSpecial
     components:
-    - type: PaywardModifierERPJournalist # 2x
     - type: PaywardActionNewsArticleCreation # basically this
       # they have a ship, thats their office
 
@@ -83,7 +82,7 @@
   groups:
   - ContractorHead
   - ContractorNeck
-  - FoodServiceJumpsuit
+  - PilotJumpsuit
   - ContractorGloves
   - ContractorBackpack
   - ContractorOuterClothing
