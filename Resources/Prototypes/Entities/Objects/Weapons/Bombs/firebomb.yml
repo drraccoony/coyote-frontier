@@ -57,7 +57,7 @@
 
 # has igniter but no fuel or wires
 - type: entity
-  parent: [DrinkColaCanEmpty, BaseC2ContrabandUnredeemable] # Frontier: Added BaseC2ContrabandUnredeemable
+  parent: [DrinkColaCanEmpty, BaseC2ExpeditionContraband] # Frontier: Added BaseC2ContrabandUnredeemable # Coyote Changed to BaseC2ExpeditionContraband
   id: FireBombEmpty
   name: fire bomb
   suffix: empty
