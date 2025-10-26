@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 08/20/2025 22:05:01
-  entityCount: 9394
+  time: 10/26/2025 20:29:58
+  entityCount: 9400
 maps:
 - 1
 grids:
@@ -279,7 +279,7 @@ entities:
     - type: SpreaderGrid
     - type: CryoBraindeads
     - type: Shuttle
-      dampingModifier: 0.25
+      dampingModifier: 2
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -7647,7 +7647,7 @@ entities:
       pos: -4.5,2.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -100802.19
+      secondsUntilStateChange: -100878.086
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -27405,11 +27405,35 @@ entities:
     - type: Transform
       pos: 15.5,-6.5
       parent: 2
+    - type: DeviceLinkSource
+      linkedPorts: {}
+      lastSignals: {}
+      ports:
+      - device-button-1
+      - device-button-2
+      - device-button-3
+      - device-button-4
+      - device-button-5
+      - device-button-6
+      - device-button-7
+      - device-button-8
   - uid: 3800
     components:
     - type: Transform
       pos: 14.5,-6.5
       parent: 2
+    - type: DeviceLinkSource
+      linkedPorts: {}
+      lastSignals: {}
+      ports:
+      - device-button-1
+      - device-button-2
+      - device-button-3
+      - device-button-4
+      - device-button-5
+      - device-button-6
+      - device-button-7
+      - device-button-8
 - proto: ComputerTabletopSolarControl
   entities:
   - uid: 3801
@@ -27857,7 +27881,7 @@ entities:
       pos: 41.5,-8.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -11094.653
+      secondsUntilStateChange: -11170.549
       state: Opening
   - uid: 4408
     components:
@@ -31789,7 +31813,7 @@ entities:
       pos: 48.5,1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -4207.764
+      secondsUntilStateChange: -4283.6597
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -53159,6 +53183,13 @@ entities:
     - type: Transform
       pos: 0.5,3.5
       parent: 2
+- proto: SpawnPointChaplain
+  entities:
+  - uid: 9399
+    components:
+    - type: Transform
+      pos: -6.5,30.5
+      parent: 2
 - proto: SpawnPointContractor
   entities:
   - uid: 7616
@@ -53191,6 +53222,13 @@ entities:
     - type: Transform
       pos: 16.5,42.5
       parent: 2
+- proto: SpawnPointCurator
+  entities:
+  - uid: 9400
+    components:
+    - type: Transform
+      pos: -6.5,29.5
+      parent: 2
 - proto: SpawnPointFoodService
   entities:
   - uid: 7622
@@ -53212,6 +53250,13 @@ entities:
     components:
     - type: Transform
       pos: -2.5,12.5
+      parent: 2
+- proto: SpawnPointJournalist
+  entities:
+  - uid: 9395
+    components:
+    - type: Transform
+      pos: -6.5,34.5
       parent: 2
 - proto: SpawnPointLatejoin
   entities:
@@ -53241,6 +53286,20 @@ entities:
     components:
     - type: Transform
       pos: -4.5,-7.5
+      parent: 2
+- proto: SpawnPointMassageTherapist
+  entities:
+  - uid: 9397
+    components:
+    - type: Transform
+      pos: -6.5,32.5
+      parent: 2
+- proto: SpawnPointMedicalNurse
+  entities:
+  - uid: 9396
+    components:
+    - type: Transform
+      pos: -6.5,33.5
       parent: 2
 - proto: SpawnPointMercenary
   entities:
@@ -53313,6 +53372,13 @@ entities:
     components:
     - type: Transform
       pos: 15.5,-7.5
+      parent: 2
+- proto: SpawnPointTherapist
+  entities:
+  - uid: 9398
+    components:
+    - type: Transform
+      pos: -6.5,31.5
       parent: 2
 - proto: SpawnPointValet
   entities:
