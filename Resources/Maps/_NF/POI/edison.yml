@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 06/20/2025 23:04:02
-  entityCount: 4418
+  time: 10/15/2025 16:09:23
+  entityCount: 4435
 maps: []
 grids:
 - 2
@@ -38,6 +38,7 @@ entities:
   - uid: 2
     components:
     - type: MetaData
+      name: Edison
     - type: Transform
       parent: invalid
     - type: MapGrid
@@ -154,7 +155,7 @@ entities:
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
-      dampingModifier: 0.25
+      dampingModifier: 2
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -3568,6 +3569,18 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 4272
+- proto: AmeJar
+  entities:
+  - uid: 4415
+    components:
+    - type: Transform
+      pos: -1.8743614,38.248528
+      parent: 2
+  - uid: 4416
+    components:
+    - type: Transform
+      pos: -1.5931114,38.248528
+      parent: 2
 - proto: AntiMatterFabricator
   entities:
   - uid: 519
@@ -7715,6 +7728,11 @@ entities:
     - type: Transform
       pos: -2.4444127,37.622223
       parent: 2
+  - uid: 4413
+    components:
+    - type: Transform
+      pos: -2.2493615,37.576653
+      parent: 2
 - proto: CableHV
   entities:
   - uid: 347
@@ -9024,6 +9042,11 @@ entities:
     - type: Transform
       pos: -2.4912877,37.903473
       parent: 2
+  - uid: 4412
+    components:
+    - type: Transform
+      pos: -2.2181115,37.857903
+      parent: 2
 - proto: CableMV
   entities:
   - uid: 358
@@ -10322,6 +10345,11 @@ entities:
     components:
     - type: Transform
       pos: -2.4131627,37.309723
+      parent: 2
+  - uid: 4414
+    components:
+    - type: Transform
+      pos: -2.2649865,37.279778
       parent: 2
 - proto: CableTerminal
   entities:
@@ -11886,6 +11914,20 @@ entities:
     components:
     - type: Transform
       pos: -2.5,22.5
+      parent: 2
+- proto: ComputerShipyard
+  entities:
+  - uid: 4417
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.5,-5.5
+      parent: 2
+  - uid: 4418
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,-5.5
       parent: 2
 - proto: ComputerSolarControl
   entities:
@@ -22642,6 +22684,13 @@ entities:
     - type: Transform
       pos: 5.5,41.5
       parent: 2
+- proto: PaperBin20
+  entities:
+  - uid: 3041
+    components:
+    - type: Transform
+      pos: 5.5,7.5
+      parent: 2
 - proto: PartRodMetal
   entities:
   - uid: 3757
@@ -22653,6 +22702,23 @@ entities:
     components:
     - type: Transform
       pos: -2.3975377,38.356598
+      parent: 2
+  - uid: 3812
+    components:
+    - type: Transform
+      pos: -2.3743615,38.686028
+      parent: 2
+  - uid: 3887
+    components:
+    - type: Transform
+      pos: -2.7181115,38.826653
+      parent: 2
+- proto: Pen
+  entities:
+  - uid: 1082
+    components:
+    - type: Transform
+      pos: 5.3085437,7.2154202
       parent: 2
 - proto: PlaqueAtmos
   entities:
@@ -24882,19 +24948,29 @@ entities:
     - type: Transform
       pos: -1.5,13.5
       parent: 2
-- proto: SellOnlyMothershipComputer
+- proto: SheetGlass
   entities:
-  - uid: 1082
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -3.5,-5.5
-      parent: 2
   - uid: 3752
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.5,-5.5
+      pos: -2.7181115,39.404778
+      parent: 2
+  - uid: 3810
+    components:
+    - type: Transform
+      pos: -2.3118615,39.436028
+      parent: 2
+- proto: SheetSteel
+  entities:
+  - uid: 3610
+    components:
+    - type: Transform
+      pos: -2.6868615,39.686028
+      parent: 2
+  - uid: 3612
+    components:
+    - type: Transform
+      pos: -2.3587365,39.670403
       parent: 2
 - proto: ShuttersRadiationOpen
   entities:
@@ -25550,6 +25626,25 @@ entities:
     - type: Transform
       pos: 0.5,-2.5
       parent: 2
+- proto: SprayPainter
+  entities:
+  - uid: 3052
+    components:
+    - type: Transform
+      pos: -6.5188866,11.625724
+      parent: 2
+- proto: SprayPainterAmmo
+  entities:
+  - uid: 3058
+    components:
+    - type: Transform
+      pos: -5.8313866,11.766349
+      parent: 2
+  - uid: 3607
+    components:
+    - type: Transform
+      pos: -5.8157616,11.281974
+      parent: 2
 - proto: StationMap
   entities:
   - uid: 4044
@@ -26158,6 +26253,13 @@ entities:
     components:
     - type: Transform
       pos: 10.5,37.5
+      parent: 2
+- proto: VendingMachineTankDispenserEVAPOI
+  entities:
+  - uid: 3046
+    components:
+    - type: Transform
+      pos: -6.5,12.5
       parent: 2
 - proto: VendingMachineVendomatPOI
   entities:

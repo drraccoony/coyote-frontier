@@ -55,10 +55,7 @@ reagent-effect-condition-guidebook-organ-type =
                                 *[false] is not
                            } {INDEFINITE($name)} {$name} organ
 
-reagent-effect-condition-guidebook-has-tag =
-    the target { $invert ->
-                 [true] does not have
-                 *[false] has
-                } the tag {$tag}
+reagent-effect-condition-guidebook-consent =
+    the target's consent toggle for '{ $toggle }' is set to Enabled.
 
 reagent-effect-condition-guidebook-this-reagent = this reagent

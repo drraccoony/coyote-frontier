@@ -79,6 +79,8 @@
         orGroup: Cigars
       - id: Matchbox
         amount: 2
+      - id: CigarBluespace
+        amount: 1
 
 - type: entity
   id: CrateServiceTheatre

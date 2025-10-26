@@ -95,6 +95,8 @@
   - NFBioGenTowercapSeeds
   - NFBioGenWheatSeeds
   - NFBioGenWatermelonSeeds
+  - NFBioGenHumpShroomSeeds # Floofstation
+  - NFBioGenPomegranateSeeds # Floofstation
 
 - type: latheRecipePack
   id: NFBioGenSeedsMedicalStatic
@@ -114,7 +116,7 @@
   id: NFBioGenSoil
   recipes:
   - NFBioGenHydroponicsSoilNutritionFlatpack
-  
+
 - type: latheRecipePack
   id: NFBioGenAnimalCubesStatic
   recipes:

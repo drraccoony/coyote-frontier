@@ -758,7 +758,18 @@
   name: packet of anomaly berry seeds
   id: AnomalyBerrySeeds
   components:
-    - type: Seed
-      seedId: anomalyBerry
-    - type: Sprite
-      sprite: Objects/Specific/Hydroponics/anomaly_berry.rsi
+  - type: Seed
+    seedId: anomalyBerry
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/anomaly_berry.rsi
+
+- type: entity # Floofstation
+  parent: SeedBase
+  name: packet of pomegranate seeds
+  description: "The Fruit of the Underworld"
+  id: PomegranateSeeds
+  components:
+  - type: Seed
+    seedId: pomegranate
+  - type: Sprite
+    sprite: _Floof/Objects/Specific/Hydroponics/pomegranate.rsi

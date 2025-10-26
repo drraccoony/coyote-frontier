@@ -218,6 +218,9 @@ uplink-security-emp-bundle-desc = A bundle containing a Lake type launcher and 1
 uplink-security-emp-ammo-name = EMP Projectile Ammo
 uplink-security-emp-ammo-desc = A box containing 4 EMP projectile grenades.
 
+uplink-security-emp-ammo-mags-name = EMP Grenade Cartridge
+uplink-security-emp-ammo-mags-desc = A single EMP grenade cartridge, for shipboard weapons.
+
 uplink-security-trackingdart-ammo-name = Tracking Darts Ammo
 uplink-security-trackingdart-ammo-desc = A box containing 3 tracking darts and 3 pinpointers.
 
@@ -229,6 +232,12 @@ uplink-security-contraband-forensics-module-desc = A program for scanning and re
 
 uplink-security-lasercanon-name = Laser Cannon
 uplink-security-lasercanon-desc = A heavy duty, high powered laser sniper rifle.
+
+uplink-security-hristov-name = Antimaterial Rifle
+uplink-security-hristov-desc = A heavy, antimaterial rifle.
+
+uplink-security-hristov-ammo-name = .60 Ammo Box
+uplink-security-hristov-ammo-desc = A box of .60 ammunition, for antimaterial rifles.
 
 # region Pirate
 uplink-pirate-hardsuit-name = Pirate Hardsuit
@@ -356,3 +365,6 @@ uplink-speedloader-magnum-non-ap-desc = A .45 pistol speed loader with 6 .45 pis
 
 uplink-syndicate-segway-name = Syndicate Segway
 uplink-syndicate-segway-desc = Move around in style without dirtying your blood red boots.
+
+uplink-Telecrystal = Telecrystal
+uplink-Telecrystal-desc = Telecrystals for use in Syndicate Uplinks

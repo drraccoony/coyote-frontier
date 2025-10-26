@@ -1,0 +1,40 @@
+- type: reaction
+  minTemp: 369
+  id: Libidozenithizine
+  impact: High
+  reactants:
+    Pomelustine:
+      amount: 5
+    Philterex:
+      amount: 5
+    Impedrezene:
+      amount: 5
+    Silicon:
+      amount: 5
+  products:
+    Libidozenithizine: 5
+
+- type: reaction
+  id : Formaldehyde
+  reactants:
+    Vinegar:
+      amount: 2
+    Silver:
+      amount: 1
+  products:
+    Formaldehyde: 3
+
+- type: reaction
+  id : PFCBlood
+  minTemp: 310
+  reactants:
+    Nutriment:
+      amount: 6
+    Vitamin:
+      amount: 3
+    Saline:
+      amount: 10
+    Bleach:
+      amount: 1
+  products:
+    Blood: 20

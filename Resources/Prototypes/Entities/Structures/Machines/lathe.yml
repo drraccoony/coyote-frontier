@@ -583,6 +583,9 @@
     - NFUniformSpecial # Frontier
     - NFUniformCloaks # Frontier
     - NFWallets # Frontier
+    - ClothingSocksAndSuch # Floof
+    - ClothingCollars # Floof
+    - ClothingBags # Coyote
     dynamicPacks: # Frontier
     - NFPouches # Frontier
   - type: EmagLatheRecipes

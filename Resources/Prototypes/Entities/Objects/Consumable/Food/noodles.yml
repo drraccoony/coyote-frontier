@@ -43,7 +43,7 @@
   name: spaghetti
   parent: FoodNoodlesBase
   id: FoodNoodles
-  description: Spaghetti and crushed tomatoes. Just like your abusive father used to make!
+  description: Spaghetti and crushed tomatoes. Just like your father used to make!
   components:
   - type: FlavorProfile
     flavors:

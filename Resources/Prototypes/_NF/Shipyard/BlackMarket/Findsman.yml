@@ -1,0 +1,37 @@
+# Author Info
+# GitHub: R3N0mon
+
+# Shuttle Notes:
+# Modified pathfinder for running down escaping vessels
+- type: vessel
+  id: Findsman
+  parent: BaseVesselAntag
+  name: Findsman
+  description: A Pathfinder modified to hunt down and capture people for ransom
+  price: 65000 #29313 1.25 65954.25
+  category: Small
+  group: BlackMarket
+  shuttlePath: /Maps/_NF/Shuttles/BlackMarket/Findsman.yml
+  guidebookPage: Null
+  class:
+  - Pirate
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Findsman
+  mapName: 'Findsman'
+  mapPath: /Maps/_NF/Shuttles/BlackMarket/Findsman.yml
+  minPlayers: 0
+  stations:
+    Findsman:
+      stationProto: StandardFrontierAntagVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Pathfinder {1}' # Very fake name
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            NFPirate: [ 0, 0 ]

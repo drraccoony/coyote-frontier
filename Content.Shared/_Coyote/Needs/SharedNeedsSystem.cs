@@ -15,6 +15,7 @@ using Content.Shared.Rejuvenate;
 using Content.Shared.SSDIndicator;
 using Content.Shared.StatusIcon;
 using Content.Shared.Verbs;
+using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -188,8 +189,15 @@ public abstract class SharedNeedsSystem : EntitySystem
         if (TryComp<SSDIndicatorComponent>(uid, out var ssd)
            && ssd.IsSSD)
             return true;
-        if (!_players.TryGetSessionByEntity(uid, out var _))
+        if (_players.TryGetSessionByEntity(uid, out var sesh))
+        {
+            if (sesh.Status == SessionStatus.Disconnected)
+                return true;
+        }
+        else
+        {
             return true;
+        }
         return false;
     }
 

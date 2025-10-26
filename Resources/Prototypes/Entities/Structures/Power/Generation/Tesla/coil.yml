@@ -66,6 +66,9 @@
     hitProbability: 0.5
     lightningResistance: 10
     lightningExplode: false
+    damageFromLightning: 0.03125
+    # Coyote edit - 1 strike every 2 seconds without mini balls. 6 coils in edison. Repair every 24 hours. Health is 225.
+    # 225 / ((24 * 60 * 60) / (2 * 6))
   - type: PowerNetworkBattery
     maxSupply: 1000000
     supplyRampTolerance: 1000000

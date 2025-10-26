@@ -150,3 +150,20 @@
   - StandardFrontierVessel
   - BaseStationExpeditions
   categories: [ HideSpawnMenu ]
+
+# region Frontier Depot
+- type: entity
+  id: StandardFrontierDepot
+  suffix: DEBUG # TODO: Fix this, its here to stop PrototypeSaveTest fail
+  parent:
+  - BaseStation
+  - BaseStationJobsSpawning
+  - BaseStationRecords
+  - BaseStationSiliconLawFrontierStation
+  - BaseStationDampening
+  - NFBaseStationCargo # Cargo Manifest please
+  - BaseStationCargoMarket # Ditto
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+  - type: CryoBraindeads

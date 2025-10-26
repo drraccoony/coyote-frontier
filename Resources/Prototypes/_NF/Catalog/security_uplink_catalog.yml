@@ -46,6 +46,9 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition # Coyote added Brigmedic as a job requirement for the hardsuit
+      whitelist:
+        - Brigmedic
 
 - type: listing
   id: UplinkSecurityHardsuitWarden
@@ -124,7 +127,7 @@
       whitelist:
         - Sheriff
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this hardsuit
   id: UplinkSecurityHardsuitSyndieReverseEngineered
   name:  uplink-security-hardsuit-experimental-name
   description: uplink-security-hardsuit-experimental-desc
@@ -139,9 +142,6 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Sheriff
 
 #region weapons
 - type: listing
@@ -208,7 +208,7 @@
         tags:
           - SecurityUplink
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this weapon
   id: UplinkSecurityEnforcer
   name:  uplink-security-enforcer-name
   description: uplink-security-enforcer-desc
@@ -223,13 +223,8 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this weapon
   id: UplinkSecurityLecter
   name:  uplink-security-lecter-name
   description: uplink-security-lecter-desc
@@ -244,13 +239,8 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this weapon
   id: UplinkSecurityVulcan
   name:  uplink-security-vulcan-name
   description: uplink-security-vulcan-desc
@@ -265,13 +255,50 @@
       whitelist:
         tags:
           - SecurityUplink
+
+- type: listing #Coyote added hristov to NFSD uplink
+  id: UplinkSecurityHristov
+  name:  uplink-security-hristov-name
+  description: uplink-security-hristov-desc
+  productEntity: NFWeaponRifleSniperHristovNFSD
+  icon: { sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi, state: base }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
+        - Sheriff
         - Bailiff
         - SeniorOfficer
-        - Sheriff
 
-- type: listing
+- type: listing # Coyote added hristov ammo to NFSD uplink
+  id: UplinkSecurityHristovAmmo
+  name:  uplink-security-hristov-ammo-name
+  description: uplink-security-hristov-ammo-desc
+  productEntity: NFAmmunitionBoxRifle60
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi, state: icon-60 }
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Sheriff
+        - Bailiff
+        - SeniorOfficer
+
+- type: listing # Coyote removed job restrictions for this weapon
   id: UplinkSecurityLaserCarbine
   name:  uplink-security-lasercarbine-name
   description: uplink-security-lasercarbine-desc
@@ -286,13 +313,8 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this weapon
   id: UplinkSecurityLaserCannon
   name:  uplink-security-lasercanon-name
   description: uplink-security-lasercanon-desc
@@ -307,11 +329,8 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Sheriff
 
-- type: listing
+- type: listing #Coyote removed job restrictions for this weapon
   id: UplinkSecurityDisablerSMG
   name:  uplink-security-disablersmg-name
   description: uplink-security-disablersmg-desc
@@ -326,13 +345,8 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this weapon
   id: UplinkSecurityWT550
   name:  uplink-security-wt550-name
   description: uplink-security-wt550-desc
@@ -347,12 +361,8 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - Sheriff
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this weapon
   id: UplinkSecurityEnergyGun
   name:  uplink-security-energygun-name
   description: uplink-security-energygun-desc
@@ -367,12 +377,8 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - Sheriff
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this weapon
   id: UplinkSecurityEmpRpg
   name:  uplink-security-emprpg-name
   description: uplink-security-emprpg-desc
@@ -387,9 +393,6 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Sheriff
 
 #region utililty
 - type: listing
@@ -478,7 +481,7 @@
       whitelist:
         - Sheriff
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this ammo
   id: UplinkSecurityEmpRocket
   name:  uplink-security-emprocket-name
   description: uplink-security-emprocket-desc
@@ -493,12 +496,9 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Sheriff
 
 - type: listing
-  id: UplinkSecurityThrusterKit
+  id: UplinkSecurityThrusterKit # Coyote removed job restrictions for this gear
   name:  uplink-security-thrusterkit-name
   description: uplink-security-thrusterkit-desc
   productEntity: BoxT3SuperCapacitor
@@ -512,11 +512,6 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
 
 #region magazines
 - type: listing
@@ -535,7 +530,7 @@
         tags:
           - SecurityUplink
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this ammo
   id: UplinkSecurityMagazineRifle20Overpressure
   name:  uplink-security-20riflemagazine-name
   description: uplink-security-20riflemagazine-desc
@@ -550,13 +545,8 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this ammo
   id: UplinkSecurityMagazineRifle30Overpressure
   name:  uplink-security-30riflemagazine-name
   description: uplink-security-30riflemagazine-desc
@@ -571,13 +561,8 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this ammo
   id: UplinkSecurityMagazineSubMachineGunTopMounted35Overpressure
   name:  uplink-security-wt550magazine-name
   description: uplink-security-wt550magazine-desc
@@ -592,10 +577,6 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - Sheriff
 
 - type: listing
   id: UplinkSecurityPistolMagazineRubber
@@ -613,7 +594,7 @@
         tags:
           - SecurityUplink
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this ammo
   id: UplinkSecurity20RifleMagazineRubber
   name: uplink-security-20riflemagazine-rubber-name
   description: uplink-security-20riflemagazine-rubber-desc
@@ -628,13 +609,8 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this ammo
   id: UplinkSecurity30RifleMagazineRubber
   name: uplink-security-30riflemagazine-rubber-name
   description: uplink-security-30riflemagazine-rubber-desc
@@ -649,11 +625,6 @@
       whitelist:
         tags:
         - SecurityUplink
-    - !type:BuyerJobCondition
-        whitelist:
-          - Bailiff
-          - SeniorOfficer
-          - Sheriff
 
 - type: listing
   id: UplinkSecurityHypo
@@ -695,7 +666,7 @@
         - Brigmedic
         - Sheriff
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this gear
   id: UplinkSecurityMedkit
   name:  uplink-security-medkit-name
   description: uplink-security-medkit-desc
@@ -710,10 +681,6 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Brigmedic
-        - Sheriff
 
 - type: listing
   id: UplinkSecurityInspector
@@ -763,7 +730,7 @@
         tags:
           - SecurityUplink
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this weapon
   id: UplinkSecurityCaptainSword
   name:  uplink-security-captainsword-name
   description: uplink-security-captainsword-desc
@@ -778,13 +745,8 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this gear
   id: UplinkSecurityHammer
   name:  uplink-security-hammer-name
   description: uplink-security-hammer-desc
@@ -799,11 +761,6 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
 
 - type: listing
   id: UplinkSecurityTeleShield
@@ -821,7 +778,7 @@
         tags:
           - SecurityUplink
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this gear
   id: UplinkSecurityEnergyShield
   name:  uplink-security-energyshield-name
   description: uplink-security-energyshield-desc
@@ -836,13 +793,8 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
 
-- type: listing
+- type: listing # Coyote removed job restrictions for this gear
   id: UplinkSecuritySwat
   name:  uplink-security-swat-name
   description: uplink-security-swat-desc
@@ -857,11 +809,6 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
 
 - type: listing
   id: UplinkSecuritySpeedloader
@@ -959,7 +906,7 @@
         tags:
           - SecurityUplink
 
-- type: listing
+- type: listing # Coyote removed job restrictions from this gear
   id: UplinkSecurityEmpGrenadeBox
   name:  uplink-security-empgrenade-box-name
   description: uplink-security-empgrenade-box-desc
@@ -974,11 +921,6 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
 
 - type: listing
   id: UplinkSecuritySmokeGrenadeBox
@@ -1028,7 +970,7 @@
         tags:
           - SecurityUplink
 
-- type: listing
+- type: listing # Coyote removed job restriction from this gear
   id: UplinkSecurityBreachingChargesBox
   name:  uplink-security-breachingcharge-box-name
   description: uplink-security-breachingcharge-box-desc
@@ -1043,13 +985,8 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
 
-- type: listing
+- type: listing # Coyote removed job restriction from this gear
   id: UplinkSecurityHoverbikeNfsdFlatpack
   name:  uplink-security-hoverbike-name
   description: uplink-security-hoverbike-desc
@@ -1064,11 +1001,6 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
 
 - type: listing
   id: UplinkSecurityLethalArmory
@@ -1160,6 +1092,22 @@
         tags:
           - SecurityUplink
 
+- type: listing # Coyote added EMP grenade mags for ship weapons
+  id: UplinkSecurityEmpGrenadeAmmoMags
+  name:  uplink-security-emp-ammo-mags-name
+  description: uplink-security-emp-ammo-mags-desc
+  productEntity: NFMagazineGrenadeEMP
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Grenade/grenade_cartridge.rsi, state: icon}
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
 - type: listing
   id: UplinkSecurityTrackingDartsAmmo
   name:  uplink-security-trackingdart-ammo-name
@@ -1192,7 +1140,7 @@
         tags:
           - SecurityUplink
 
-- type: listing
+- type: listing # Coyote added Bailiff and Senior Officer jobs to this gear
   id: UplinkSecurityContrabandForensicsModule
   name:  uplink-security-contraband-forensics-module-name
   description: uplink-security-contraband-forensics-module-desc
@@ -1210,3 +1158,5 @@
     - !type:BuyerJobCondition
       whitelist:
         - Sheriff
+        - Bailiff
+        - SeniorOfficer

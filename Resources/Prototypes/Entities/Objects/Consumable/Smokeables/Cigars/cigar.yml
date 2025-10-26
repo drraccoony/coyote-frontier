@@ -71,3 +71,43 @@
     solutions:
       smokable:
         maxVol: 20
+
+- type: entity # Floofstation
+  id: CigarBluespace
+  parent: Cigar
+  name: Bluespace Cigar
+  description: A cigar designed using bluespace technology for nicotine addicts and the most hedonistic of smokers.
+  components:
+  - type: Sprite
+    sprite: Objects/Consumable/Smokeables/Cigars/cigar-gold.rsi # Placeholder - Will glow blue
+    state: unlit-icon
+  - type: Clothing
+    sprite: Objects/Consumable/Smokeables/Cigars/cigar-gold.rsi
+    slots: [ mask ]
+    equippedPrefix: unlit
+  - type: Item
+    size: Tiny
+  - type: StaticPrice
+    price: 500
+    vendPrice: 2000
+  - type: SolutionContainerManager
+    solutions:
+      smokable:
+        maxVol: 6480
+        reagents:
+        - ReagentId: Nicotine
+          Quantity: 6480 # 12 hours
+
+- type: entity # If somehow, 12 hours pass
+  id: CigarBluespaceSpent
+  parent: CigarBluespace
+  suffix: spent
+  components:
+  - type: Sprite
+    state: burnt-icon
+  - type: Smokable
+    state: Burnt
+  - type: SolutionContainerManager
+    solutions:
+      smokable:
+        maxVol: 6480

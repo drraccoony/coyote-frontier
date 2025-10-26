@@ -64,12 +64,12 @@
 
 - type: cargoProduct
   id: EngineSingularityCollector
-  abstract: true # Frontier
+  #abstract: true # Frontier - Coyote edit
   icon:
     sprite: Structures/Power/Generation/Singularity/collector.rsi
     state: ca_on
   product: CrateEngineeringSingularityCollector
-  cost: 1000
+  cost: 24000 # Coyote Edit - smallish money sink as those essentially require a setup to generate power from various radiation sources - Requires more setup and occassional refill with plasma
   category: cargoproduct-category-name-engineering
   group: market
 
@@ -107,7 +107,7 @@
 
 - type: cargoProduct
   id: EngineTeslaCoil
-  abstract: true # Frontier
+  #abstract: true # Frontier - Coyote edit
   icon:
     sprite: Structures/Power/Generation/Tesla/coil.rsi
     state: coil

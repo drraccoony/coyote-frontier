@@ -102,9 +102,9 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.6
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.7
         Heat: 0.8
         Radiation: 0.3
         Caustic: 0.5
@@ -274,12 +274,12 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.6
-        Piercing: 0.6
-        Heat: 0.60
-        Radiation: 0.50
-        Caustic: 0.7
+        Blunt: 0.5 # Coyote 0.6<0.5
+        Slash: 0.5 # Coyote 0.6<0.5
+        Piercing: 0.5 # Coyote 0.6<0.5
+        Heat: 0.50 # Coyote 0.60<0.50
+        Radiation: 0.4 # Coyote 0.5<0.4
+        Caustic: 0.6 # Coyote 0.7<0.6
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.75
@@ -338,7 +338,7 @@
     lowPressureMultiplier: 1000
   - type: ClothingSpeedModifier
     walkModifier: 0.9
-    sprintModifier: 0.9
+    sprintModifier: 0.8
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitScaf

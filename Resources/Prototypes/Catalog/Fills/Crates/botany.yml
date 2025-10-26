@@ -20,6 +20,8 @@
         amount: 2
       - id: BungoSeeds
         amount: 2
+      - id: HumpShroomSeeds # Floof - Botany  Additions
+        amount: 2
 
 - type: entity
   id: CrateHydroponicsSeedsMedicinal
@@ -92,6 +94,7 @@
       - id: WatermelonSeeds
       - id: PeaSeeds
       - id: CherrySeeds
+      - id: PomegranateSeeds # Floof - Botany  Additions
 
 - type: entity
   id: CrateHydroponicsTray

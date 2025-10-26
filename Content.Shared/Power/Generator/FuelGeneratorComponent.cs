@@ -59,7 +59,7 @@ public sealed partial class FuelGeneratorComponent : Component
     /// A constant used to calculate fuel efficiency in relation to target power output and optimal power output
     /// </summary>
     [DataField]
-    public float FuelEfficiencyConstant = 1.3f;
+    public float ClockstepConstant = 10_000f;
 
     /// <summary>
     /// Frontier - Strength of the radiation source in rads per watt.

@@ -1,3 +1,4 @@
+#region Portable Generators
 # Base generator for powered on, anchored versions for shuttles
 - type: entity
   id: BaseGeneratorShuttle
@@ -32,7 +33,7 @@
     storage:
       FuelGradeUranium: 1000
 
-- type: entity
+- type: entity # Coyote tweaked
   parent:
   - BaseGeneratorShuttle
   - PortableGeneratorJrPacman
@@ -42,22 +43,23 @@
     - type: SolutionContainerManager
       solutions:
         tank:
-          maxVol: 200 # Frontier - 50<200
+          maxVol: 400
           reagents:
           - ReagentId: WeldingFuel
-            Quantity: 70 # Frontier - 35<70
+            Quantity: 140
 
-- type: entity
+#region D-K
+- type: entity # Coyote tweaked
   name: D-K portable generator
   description: |-
     A prototype Dunn-Kikko fission reactor. Use with caution.
-    Runs off bananium and is rated for up to 120 kW.
+    Runs off bananium and is rated for up to 140 kW.
     Highly radioactive without protection.
   parent:
   - PortableGeneratorSuperPacman
-  - BaseC2ContrabandUnredeemable # Need a doctor's note to run this.
+  - BaseC1Contraband
   id: PortableGeneratorDK
-  suffix: Bananium, Rad+, 60 kW
+  suffix: Bananium, Rad+, 40-140(80) kW
   components:
     - type: Sprite
       sprite: _NF/Structures/Power/Generation/portable_generator.rsi
@@ -80,14 +82,12 @@
     - type: Machine
       board: PortableGeneratorDKMachineCircuitboard
     - type: FuelGenerator
-      minTargetPower: 10000
-      maxTargetPower: 120000 # 12 rad/s at full output, _just_ safe directly behind a reinforced wall
-      targetPower: 60000
-      optimalPower: 60000
-      # ~22 minutes per stack at full power - 80 kJ per stack, 240 kJ per 30 units
+      minTargetPower: 40000
+      maxTargetPower: 140000
+      targetPower: 80000
+      optimalPower: 80000
       optimalBurnRate: 0.0075
-      # leaky, worse power curve
-      fuelEfficiencyConstant: 0.5
+      clockstepConstant: 25000
       radiationColor: "#00bfff"
     - type: SolidFuelGeneratorAdapter
       fuelMaterial: FuelGradeBananium
@@ -124,24 +124,25 @@
   - BaseGeneratorShuttle
   - PortableGeneratorDK
   id: PortableGeneratorDKShuttle
-  suffix: Bananium, Rad+, 60 kW, Ship
+  suffix: Bananium, Rad+, 80 kW, Ship
   categories: [ HideSpawnMenu ] # Mm, start-on rad source
   components:
     - type: MaterialStorage
       storage:
         FuelGradeBananium: 1000
 
-- type: entity
+#region D-K Jr.
+- type: entity # Coyote tweaked
   name: D-K Jr. portable generator
   description: |-
     A miniaturized Dunn-Kikko fission reactor. Use with caution.
     Runs off bananium and is rated for up to 100 kW.
     Quite radioactive without protection.
   parent:
-  - BaseC1Contraband # Mildly illegal. Just enough to add some spice to your life.
   - PortableGeneratorDK
+  - BaseC1Contraband
   id: PortableGeneratorDKJr
-  suffix: Bananium, Rad-, 60 kW
+  suffix: Bananium, Rad-, 20-90(60) kW
   components:
     - type: Sprite
       sprite: Structures/Power/Generation/portable_generator.rsi
@@ -164,10 +165,12 @@
     - type: Machine
       board: PortableGeneratorDKJrMachineCircuitboard
     - type: FuelGenerator
-      maxTargetPower: 100000
-      # still decent power curve
-      fuelEfficiencyConstant: 0.75
-      radiationIntensity: 0.00004 # 4 rad/s at full output, 2.4 at optimal settings
+      minTargetPower: 20000
+      maxTargetPower: 90000
+      targetPower: 60000
+      optimalPower: 60000
+      clockstepConstant: 20000
+      radiationIntensity: 0.00004 # 3.6 rad/s at full output, 2.4 at optimal settings
     - type: PowerMonitoringDevice
       sprite: Structures/Power/Generation/portable_generator.rsi
       state: portgen2

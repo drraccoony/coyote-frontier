@@ -937,3 +937,21 @@
   icon:
     sprite: Objects/Specific/Hydroponics/fly_amanita.rsi
     state: seed
+
+# region ERP
+
+- type: latheRecipe # Floofstation
+  id: NFBioGenHumpShroomSeeds
+  parent: BioGenSeedsRecipe
+  result: HumpShroomSeeds
+  icon:
+    sprite: _Floof/Objects/Specific/Hydroponics/humpshroom.rsi
+    state: seed
+
+- type: latheRecipe # Floofstation
+  id: NFBioGenPomegranateSeeds
+  parent: BioGenSeedsRecipe
+  result: PomegranateSeeds
+  icon:
+    sprite: _Floof/Objects/Specific/Hydroponics/pomegranate.rsi
+    state: seed

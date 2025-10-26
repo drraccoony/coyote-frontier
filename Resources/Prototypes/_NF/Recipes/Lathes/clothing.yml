@@ -1260,6 +1260,11 @@
   result: ClothingEyesHudBountyHunter
 
 - type: latheRecipe
+  id: ClothingEyesHudBountyHunterPatch
+  parent: NFBaseWearableDeviceRecipe
+  result: ClothingEyesHudBountyHunterPatch
+
+- type: latheRecipe
   id: ClothingEyesPunkGoggles
   parent: NFBaseWearableDeviceRecipe
   result: ClothingEyesPunkGoggles

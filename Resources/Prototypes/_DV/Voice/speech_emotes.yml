@@ -2,7 +2,7 @@
 - type: emote
   id: HarpyHonk
   name: delta-chat-emote-name-honk
-  category: Vocal
+  category: Harpy
   available: false
   whitelist:
     components:
@@ -20,7 +20,7 @@
 - type: emote
   id: HarpyRing
   name: delta-chat-emote-name-ring
-  category: Vocal
+  category: Harpy
   available: false
   whitelist:
     components:
@@ -39,7 +39,7 @@
 - type: emote
   id: HarpyPew
   name: delta-chat-emote-name-pew
-  category: Vocal
+  category: Harpy
   available: false
   whitelist:
     components:
@@ -56,7 +56,7 @@
 - type: emote
   id: HarpyBang
   name: delta-chat-emote-name-bang
-  category: Vocal
+  category: Harpy
   available: false
   whitelist:
     components:
@@ -74,7 +74,7 @@
 - type: emote
   id: HarpyBeep
   name: delta-chat-emote-name-beep
-  category: Vocal
+  category: Harpy
   available: false
   whitelist:
     components:
@@ -92,7 +92,7 @@
 - type: emote
   id: HarpyRev
   name: delta-chat-emote-name-rev
-  category: Vocal
+  category: Harpy
   available: false
   whitelist:
     components:
@@ -110,7 +110,7 @@
 - type: emote
   id: HarpyCaw
   name: delta-chat-emote-name-caw
-  category: Vocal
+  category: Harpy
   available: false
   whitelist:
     components:
@@ -129,7 +129,7 @@
 - type: emote
   id: Bark
   name: delta-chat-emote-name-bark
-  category: Vocal
+  category: Vulp
   available: false
   whitelist:
     components:
@@ -147,7 +147,7 @@
 - type: emote
   id: Snarl
   name: delta-chat-emote-name-snarl
-  category: Vocal
+  category: Vulp
   available: false
   whitelist:
     components:
@@ -165,7 +165,7 @@
 - type: emote
   id: Whine
   name: delta-chat-emote-name-whine
-  category: Vocal
+  category: Vulp
   available: false
   whitelist:
     components:
@@ -183,7 +183,7 @@
 - type: emote
   id: Howl
   name: delta-chat-emote-name-howl
-  category: Vocal
+  category: Vulp
   available: false
   whitelist:
     components:
@@ -201,7 +201,7 @@
 - type: emote
   id: Awoo
   name: delta-chat-emote-name-awoo
-  category: Vocal
+  category: Vulp
   available: false
   whitelist:
     components:

@@ -210,6 +210,12 @@ public sealed partial class CryoSleepSystem : EntitySystem
         args.Handled |= InsertBody(args.Dragged, ent, false);
     }
 
+    private void ForceCryoSleep(Entity<CryoSleepComponent> cryoComp, ref ForceCryoSleepEvent args)
+    {
+        args.Handled |= InsertBody(args.User, cryoComp, true);
+    }
+
+
     public bool InsertBody(EntityUid? toInsert, Entity<CryoSleepComponent> cryopod, bool force)
     {
         if (toInsert == null)
@@ -266,8 +272,8 @@ public sealed partial class CryoSleepSystem : EntitySystem
             RequireCanInteract = false
         };
 
-        // if (_doAfter.TryStartDoAfter(args))
-        //     cryopod.Comp.CryosleepDoAfter = ev.DoAfter.Id;
+        if (_doAfter.TryStartDoAfter(args))
+            cryopod.Comp.CryosleepDoAfter = ev.DoAfter.Id;
 
         return true;
     }
@@ -306,8 +312,8 @@ public sealed partial class CryoSleepSystem : EntitySystem
 
         RaiseLocalEvent(bodyId, new CryosleepEnterEvent(cryopod, mind?.UserId), true);
 
-        // if (cryo.CryosleepDoAfter != null && _doAfter.GetStatus(cryo.CryosleepDoAfter) == DoAfterStatus.Running)
-        //     _doAfter.Cancel(cryo.CryosleepDoAfter);
+        if (cryo.CryosleepDoAfter != null && _doAfter.GetStatus(cryo.CryosleepDoAfter) == DoAfterStatus.Running)
+            _doAfter.Cancel(cryo.CryosleepDoAfter);
 
         // set the mindcontainer's isInCryosleep to true
         if (TryComp<MindContainerComponent>(bodyId, out var mindContainer))
@@ -349,8 +355,8 @@ public sealed partial class CryoSleepSystem : EntitySystem
 
         _container.Remove(toEject.Value, component.BodyContainer, force: true);
 
-        // if (component.CryosleepDoAfter != null && _doAfter.GetStatus(component.CryosleepDoAfter) == DoAfterStatus.Running)
-        //     _doAfter.Cancel(component.CryosleepDoAfter);
+        if (component.CryosleepDoAfter != null && _doAfter.GetStatus(component.CryosleepDoAfter) == DoAfterStatus.Running)
+            _doAfter.Cancel(component.CryosleepDoAfter);
 
         // set the mindcontainer's isInCryosleep to false
         if (TryComp<MindContainerComponent>(toEject.Value, out var mindContainer))
@@ -359,17 +365,6 @@ public sealed partial class CryoSleepSystem : EntitySystem
         }
 
         return true;
-    }
-
-    public void ForceCryoSleep(EntityUid uid, CryoSleepComponent component, ref ForceCryoSleepEvent args)
-    {
-        if (IsOccupied(component))
-            return;
-
-        var user = args.User;
-        var pod = args.Cryopod;
-
-        CryoStoreBody(user, pod);
     }
 
     private bool IsOccupied(CryoSleepComponent component)
