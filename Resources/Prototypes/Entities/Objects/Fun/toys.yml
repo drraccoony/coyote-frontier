@@ -791,13 +791,25 @@
   name: nar'sie plushie
   description: A small stuffed doll of the elder goddess Nar'Sie.
   components:
-  - type: Item
-    size: Normal
   - type: Sprite
     state: narplush
   - type: FoodSequenceElement
     entries:
       CottonBurger: NarPlushie
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Misc/narsie_rises.ogg
+      params:
+        volume: -13
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: narplush-inhand-left
+        shader: unshaded
+      right:
+      - state: narplush-inhand-right
+        shader: unshaded
+
 
 - type: entity
   parent: BasePlushie
