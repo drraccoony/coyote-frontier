@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Server._Coyote;
 using Content.Server.Administration.Logs;
 using Content.Server.CartridgeLoader;
 using Content.Server.CartridgeLoader.Cartridges;
@@ -63,7 +64,7 @@ public sealed class NewsSystem : SharedNewsSystem
         SubscribeLocalEvent<NewsReaderCartridgeComponent, CartridgeMessageEvent>(OnReaderUiMessage);
         SubscribeLocalEvent<NewsReaderCartridgeComponent, CartridgeUiReadyEvent>(OnReaderUiReady);
     }
- 
+
     // Frontier: article lifecycle management
     private void OnRoundRestart(RoundRestartCleanupEvent ev)
     {
@@ -188,6 +189,9 @@ public sealed class NewsSystem : SharedNewsSystem
             ));
 
         articles.Add(article);
+
+        var rpiEvent = new RpiNewsArticleCreatedEvent(article, msg.Actor);
+        RaiseLocalEvent(msg.Actor, rpiEvent);
 
         var args = new NewsArticlePublishedEvent(article);
         var query = EntityQueryEnumerator<NewsReaderCartridgeComponent>();

@@ -12,6 +12,8 @@
   - NFJanitor
   - MailCarrier # nyano
   - SecurityGuard
+  - MedicalNurse # Frontier
+  - Therapist # Frontier
 
 - type: department
   id: Antag

@@ -45,38 +45,84 @@ namespace Content.Server.Popups
             // Do nothing, since the client already predicted the popup.
         }
 
-        public override void PopupCoordinates(string? message, EntityCoordinates coordinates, Filter filter, bool replayRecord, PopupType type = PopupType.Small)
+        public override void PopupCoordinates(string? message,
+            EntityCoordinates coordinates,
+            Filter filter,
+            bool replayRecord,
+            PopupType type = PopupType.Small,
+            bool suppressChat = false)
         {
             if (message == null)
                 return;
 
-            RaiseNetworkEvent(new PopupCoordinatesEvent(message, type, GetNetCoordinates(coordinates)), filter, replayRecord);
+            RaiseNetworkEvent(
+                new PopupCoordinatesEvent(
+                    message,
+                    type,
+                    GetNetCoordinates(coordinates),
+                    suppressChat),
+                filter,
+                replayRecord);
         }
 
-        public override void PopupCoordinates(string? message, EntityCoordinates coordinates, PopupType type = PopupType.Small)
+        public override void PopupCoordinates(string? message,
+            EntityCoordinates coordinates,
+            PopupType type = PopupType.Small,
+            bool suppressChat = false)
         {
             if (message == null)
                 return;
             var mapPos = _transform.ToMapCoordinates(coordinates);
-            var filter = Filter.Empty().AddPlayersByPvs(mapPos, entManager: EntityManager, playerMan: _player, cfgMan: _cfg);
-            RaiseNetworkEvent(new PopupCoordinatesEvent(message, type, GetNetCoordinates(coordinates)), filter);
+            var filter = Filter.Empty()
+            .AddPlayersByPvs(
+                mapPos,
+                entManager: EntityManager,
+                playerMan: _player,
+                cfgMan: _cfg);
+            RaiseNetworkEvent(
+                new PopupCoordinatesEvent(
+                    message,
+                    type,
+                    GetNetCoordinates(coordinates),
+                    suppressChat),
+                filter);
         }
 
-        public override void PopupCoordinates(string? message, EntityCoordinates coordinates, ICommonSession recipient, PopupType type = PopupType.Small)
+        public override void PopupCoordinates(string? message,
+            EntityCoordinates coordinates,
+            ICommonSession recipient,
+            PopupType type = PopupType.Small,
+            bool suppressChat = false)
         {
             if (message == null)
                 return;
 
-            RaiseNetworkEvent(new PopupCoordinatesEvent(message, type, GetNetCoordinates(coordinates)), recipient);
+            RaiseNetworkEvent(
+                new PopupCoordinatesEvent(
+                    message,
+                    type,
+                    GetNetCoordinates(coordinates),
+                    suppressChat),
+                recipient);
         }
 
-        public override void PopupCoordinates(string? message, EntityCoordinates coordinates, EntityUid recipient, PopupType type = PopupType.Small)
+        public override void PopupCoordinates(string? message,
+            EntityCoordinates coordinates,
+            EntityUid recipient,
+            PopupType type = PopupType.Small,
+            bool suppressChat = false)
         {
             if (message == null)
                 return;
 
             if (TryComp(recipient, out ActorComponent? actor))
-                RaiseNetworkEvent(new PopupCoordinatesEvent(message, type, GetNetCoordinates(coordinates)), actor.PlayerSession);
+                RaiseNetworkEvent(
+                    new PopupCoordinatesEvent(
+                        message,
+                        type,
+                        GetNetCoordinates(coordinates),
+                        suppressChat),
+                    actor.PlayerSession);
         }
 
         public override void PopupPredictedCoordinates(string? message, EntityCoordinates coordinates, EntityUid? recipient, PopupType type = PopupType.Small)
@@ -94,22 +140,47 @@ namespace Content.Server.Popups
             RaiseNetworkEvent(new PopupCoordinatesEvent(message, type, GetNetCoordinates(coordinates)), filter);
         }
 
-        public override void PopupEntity(string? message, EntityUid uid, PopupType type = PopupType.Small)
+        public override void PopupEntity(
+            string? message,
+            EntityUid uid,
+            PopupType type = PopupType.Small,
+            bool suppressChat = false)
         {
             if (message == null)
                 return;
 
-            var filter = Filter.Empty().AddPlayersByPvs(uid, entityManager: EntityManager, playerMan: _player, cfgMan: _cfg);
-            RaiseNetworkEvent(new PopupEntityEvent(message, type, GetNetEntity(uid)), filter);
+            var filter = Filter.Empty()
+                .AddPlayersByPvs(
+                    uid,
+                    entityManager: EntityManager,
+                    playerMan: _player,
+                    cfgMan: _cfg);
+            RaiseNetworkEvent(
+                new PopupEntityEvent(
+                    message,
+                    type,
+                    GetNetEntity(uid),
+                    suppressChat),
+                filter);
         }
 
-        public override void PopupEntity(string? message, EntityUid uid, EntityUid recipient, PopupType type = PopupType.Small)
+        public override void PopupEntity(string? message,
+            EntityUid uid,
+            EntityUid recipient,
+            PopupType type = PopupType.Small,
+            bool suppressChat = false)
         {
             if (message == null)
                 return;
 
             if (TryComp(recipient, out ActorComponent? actor))
-                RaiseNetworkEvent(new PopupEntityEvent(message, type, GetNetEntity(uid)), actor.PlayerSession);
+                RaiseNetworkEvent(
+                    new PopupEntityEvent(
+                        message,
+                        type,
+                        GetNetEntity(uid),
+                        suppressChat),
+                    actor.PlayerSession);
         }
 
         public override void PopupClient(string? message, EntityUid? recipient, PopupType type = PopupType.Small)
@@ -125,20 +196,42 @@ namespace Content.Server.Popups
         {
         }
 
-        public override void PopupEntity(string? message, EntityUid uid, ICommonSession recipient, PopupType type = PopupType.Small)
+        public override void PopupEntity(string? message,
+            EntityUid uid,
+            ICommonSession recipient,
+            PopupType type = PopupType.Small,
+            bool suppressChat = false)
         {
             if (message == null)
                 return;
 
-            RaiseNetworkEvent(new PopupEntityEvent(message, type, GetNetEntity(uid)), recipient);
+            RaiseNetworkEvent(
+                new PopupEntityEvent(
+                    message,
+                    type,
+                    GetNetEntity(uid),
+                    suppressChat),
+                recipient);
         }
 
-        public override void PopupEntity(string? message, EntityUid uid, Filter filter, bool recordReplay, PopupType type = PopupType.Small)
+        public override void PopupEntity(string? message,
+            EntityUid uid,
+            Filter filter,
+            bool recordReplay,
+            PopupType type = PopupType.Small,
+            bool suppressChat = false)
         {
             if (message == null)
                 return;
 
-            RaiseNetworkEvent(new PopupEntityEvent(message, type, GetNetEntity(uid)), filter, recordReplay);
+            RaiseNetworkEvent(
+                new PopupEntityEvent(
+                    message,
+                    type,
+                    GetNetEntity(uid),
+                    suppressChat),
+                filter,
+                recordReplay);
         }
 
         public override void PopupPredicted(string? message, EntityUid uid, EntityUid? recipient, PopupType type = PopupType.Small)

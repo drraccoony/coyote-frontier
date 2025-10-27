@@ -10,4 +10,4 @@ size-manipulator-consent-denied = Target does not consent to size manipulation!
 
 ## Examine text
 ent-WeaponSizeManipulator = size manipulator
-    .desc = A specialized energy weapon that can grow or shrink targets. Toggle modes by activating it in-hand or clicking on it in the world.
+    .desc = A specialized energy weapon that can grow or shrink targets. Produced by Parallax Genetech. Toggle modes by activating it in-hand.

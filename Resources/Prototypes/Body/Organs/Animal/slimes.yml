@@ -8,9 +8,17 @@
       sprite: Mobs/Species/Slime/organs.rsi
       state: brain-slime
     - type: Stomach
+      specialDigestible:
+      # Frontier: general moth digestion # Coyote edit, allows slimes to eat ClothMade and paper items.
+       tags:
+       - ClothMade
+       - Paper
+      # - Pill
+    - type: MothFood
+      # End Frontier: general moth digestion
     - type: Metabolizer
       maxReagents: 3
-      metabolizerTypes: [ Slime ]
+      metabolizerTypes: [ Slime, Animal, Goblin, Moth ] # Coyote edit, makes slimes able to eat everything
       removeEmpty: true
       groups:
         - id: Food

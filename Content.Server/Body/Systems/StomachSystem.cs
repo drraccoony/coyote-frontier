@@ -1,8 +1,10 @@
+using System.Linq;
 using Content.Server.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Body.Organ;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -35,7 +37,11 @@ namespace Content.Server.Body.Systems
         public override void Update(float frameTime)
         {
             var query = EntityQueryEnumerator<StomachComponent, OrganComponent, SolutionContainerManagerComponent>();
-            while (query.MoveNext(out var uid, out var stomach, out var organ, out var sol))
+            while (query.MoveNext(
+                       out var uid,
+                       out var stomach,
+                       out var organ,
+                       out var sol))
             {
                 if (_gameTiming.CurTime < stomach.NextUpdate)
                     continue;
@@ -43,15 +49,24 @@ namespace Content.Server.Body.Systems
                 stomach.NextUpdate += stomach.UpdateInterval;
 
                 // Get our solutions
-                if (!_solutionContainerSystem.ResolveSolution((uid, sol), DefaultSolutionName, ref stomach.Solution, out var stomachSolution))
+                if (!_solutionContainerSystem.ResolveSolution(
+                        (uid, sol),
+                        DefaultSolutionName,
+                        ref stomach.Solution,
+                        out var stomachSolution))
                     continue;
 
-                if (organ.Body is not { } body || !_solutionContainerSystem.TryGetSolution(body, stomach.BodySolutionName, out var bodySolution))
+                if (organ.Body is not { } body
+                    || !_solutionContainerSystem.TryGetSolution(
+                        body,
+                        stomach.BodySolutionName,
+                        out var bodySolution))
                     continue;
 
                 var transferSolution = new Solution();
 
                 var queue = new RemQueue<StomachComponent.ReagentDelta>();
+                UpdateTummyGurglies(stomach, stomachSolution);
                 foreach (var delta in stomach.ReagentDeltas)
                 {
                     delta.Increment(stomach.UpdateInterval);
@@ -129,6 +144,30 @@ namespace Content.Server.Body.Systems
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Sometimes, when something reacts in your stomach to make a new reagent,
+        /// It doesnt update the stomach ReagentDeltas to account for the new reagent.
+        /// This goes through all the reagents in the stomach solution and if any are missing
+        /// from the ReagentDeltas, it adds them with a lifetime of whatever is appropriate.
+        /// to keep the yummy rumbly in your tummy accurate.
+        /// </summary>
+        /// <param name="stomach"></param>
+        /// <param name="stomachSolution"></param>
+        private static void UpdateTummyGurglies(
+            StomachComponent stomach,
+            Solution stomachSolution)
+        {
+            foreach (ReagentQuantity reagent in
+                     from reagent in stomachSolution.Contents
+                     let found = stomach.ReagentDeltas.Any(delta => delta.ReagentQuantity.Reagent == reagent.Reagent)
+                     where !found
+                     select reagent) // idfk how linq works, but it seems to work, so eat me
+            {
+                // New reagent!
+                stomach.ReagentDeltas.Add(new StomachComponent.ReagentDelta(reagent));
+            }
         }
     }
 }

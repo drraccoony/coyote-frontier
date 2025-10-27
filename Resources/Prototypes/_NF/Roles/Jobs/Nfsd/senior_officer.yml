@@ -35,9 +35,6 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
-  - !type:AddComponentSpecial
-    components:
-    - type: CoolNfsd
 
 - type: startingGear
   id: SeniorOfficerGear
@@ -49,5 +46,5 @@
     - NFMagazineHighCapacityPistol35Overpressure
     - NFMagazineHighCapacityPistol35Rubber
     - BaseSecurityUplinkRadioOfficer
-    - FrontierUplinkCoin5
+    - FrontierUplinkCoin5 # Coyote added 5 FUCs to Sergeants
     - ShipVoucherNfsdSergeant

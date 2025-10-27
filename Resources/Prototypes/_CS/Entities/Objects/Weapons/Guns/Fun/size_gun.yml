@@ -2,7 +2,7 @@
   name: size manipulator
   parent: BaseWeaponBattery
   id: WeaponSizeManipulator
-  description: Zap zap. A specialized energy weapon that can grow or shrink targets.
+  description: A specialized energy weapon that can grow or shrink targets. Produced by Parallax Genetech. Toggle modes by activating it in-hand.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/taser.rsi  # Replace with custom sprite

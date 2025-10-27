@@ -26,7 +26,12 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
-      - type: CoolStationRep
+  - !type:AddRpiAuraSpecial
+    aurasToAdd:
+    - rpiAuraStationPrincess
+  - !type:AddRpiJobModifierSpecial
+    modifiersToAdd:
+    - rpiJobModifierStationPrincess
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
