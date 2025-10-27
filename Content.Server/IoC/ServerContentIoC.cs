@@ -9,6 +9,7 @@ using Content.Server.Connection;
 using Content.Server.Consent; // Floofstation
 using Content.Server.Database;
 using Content.Server.Discord;
+using Content.Server.Discord.DiscordLink;
 using Content.Server.Discord.WebhookMessages;
 using Content.Server.EUI;
 using Content.Server.GhostKick;
@@ -81,6 +82,9 @@ namespace Content.Server.IoC
             IoCManager.Register<MultiServerKickManager>();
             IoCManager.Register<CVarControlManager>();
             IoCManager.Register<MiniAuthManager>(); //Frontier
+
+            IoCManager.Register<DiscordLink>();
+            IoCManager.Register<DiscordChatLink>();
         }
     }
 }

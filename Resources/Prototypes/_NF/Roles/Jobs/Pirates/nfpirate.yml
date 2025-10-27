@@ -51,3 +51,7 @@
   storage:
     back:
     - AppraisalTool
+
+- type: chameleonOutfit
+  id: NFPirateChameleonOutfit
+  job: NFPirate

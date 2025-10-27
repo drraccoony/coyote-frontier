@@ -67,5 +67,19 @@
     - DoorRemoteNfsd
     - BaseSecurityUplinkRadioSheriff
     - RubberStampSheriff
+
+- type: chameleonOutfit
+  id: SheriffChameleonOutfit
+  job: Sheriff
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatNfsdCampaignFilled
+    mask: ClothingMaskGasSheriff
+    eyes: ClothingEyesGlassesNfsd
+    outerClothing: ClothingOuterCoatNfsdFormalSheriff
+    neck: ClothingNeckNfsdBadgeSheriff
+    belt: ClothingBeltNfsdFilled
+    gloves: ClothingHandsGlovesCombatNfsdCream
+    shoes: ClothingShoesBootsNfsdBrown
     - ShipVoucherNfsdBailiff
     - FrontierUplinkCoin5 # Coyote added 5 uplink coins to Sheriff

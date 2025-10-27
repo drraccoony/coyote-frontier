@@ -59,3 +59,15 @@ reagent-effect-condition-guidebook-consent =
     the target's consent toggle for '{ $toggle }' is set to Enabled.
 
 reagent-effect-condition-guidebook-this-reagent = this reagent
+
+reagent-effect-condition-guidebook-breathing =
+    the metabolizer is { $isBreathing ->
+                [true] breathing normally
+                *[false] suffocating
+               }
+
+reagent-effect-condition-guidebook-internals =
+    the metabolizer is { $usingInternals ->
+                [true] using internals
+                *[false] breathing atmospheric air
+               }

@@ -56,11 +56,11 @@
     sprite: Structures/Power/Generation/Tesla/coil.rsi
     state: coil
   - type: Battery
-    maxCharge: 1000000
+    maxCharge: 5000000
     startingCharge: 0
   - type: BatteryDischarger
   - type: TeslaCoil
-    chargeFromLightning: 2000000
+    chargeFromLightning: 5000000
   - type: LightningTarget
     priority: 4
     hitProbability: 0.5
@@ -70,8 +70,8 @@
     # Coyote edit - 1 strike every 2 seconds without mini balls. 6 coils in edison. Repair every 24 hours. Health is 225.
     # 225 / ((24 * 60 * 60) / (2 * 6))
   - type: PowerNetworkBattery
-    maxSupply: 1000000
-    supplyRampTolerance: 1000000
+    maxSupply: 350000
+    supplyRampTolerance: 350000
   - type: Anchorable
   - type: Rotatable
   - type: Pullable
@@ -90,6 +90,15 @@
       sprite: Structures/Power/Generation/Tesla/coil_cracks.rsi
   - type: Destructible
     thresholds:
+      - trigger: # Excess damage, don't spawn entities
+          !type:DamageTrigger
+          damage: 400
+        behaviors:
+          - !type:PlaySoundBehavior
+            sound:
+              collection: MetalBreak
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
       - trigger:
           !type:DamageTrigger
           damage: 225
@@ -176,6 +185,15 @@
       sprite: Structures/Power/Generation/Tesla/groundingrod_cracks.rsi
   - type: Destructible
     thresholds:
+      - trigger: # Excess damage, don't spawn entities
+          !type:DamageTrigger
+          damage: 600
+        behaviors:
+          - !type:PlaySoundBehavior
+            sound:
+              collection: MetalBreak
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
       - trigger:
           !type:DamageTrigger
           damage: 300
