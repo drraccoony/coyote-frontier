@@ -3,6 +3,9 @@ using Content.Shared.Physics;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
+using Robust.Shared.Map;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Dynamics.Joints;
 
 namespace Content.Client.Physics;
 
@@ -15,6 +18,8 @@ public sealed class JointVisualsOverlay : Overlay
 
     private IEntityManager _entManager;
 
+    private HashSet<Joint> _drawn = new();
+
     public JointVisualsOverlay(IEntityManager entManager)
     {
         _entManager = entManager;
@@ -22,7 +27,10 @@ public sealed class JointVisualsOverlay : Overlay
 
     protected override void Draw(in OverlayDrawArgs args)
     {
+        _drawn.Clear();
         var worldHandle = args.WorldHandle;
+        // Floofstation: fix incorrect drawing box location due to incorrect coordinate system
+        worldHandle.SetTransform(Vector2.Zero, Angle.Zero);
 
         var spriteSystem = _entManager.System<SpriteSystem>();
         var xformSystem = _entManager.System<SharedTransformSystem>();
