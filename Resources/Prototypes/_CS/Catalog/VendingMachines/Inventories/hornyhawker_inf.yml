@@ -17,6 +17,8 @@
     Zipties: 4294967295 # Infinite
     TwistTies: 4294967295 # Infinite
     LeashBasic: 4294967295 # Infinite
+    ShortLeash: 4294967295 # Infinite
+    LeashAdvanced: 4294967295 # Infinite
     ClothingOuterStraightjacketBodysuit: 4294967295 # Infinite
     # Whips & Paddles
     WhipPink: 4294967295 # Infinite
