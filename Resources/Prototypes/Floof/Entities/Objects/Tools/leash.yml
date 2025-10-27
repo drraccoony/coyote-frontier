@@ -2,33 +2,26 @@
   id: BaseLeash
   parent: BaseItem
   name: leash
-  description: Helps keep your animals or friends close to you. Attach to supported objects or clothing (such as collars) to use. You can pull attached entities while holding the leash.
-  categories: [ HideSpawnMenu ]
+  description: Helps keep your animals close to you, as well as your friends. Attach to supported object or clothing (such as collars) to use. You can pull attached entities while holding the leash.
+  noSpawn: true
   components:
   - type: Sprite
     sprite: Floof/Objects/Tools/leash.rsi
     layers:
     - state: icon
-    scale: 0.7, 0.7
   - type: Leash
-    pullInterval: 0.75
     leashSprite:
       sprite: Floof/Objects/Tools/leash-rope.rsi
       state: rope
-  - type: Anchorable
-    delay: 3
-    snap: false # The first ever entity to set this field to false! However, this doesn't seem to work :c
 
 - type: entity
   id: LeashBasic
   parent: BaseLeash
   components:
   - type: Leash
-    length: 3
-    lengthConfigs: [1.5, 2.25, 3, 4, 5]
-    maxDistance: 7
-    attachDelay: 4
-    detachDelay: 4
+    length: 3.5
+    attachDelay: 4.5 # Gotta be at least as high as cuffs or antags may abuse it
+    detachDelay: 3
     selfDetachDelay: 10
 
 - type: entity
@@ -37,7 +30,6 @@
   name: advanced leash
   components:
   - type: Leash
-    lengthConfigs: [1, 1.5, 2.25, 3, 4, 5]
     maxJoints: 3
     attachDelay: 2.5
     detachDelay: 2
@@ -51,10 +43,8 @@
   suffix: DEBUG, DO NOT MAP
   components:
   - type: Leash
-    lengthConfigs: [1, 1.5, 2.25, 3, 5, 10]
-    maxDistance: 20
-    maxJoints: 10
-    attachDelay: 2.5
-    detachDelay: 5
-    selfDetachDelay: 20
+    maxJoints: 25
+    attachDelay: 0
+    detachDelay: 10000 # will still be instant for admin ghosts or whatever with instant doafters tag
+    selfDetachDelay: 10000
     pullInterval: 0.1

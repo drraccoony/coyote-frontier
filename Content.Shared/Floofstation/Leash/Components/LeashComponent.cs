@@ -20,12 +20,6 @@ public sealed partial class LeashComponent : Component
     public float Length = 3.5f;
 
     /// <summary>
-    ///     List of possible lengths this leash may be assigned to be the user. If null, the length cannot be changed.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public float[]? LengthConfigs;
-
-    /// <summary>
     ///     Maximum distance between the anchor and the puller beyond which the leash will break.
     /// </summary>
     [DataField, AutoNetworkedField]
@@ -53,6 +47,27 @@ public sealed partial class LeashComponent : Component
     public TimeSpan PullInterval = TimeSpan.FromSeconds(1.5f);
 
     /// <summary>
+    ///     How much damage each leash joint can sustain before it breaks.
+    /// </summary>
+    /// <remarks>Not currently implemented; needs to be reworked in order to work.</remarks>
+    [DataField, AutoNetworkedField]
+    public float BreakDamage = 20f;
+
+    /// <summary>
+    ///     How much damage each leash joint loses every <see cref="DamageInterval"/>.
+    /// </summary>
+    /// <remarks>Not currently implemented; needs to be reworked in order to work.</remarks>
+    [DataField, AutoNetworkedField]
+    public float JointRepairDamage = 1f;
+
+    /// <summary>
+    ///     Interval at which damage is calculated for each joint.
+    /// </summary>
+    /// <remarks>Not currently implemented; needs to be reworked in order to work.</remarks>
+    [DataField, AutoNetworkedField]
+    public TimeSpan DamageInterval = TimeSpan.FromMilliseconds(200);
+
+    /// <summary>
     ///     List of all joints and their respective pulled entities created by this leash.
     /// </summary>
     [DataField, AutoNetworkedField]
@@ -61,12 +76,8 @@ public sealed partial class LeashComponent : Component
     [DataDefinition, Serializable, NetSerializable]
     public sealed partial class LeashData
     {
-        /// <summary>
-        ///     Id of the joint created by this leash. May be null if this leash does not currently create a joint
-        ///     (e.g. because it's attached to the same entity who holds it)
-        /// </summary>
         [DataField]
-        public string? JointId = null;
+        public string JointId = string.Empty;
 
         [DataField]
         public NetEntity Pulled = NetEntity.Invalid;
@@ -77,7 +88,13 @@ public sealed partial class LeashComponent : Component
         [DataField]
         public NetEntity? LeashVisuals = null;
 
-        public LeashData(string? jointId, NetEntity pulled)
+        [DataField]
+        public float Damage = 0f;
+
+        [DataField]
+        public TimeSpan NextDamage = TimeSpan.Zero;
+
+        public LeashData(string jointId, NetEntity pulled)
         {
             JointId = jointId;
             Pulled = pulled;

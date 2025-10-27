@@ -2075,6 +2075,7 @@
     interactSuccessSpawn: EffectHearts
   - type: Bloodstream
     bloodMaxVolume: 50
+  - type: LeashAnchor # Floofstation
 
 - type: entity
   name: frog
