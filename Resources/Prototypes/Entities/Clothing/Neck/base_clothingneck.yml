@@ -29,6 +29,7 @@
     tags:
     - ClothMade
     - WhitelistChameleon
+  - type: LeashAnchor
 
 - type: entity
   abstract: true
