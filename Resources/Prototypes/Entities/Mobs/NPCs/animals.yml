@@ -256,6 +256,7 @@
     rootTask: # Frontier
       task: RuminantCompound # Frontier
   - type: LeashAnchor # Floofstation
+    kind: Intrinsic
 
 - type: entity
   parent: MobChicken
@@ -592,6 +593,8 @@
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
   - type: Strippable
+  - type: LeashAnchor # Floofstation - moffroach my beloved
+    kind: Intrinsic
   - type: UserInterface
     interfaces:
       enum.StrippingUiKey.Key:
@@ -706,6 +709,7 @@
     factions:
     - Passive
   - type: LeashAnchor # Floofstation
+    kind: Intrinsic
   - type: HTN # Frontier
     rootTask: # Frontier
       task: RuminantCompound # Frontier
@@ -914,6 +918,7 @@
     - Chef
     - FoodRecipes
   - type: LeashAnchor # Floofstation
+    kind: Intrinsic
 
 - type: entity
   name: crab
@@ -1088,6 +1093,7 @@
     rootTask:
       task: RuminantHostileCompound
   - type: LeashAnchor # Floofstation
+    kind: Intrinsic
 
 # Note that we gotta make this bitch vomit someday when you feed it anthrax or sumthin. Needs to be a small item thief too and aggressive if attacked.
 - type: entity
@@ -1139,6 +1145,7 @@
     factions:
     - Passive
   - type: LeashAnchor # Floofstation
+    kind: Intrinsic
 
 - type: entity
   name: gorilla
@@ -1283,6 +1290,7 @@
     rootTask:
       task: SimpleHostileCompound
   - type: LeashAnchor # Floofstation
+    kind: Intrinsic
 
 - type: entity
   name: boxing kangaroo
@@ -1414,6 +1422,7 @@
       - !type:WashCreamPieReaction
   - type: LabGrown # Frontier
   - type: LeashAnchor # Floofstation
+    kind: Intrinsic
 
 
 
@@ -2025,6 +2034,7 @@
     tags:
     - VimPilot
   - type: LeashAnchor # Floofstation
+    kind: Intrinsic
 
 
 - type: entity
@@ -2076,6 +2086,7 @@
   - type: Bloodstream
     bloodMaxVolume: 50
   - type: LeashAnchor # Floofstation
+    kind: Intrinsic
 
 - type: entity
   name: frog
@@ -2661,6 +2672,7 @@
     tags:
     - VimPilot
   - type: LeashAnchor # Floofstation
+    kind: Intrinsic
 
 - type: entity
   name: possum
@@ -2737,6 +2749,7 @@
     tags:
     - VimPilot
   - type: LeashAnchor # Floofstation
+    kind: Intrinsic
 
 - type: entity
   name: fox
@@ -2817,6 +2830,7 @@
     tags:
     - VimPilot
   - type: LeashAnchor # Floofstation
+    kind: Intrinsic
 
 - type: entity
   name: corgi
@@ -2880,6 +2894,7 @@
     tags:
     - VimPilot
   - type: LeashAnchor # Floofstation
+    kind: Intrinsic
 
 - type: entity
   name: corrupted corgi
@@ -3050,6 +3065,7 @@
     - Cat
   # End DeltaV
   - type: LeashAnchor # Floofstation
+    kind: Intrinsic
 
 - type: entity
   name: calico cat
@@ -3324,6 +3340,7 @@
     tags:
     - VimPilot
   - type: LeashAnchor # Floofstation
+    kind: Intrinsic
 
 - type: entity
   name: hamster
@@ -3470,6 +3487,7 @@
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
   - type: LeashAnchor # Floofstation
+    kind: Intrinsic
 
 - type: entity
   name: pig
