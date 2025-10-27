@@ -28,6 +28,9 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
+  - !type:AddComponentSpecial
+    components:
+    - type: PaywardActionMaintenance
 
 - type: startingGear
   id: NFJanitorGear
@@ -39,3 +42,4 @@
     back:
     - EncryptionKeyService
     - ShipVoucherFrontierJanitor
+    - TrashBag

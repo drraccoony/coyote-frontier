@@ -139,20 +139,20 @@
   - Trinkets
   - GroupSpeciesBreathTool
 
-- type: roleLoadout
-  id: JobChaplain
-  groups:
-  - GroupTankHarness
-  - ChaplainHead
-  - ChaplainMask
-  - ChaplainNeck
-  - ChaplainJumpsuit
-  - CommonBackpack
-  - ChaplainOuterClothing
-  - Glasses
-  - Survival
-  - Trinkets
-  - GroupSpeciesBreathTool
+#- type: roleLoadout
+#  id: JobChaplain
+#  groups:
+#  - GroupTankHarness
+#  - ChaplainHead
+#  - ChaplainMask
+#  - ChaplainNeck
+#  - ChaplainJumpsuit
+#  - CommonBackpack
+#  - ChaplainOuterClothing
+#  - Glasses
+#  - Survival
+#  - Trinkets
+#  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: JobJanitor

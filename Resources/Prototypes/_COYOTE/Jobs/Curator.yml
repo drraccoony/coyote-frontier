@@ -1,0 +1,110 @@
+# The job itself
+# Curator - ERP RPI boost, aura, free nerd ships
+- type: job
+  id: Curator
+  name: job-name-curator
+  description: job-description-curator
+  playTimeTracker: JobCurator
+  startingGear: CuratorGear
+  icon: "JobIconLibrarian"
+  supervisors: job-supervisors-curator
+  weight: 40 # Prioritize station & department jobs
+  displayWeight: 3 # idk
+  access:
+  - Service
+  - Janitor
+  - Maintenance
+  - External
+  - Frontier
+  accessGroups:
+  - GeneralAccess
+  special:
+  - !type:AddImplantSpecial
+    implants: [ TrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+  - !type:AddRpiAuraSpecial
+    aurasToAdd:
+    - rpiAuraCurator
+  - !type:RpiChatJudgementModifierSpecial
+    modsToAdd:
+    - rpiChatJudgementModifierCurator
+
+# play time tracker
+- type: playTimeTracker
+  id: JobCurator
+
+- type: entity
+  id: SpawnPointCurator
+  parent: SpawnPointPassenger
+  name: curator spawn point
+  components:
+  - type: SpawnPoint
+    job_id: Curator
+
+
+# starting gear
+- type: startingGear
+  id: CuratorGear
+  equipment:
+    shoes: ClothingShoesBootsLaceup
+    id: LibrarianPDA
+    ears: ClothingHeadsetService
+    pocket1: d20Dice
+    pocket2: HandLabeler # for making named bestsellers
+  storage:
+    back:
+    - BookRandom
+    - EncryptionKeyService
+    - EncryptionKeyScience
+    - ShipVoucherCoyoteCurator
+
+# Food Service Ship Voucher
+- type: entity
+  parent: BaseShipVoucher
+  id: ShipVoucherCoyoteCurator
+  name: curator ship voucher
+  description: Allows for one (1) free rental of some cute geek ships!
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+    - state: vouchervalet
+  - type: Item
+    heldPrefix: blue
+  - type: ShipyardVoucher
+    destroyOnEmpty: true
+    consoleType: Sr
+    useAnywhere: true
+    vessels:
+    - Bookworm
+    - Nook
+    - Investigator
+    - Pulsar
+
+# Food Service Role Loadout
+- type: roleLoadout
+  id: JobCurator
+  groups:
+  - ContractorHead
+  - ContractorNeck
+  - PilotJumpsuit
+  - ContractorGloves
+  - ContractorBackpack
+  - ContractorOuterClothing
+  - ContractorForcedOuterClothing
+  - ContractorShoes
+  - ContractorFace
+  - ContractorGlasses
+  - ContractorBelt
+  - ContractorEars
+  - ContractorEncryptionKey
+  - ContractorBoxSurvival
+  - ContractorPDA
+  - ContractorWallet
+  - ContractorCartridge
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
+  - NFSpeciesSpecific

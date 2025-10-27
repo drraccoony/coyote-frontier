@@ -1,0 +1,101 @@
+# The job itself
+# Medical Nurse - ERP RPI boost, aura
+- type: job
+  id: MedicalNurse
+  name: job-name-medical-nurse
+  description: job-description-medical-nurse
+  playTimeTracker: JobMedicalNurse
+  startingGear: MedicalNurseGear
+  icon: "JobIconMedicalIntern"
+  supervisors: job-supervisors-medical-nurse
+  weight: 40 # Prioritize station & department jobs
+  displayWeight: 3 # idk
+  access:
+  - Service
+  - Janitor
+  - Maintenance
+  - External
+  - Frontier
+  accessGroups:
+  - GeneralAccess
+  special:
+  - !type:AddImplantSpecial
+    implants: [ TrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+  - !type:AddRpiAuraSpecial
+    aurasToAdd:
+    - rpiAuraNurse
+  - !type:RpiChatJudgementModifierSpecial
+    modsToAdd:
+    - rpiChatJudgementModifierNurse
+
+# play time tracker
+- type: playTimeTracker
+  id: JobMedicalNurse
+
+- type: entity
+  id: SpawnPointMedicalNurse
+  parent: SpawnPointPassenger
+  name: nurse spawn point
+  components:
+  - type: SpawnPoint
+    job_id: MedicalNurse
+
+
+# starting gear
+- type: startingGear
+  id: MedicalNurseGear
+  storage:
+    back:
+    - EncryptionKeyMedical
+    - ShipVoucherCoyoteNurse
+
+# Food Service Ship Voucher
+- type: entity
+  parent: BaseShipVoucher
+  id: ShipVoucherCoyoteNurse
+  name: nurse ship voucher
+  description: Allows for one (1) free rental of some entry level medical ships!
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+    - state: vouchervalet
+  - type: Item
+    heldPrefix: blue
+  - type: ShipyardVoucher
+    destroyOnEmpty: true
+    consoleType: Sr
+    useAnywhere: true
+    vessels:
+    - Placebo
+    - Spirit
+    - Tyne
+
+# Food Service Role Loadout
+- type: roleLoadout
+  id: JobMedicalNurse
+  groups:
+  - ContractorHead
+  - ContractorNeck
+  - PilotJumpsuit
+  - ContractorGloves
+  - ContractorBackpack
+  - ContractorOuterClothing
+  - ContractorForcedOuterClothing
+  - ContractorShoes
+  - ContractorFace
+  - ContractorGlasses
+  - ContractorBelt
+  - ContractorEars
+  - ContractorEncryptionKey
+  - ContractorBoxSurvival
+  - ContractorPDA
+  - ContractorWallet
+  - ContractorCartridge
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
+  - NFSpeciesSpecific

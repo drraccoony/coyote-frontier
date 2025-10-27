@@ -1,3 +1,4 @@
+using Content.Shared._Coyote.RolePlayIncentiveShared;
 using Content.Shared.Access;
 using Content.Shared.Guidebook;
 using Content.Shared.Players.PlayTimeTracking;
@@ -182,6 +183,13 @@ namespace Content.Shared.Roles
         /// </summary>
         [DataField]
         public List<ProtoId<GuideEntryPrototype>>? Guides;
+
+        /// <summary>
+        /// Roleplay Incentive multiplier for this job.
+        /// </summary>
+        [DataField]
+        public float RolePlayIncentiveMultiplier = 1.0f;
+
     }
 
     /// <summary>

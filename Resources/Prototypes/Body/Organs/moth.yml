@@ -5,14 +5,12 @@
   components:
   - type: Stomach
     specialDigestible:
-      # Frontier: general moth digestion
-      # tags:
-      # - ClothMade
-      # - Paper
+      # Frontier: general moth digestion # Coyote edit, allows moths to once again eat ClothMade and Paper items
+       tags:
+       - ClothMade
+       - Paper
       # - Pill
-      components:
-      - MothFood
-      # End Frontier: general moth digestion
+  - type: MothFood
   - type: SolutionContainerManager
     solutions:
       stomach:

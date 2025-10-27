@@ -4,8 +4,8 @@ meta:
   engineVersion: 255.1.0
   forkId: ""
   forkVersion: ""
-  time: 07/21/2025 18:39:01
-  entityCount: 1815
+  time: 10/26/2025 22:50:46
+  entityCount: 1820
 maps:
 - 1814
 grids:
@@ -295,7 +295,7 @@ entities:
     - type: OccluderTree
     - type: CryoBraindeads
     - type: Shuttle
-      dampingModifier: 0.25
+      dampingModifier: 2
     - type: RadiationGridResistance
     - type: GravityShake
       shakeTimes: 10
@@ -4417,21 +4417,53 @@ entities:
     - type: Transform
       pos: -15.5,2.5
       parent: 179
+    - type: BlipCartridge
+      scale: 2
+      blipColor: BlipColorGreen
+    - type: RadarBlip
+      visibleFromOtherGrids: True
+      scale: 2
+      highlightedRadarColor: '#00FF00FF'
+      radarColor: '#32CD32FF'
   - uid: 762
     components:
     - type: Transform
       pos: -14.5,1.5
       parent: 179
+    - type: BlipCartridge
+      scale: 2
+      blipColor: BlipColorGreen
+    - type: RadarBlip
+      visibleFromOtherGrids: True
+      scale: 2
+      highlightedRadarColor: '#00FF00FF'
+      radarColor: '#32CD32FF'
   - uid: 864
     components:
     - type: Transform
       pos: -14.5,2.5
       parent: 179
+    - type: BlipCartridge
+      scale: 2
+      blipColor: BlipColorGreen
+    - type: RadarBlip
+      visibleFromOtherGrids: True
+      scale: 2
+      highlightedRadarColor: '#00FF00FF'
+      radarColor: '#32CD32FF'
   - uid: 912
     components:
     - type: Transform
       pos: -15.5,1.5
       parent: 179
+    - type: BlipCartridge
+      scale: 2
+      blipColor: BlipColorGreen
+    - type: RadarBlip
+      visibleFromOtherGrids: True
+      scale: 2
+      highlightedRadarColor: '#00FF00FF'
+      radarColor: '#32CD32FF'
 - proto: ComputerAdvancedRadar
   entities:
   - uid: 694
@@ -4673,6 +4705,18 @@ entities:
     - type: Transform
       pos: -2.5,3.5
       parent: 179
+    - type: DeviceLinkSource
+      linkedPorts: {}
+      lastSignals: {}
+      ports:
+      - device-button-1
+      - device-button-2
+      - device-button-3
+      - device-button-4
+      - device-button-5
+      - device-button-6
+      - device-button-7
+      - device-button-8
 - proto: ComputerStationRecords
   entities:
   - uid: 1227
@@ -8148,6 +8192,13 @@ entities:
     - type: Transform
       pos: -3.5,2.5
       parent: 179
+- proto: SpawnPointCurator
+  entities:
+  - uid: 1817
+    components:
+    - type: Transform
+      pos: -2.5,2.5
+      parent: 179
 - proto: SpawnPointDeputy
   entities:
   - uid: 1486
@@ -8211,6 +8262,13 @@ entities:
     - type: Transform
       pos: -3.5,2.5
       parent: 179
+- proto: SpawnPointJournalist
+  entities:
+  - uid: 1816
+    components:
+    - type: Transform
+      pos: -2.5,2.5
+      parent: 179
 - proto: SpawnPointLatejoin
   entities:
   - uid: 961
@@ -8224,6 +8282,20 @@ entities:
     components:
     - type: Transform
       pos: -3.5,2.5
+      parent: 179
+- proto: SpawnPointMassageTherapist
+  entities:
+  - uid: 1819
+    components:
+    - type: Transform
+      pos: -2.5,2.5
+      parent: 179
+- proto: SpawnPointMedicalNurse
+  entities:
+  - uid: 1818
+    components:
+    - type: Transform
+      pos: -2.5,2.5
       parent: 179
 - proto: SpawnPointMercenary
   entities:
@@ -8315,6 +8387,13 @@ entities:
     components:
     - type: Transform
       pos: -3.5,2.5
+      parent: 179
+- proto: SpawnPointTherapist
+  entities:
+  - uid: 1820
+    components:
+    - type: Transform
+      pos: -2.5,2.5
       parent: 179
 - proto: SpawnPointValet
   entities:
