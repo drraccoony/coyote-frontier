@@ -10,9 +10,7 @@
        - ClothMade
        - Paper
       # - Pill
-    components:
-      - MothFood
-      # End Frontier: general moth digestion
+  - type: MothFood
   - type: SolutionContainerManager
     solutions:
       stomach:

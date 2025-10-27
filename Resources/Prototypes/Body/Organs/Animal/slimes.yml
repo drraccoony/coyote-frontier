@@ -14,8 +14,7 @@
        - ClothMade
        - Paper
       # - Pill
-      components:
-      - MothFood
+    - type: MothFood
       # End Frontier: general moth digestion
     - type: Metabolizer
       maxReagents: 3
