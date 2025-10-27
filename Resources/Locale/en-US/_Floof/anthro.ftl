@@ -1315,3 +1315,5 @@ marking-Hairtressshouldergeneric = Hair Tresses Extension
 marking-Hairtressshouldergeneric-hairtressshouldergeneric = Hair Tresses Extension
 marking-Hairupdogeneric = Hair Updo Extension
 marking-Hairupdogeneric-hairupdogeneric = Hair Updo Extension
+marking-Drillandbunhair = Hair Drill and Bun Extension
+marking-Drillandbunhair-hair_drillandbun = Hair Drill and Bun Extension

@@ -900,3 +900,13 @@
   - sprite: _CS/Hairmarkings/hairextensions.rsi
     state: hairupdogeneric
 
+- type: marking
+  id: Drillandbunhair
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin, Rodentia, SlimePerson, Human, Harpy, IPC, Arachne, Felinid, Oni, Kitsune]
+  kindAllowance: [BasicHumanlike, BasicFurry]
+  sprites:
+  - sprite: _CS/Hairmarkings/drillandbunhair.rsi
+    state: hair_drillandbun
+
