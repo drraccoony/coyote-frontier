@@ -189,15 +189,9 @@ public abstract class SharedNeedsSystem : EntitySystem
         if (TryComp<SSDIndicatorComponent>(uid, out var ssd)
            && ssd.IsSSD)
             return true;
-        if (_players.TryGetSessionByEntity(uid, out var sesh))
-        {
-            if (sesh.Status == SessionStatus.Disconnected)
-                return true;
-        }
-        else
-        {
+
+        if (!_players.TryGetSessionByEntity(uid, out var sesh))
             return true;
-        }
         return false;
     }
 
