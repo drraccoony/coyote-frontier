@@ -12,10 +12,20 @@ namespace Content.Server._Coyote;
 [Serializable]
 public sealed class RpiContinuousActionProxyDatum(ProtoId<RpiContinuousProxyActionPrototype> proto)
 {
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
     public ProtoId<RpiContinuousProxyActionPrototype> Proto = proto;
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan TotalAccumulated = TimeSpan.Zero;
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan LastAccumulated = TimeSpan.Zero;
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
     public bool IsActive = true;
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
     public FixedPoint2 CurrentMultiplier = 1.0f;
 
     private IGameTiming _gameTiming = IoCManager.Resolve<IGameTiming>();

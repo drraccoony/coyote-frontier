@@ -111,6 +111,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
                 return protoA.CashThreshold.CompareTo(protoB.CashThreshold);
             });
     }
+
     #endregion
 
     #region Event Handlers
@@ -118,6 +119,9 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     {
         // set the next payward time
         component.NextPayward = _timing.CurTime + component.PaywardInterval;
+        component.NextProxyCheck = _timing.CurTime + component.ProxyCheckInterval;
+        component.NextProxySync = _timing.CurTime + component.ProxySyncInterval;
+        component.NextAuraCheck = _timing.CurTime + component.AuraCheckInterval;
     }
 
     /// <summary>
@@ -1155,8 +1159,13 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
 
     public bool PlayerIsConnected(EntityUid uid)
     {
-        return _playerManager.TryGetSessionByEntity(uid, out var sesh)
-               && sesh.Status == SessionStatus.Connected;
+        if (!_playerManager.TryGetSessionByEntity(uid, out var sesh))
+            return false;
+        return sesh.Status switch
+        {
+            SessionStatus.Connected or SessionStatus.InGame or SessionStatus.Connecting => true,
+            _ => false,
+        };
     }
 
     #endregion
