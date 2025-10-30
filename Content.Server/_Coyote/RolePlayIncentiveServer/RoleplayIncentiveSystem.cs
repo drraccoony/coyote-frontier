@@ -867,6 +867,11 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         if (_timing.CurTime < rpic.NextProxySync)
             return; // too soon to check again
         rpic.NextProxySync = _timing.CurTime + rpic.ProxySyncInterval;
+        // first, if pirate, not have capturebait
+        if (HasComp<IsPirateComponent>(uid))
+        {
+            RemComp<CaptureBaitComponent>(uid); // shrimple as
+        }
         // first, go through all the RpiContinuousProxyActionPrototypes in existence
         foreach (var proxo in rpic.AllowedProxies)
         {
