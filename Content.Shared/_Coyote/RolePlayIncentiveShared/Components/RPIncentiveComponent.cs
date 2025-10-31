@@ -1,5 +1,9 @@
 using System.Linq;
+using Content.Server._Coyote;
 using Content.Shared._Coyote.RolePlayIncentiveShared;
+using Content.Shared.FixedPoint;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Paper;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Coyote;
@@ -193,4 +197,135 @@ public sealed partial class RoleplayIncentiveComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public float DebugMultiplier = 1.0f;
     #endregion
+}
+
+#region Data Holbies
+public sealed class TaxBracketResult(
+    int payPerJudgement,
+    int deathPenalty,
+    int deepFryPenalty,
+    Dictionary<RpiActionType, float> actionMultipliers,
+    RpiJournalismData journalismData)
+{
+    public int PayPerJudgement = payPerJudgement;
+    public int DeathPenalty = deathPenalty;
+    public int DeepFryPenalty = deepFryPenalty;
+    public Dictionary<RpiActionType, float> ActionMultipliers = actionMultipliers;
+    public RpiJournalismData JournalismData = journalismData;
+
+    public TaxBracketResult() : this(
+        payPerJudgement:   10,
+        deathPenalty:      0,
+        deepFryPenalty:    0,
+        actionMultipliers: new Dictionary<RpiActionType, float>(),
+        journalismData:    new RpiJournalismData())
+    {
+        // piss
+    }
+}
+
+public struct PayoutDetails(
+    int basePay,
+    int finalPay,
+    FixedPoint2 multiplier,
+    FixedPoint2 rawMultiplier,
+    bool hasMultiplier)
+{
+    public int BasePay = basePay;
+    public int FinalPay = finalPay;
+    public FixedPoint2 Multiplier = multiplier;
+    public FixedPoint2 RawMultiplier = rawMultiplier;
+    public bool HasMultiplier = hasMultiplier;
+}
+#endregion
+
+public sealed class RpiPaywardDetails()
+{
+    public string Name = string.Empty;
+    public RoleplayIncentiveComponent? RpiComponent = null;
+    public int ChatPay;
+    public float MiscMultiplier;
+    public float ProxyMultiplier;
+    public float AuraMultiplier;
+    public float JobModifier;
+    public float OtherModifiers;
+    public float FinalMultiplier;
+    public PayoutDetails FinalPayDetails;
+    public TaxBracketResult TaxBracket = new();
+    public Dictionary<RpiChatActionCategory, RpiJudgementDetails> ChatActionPays = new();
+    public List<RpiAuraData> Auras = new();
+
+    /// <summary>
+    /// Load the Tax Bracket Details
+    /// </summary>
+    public void LoadTaxBracketData(TaxBracketResult taxBracketResult)
+    {
+        TaxBracket = taxBracketResult;
+    }
+
+    public void LoadName(string name)
+    {
+        Name = name;
+    }
+
+    public void AddJudgementDetails(
+        RpiChatActionCategory category,
+        RpiJudgementDetails details)
+    {
+        ChatActionPays[category] = details;
+    }
+
+    public void LoadChatPay(int chatPay)
+    {
+        ChatPay = chatPay;
+    }
+
+    public void LoadProxyMultiplier(float proxyMult)
+    {
+        ProxyMultiplier = proxyMult;
+    }
+
+    public void LoadAuraMultiplier(float auraMult)
+    {
+        AuraMultiplier = auraMult;
+    }
+
+    public void LoadJobMultiplier(float jobMult)
+    {
+        JobModifier = jobMult;
+    }
+
+    public void LoadOtherMultiplier(float otherMult)
+    {
+        OtherModifiers = otherMult;
+    }
+
+    public void LoadPayDetails(PayoutDetails payDetails)
+    {
+        FinalPayDetails = payDetails;
+    }
+
+    public void LoadAuraData(RpiAuraData auraData)
+    {
+        Auras.Add(auraData);
+    }
+
+    public void LoadComponentData(RoleplayIncentiveComponent rpiComp)
+    {
+        RpiComponent = rpiComp;
+    }
+}
+
+public struct RpiJudgementDetails(
+    int chatlength,
+    float chatlengthMultiplier,
+    float numlistenings,
+    float finalscore,
+    string? chat)
+{
+    public string? Message = chat;
+    public int ChatLength = chatlength;
+    public float ChatLengthMultiplier = chatlengthMultiplier;
+    public float NumListenings = numlistenings;
+    public float FinalScore = finalscore;
 }

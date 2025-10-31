@@ -3,6 +3,7 @@ using System.Linq;
 using Content.Server._NF.Bank;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
+using Content.Server.Hands.Systems;
 using Content.Server.Popups;
 using Content.Shared._Coyote;
 using Content.Shared._Coyote.RolePlayIncentiveShared;
@@ -11,12 +12,15 @@ using Content.Shared.Chat;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
 using Content.Shared.Ghost;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Paper;
 using Content.Shared.Popups;
 using Content.Shared.SSDIndicator;
 using Content.Shared.Tag;
+using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Enums;
@@ -45,6 +49,9 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     [Dependency] private readonly MobStateSystem       _mobStateSystem = default!;
     [Dependency] private readonly ExamineSystemShared  _examineSystem = default!;
     [Dependency] private readonly TransformSystem      _transformSystem = default!;
+    [Dependency] private readonly PaperSystem          _paperSystem = default!;
+    [Dependency] private readonly IEntityManager       _entityManager = default!;
+    [Dependency] private readonly HandsSystem          _heandsSystem = default!;
 
     private List<ProtoId<RpiTaxBracketPrototype>> RpiDatumPrototypes = new()
     {
@@ -52,7 +59,9 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         "rpiTaxBracketEstablished",
         "rpiTaxBracketWealthy",
     };
+
     private ProtoId<RpiTaxBracketPrototype> TaxBracketDefault = "rpiTaxBracketDefault";
+
     private Dictionary<RpiChatActionCategory, string> ChatActionLookup = new()
     {
         { RpiChatActionCategory.Speaking, "rpiChatActionSpeaking" },
@@ -71,22 +80,24 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<RoleplayIncentiveComponent, ComponentInit>                (OnComponentInit);
-        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiChatEvent>                 (OnGotRpiChatEvent);
-        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiActionMultEvent>           (OnGotRpiActionEvent);
-        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiImmediatePayEvent>         (OnRpiImmediatePayEvent);
-        SubscribeLocalEvent<RoleplayIncentiveComponent, GetRpiModifier>               (OnSelfSucc);
-        SubscribeLocalEvent<RoleplayIncentiveComponent, MobStateChangedEvent>         (OnGotMobStateChanged);
-        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiNewsArticleCreatedEvent>   (OnNewsArticleCreated);
-        SubscribeLocalEvent<RoleplayIncentiveComponent, FixedLightEvent>              (OnLightGotFixed);
-        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiAddAurasEvent>             (OnAddAurasEvent);
-        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiAddJudgementsEvent>        (OnAddJudgementsEvent);
-        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiAddJobModifierEvent>       (OnAddJobModifierEvent);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, ComponentInit>(OnComponentInit);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiChatEvent>(OnGotRpiChatEvent);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiActionMultEvent>(OnGotRpiActionEvent);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiImmediatePayEvent>(OnRpiImmediatePayEvent);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, GetRpiModifier>(OnSelfSucc);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, MobStateChangedEvent>(OnGotMobStateChanged);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiNewsArticleCreatedEvent>(OnNewsArticleCreated);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, FixedLightEvent>(OnLightGotFixed);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiAddAurasEvent>(OnAddAurasEvent);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiAddJudgementsEvent>(OnAddJudgementsEvent);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, RpiAddJobModifierEvent>(OnAddJobModifierEvent);
+        SubscribeLocalEvent<RoleplayIncentiveComponent, GetVerbsEvent<Verb>>(GetRpiVerbs);
         // SubscribeLocalEvent<RoleplayIncentiveComponent, GetVerbsEvent<ExamineVerb>>   (OnGetExamineVerbs);
         SortTaxBrackets();
     }
 
     #region Setup stuff
+
     /// <summary>
     /// Sorts the tax brackets by cash threshold, lowest to highest.
     /// This is done so that we can easily find the correct tax bracket for a player.
@@ -115,6 +126,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     #endregion
 
     #region Event Handlers
+
     private void OnComponentInit(EntityUid uid, RoleplayIncentiveComponent component, ComponentInit args)
     {
         // set the next payward time
@@ -271,6 +283,135 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         PunishPlayerForDeath(uid, rpic);
     }
 
+    public void GetRpiVerbs(
+        EntityUid uid,
+        RoleplayIncentiveComponent rpic,
+        GetVerbsEvent<Verb> args)
+    {
+        if (!HasComp<AdminGhostComponent>(args.User))
+            return;
+
+        var verb = new Verb()
+        {
+            Text = "Print RPI Details",
+            Act = () =>
+            {
+                var details = HandleEverything(uid, rpic, true);
+                OutputToPaper(details, args.User);
+            },
+            Priority = 1,
+        };
+        args.Verbs.Add(verb);
+    }
+
+    /// <summary>
+    /// Now we take all the cool stuff we recorded, and blast it into a fluffing huge human readable
+    /// set of data for easy debugging and whatnot.
+    /// And turn it into a piece of paper, cus why the heck not.
+    /// </summary>
+    public void OutputToPaper(
+        RpiPaywardDetails deets,
+        EntityUid reader
+        )
+    {
+        List<string> lines = new();
+        lines.Add($"[bold]--- RPI Institute Payward Analysis ---[/bold]");
+        lines.Add($"[bold]Subject:[/bold] [color=Blue]{deets.Name}[/color]");
+        lines.Add($"[bold]Report Generated:[/bold] [color=Blue]{_timing.CurTime}[/color]");
+        lines.Add($"");
+        if (deets.RpiComponent != null)
+        {
+            lines.Add($"[bold]--- RPI Component Data ---[/bold]");
+            lines.Add($"[bold]RPI ID:[/bold] [color=Blue]{deets.RpiComponent.RpiId}[/color]");
+            lines.Add($"[bold]Total Chat Actions Recorded:[/bold] [color=Blue]{deets.RpiComponent.ChatActionsTaken.Count}[/color]");
+            lines.Add($"[bold]Total Misc Actions Recorded:[/bold] [color=Blue]{deets.RpiComponent.MiscActionsTaken.Count}[/color]");
+            lines.Add($"[bold]Last Payward Check:[/bold] [color=Blue]{deets.RpiComponent.LastCheck}[/color]");
+            lines.Add($"[bold]Next Payward Check:[/bold] [color=Blue]{deets.RpiComponent.NextPayward}[/color]");
+        }
+        lines.Add($"");
+        lines.Add($"[bold]--- Payward Breakdown ---[/bold]");
+        lines.Add($"[bold]Base Chat Pay:[/bold] [color=Blue]{deets.ChatPay}[/color]");
+        lines.Add($"[bold]Proxy Multiplier:[/bold] [color=Blue]{deets.ProxyMultiplier:0.00}[/color]");
+        lines.Add($"[bold]Aura Multiplier:[/bold] [color=Blue]{deets.AuraMultiplier:0.00}[/color]");
+        lines.Add($"[bold]Job Multiplier:[/bold] [color=Blue]{deets.JobModifier:0.00}[/color]");
+        lines.Add($"[bold]Other Modifiers:[/bold] [color=Blue]{deets.OtherModifiers:0.00}[/color]");
+        lines.Add($"[bold]Final Multiplier:[/bold] [color=Blue]{deets.FinalMultiplier:0.00}[/color]");
+        lines.Add($"");
+        lines.Add($"[bold]--- Final Pay Details ---[/bold]");
+        lines.Add($"[bold]Base Pay:[/bold] [color=Blue]{deets.FinalPayDetails.BasePay}[/color]");
+        lines.Add($"[bold]Raw Multiplier:[/bold] [color=Blue]{deets.FinalPayDetails.RawMultiplier:0.00}[/color]");
+        lines.Add($"[bold]Final Multiplier Applied:[/bold] [color=Blue]{(deets.FinalPayDetails.HasMultiplier ? "Yes" : "No")}[/color]");
+        lines.Add($"[bold]Final Pay:[/bold] [color=Blue]{deets.FinalPayDetails.FinalPay}[/color]");
+        lines.Add($"");
+        lines.Add($"[bold]--- Tax Bracket Details ---[/bold]");
+        lines.Add($"[bold]Pay Per Judgement:[/bold] [color=Blue]{deets.TaxBracket.PayPerJudgement}[/color]");
+        lines.Add($"[bold]Death Penalty:[/bold] [color=Blue]{deets.TaxBracket.DeathPenalty}[/color]");
+        lines.Add($"[bold]Deep Fryer Penalty:[/bold] [color=Blue]{deets.TaxBracket.DeepFryPenalty}[/color]");
+        lines.Add($"");
+        lines.Add($"[bold]--- Tax Bracket Journalism Data ---[/bold]");
+        lines.Add($"[bold]Base Journalist Payout:[/bold] [color=Blue]{deets.TaxBracket.JournalismData.BaseFlatPayout}[/color]");
+        lines.Add($"[bold]Base Otherwise Payout:[/bold] [color=Blue]{deets.TaxBracket.JournalismData.BaseNonJournalistFlatPayout}[/color]");
+        lines.Add($"[bold]Character Count Divisor:[/bold] [color=Blue]{deets.TaxBracket.JournalismData.CharCountDivisor}[/color]");
+        lines.Add($"[bold]Multiplier Per Divisor:[/bold] [color=Blue]{deets.TaxBracket.JournalismData.MultPerDivisor:0.00}[/color]");
+        lines.Add($"[bold]Max Pay Per Article:[/bold] [color=Blue]{deets.TaxBracket.JournalismData.MaxPay:0.00}[/color]");
+        lines.Add($"[bold]Cooldown Penalty (base):[/bold] [color=Blue]{deets.TaxBracket.JournalismData.CooldownPenalty:0.00}[/color]");
+        lines.Add($"[bold]Cooldown Time (minutes):[/bold] [color=Blue]{deets.TaxBracket.JournalismData.CooldownTimeMinutes}[/color]");
+        // If component data is available, show current cooldown state using LastArticleTime
+        var lastArticle = deets.RpiComponent?.LastArticleTime ?? TimeSpan.Zero;
+        var payPreview = deets.TaxBracket.JournalismData.GetPaypig(
+            true,
+            0,
+            lastArticle);
+        lines.Add($"[bold]Cooldown Multiplier (current):[/bold] [color=Blue]{payPreview.CooldownMultiplier:0.00}[/color]");
+        lines.Add($"[bold]Cooldown Percent Penalty:[/bold] [color=Blue]{payPreview.CooldownPercent}[/color][bold]%[/bold]");
+        lines.Add($"[bold]Minutes Until Fully Cooled:[/bold] [color=Blue]{payPreview.MinsTillCooled}[/color]");
+        lines.Add($"");
+        lines.Add($"[bold]--- Chat Action Judgement Details ---[/bold]");
+        foreach (var (category, details) in deets.ChatActionPays)
+        {
+            lines.Add($"[bold]Category:[/bold] [color=Blue]{category}[/color]");
+            lines.Add($"[bold]* Messages Sent:[/bold] [color=Blue]{details.Message}[/color]");
+            lines.Add($"[bold]* Total Chat Length:[/bold] [color=Blue]{details.ChatLength:0}[/color] [bold]characters[/bold]");
+            lines.Add($"[bold]* Length Multiplier:[/bold] [color=Blue]{details.ChatLengthMultiplier:0.00}[/color]");
+            lines.Add($"[bold]* People listening:[/bold] [color=Blue]{details.NumListenings:0}[/color]");
+            lines.Add($"[bold]* Final Score:[/bold] $[color=Blue]{details.FinalScore:0}[/color]");
+        }
+        if (deets.Auras.Count > 0)
+        {
+            lines.Add($"");
+            lines.Add($"[bold]--- Aura Data ---[/bold]");
+            foreach (var aura in deets.Auras)
+            {
+                var mname = MetaData(aura.Source).EntityName;
+                lines.Add($"[bold]* Source:[/bold] [color=Blue]{mname}[/color]");
+                lines.Add($"[bold]* Aura ID:[/bold] [color=Blue]{aura.AuraId}[/color]");
+                lines.Add($"[bold]* RPI UID:[/bold] [color=Blue]{aura.RpiUid}[/color]");
+                lines.Add($"[bold]* Max Multiplier:[/bold] [color=Blue]{aura.Multiplier - 1f:0.00}[/color]");
+                lines.Add($"[bold]* Current Effect Multiplier:[/bold] [color=Blue]{(aura.GetCurrentMultiplier()):0.00}[/color]");
+                lines.Add($"[bold]* Max Distance:[/bold] [color=Blue]{aura.MaxDistance:0.00}[/color]");
+                lines.Add($"[bold]* Time Till Full Effect:[/bold] [color=Blue]{aura.TimeTillFullEffect}[/color]");
+                lines.Add($"[bold]* Decay Delay:[/bold] [color=Blue]{aura.DecayDelay}[/color]");
+                lines.Add($"[bold]* Decay To Zero Time:[/bold] [color=Blue]{aura.DecayToZeroTime}[/color]");
+                lines.Add($"[bold]* Time Spent In Aura:[/bold] [color=Blue]{aura.TimeSpentInAura}[/color]");
+                lines.Add($"[bold]* Time Outside Aura:[/bold] [color=Blue]{aura.TimeOutsideAura}[/color]");
+                lines.Add($"[bold]* Decay Coefficient:[/bold] [color=Blue]{aura.DecayCoefficient:0.0000}[/color]");
+            }
+        }
+        lines.Add($"");
+        lines.Add($"");
+        lines.Add($"[bold]--- End of Report ---[/bold]");
+        lines.Add($"[bold]Generated on:[/bold] [color=Blue]{DateTime.Now}[/color]");
+        lines.Add($"[bold]RPI Institute Internal Use Only[/bold]");
+        var finalText = string.Join("\n", lines);
+        var coords = _transformSystem.GetMapCoordinates(Transform(reader));
+        var paperEntity = _entityManager.Spawn("Paper", coords);
+        TryComp<PaperComponent>(paperEntity, out var paperComp);
+        _paperSystem.SetContent((paperEntity, paperComp!), finalText);
+        // then, THEN, we give it to the reader.
+        _heandsSystem.TryPickupAnyHand(reader, paperEntity);
+        //whatever
+    }
+
     private void OnAddJobModifierEvent(
         EntityUid uid,
         RoleplayIncentiveComponent rpic,
@@ -342,7 +483,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         var jDat = taxBracket.JournalismData;
         RpiJournalismPayResult paypig; // NOTHING
         var lengf =
-              args.NArticle.Content.Length
+            args.NArticle.Content.Length
             + args.NArticle.Title.Length;
         var amJournalist = HasComp<PaywardActionNewsArticleCreationComponent>(args.Doer);
         paypig = jDat.GetPaypig(
@@ -404,6 +545,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
                     ("amount", paypig.TotalPay));
             }
         }
+
         if (_playerManager.TryGetSessionByEntity(uid, out var session))
         {
             _chatManager.ChatMessageToOne(
@@ -501,10 +643,12 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
                             ("baseAmount", paydata.BasePay),
                             ("janitorBonus", paydata.JanitorBonus));
                     }
+
                     break;
                 }
             }
         }
+
         if (_playerManager.TryGetSessionByEntity(args.Source, out var session))
         {
             _chatManager.ChatMessageToOne(
@@ -542,6 +686,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             var timeBrokenBonus = (int)(minutesPastThreshold * (rpic.LightFixCashPerHourBroken / 60.0f));
             paydata.ApplyTimeBrokenBonus(timeBrokenBonus, TimeSpentBroken);
         }
+
         // recalculate the spree
         rpic.LightSpree = rpic.LightSpree
             .Where(t => _timing.CurTime - t <= rpic.MaxLightSpreeTime)
@@ -561,22 +706,25 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             var spreeBonus = (int)(paydata.BasePay * bonusMult);
             paydata.ApplySpreeBonus(spreeBonus, spreeCount);
         }
+
         return paydata;
     }
 
     public sealed class RpiLightFixData(int basePay)
     {
-        public int BasePay            = basePay;
-        public int FinalPay           = basePay;
-        public bool IsJanitor         = false;
-        public int JanitorBonus       = 0;
-        public int SpreeBonus         = 0;
-        public int SpreeCount         = 0;
+        public int BasePay = basePay;
+        public int FinalPay = basePay;
+        public bool IsJanitor = false;
+        public int JanitorBonus = 0;
+        public int SpreeBonus = 0;
+
+        public int SpreeCount = 0;
+
         // public int StationBonus       = 0;
         // public int OtherStationBonus  = 0;
         // public int ShuttleBonus       = 0;
-        public int TimeBrokenBonus    = 0;
-        public TimeSpan TimeBroken    = TimeSpan.Zero;
+        public int TimeBrokenBonus = 0;
+        public TimeSpan TimeBroken = TimeSpan.Zero;
 
         public void ApplyJanitorBonus(int amount)
         {
@@ -630,6 +778,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     #endregion
 
     #region Main Update Loop
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -646,37 +795,84 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
                 if (_mobStateSystem.IsDead(uid))
                     continue; // no dead ppl pls
             }
-            SyncContinuousComponentsAndProxies(uid, rpic);
-            ProcessContinuousProxies(uid, rpic);
-            ProcessAuras(uid, rpic);
-            PayoutPaywardToPlayer(uid, rpic);
+
+            HandleEverything(
+                uid,
+                rpic,
+                false);
         }
     }
+
+    public RpiPaywardDetails HandleEverything(
+        EntityUid uid,
+        RoleplayIncentiveComponent rpic,
+        bool justChecking = false)
+    {
+        var result = new RpiPaywardDetails();
+        result.LoadName(MetaData(uid).EntityName);
+        result.LoadComponentData(rpic);
+        SyncContinuousComponentsAndProxies(uid, rpic);
+        ProcessContinuousProxies(uid, rpic);
+        ProcessAuras(
+            uid,
+            rpic,
+            ref result,
+            justChecking);
+        PayoutPaywardToPlayer(
+            uid,
+            rpic,
+            ref result,
+            justChecking);
+        return result;
+    }
+
     #endregion
 
     #region Payward Action
+
     /// <summary>
     /// Goes through all the relevant actions taken and stored, judges them,
     /// And gives the player a payward if they did something good.
     /// It also checks for things like duplicate actions, if theres people around, etc.
     /// Basically if you do stuff, you get some pay for it!
     /// </summary>
-    private void PayoutPaywardToPlayer(EntityUid uid, RoleplayIncentiveComponent rpic)
+    private void PayoutPaywardToPlayer(
+        EntityUid uid,
+        RoleplayIncentiveComponent rpic,
+        ref RpiPaywardDetails details,
+        bool justChecking)
     {
-        if (_timing.CurTime < rpic.NextPayward)
-            return; // too soon to pay again
-        rpic.NextPayward = _timing.CurTime + rpic.PaywardInterval;
+        if (!justChecking)
+        {
+            if (_timing.CurTime < rpic.NextPayward)
+                return; // too soon to pay again
+            rpic.NextPayward = _timing.CurTime + rpic.PaywardInterval;
+        }
         if (!_bank.TryGetBalance(uid, out var hasThisMuchMoney))
             return; // no bank account, no pramgle
 
-        var taxBracket = GetTaxBracketData(rpic, hasThisMuchMoney);
+        var taxBracket = GetTaxBracketData(
+            rpic,
+            hasThisMuchMoney);
+        details.LoadTaxBracketData(taxBracket);
 
         // ChatPay gets an int as our base pay
-        var chatPay = GetChatActionPay(uid, rpic, taxBracket);
+        var chatPay = GetChatActionPay(
+            uid,
+            rpic,
+            taxBracket,
+            ref details,
+            justChecking);
         // MiscPay gets a multiplier to modify the base pay
-        var miscMult = GetMiscActionPayMult(uid, rpic, taxBracket);
+        // var miscMult = GetMiscActionPayMult(
+        //     uid,
+        //     rpic,
+        //     taxBracket); // no details cus it doesnt do anything yet
         // Continuous proxies are applied here too, as multipliers
-        var proxyMult = GetProxiesPayMult(uid, rpic, true);
+        var proxyMult = GetProxiesPayMult(
+            uid,
+            rpic,
+            !justChecking);
         // Aura mults! mobs who give you more money for being around them
         var auraMult = GetAuraPayMult(uid, rpic);
         // Job multipliers! my job gets cashpay for existing!
@@ -695,24 +891,35 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         }
 
         var finalMult = 1f;
-        finalMult += miscMult;
+        // finalMult += miscMult;
         finalMult += proxyMult;
         finalMult += (modifyEvent.Multiplier - 1f);
         finalMult += auraMult;
         finalMult += jobMult;
         var payDetails = ProcessPaymentDetails(
-            (int) chatPay,
+            (int)chatPay,
             finalMult);
+        details.LoadProxyMultiplier(proxyMult);
+        details.LoadAuraMultiplier(auraMult);
+        details.LoadJobMultiplier(jobMult);
+        details.LoadOtherMultiplier(modifyEvent.Multiplier);
+        details.LoadChatPay((int)chatPay);
+        details.LoadPayDetails(payDetails);
 
+        if (justChecking)
+            return; // we were just checking, no pramgle
         // pay the player
         PayPlayer(uid, payDetails.FinalPay);
         ShowPopup(uid, payDetails);
         ShowChatMessage(uid, payDetails);
         PruneOldActions(rpic);
+        return;
     }
+
     #endregion
 
     #region Continuous Proxy Actions
+
     /// <summary>
     /// Checks the component's continuous proxies, and processes them.
     /// Easy peasy.
@@ -737,6 +944,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
                 Log.Warning($"RpiProxyPrototype {proxData.Proto} has no target components defined!");
                 continue;
             }
+
             // Check if the user has any excluded components
             if (proxProto.UserMustNotHaveTheseComponents.Any(comp => HasComp(uid, comp.Value.Component.GetType())))
                 continue; // they have a component that excludes them from this proxy
@@ -855,6 +1063,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
                 continue; // they have a component that excludes them from this proxy
             entsWithComponents.Add(otherEnt);
         }
+
         return entsWithComponents;
     }
 
@@ -872,6 +1081,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         {
             RemComp<CaptureBaitComponent>(uid); // shrimple as
         }
+
         // first, go through all the RpiContinuousProxyActionPrototypes in existence
         foreach (var proxo in rpic.AllowedProxies)
         {
@@ -880,6 +1090,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
                 Log.Warning($"RpiProxyPrototype {proxo} not found!");
                 continue;
             }
+
             // we are just interested if the user has all the component this proot wants,
             // and none of the ones it doesnt want
             if (proxProto.UserMustNotHaveTheseComponents.Any(comp => HasComp(uid, comp.Value.Component.GetType())))
@@ -887,21 +1098,25 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
                 KillProxyIfExists(rpic, proxProto.ID);
                 continue; // they have a component that excludes them from this proxy
             }
+
             if (proxProto.UserMustHaveTheseComponents.Any(comp => !HasComp(uid, comp.Value.Component.GetType())))
             {
                 KillProxyIfExists(rpic, proxProto.ID);
                 continue;
             }
+
             AddProxyIfNotExists(rpic, proxProto.ID);
         }
     }
 
-    private static void KillProxyIfExists(RoleplayIncentiveComponent rpic, ProtoId<RpiContinuousProxyActionPrototype> proto)
+    private static void KillProxyIfExists(RoleplayIncentiveComponent rpic,
+        ProtoId<RpiContinuousProxyActionPrototype> proto)
     {
         rpic.Proxies.Remove(proto);
     }
 
-    private static void AddProxyIfNotExists(RoleplayIncentiveComponent rpic, ProtoId<RpiContinuousProxyActionPrototype> proto)
+    private static void AddProxyIfNotExists(RoleplayIncentiveComponent rpic,
+        ProtoId<RpiContinuousProxyActionPrototype> proto)
     {
         if (rpic.Proxies.ContainsKey(proto))
             return;
@@ -915,7 +1130,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         EntityUid uid,
         RoleplayIncentiveComponent rpic,
         bool pop = false
-        )
+    )
     {
         float totalMult = 0f;
         var now = _timing.CurTime;
@@ -927,8 +1142,10 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             if (pop)
                 proxData.Reset(); // reset it after we use it
         }
+
         return totalMult;
     }
+
     #endregion
 
     #region Aura Farming
@@ -949,27 +1166,35 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
 
     public void ProcessAuras(
         EntityUid uid,
-        RoleplayIncentiveComponent rpic)
+        RoleplayIncentiveComponent rpic,
+        ref RpiPaywardDetails details,
+        bool justChecking = false)
     {
-        if (_timing.CurTime < rpic.NextAuraCheck)
-            return; // too soon to check again
         var timeSinceLastCheck = _timing.CurTime - rpic.NextAuraCheck + rpic.AuraCheckInterval;
-        rpic.NextAuraCheck = _timing.CurTime + rpic.AuraCheckInterval;
-        // if they are dead or disconnected, tick decay on all auras and return
-        if (!rpic.DebugIgnoreState)
+        if (!justChecking)
         {
-            if (_mobStateSystem.IsDead(uid) || !PlayerIsConnected(uid))
+            if (_timing.CurTime < rpic.NextAuraCheck)
+                return; // too soon to check again
+            rpic.NextAuraCheck = _timing.CurTime + rpic.AuraCheckInterval;
+        }
+        // if they are dead or disconnected, tick decay on all auras and return
+        if (!rpic.DebugIgnoreState && !justChecking)
+        {
+            if (_mobStateSystem.IsDead(uid)
+                || !PlayerIsConnected(uid))
             {
                 foreach (var auraData in rpic.AuraTracker)
                 {
                     auraData.TickOutOfRange(timeSinceLastCheck);
                     if (auraData.IsFullyDecayed())
                     {
-                        RemoveAuraSource(
+                        StopTrackingAura(
                             uid,
                             rpic,
+                            auraData.RpiUid,
                             auraData.AuraId);
                     }
+
                 }
                 return;
             }
@@ -988,13 +1213,28 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             var auraCoords = _transformSystem.GetMapCoordinates(otherUid);
             foreach (var auraData in rpiss.AuraHolder)
             {
+                if (justChecking)
+                {
+                    IsTrackingAura(
+                        uid,
+                        rpic,
+                        theirId,
+                        auraData.AuraId,
+                        out var myAuraData);
+                    if (myAuraData != null)
+                    {
+                        details.LoadAuraData(myAuraData);
+                    }
+                    continue;
+                }
                 // are we in range of their aura, and are they alive and connected?
                 // cus they have to actually *be* there to give us the aura
                 // whether they are through a wall is not important, just proximity
                 var allowTick = myCoords.InRange(auraCoords, auraData.MaxDistance);
                 if (allowTick && !rpic.DebugIgnoreState)
                 {
-                    if (_mobStateSystem.IsDead(otherUid) || !PlayerIsConnected(otherUid))
+                    if (_mobStateSystem.IsDead(otherUid)
+                        || !PlayerIsConnected(otherUid))
                     {
                         allowTick = false; // they are dead or disconnected, so no aura for us
                     }
@@ -1012,6 +1252,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
                     {
                         // we are in range, so update our tracking data
                         ourAuraData.TickInRange(timeSinceLastCheck);
+                        details.LoadAuraData(ourAuraData);
                     }
                     else
                     {
@@ -1020,9 +1261,10 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
                         // if we are fully decayed, remove the aura
                         if (ourAuraData.IsFullyDecayed())
                         {
-                            RemoveAuraSource(
+                            StopTrackingAura(
                                 uid,
                                 rpic,
+                                theirId,
                                 auraData.AuraId);
                         }
                     }
@@ -1055,6 +1297,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             outData = auraData;
             return true;
         }
+
         outData = null;
         return false;
     }
@@ -1145,6 +1388,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             outData = auraData;
             return true;
         }
+
         outData = null;
         return false;
     }
@@ -1153,13 +1397,16 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     {
         if (!string.IsNullOrEmpty(rpic.RpiId))
             return rpic.RpiId;
-        if (TryComp<ActorComponent>(uid, out var actor))
-        {
-            rpic.RpiId = actor.PlayerSession.UserId.ToString();
-            return rpic.RpiId;
-        }
-        rpic.RpiId = uid.ToString();
-        return rpic.RpiId;
+        // generate a random human-readable string based on the time of day on mars
+        var timeSeed = DateTime.UtcNow.Ticks + uid.GetHashCode();
+        var random = new Random((int)(timeSeed & 0xFFFFFFFF) ^ (int)(timeSeed >> 32));
+        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        var rpiId = new string(
+            Enumerable.Repeat(chars, 8)
+                .Select(s => s[random.Next(s.Length)])
+                .ToArray());
+        rpic.RpiId = rpiId;
+        return rpiId; // sure good enough
     }
 
     public bool PlayerIsConnected(EntityUid uid)
@@ -1196,6 +1443,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             Log.Warning($"Failed to withdraw {penalty} from bank account of entity {uid}!");
             return;
         }
+
         rpic.LastDeathPunishment = _timing.CurTime;
         // tell them they got punished
         var message = Loc.GetString(
@@ -1211,6 +1459,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
                 false,
                 session.Channel);
         }
+
         // also show a popup
         _popupSystem.PopupEntity(
             message,
@@ -1279,6 +1528,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
                 payDetails,
                 popupLocKey);
         }
+
         if (chatLocKey != null)
         {
             ShowChatMessageSimple(
@@ -1321,8 +1571,10 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
                 Log.Warning($"RpiJobModifierPrototype {protid} not found!");
                 continue;
             }
+
             jobMult += (jobProto.Multiplier - 1f);
         }
+
         return jobMult;
     }
 
@@ -1339,6 +1591,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             {
                 continue;
             }
+
             // slot it into the best action for that type
             if (bestActions.TryGetValue(action.Category, out var existing))
             {
@@ -1352,6 +1605,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
                 bestActions[action.Category] = action;
             }
         }
+
         var multOut = 1f;
         // now, sum up the best actions
         foreach (var kvp in bestActions)
@@ -1359,43 +1613,61 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             // add mults ADDITIVFELY
             multOut += (kvp.Value.GetMultiplier() - 1f);
         }
+
         return multOut - 1f;
     }
 
     private float GetChatActionPay(
         EntityUid uid,
         RoleplayIncentiveComponent? rpic,
-        TaxBracketResult taxBracket)
+        TaxBracketResult taxBracket,
+        ref RpiPaywardDetails details,
+        bool justChecking = false)
     {
         if (!Resolve(uid, ref rpic))
             return 0;
         float total = 0;
         // go through all the actions, and compile the BEST ONES EVER
         Dictionary<RpiChatActionCategory, float> bestActions = new();
+        Dictionary<RpiChatActionCategory, RpiJudgementDetails> bestJudgements = new();
         foreach (var action in rpic.ChatActionsTaken.Where(action => !action.ChatActionIsSpent))
         {
             if (action.ChatActionIsSpent)
                 continue; // just in case, no pramgle
-            var judgement = JudgeChatAction(action, rpic);
+            var judgement = JudgeChatAction(
+                action,
+                rpic,
+                out var judgeDetails);
             // slot it into the best action for that type
             if (bestActions.TryGetValue(action.Action, out var existing))
             {
                 if (judgement > existing)
                 {
                     bestActions[action.Action] = judgement;
+                    bestJudgements[action.Action] = judgeDetails;
                 }
             }
             else
             {
                 bestActions[action.Action] = judgement;
+                bestJudgements[action.Action] = judgeDetails;
             }
+
+            if (justChecking)
+                continue;
             action.ChatActionIsSpent = true; // mark it for deletion
         }
+
         // now, sum up the best actions
         foreach (var kvp in bestActions)
         {
             total += kvp.Value;
         }
+        foreach (var kvp in bestJudgements)
+        {
+            details.AddJudgementDetails(kvp.Key, kvp.Value);
+        }
+
         total *= taxBracket.PayPerJudgement;
         return total;
     }
@@ -1428,6 +1700,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             Log.Warning($"RpiTaxBracketPrototype {TaxBracketDefault} not found! ITS THE DEFAULT AOOOAOAOAOOA");
             return taxBracket;
         }
+
         RpiTaxBracketPrototype? proto = null;
         // go through the sorted list, and find the Lowest bracket that is higher than the player's money
         List<RpiTaxBracketPrototype> protosHigherThanPlayer = new();
@@ -1438,16 +1711,19 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
                 Log.Warning($"RpiTaxBracketPrototype {protoId} not found!");
                 continue;
             }
+
             if (hasThisMuchMoney < myProto.CashThreshold)
             {
                 protosHigherThanPlayer.Add(myProto);
             }
         }
+
         // if we found any, use the lowest one
         if (protosHigherThanPlayer.Count > 0)
         {
             proto = protosHigherThanPlayer.OrderBy(p => p.CashThreshold).First();
         }
+
         // if we didnt find any, use the default
         Dictionary<RpiChatActionCategory, RpiChatActionPrototype> chatActionPrototypes = new();
         proto ??= defaultProto;
@@ -1473,6 +1749,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         {
             taxBracket.DeepFryPenalty = rpic.TaxBracketDeepFryerPenaltyOverride;
         }
+
         return taxBracket;
     }
 
@@ -1627,12 +1904,14 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             proot = null;
             return false;
         }
+
         if (!_prototype.TryIndex<RpiChatActionPrototype>(myPrototype, out var proto))
         {
             Log.Warning($"RpiChatActionPrototype {myPrototype} not found!");
             proot = null;
             return false;
         }
+
         proot = proto;
         return true;
     }
@@ -1672,7 +1951,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         //     : RpiChatActionCategory.Emoting;
     }
 
-        /// <summary>
+    /// <summary>
     /// Passes judgement on the action
     /// Based on a set of criteria, it will return a judgement value
     /// It will be judged based on:
@@ -1680,7 +1959,10 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
     /// - How many people were present
     /// - and thats it for now lol
     /// </summary>
-    private float JudgeChatAction(RpiChatRecord chatRecord, RoleplayIncentiveComponent rpic)
+    private float JudgeChatAction(
+        RpiChatRecord chatRecord,
+        RoleplayIncentiveComponent rpic,
+        out RpiJudgementDetails details)
     {
         float judgement = 0f;
         float longMult = 1f;
@@ -1691,11 +1973,17 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             longMult += proto.GetMod(chatRecord.Action) - 1f;
         }
 
-        int longth = (int) ((chatRecord.Message?.Length ?? 1) * longMult);
+        int longth = (int)((chatRecord.Message?.Length ?? 1) * longMult);
         float lengthMult = GetMessageLengthMultiplier(chatRecord.Action, longth);
         float listenerMult = GetListenerMultiplier(chatRecord.Action, chatRecord.PeoplePresent);
         judgement += lengthMult;
         judgement += listenerMult;
+        details = new RpiJudgementDetails(
+            longth,
+            lengthMult,
+            listenerMult,
+            judgement,
+            chatRecord.Message);
         return judgement;
     }
 
@@ -1746,7 +2034,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
             return 0; // too short to judge
         }
 
-        var rawLengthMult = messageLength / (float) proto.LengthPerPoint;
+        var rawLengthMult = messageLength / (float)proto.LengthPerPoint;
         // floor it to the nearest whole number, with a minimum of 1 and max of who cares
         return Math.Clamp(
             (float)Math.Floor(rawLengthMult),
@@ -1786,48 +2074,9 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
                 recipients++;
             }
         }
+
         return recipients;
     }
 
-    #endregion
-
-    #region Data Holbies
-    public sealed class TaxBracketResult(
-        int payPerJudgement,
-        int deathPenalty,
-        int deepFryPenalty,
-        Dictionary<RpiActionType, float> actionMultipliers,
-        RpiJournalismData journalismData)
-    {
-        public int PayPerJudgement = payPerJudgement;
-        public int DeathPenalty = deathPenalty;
-        public int DeepFryPenalty = deepFryPenalty;
-        public Dictionary<RpiActionType, float> ActionMultipliers = actionMultipliers;
-        public RpiJournalismData JournalismData = journalismData;
-
-        public TaxBracketResult() : this(
-            payPerJudgement:   10,
-            deathPenalty:      0,
-            deepFryPenalty:    0,
-            actionMultipliers: new Dictionary<RpiActionType, float>(),
-            journalismData:    new RpiJournalismData())
-        {
-            // piss
-        }
-    }
-
-    private struct PayoutDetails(
-        int basePay,
-        int finalPay,
-        FixedPoint2 multiplier,
-        FixedPoint2 rawMultiplier,
-        bool hasMultiplier)
-    {
-        public int BasePay = basePay;
-        public int FinalPay = finalPay;
-        public FixedPoint2 Multiplier = multiplier;
-        public FixedPoint2 RawMultiplier = rawMultiplier;
-        public bool HasMultiplier = hasMultiplier;
-    }
     #endregion
 }
