@@ -7,6 +7,7 @@ size-manipulator-target-shrink = You feel yourself shrinking!
 size-manipulator-max-size = Target is already at maximum size!
 size-manipulator-min-size = Target is already at minimum size!
 size-manipulator-consent-denied = Target does not consent to size manipulation!
+size-manipulator-already-modified = Target already has size modifications from other sources!
 
 ## Examine text
 ent-WeaponSizeManipulator = size manipulator

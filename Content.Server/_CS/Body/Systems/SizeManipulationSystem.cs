@@ -2,6 +2,8 @@
 using Content.Server.Consent;
 using Content.Shared.Body.Components;
 using Content.Shared.Consent;
+using Content.Shared.HeightAdjust;
+using Content.Shared.Humanoid;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
@@ -19,9 +21,46 @@ public sealed class SizeManipulationSystem : EntitySystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly ConsentSystem _consent = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
 
     private static readonly ProtoId<ConsentTogglePrototype> SizeManipulationConsent = "SizeManipulation";
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        SubscribeLocalEvent<SizeAffectedComponent, GetSizeModifierEvent>(OnGetSizeModifier);
+        SubscribeLocalEvent<SizeAffectedComponent, ComponentStartup>(OnComponentStartup);
+    }
+
+    /// <summary>
+    /// When a SizeAffectedComponent is added or initialized (e.g., on client connect),
+    /// trigger a size recalculation to ensure visual state is correct
+    /// </summary>
+    private void OnComponentStartup(EntityUid uid, SizeAffectedComponent component, ComponentStartup args)
+    {
+        // Only recalculate if the entity has a non-default scale
+        if (Math.Abs(component.ScaleMultiplier - 1.0f) > 0.01f)
+        {
+            var recalcEvent = new RequestSizeRecalcEvent();
+            RaiseLocalEvent(uid, ref recalcEvent);
+        }
+    }
+
+    /// <summary>
+    /// Contributes the size gun's modifier when collecting all size modifiers
+    /// </summary>
+    private void OnGetSizeModifier(EntityUid uid, SizeAffectedComponent component, ref GetSizeModifierEvent args)
+    {
+        // Only contribute if the scale has been changed from default
+        if (Math.Abs(component.ScaleMultiplier - 1.0f) > 0.01f)
+        {
+            args.Modifiers.Add(new SizeModifier
+            {
+                Source = "SizeGun",
+                Scale = component.ScaleMultiplier,
+                Priority = 10 // Medium priority - applied after base but before temporary effects
+            });
+        }
+    }
 
     /// <summary>
     /// Applies a size change to the target entity
@@ -71,16 +110,15 @@ public sealed class SizeManipulationSystem : EntitySystem
             }
         }
 
+        // Update the component's scale multiplier
         sizeComp.ScaleMultiplier = newScale;
         Dirty(target, sizeComp);
         
-        // Apply physics scaling
-        ApplyPhysicsScale(target, newScale, sizeComp.BaseScale);
-        
         Logger.Debug($"SizeManipulation: Set scale multiplier to {newScale} for {ToPrettyString(target)}");
 
-        // Visual scaling should be handled by a shared/client system that reads SizeAffectedComponent
-        // Server should not directly manipulate sprite components
+        // Request a size recalculation - this will collect all modifiers and apply the final scale
+        var recalcEvent = new RequestSizeRecalcEvent();
+        RaiseLocalEvent(target, ref recalcEvent);
 
         var message = mode == SizeManipulatorMode.Grow
             ? Loc.GetString("size-manipulator-target-grow")
@@ -89,50 +127,5 @@ public sealed class SizeManipulationSystem : EntitySystem
         _popup.PopupEntity(message, target, PopupType.Medium);
 
         return true;
-    }
-
-    /// <summary>
-    /// Applies physics scaling to the target's fixtures
-    /// </summary>
-    private void ApplyPhysicsScale(EntityUid target, float scaleMultiplier, float baseScale)
-    {
-        if (!TryComp<FixturesComponent>(target, out var fixtures))
-            return;
-
-        if (!TryComp<SizeAffectedComponent>(target, out var sizeComp))
-            return;
-
-        var totalScale = scaleMultiplier * baseScale;
-
-        foreach (var (id, fixture) in fixtures.Fixtures)
-        {
-            // Only scale hard fixtures (collision fixtures)
-            if (!fixture.Hard)
-                continue;
-
-            switch (fixture.Shape)
-            {
-                case PhysShapeCircle circle:
-                    // Store original radius on first scaling
-                    if (!sizeComp.OriginalFixtureRadii.ContainsKey(id))
-                    {
-                        sizeComp.OriginalFixtureRadii[id] = circle.Radius;
-                        Logger.Debug($"SizeManipulation: Stored original radius {circle.Radius} for fixture {id}");
-                    }
-
-                    var originalRadius = sizeComp.OriginalFixtureRadii[id];
-                    var newRadius = originalRadius * totalScale;
-                    
-                    _physics.SetPositionRadius(target, id, fixture, circle, circle.Position, newRadius, fixtures);
-                    Logger.Debug($"SizeManipulation: Scaled circle fixture {id} radius from {circle.Radius} to {newRadius} (original: {originalRadius}, scale: {totalScale})");
-                    break;
-                    
-                // Note: PhysShapeAabb and other shapes would need different handling
-                // For now, only supporting circle shapes (most humanoids use circles)
-                default:
-                    Logger.Debug($"SizeManipulation: Skipping non-circle fixture {id} of type {fixture.Shape.GetType().Name}");
-                    break;
-            }
-        }
     }
 }
