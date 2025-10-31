@@ -115,6 +115,13 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         var age = GetAgeRepresentation(component.Species, component.Age);
 
         args.PushText(Loc.GetString("humanoid-appearance-component-examine", ("user", identity), ("age", age), ("species", species)));
+
+        // Show size modification if significantly different from normal
+        var averageScale = (component.Height + component.Width) / 2.0f;
+        if (Math.Abs(averageScale - 1.0f) > 0.05f) // Only show if more than 5% different
+        {
+            args.PushMarkup(Loc.GetString("humanoid-appearance-component-examine-size", ("scale", averageScale.ToString("F2"))));
+        }
     }
 
     /// <summary>
