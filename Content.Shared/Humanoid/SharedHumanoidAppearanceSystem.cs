@@ -385,19 +385,14 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         if (!Resolve(uid, ref humanoid) || MathHelper.CloseTo(humanoid.Height, height, 0.001f))
             return;
 
-        Log.Info($"SetHeight: uid={ToPrettyString(uid)}, height={height}, current={humanoid.Height}, bypassLimits={bypassLimits}");
-
         if (bypassLimits)
         {
             humanoid.Height = height;
-            Log.Info($"  -> Set to {height} (bypassed limits)");
         }
         else
         {
             var species = _proto.Index(humanoid.Species);
-            var clamped = Math.Clamp(height, species.MinHeight, species.MaxHeight);
-            humanoid.Height = clamped;
-            Log.Info($"  -> Set to {clamped} (clamped from {height}, min={species.MinHeight}, max={species.MaxHeight})");
+            humanoid.Height = Math.Clamp(height, species.MinHeight, species.MaxHeight);
         }
 
         if (sync)

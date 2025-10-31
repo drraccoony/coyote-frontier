@@ -5,7 +5,6 @@ using Content.Shared.Humanoid;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Robust.Shared.Configuration;
-using Robust.Shared.Log;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 
@@ -40,15 +39,10 @@ public sealed class HeightAdjustSystem : EntitySystem
         // Sort by priority (lower priority applied first, so higher priority can override)
         var sortedModifiers = getModifiersEvent.Modifiers.OrderBy(m => m.Priority).ToList();
         
-        Logger.Info($"HeightAdjustSystem: Recalculating size for {ToPrettyString(target)}, found {sortedModifiers.Count} modifiers");
-        
         foreach (var modifier in sortedModifiers)
         {
-            Logger.Info($"  Modifier: {modifier.Source} = {modifier.Scale}x (priority {modifier.Priority})");
             finalScale *= modifier.Scale;
         }
-
-        Logger.Info($"HeightAdjustSystem: Final scale = {finalScale}x, current height = {component.Height}");
 
         // Apply the final scale, bypassing species limits for temporary effects
         SetScale(target, finalScale, bypassLimits: true);
