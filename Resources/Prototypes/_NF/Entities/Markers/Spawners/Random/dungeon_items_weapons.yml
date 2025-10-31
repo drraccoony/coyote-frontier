@@ -210,11 +210,8 @@
     - WeaponCaseShortFitzExpedition
     - WeaponCaseShortWard45Expedition
     - WeaponCaseShortRevolverPirate
-    - WeaponCaseLongC20r
-    - WeaponCaseLongJackdaw
     - WeaponCaseLongGestioExpedition
     - WeaponCaseLongWeaponRifleNovaliteC1Expedition
-    - WeaponCaseLongSVSExpedition
     - WeaponCaseLongKammererExpedition
     - WeaponCaseShortLaserGunExpedition
     chance: 1.0
@@ -242,19 +239,22 @@
       color: red
   - type: RandomSpawner
     prototypes:
-    - WeaponCaseLongTypewriterExpedition
-    - WeaponCaseLongAtreidesExpedition
-    - WeaponCaseLongWT550Expedition
-    - WeaponCaseLongDrozdExpedition
-    - WeaponCaseLongM90Expedition
-    - WeaponCaseLongLecterExpedition
-    - WeaponCaseShortSvalinnExpedition
-    - WeaponCaseLongHristovExpedition
-    - WeaponCaseLongMusketExpedition
+    - WeaponCaseLongC20r #Moved to T3
+    - WeaponCaseLongJackdaw #Moved to T3
+    - WeaponCaseLongSVSExpedition #Moved to T3
     chance: 1.0
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootGunT4
+    - WeaponCaseLongTypewriterExpedition #Moved to rare
+    - WeaponCaseLongAtreidesExpedition #Moved to rare
+    - WeaponCaseLongWT550Expedition #Moved to rare
+    - WeaponCaseLongDrozdExpedition #Moved to rare
+    - WeaponCaseLongM90Expedition #Moved to rare
+    - WeaponCaseLongLecterExpedition #Moved to rare
+    - WeaponCaseShortSvalinnExpedition #Moved to rare
+    - WeaponCaseLongHristovExpedition #Moved to rare
+    - WeaponCaseLongMusketExpedition #Moved to rare
     rareChance: 0.05
 
 #region guns T4
@@ -276,9 +276,6 @@
       color: red
   - type: RandomSpawner
     prototypes:
-    - WeaponCaseLongSm
-    - WeaponCaseLongVulcanExpedition
-    - WeaponCaseLongBulldog
     - WeaponCaseLongEnforcerExpedition
     - WeaponCaseShortAntiqueLaserExpedition
     - WeaponCaseShortAdvancedLaserExpedition
@@ -289,6 +286,7 @@
     chance: 1.0
     offset: 0.0
     rarePrototypes:
+    - WeaponCaseLongBulldog #Moved to rare
     - SpawnDungeonLootGunT5
     rareChance: 0.05
 
@@ -317,7 +315,9 @@
     - WeaponCaseLongEnergyGunExpedition
     - WeaponCaseLongLaserCannonExpedition
     - WeaponCaseHeavyAsmgtExpeditions
-    chance: 1.0
+    - WeaponCaseLongVulcanExpedition #Moved to T5
+    - WeaponCaseLongSm #Moved to T5
+    chance: 0.5 #Changed to 50% chance
     offset: 0.0
 
 #region bombs T1

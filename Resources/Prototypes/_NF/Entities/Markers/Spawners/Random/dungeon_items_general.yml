@@ -283,7 +283,6 @@
     # Departmental
     - SpawnDungeonLootCrateEngi
     - SpawnDungeonLootCrateService
-    - SpawnDungeonLootCrateMed
     - SpawnDungeonLootCrateHydro
     - SpawnDungeonLootCrateScience
     # Generic stuff
@@ -295,7 +294,7 @@
     - NFCrateSalvageAssortedGoodiesPlastic
     - SalvageMaterialCrateSpawner
     - CrateFilledSpawner
-    chance: 0.9
+    chance: 0.7
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootCrateArmoryWeapon
@@ -416,25 +415,25 @@
     prototypes:
     - CutterMachine
     - SalvageTechfabNF
-    - ServiceTechFab
-    - EngineeringTechFab
     - Autolathe
-    - Protolathe
-    - CircuitImprinter
     - ExosuitFabricator
     - Biogenerator
-    - AmmoTechFab
-    - MedicalTechFab
     - UniformPrinter
     - MachineFlatpacker
     - SpawnDungeonMachineFrame
-    - SpawnDungeonLootFlatpacks
     chance: 1
     offset: 0.0
     rarePrototypes:
     - OreProcessorIndustrial
     - AutolatheHyperConvection
     - ProtolatheHyperConvection
+    - ServiceTechFab #moved to rare
+    - EngineeringTechFab #moved to rare
+    - Protolathe #moved to rare
+    - CircuitImprinter #moved to rare
+    - AmmoTechFab #moved to rare
+    - MedicalTechFab #moved to rare
+    - SpawnDungeonLootFlatpacks #moved to rare
     rareChance: 0.03
 
 - type: entity
@@ -536,7 +535,7 @@
     - VendingMachineMagivend
     - VendingMachineArcadia
     - VendingMachineBountyVendPunk
-    # - VendingMachineSyndieDrobe # A bit less Syndicate loot
+    - VendingMachineSyndieDrobe # readded
     - VendingMachineSyndieContraband
     - SpawnDungeonMachineFrame
     rareChance: 0.03
@@ -678,8 +677,6 @@
     - SpawnDungeonLootCircuitBoardScience
     - SpawnDungeonLootCircuitBoardMed
     - AutolatheMachineCircuitboard
-    - ProtolatheMachineCircuitboard
-    - CircuitImprinterMachineCircuitboard
     - ArtifactAnalyzerMachineCircuitboard
     - ThermomachineFreezerMachineCircuitBoard
     - ThermomachineHeaterMachineCircuitBoard
@@ -722,19 +719,22 @@
     - SurveillanceWirelessCameraMonitorCircuitboard
     # Boards
     - SalvageTechFabCircuitboardNF
-    - ServiceTechFabCircuitboard
-    - EngineeringTechFabCircuitboard
-    - AmmoTechFabCircuitboard
-    - MedicalTechFabCircuitboard
     - OreProcessorIndustrialMachineCircuitboard
     - DawInstrumentMachineCircuitboard
     - ComputerIFFCircuitboard
-    - SpawnDungeonLootFlatpacks
-    - MercenaryTechFabCircuitboardNF
     chance: 1
     offset: 0.0
     rarePrototypes:
     - CloningPodMachineCircuitboard
+    - SpawnDungeonLootFlatpacks
+    - ProtolatheMachineCircuitboard #moved to rare
+    - CircuitImprinterMachineCircuitboard #moved to rare
+    - ServiceTechFabCircuitboard #moved to rare
+    - EngineeringTechFabCircuitboard #moved to rare
+    - AmmoTechFabCircuitboard #moved to rare
+    - MedicalTechFabCircuitboard #moved to rare
+    - SpawnDungeonLootFlatpacks #moved to rare
+    - MercenaryTechFabCircuitboardNF #moved to rare
 #    - MedicalScannerMachineCircuitboard
     - StasisBedMachineCircuitboard
 #    - GasRecyclerMachineCircuitboard
