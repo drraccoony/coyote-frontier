@@ -7,6 +7,8 @@ using Content.Shared.Movement.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Physics.Collision.Shapes;
+using Robust.Shared.Maths;
 
 namespace Content.Shared.HeightAdjust;
 
@@ -59,16 +61,12 @@ public sealed class HeightAdjustSystem : EntitySystem
     public bool SetScale(EntityUid uid, float scale, bool bypassLimits = false)
     {
         var succeeded = true;
-        // if (_config.GetCVar(CCVars.HeightAdjustModifiesZoom) && EntityManager.TryGetComponent<ContentEyeComponent>(uid, out var eye))
-        //     _eye.SetMaxZoom(uid, eye.MaxZoom * scale);
-        // else
-        //     succeeded = false;
-        //
-        // if (_config.GetCVar(CCVars.HeightAdjustModifiesHitbox) && EntityManager.TryGetComponent<FixturesComponent>(uid, out var fixtures))
-        //     foreach (var fixture in fixtures.Fixtures)
-        //         _physics.SetRadius(uid, fixture.Key, fixture.Value, fixture.Value.Shape, MathF.MinMagnitude(fixture.Value.Shape.Radius * scale, 0.49f));
-        // else
-        //     succeeded = false;
+        
+        if (_config.GetCVar(CCVars.HeightAdjustModifiesHitbox) && EntityManager.TryGetComponent<FixturesComponent>(uid, out var fixtures))
+            foreach (var fixture in fixtures.Fixtures)
+                _physics.SetRadius(uid, fixture.Key, fixture.Value, fixture.Value.Shape, MathF.MinMagnitude(fixture.Value.Shape.Radius * scale, 0.49f));
+        else
+            succeeded = false;
 
         if (EntityManager.HasComponent<HumanoidAppearanceComponent>(uid))
         {
@@ -85,23 +83,33 @@ public sealed class HeightAdjustSystem : EntitySystem
     ///     Changes the density of fixtures and zoom of eyes based on a provided Vector2 scale
     /// </summary>
     /// <param name="uid">The entity to modify values for</param>
-    /// <param name="scale">The scale to multiply values by</param>
+    /// <param name="scale">The scale to multiply values by (X = width, Y = height)</param>
     /// <returns>True if all operations succeeded</returns>
     public bool SetScale(EntityUid uid, Vector2 scale)
     {
         var succeeded = true;
-        var avg = (scale.X + scale.Y) / 2;
 
-        // if (_config.GetCVar(CCVars.HeightAdjustModifiesZoom) && EntityManager.TryGetComponent<ContentEyeComponent>(uid, out var eye))
-        //     _eye.SetMaxZoom(uid, eye.MaxZoom * avg);
-        // else
-        //     succeeded = false;
-        //
-        // if (_config.GetCVar(CCVars.HeightAdjustModifiesHitbox) && EntityManager.TryGetComponent<FixturesComponent>(uid, out var fixtures))
-        //     foreach (var fixture in fixtures.Fixtures)
-        //         _physics.SetRadius(uid, fixture.Key, fixture.Value, fixture.Value.Shape, MathF.MinMagnitude(fixture.Value.Shape.Radius * avg, 0.49f));
-        // else
-        //     succeeded = false;
+        if (_config.GetCVar(CCVars.HeightAdjustModifiesHitbox) && EntityManager.TryGetComponent<FixturesComponent>(uid, out var fixtures))
+        {
+            foreach (var (key, fixture) in fixtures.Fixtures)
+            {
+                if (fixture.Shape is PhysShapeAabb aabb)
+                {
+                    // For AABB, scale width more aggressively than height
+                    // This makes wide entities truly wide and tall entities truly tall
+                    var avg = (scale.X * 0.7f + scale.Y * 0.3f); // Favor width scaling
+                    _physics.SetRadius(uid, key, fixture, fixture.Shape, MathF.MinMagnitude(fixture.Shape.Radius * avg, 0.49f));
+                }
+                else
+                {
+                    // For circular shapes, use average of width and height
+                    var avg = (scale.X + scale.Y) / 2;
+                    _physics.SetRadius(uid, key, fixture, fixture.Shape, MathF.MinMagnitude(fixture.Shape.Radius * avg, 0.49f));
+                }
+            }
+        }
+        else
+            succeeded = false;
 
         if (EntityManager.HasComponent<HumanoidAppearanceComponent>(uid))
             _appearance.SetScale(uid, scale);
