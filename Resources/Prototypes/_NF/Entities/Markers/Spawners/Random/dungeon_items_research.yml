@@ -167,16 +167,10 @@
     - CrateEngineeringGyroscope
     - CrateBodyBags
     - CrateMedicalRollerBeds
-    - CrateChemistrySupplies
     - CrateChemistryVials
-    - CrateMedicalSupplies
     - CrateMedicalSurgery
     - CrateMedicalScrubs
     - CrateVirologyBiosuit
-    - CrateChemistrySecureKitChemist
-    - CrateMedicalSecureDoctor
-    - CrateMedicalSecureMedicine
-    - CrateMedicalSecureMedicinePierce
     - CrateEvaKitParamedic
     chance: 0.9
     offset: 0.0
@@ -186,6 +180,12 @@
     # Filled crates
     - CrateEngineeringKitShipyardRcd
     - CrateEngineeringKitRtg
+    - CrateMedicalSupplies #moved to rare
+    - CrateChemistrySupplies #moved to rare
+    - CrateMedicalSecureMedicine #moved to rare
+    - CrateMedicalSecureMedicinePierce #moved to rare
+    - CrateChemistrySecureKitChemist #moved to rare
+    - CrateMedicalSecureDoctor #moved to rare
     #- CrateEngineeringKitFabrication
     - CrateEngineerChiefHardsuit
     #- CrateServiceKitMedbay
@@ -214,11 +214,11 @@
     prototypes:
     - ResearchDisk
     - ResearchDisk
-    - ResearchDisk5000
     chance: 0.95
     offset: 0.0
     rarePrototypes:
     - ResearchDisk10000
+    - ResearchDisk5000 #moved to rare
     - WeaponCaseShortDocumentsFilled
     rareChance: 0.05
 
@@ -243,9 +243,7 @@
     - ResearchComputerCircuitboard
     - AnalysisComputerCircuitboard
     # Lathes
-    - CircuitImprinterMachineCircuitboard
     - ExosuitFabricatorMachineCircuitboard
-    - ProtolatheMachineCircuitboard
     - AutolatheMachineCircuitboard
     - FlatpackerMachineCircuitboard
     # Machines
@@ -261,6 +259,8 @@
     - AutolatheHyperConvectionMachineCircuitboard
     - ProtolatheHyperConvectionMachineCircuitboard
     - ComputerIFFCircuitboard
+    - CircuitImprinterMachineCircuitboard #moved to rare
+    - ProtolatheMachineCircuitboard #moved to rare
     rareChance: 0.05
 
 - type: entity
@@ -280,8 +280,6 @@
   - type: RandomSpawner
     prototypes:
     - ExosuitFabricatorFlatpack
-    - CircuitImprinterFlatpack
-    - ProtolatheFlatpack
     - MachineArtifactAnalyzerFlatpack
     - MachineAnomalyVesselFlatpack
     - MachineAPEFlatpack
@@ -294,4 +292,6 @@
     offset: 0.0
     rarePrototypes:
     - MachineAnomalyGeneratorFlatpack
-    rareChance: 0.001
+    - CircuitImprinterFlatpack #moved to rare
+    - ProtolatheFlatpack #moved to rare
+    rareChance: 0.03
