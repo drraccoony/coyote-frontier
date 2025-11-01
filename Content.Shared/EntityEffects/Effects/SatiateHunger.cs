@@ -1,3 +1,4 @@
+using Content.Shared._Coyote.Needs;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
@@ -22,17 +23,9 @@ public sealed partial class SatiateHunger : EntityEffect
     //Remove reagent at set rate, satiate hunger if a HungerComponent can be found
     public override void Effect(EntityEffectBaseArgs args)
     {
-        var entman = args.EntityManager;
-        if (!entman.TryGetComponent(args.TargetEntity, out HungerComponent? hunger))
-            return;
-        if (args is EntityEffectReagentArgs reagentArgs)
-        {
-            entman.System<HungerSystem>().ModifyHunger(reagentArgs.TargetEntity, NutritionFactor * (float) reagentArgs.Quantity, hunger);
-        }
-        else
-        {
-            entman.System<HungerSystem>().ModifyHunger(args.TargetEntity, NutritionFactor, hunger);
-        }
+        var uid = args.TargetEntity;
+        if (args.EntityManager.TryGetComponent(uid, out NeedsComponent? needy))
+            args.EntityManager.System<SharedNeedsSystem>().ModifyHunger(uid, NutritionFactor, needy);
     }
 
     protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)

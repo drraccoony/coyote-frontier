@@ -16,7 +16,7 @@ using Content.Server.GhostKick;
 using Content.Server.Info;
 using Content.Server.Mapping;
 using Content.Server.Maps;
-using Content.Server.MoMMI;
+// using Content.Server.MoMMI;
 using Content.Server.NodeContainer.NodeGroups;
 using Content.Server.Players.JobWhitelist;
 using Content.Server.Players.PlayTimeTracking;
@@ -42,7 +42,7 @@ namespace Content.Server.IoC
             IoCManager.Register<IChatManager, ChatManager>();
             IoCManager.Register<ISharedChatManager, ChatManager>();
             IoCManager.Register<IChatSanitizationManager, ChatSanitizationManager>();
-            IoCManager.Register<IMoMMILink, MoMMILink>();
+            // IoCManager.Register<IMoMMILink, MoMMILink>();
             IoCManager.Register<IServerConsentManager, ServerConsentManager>(); // Floofstation
             IoCManager.Register<IServerPreferencesManager, ServerPreferencesManager>();
             IoCManager.Register<IServerDbManager, ServerDbManager>();

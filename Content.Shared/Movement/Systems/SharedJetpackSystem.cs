@@ -38,7 +38,7 @@ public abstract class SharedJetpackSystem : EntitySystem
 
         SubscribeLocalEvent<GravityChangedEvent>(OnJetpackUserGravityChanged);
         SubscribeLocalEvent<JetpackComponent, MapInitEvent>(OnMapInit);
-        NfInitialize(); // Frontier
+        // NfInitialize(); // Frontier
     }
 
     private void OnJetpackUserWeightlessMovement(Entity<JetpackUserComponent> ent, ref RefreshWeightlessModifiersEvent args)
@@ -207,15 +207,15 @@ public abstract class SharedJetpackSystem : EntitySystem
             SetupUser(user.Value, uid, component);
             EnsureComp<ActiveJetpackComponent>(uid);
             // Frontier
-            if (component.RadarBlip) // add radar blip when jetpack is activated
-                SetupRadarBlip(uid);
+            // if (component.RadarBlip) // add radar blip when jetpack is activated
+            //     SetupRadarBlip(uid);
             // End Frontier
         }
         else
         {
             RemoveUser(user.Value, component);
             RemComp<ActiveJetpackComponent>(uid);
-            RemComp<RadarBlipComponent>(uid); // Frontier: remove radar blip when jetpack is deactivated
+            // RemComp<RadarBlipComponent>(uid); // Frontier: remove radar blip when jetpack is deactivated
         }
 
         Appearance.SetData(uid, JetpackVisuals.Enabled, enabled);

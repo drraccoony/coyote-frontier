@@ -11,6 +11,7 @@ using Content.Shared.CartridgeLoader;
 using Content.Shared.Database;
 using Content.Shared._DeltaV.CartridgeLoader.Cartridges;
 using Content.Shared._DeltaV.NanoChat;
+using Content.Shared.Access.Systems;
 using Content.Shared.PDA;
 using Content.Shared.Radio.Components;
 using Robust.Shared.Prototypes;
@@ -27,6 +28,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
     [Dependency] private readonly SharedNanoChatSystem _nanoChat = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private readonly SharedIdCardSystem _card = default!;
 
     // Messages in notifications get cut off after this point
     // no point in storing it on the comp
@@ -157,16 +159,16 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         if (!string.IsNullOrWhiteSpace(name))
         {
             name = name.Trim();
-            if (name.Length > IdCardConsoleComponent.MaxFullNameLength)
-                name = name[..IdCardConsoleComponent.MaxFullNameLength];
+            if (name.Length > 200)
+                name = name[..200];
         }
 
         var jobTitle = msg.RecipientJob;
         if (!string.IsNullOrWhiteSpace(jobTitle))
         {
             jobTitle = jobTitle.Trim();
-            if (jobTitle.Length > IdCardConsoleComponent.MaxJobTitleLength)
-                jobTitle = jobTitle[..IdCardConsoleComponent.MaxJobTitleLength];
+            if (jobTitle.Length > 200)
+                jobTitle = jobTitle[..200];
         }
 
         // Add new recipient
