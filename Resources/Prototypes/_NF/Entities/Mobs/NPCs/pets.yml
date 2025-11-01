@@ -207,14 +207,14 @@
     states:
       Alive:
         Base: mistakecat
-  - type: GhostRole
-    name: ghost-role-information-curie-name
-    description: ghost-role-information-curie-description
-    rules: ghost-role-information-nonantagonist-rules
-    prototype: CatCurie
-    mindRoles: [ MindRoleGhostRoleNeutral ]
-  - type: Loadout
-    prototypes: [ MobCurieGear ]
+#  - type: GhostRole
+#    name: ghost-role-information-curie-name
+#    description: ghost-role-information-curie-description
+#    rules: ghost-role-information-nonantagonist-rules
+#    prototype: CatCurie
+#    mindRoles: [ MindRoleGhostRoleNeutral ]
+#  - type: Loadout
+#    prototypes: [ MobCurieGear ]
   - type: RandomMetadata
     nameSegments: null
   - type: AutoImplant
