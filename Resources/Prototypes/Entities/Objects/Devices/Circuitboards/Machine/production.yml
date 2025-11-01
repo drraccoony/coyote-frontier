@@ -43,8 +43,7 @@
     prototype: Protolathe
     requirements: # Frontier
       MatterBin: 2 # Frontier
-    stackRequirements: # Frontier
-       Manipulator: 4 # Frontier
+      Manipulator: 4 # Frontier
     tagRequirements:
       GlassBeaker:
         amount: 2
