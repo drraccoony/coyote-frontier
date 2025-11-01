@@ -115,6 +115,13 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         var age = GetAgeRepresentation(component.Species, component.Age);
 
         args.PushText(Loc.GetString("humanoid-appearance-component-examine", ("user", identity), ("age", age), ("species", species)));
+
+        // Show size modification if significantly different from normal
+        var averageScale = (component.Height + component.Width) / 2.0f;
+        if (Math.Abs(averageScale - 1.0f) > 0.05f) // Only show if more than 5% different
+        {
+            args.PushMarkup(Loc.GetString("humanoid-appearance-component-examine-size", ("scale", averageScale.ToString("F2"))));
+        }
     }
 
     /// <summary>
@@ -371,14 +378,22 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     /// <param name="uid">The humanoid mob's UID</param>
     /// <param name="height">The height to set the mob to</param>
     /// <param name="sync">Whether to immediately synchronize this to the humanoid mob, or not</param>
+    /// <param name="bypassLimits">Whether to bypass species min/max height limits (for temporary effects like size gun)</param>
     /// <param name="humanoid">Humanoid component of the entity</param>
-    public void SetHeight(EntityUid uid, float height, bool sync = true, HumanoidAppearanceComponent? humanoid = null)
+    public void SetHeight(EntityUid uid, float height, bool sync = true, bool bypassLimits = false, HumanoidAppearanceComponent? humanoid = null)
     {
         if (!Resolve(uid, ref humanoid) || MathHelper.CloseTo(humanoid.Height, height, 0.001f))
             return;
 
-        var species = _proto.Index(humanoid.Species);
-        humanoid.Height = Math.Clamp(height, species.MinHeight, species.MaxHeight);
+        if (bypassLimits)
+        {
+            humanoid.Height = height;
+        }
+        else
+        {
+            var species = _proto.Index(humanoid.Species);
+            humanoid.Height = Math.Clamp(height, species.MinHeight, species.MaxHeight);
+        }
 
         if (sync)
             Dirty(uid, humanoid);
@@ -390,14 +405,22 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     /// <param name="uid">The humanoid mob's UID</param>
     /// <param name="width">The width to set the mob to</param>
     /// <param name="sync">Whether to immediately synchronize this to the humanoid mob, or not</param>
+    /// <param name="bypassLimits">Whether to bypass species min/max width limits (for temporary effects like size gun)</param>
     /// <param name="humanoid">Humanoid component of the entity</param>
-    public void SetWidth(EntityUid uid, float width, bool sync = true, HumanoidAppearanceComponent? humanoid = null)
+    public void SetWidth(EntityUid uid, float width, bool sync = true, bool bypassLimits = false, HumanoidAppearanceComponent? humanoid = null)
     {
         if (!Resolve(uid, ref humanoid) || MathHelper.CloseTo(humanoid.Width, width, 0.001f))
             return;
 
-        var species = _proto.Index(humanoid.Species);
-        humanoid.Width = Math.Clamp(width, species.MinWidth, species.MaxWidth);
+        if (bypassLimits)
+        {
+            humanoid.Width = width;
+        }
+        else
+        {
+            var species = _proto.Index(humanoid.Species);
+            humanoid.Width = Math.Clamp(width, species.MinWidth, species.MaxWidth);
+        }
 
         if (sync)
             Dirty(uid, humanoid);
