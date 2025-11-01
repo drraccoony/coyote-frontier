@@ -1,5 +1,3 @@
-using Content.Server.Consent;
-using Content.Server.Temperature.Components;
 using Content.Shared.Consent;
 using Content.Shared.EntityEffects;
 using Robust.Shared.Prototypes;
@@ -21,7 +19,7 @@ public sealed partial class Consent : EntityEffectCondition
 
     public override bool Condition(EntityEffectBaseArgs args)
     {
-        var consentManager = args.EntityManager.System<ConsentSystem>();
+        var consentManager = args.EntityManager.System<SharedConsentSystem>();
         return consentManager.HasConsent(args.TargetEntity, ConsentId);
     }
 

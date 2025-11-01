@@ -67,6 +67,8 @@
     - DoorRemoteNfsd
     - BaseSecurityUplinkRadioSheriff
     - RubberStampSheriff
+    - ShipVoucherNfsdBailiff
+    - FrontierUplinkCoin5 # Coyote added 5 uplink coins to Sheriff
 
 - type: chameleonOutfit
   id: SheriffChameleonOutfit
@@ -81,5 +83,3 @@
     belt: ClothingBeltNfsdFilled
     gloves: ClothingHandsGlovesCombatNfsdCream
     shoes: ClothingShoesBootsNfsdBrown
-    - ShipVoucherNfsdBailiff
-    - FrontierUplinkCoin5 # Coyote added 5 uplink coins to Sheriff

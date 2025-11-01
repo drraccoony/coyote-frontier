@@ -1,4 +1,3 @@
-using Content.Server._Coyote.EventResponseReagentCondition;
 using Content.Shared.EntityEffects;
 using Robust.Shared.Prototypes;
 
@@ -31,3 +30,27 @@ public sealed partial class EventResponse : EntityEffectCondition
         return GuidebookHelpthing; // localization is for losers
     }
 }
+
+
+// the event!
+public sealed class EntityEffectConditionMessageEvent(
+    EntityUid targetEntity,
+    string message) : EntityEventArgs
+{
+    public EntityUid TargetEntity { get; } = targetEntity;
+    public string Message { get; } = message;
+    public List<string> Responses { get; } = new();
+
+    public void AddResponse(string response)
+    {
+        if (HasResponse(response))
+            return;
+        Responses.Add(response);
+    }
+
+    public bool HasResponse(string response)
+    {
+        return Responses.Contains(response);
+    }
+}
+

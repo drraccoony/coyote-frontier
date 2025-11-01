@@ -202,11 +202,11 @@
     sprite: _NF/Mobs/Pets/cat.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
-      state: slimecat
+      state: mistakecat
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: slimecat
+        Base: mistakecat
   - type: GhostRole
     name: ghost-role-information-curie-name
     description: ghost-role-information-curie-description

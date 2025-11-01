@@ -42,6 +42,7 @@
     back:
     - EncryptionKeyService
     - ShipVoucherFrontierJanitor
+    - TrashBag
 
 - type: chameleonOutfit
   id: NFJanitorChameleonOutfit
@@ -54,4 +55,3 @@
     neck: ClothingNeckScarfStripedPurple
     outerClothing: ClothingOuterWinterJani
     gloves: ClothingHandsGlovesJanitor
-    - TrashBag
