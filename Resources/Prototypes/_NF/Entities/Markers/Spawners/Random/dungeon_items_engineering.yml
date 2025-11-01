@@ -380,11 +380,6 @@
   - type: RandomSpawner
     prototypes:
     - Autolathe
-    - Protolathe
-    - EngineeringTechFab
-    - EngineeringTechFab
-    - EngineeringTechFab
-    - CircuitImprinter
     - MachineFlatpacker
     - SpawnDungeonMachineFrame
     - SpawnDungeonLootFlatpacksEngi
@@ -394,6 +389,11 @@
     - CutterMachine
     - AutolatheHyperConvection
     - ProtolatheHyperConvection
+    - Protolathe #moved to rare
+    - EngineeringTechFab #moved to rare
+    - EngineeringTechFab #moved to rare
+    - EngineeringTechFab #moved to rare
+    - CircuitImprinter #moved to rare
     rareChance: 0.01
 
 - type: entity
@@ -523,9 +523,6 @@
     - SolarControlComputerCircuitboard
     - AlertsComputerCircuitboard
     # Lathes
-    - CircuitImprinterMachineCircuitboard
-    - EngineeringTechFabCircuitboard
-    - ProtolatheMachineCircuitboard
     - AutolatheMachineCircuitboard
     - FlatpackerMachineCircuitboard
     - CutterMachineCircuitboard
@@ -553,6 +550,9 @@
     - AutolatheHyperConvectionMachineCircuitboard
     - ProtolatheHyperConvectionMachineCircuitboard
     - ComputerIFFCircuitboard
+    - CircuitImprinterMachineCircuitboard #moved to rare
+    - EngineeringTechFabCircuitboard #moved to rare
+    - ProtolatheMachineCircuitboard #moved to rare
     rareChance: 0.05
 
 - type: entity
@@ -573,9 +573,6 @@
     prototypes:
     - AutolatheFlatpack
     - ExosuitFabricatorFlatpack
-    - ProtolatheFlatpack
-    - CircuitImprinterFlatpack
-    - EngineeringTechFabFlatpack
     - MaterialReclaimerFlatpack
     - CutterMachineFlatpack
     - WeaponCapacitorRechargerFlatpack
@@ -584,11 +581,14 @@
     - PortableGeneratorJrPacmanFlatpack
     - PortableGeneratorPacmanFlatpack
     - PortableGeneratorSuperPacmanFlatpack
-    - GeneratorRTGFlatpack
     chance: 0.95
     offset: 0.0
     rarePrototypes:
     - AmeControllerUnanchoredFlatpack
     - RadiationCollectorFullTankFlatpack
     - TeslaCoilFlatpack
+    - GeneratorRTGFlatpack #moved to rare
+    - ProtolatheFlatpack #moved to rare
+    - CircuitImprinterFlatpack #moved to rare
+    - EngineeringTechFabFlatpack #moved to rare
     rareChance: 0.05

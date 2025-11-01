@@ -13,6 +13,9 @@
     longerPlaytimeLessSec:
     - !type:OverallPlaytimeRequirement
       time: 360000 # 100 hours
+    - !type:DepartmentTimeRequirement # CS - require at least some security time so the whitelist intent functions
+      department: Security
+      time: 3600 # 1 hour
   startingGear: PublicAffairGear
   icon: "JobIconPublicAffairsLiaison"
   supervisors: job-supervisors-cadet

@@ -10,11 +10,12 @@
     - type: Stomach
       specialDigestible:
       # Frontier: general moth digestion # Coyote edit, allows slimes to eat ClothMade and paper items.
-       tags:
-       - ClothMade
-       - Paper
-      # - Pill
-    - type: MothFood
+        tags:
+          - ClothMade
+          - Paper
+        # - Pill
+        components:
+          - MothFood
       # End Frontier: general moth digestion
     - type: Metabolizer
       maxReagents: 6

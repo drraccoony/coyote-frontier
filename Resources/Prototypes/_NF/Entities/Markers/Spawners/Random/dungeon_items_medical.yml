@@ -25,20 +25,16 @@
     - ClothingEyesGlassesChemical
     - ClothingHeadsetMedical
     - DiseaseSwab
-    - SpawnDungeonClutterSyringe
     - SpawnDungeonClutterBeakerEmpty
     - SpawnDungeonClutterPatientTransport
     - SpawnDungeonClutterImplanter
     - SpawnDungeonClutterHypospray
     - SpawnDungeonLootToolsSurgery
-    - SpawnDungeonClutterMedipens
-    - SpawnDungeonClutterMedsSingle
     - SpawnDungeonLootToolsSurgeryCrude
     - SpawnDungeonLootToolsSurgery
     - SpawnDungeonLootToolsSurgeryAdvanced
     - SpawnDungeonLootClothesMed
     - PillCanisterRandom
-    - SpawnDungeonLootFlatpacksMed
     - SpawnDungeonLootVendingRestocks
     chance: 0.95
     offset: 0.0
@@ -47,7 +43,11 @@
     - HandheldCrewMonitor
     - SpawnDungeonLootChems
     - SpawnDungeonClutterMedsFull
-    rareChance: 0.01
+    - SpawnDungeonClutterMedipens #moved to rare
+    - SpawnDungeonClutterMedsSingle #moved to rare
+    - SpawnDungeonLootFlatpacksMed #moved to rare
+    - SpawnDungeonClutterSyringe #moved to rare
+    rareChance: 0.1
 
 # Tools
 - type: entity
@@ -79,7 +79,7 @@
     - MedkitToxin
     - MedkitRadiationFilled
     - MedkitRadiation
-    chance: 0.75
+    chance: 0.25
     offset: 0.0
     rarePrototypes:
     - MedkitAdvancedFilled
@@ -413,7 +413,7 @@
     - SyringeStimulants
     - SyringeSigynate
     - SyringeSaline
-    chance: 1
+    chance: 0.5 #half chance
     offset: 0.0
     rarePrototypes:
     - SyringeBluespace
@@ -514,7 +514,6 @@
     - LockerMedical
     - ClosetL3Virology
     - LockerMedicalFilled
-    - LockerMedicineFilled
     - LockerParamedicFilled
     - LockerPsychologistFilled
     - ClosetL3VirologyFilled
@@ -523,6 +522,7 @@
     rarePrototypes:
     - LockerChiefMedicalOfficer
     - LockerChiefMedicalOfficerFilled
+    - LockerMedicineFilled #moved to rare
     rareChance: 0.05
 
 - type: entity
@@ -554,23 +554,15 @@
     - CrateMaterialPlastic
     - CrateMaterialTextiles
     - CrateMaterialBiomass
-    - CrateChemistryD
-    - CrateChemistryP
-    - CrateChemistryS
     - WaterTankFull
     # Filled crates
     - CrateBodyBags
     - CrateMedicalRollerBeds
     - CrateChemistrySupplies
     - CrateChemistryVials
-    - CrateMedicalSupplies
     - CrateMedicalSurgery
     - CrateMedicalScrubs
     - CrateVirologyBiosuit
-    - CrateChemistrySecureKitChemist
-    - CrateMedicalSecureDoctor
-    - CrateMedicalSecureMedicine
-    - CrateMedicalSecureMedicinePierce
     - CrateEvaKitParamedic
     chance: 0.9
     offset: 0.0
@@ -579,7 +571,15 @@
     #- CrateServiceKitChemLab
     #- CrateServiceKitMedbayCryo
     - CrateEvaKitCmo
-    rareChance: 0.01
+    - CrateChemistryD #moved to rare
+    - CrateChemistryP #moved to rare
+    - CrateChemistryS #moved to rare
+    - CrateMedicalSupplies #moved to rare
+    - CrateChemistrySecureKitChemist #moved to rare
+    - CrateMedicalSecureDoctor #moved to rare
+    - CrateMedicalSecureMedicine #moved to rare
+    - CrateMedicalSecureMedicinePierce #moved to rare
+    rareChance: 0.1
 
 - type: entity
   name: random crate (empty)
@@ -651,7 +651,7 @@
     offset: 0.0
     rarePrototypes:
     - VendingMachineSyndieContraband
-    # - VendingMachineSyndieDrobe # A bit less Syndicate loot
+    - VendingMachineSyndieDrobe # A bit less Syndicate loot
     - VendingMachineRobotics
     rareChance: 0.01
 
@@ -696,7 +696,7 @@
     - JugMercury
     - JugSilver
     - JugWeldingFuel
-    chance: 1
+    chance: 0.5
     offset: 0.0
     rarePrototypes:
     - ChemistryBottleCognizine
@@ -729,7 +729,6 @@
     - CloningConsoleComputerCircuitboard
     - MedicalRecordsComputerCircuitboard
     # Lathes
-    - MedicalTechFabCircuitboard
     # Machines
     - ChemMasterMachineCircuitboard
     - CentrifugeMachineCircuitboard
@@ -746,6 +745,7 @@
     offset: 0.0
     rarePrototypes:
     - ComputerIFFCircuitboard
+    - MedicalTechFabCircuitboard #moved to rare
     rareChance: 0.03
 
 - type: entity
@@ -776,5 +776,5 @@
     - VendingMachineMedicalFlatpack
     - VendingMachineWallMedicalFlatpack
     - VendingMachineChemicalsFlatpack
-    chance: 0.95
+    chance: 0.5
     offset: 0.0

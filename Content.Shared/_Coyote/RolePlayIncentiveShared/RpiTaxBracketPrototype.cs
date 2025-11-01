@@ -143,32 +143,25 @@ public sealed partial class RpiJournalismData
     {
         if (lastArticleTime == TimeSpan.Zero)
             return 1.0f;
-        double mulTout = 1.0f;
+        if (CooldownTimeMinutes <= 0)
+            return 1.0f;
+
         var timeSys = IoCManager.Resolve<IGameTiming>();
         var timeSinceLastArticle = timeSys.CurTime - lastArticleTime;
         var cooldownTime = TimeSpan.FromMinutes(CooldownTimeMinutes);
-        if (timeSinceLastArticle < cooldownTime)
-        {
-            var fraction = timeSinceLastArticle.TotalSeconds / cooldownTime.TotalSeconds;
-            if (fraction < 0.5f)
-            {
-                mulTout = CooldownPenalty;
-            }
-            else
-                // more than half way done, apply a complicated exponential bell curve derivation
-            {
-                var adjFraction = (fraction - 0.5f) * 2;
-                // setup the curve equation
-                // y = -4(x-1)^2 + 1
-                // meaning that for x=0, y=0 and for x=1, y=1
-                // so at 0.6 fraction, we get 0.36 multiplier
-                // at 0.75 fraction, we get 0.75 multiplier
-                // at 0.9 fraction, we get 0.96 multiplier
-                var curveValue = -4 * Math.Pow(adjFraction - 1, 2) + 1;
-                mulTout = curveValue;
-            }
-        }
-        return (float)(1.0 - mulTout);
+
+        if (timeSinceLastArticle >= cooldownTime)
+            return 1.0f;
+        // fraction from 0.0 (just published) to 1.0 (cooldown complete)
+        var fraction = Math.Clamp(timeSinceLastArticle.TotalSeconds / cooldownTime.TotalSeconds, 0.0, 1.0);
+
+        // smooth ease-in-out using a sinusoidal easing (gentle curve)
+        // eased == 0 at fraction==0, eased == 1 at fraction==1
+        var eased = 0.5 * (1 - Math.Cos(Math.PI * fraction));
+
+        // interpolate from CooldownPenalty -> 1.0
+        var mulTout = CooldownPenalty + (1.0 - CooldownPenalty) * eased;
+        return (float) mulTout;
     }
 
     private TimeSpan GetTimeWhenFullyCooledDown(TimeSpan lastArticleTime)

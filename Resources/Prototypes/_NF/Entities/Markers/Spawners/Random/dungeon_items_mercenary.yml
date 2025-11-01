@@ -585,7 +585,7 @@
     - MercenaryTechFabFlatpack
     - MercenaryTechFabCircuitboardNF
     - AmmoTechFabFlatpack
-    chance: 1
+    chance: 0.25
     offset: 0.0
     rarePrototypes:
     - MercenaryTechFab
