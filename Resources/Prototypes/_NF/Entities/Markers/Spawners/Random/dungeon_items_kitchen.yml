@@ -371,6 +371,7 @@
   - type: RandomSpawner
     prototypes:
     - UniformPrinterFlatpack
+    - ServiceTechFabFlatpack
     - KitchenElectricGrillFlatpack
     - KitchenMicrowaveFlatpack
     - KitchenReagentGrinderFlatpack
@@ -387,6 +388,3 @@
     - VendingMachineBountyVendPunkFlatpack
     chance: 0.95
     offset: 0.0
-    rarePrototypes: #added rare prototypes
-    - ServiceTechFabFlatpack #moved to rare
-    rareChance: 0.05 #low chance

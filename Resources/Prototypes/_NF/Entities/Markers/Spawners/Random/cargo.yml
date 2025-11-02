@@ -90,6 +90,13 @@
         - CrateFunBikeHornImplants
         - CrateFunMysteryFigurines
         - CrateNPCMonkeyCube
+        - CrateMedicalSupplies
+#        - EmergencyBurnKit
+        - CrateEmergencyToxinKit
+        - CrateEmergencyO2Kit
+        - CrateEmergencyBruteKit
+        - CrateEmergencyAdvancedKit
+        - CrateEmergencyRadiationKit
         - CrateBodyBags
 #        - CrateVirologyBiosuit
 #        - ArtifactContainer
@@ -104,15 +111,6 @@
         - CrateServiceBooks
 #        - CrateJanitorBiosuit
       chance: 1
-      offset: 0.0
-      rarePrototypes:
-        - CrateMedicalSupplies
-        - CrateEmergencyToxinKit
-        - CrateEmergencyO2Kit
-        - CrateEmergencyBruteKit
-        - CrateEmergencyAdvancedKit
-        - CrateEmergencyRadiationKit
-      rareChance: 0.05
 
 - type: entity
   id: RandomCargoAnimalSpawner
