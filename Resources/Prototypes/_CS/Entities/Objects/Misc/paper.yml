@@ -1,0 +1,58 @@
+# Coyote: Padded envelope for multi-item storage
+- type: entity
+  name: padded envelope
+  parent: BaseItem
+  id: PaddedEnvelope
+  description: 'A reinforced envelope with padding that can hold multiple small items. Perfect for sending valuables through the mail.'
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/bureaucracy.rsi
+    layers:
+    - state: envelope_open
+      map: ["enum.PaddedEnvelopeVisualLayers.Open"]
+    - state: envelope_closed
+      map: ["enum.PaddedEnvelopeVisualLayers.Sealed"]
+      visible: false
+    - state: envelope_torn
+      map: ["enum.PaddedEnvelopeVisualLayers.Torn"]
+      visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+  - type: Paper
+    content: padded-envelope-default-message
+  - type: PaperVisuals
+    headerImagePath: "/Textures/Interface/Paper/paper_heading_postage_stamp.svg.96dpi.png"
+    headerMargin: 216.0, 0.0, 0.0, 0.0
+    contentMargin: 0.0, 0.0, 0.0, 0.0
+    maxWritableArea: 368.0, 256.0
+  - type: PaddedEnvelope
+  - type: Storage
+    grid:
+    - 0,0,2,1
+    maxItemSize: Small
+    whitelist:
+      tags:
+        - Paper
+        - Document
+        - Write
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.PaperUiKey.Key:
+        type: PaperBoundUserInterface
+  - type: ActivatableUI
+    key: enum.PaperUiKey.Key
+    requiresComplex: false
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+    - Trash
+    - Document
+  - type: Flammable
+    fireSpread: true
