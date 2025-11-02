@@ -26,7 +26,7 @@
     - Back
     sprite: Goobstation/Objects/Weapons/Guns/Battery/erevolver.rsi
   - type: Gun
-    fireRate: 1.5
+    fireRate: 2.4
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
     soundEmpty:
@@ -41,7 +41,7 @@
       name: disable
       state: disabler
     - proto: BulletEnergyGunMagnum
-      fireCost: 60
+      fireCost: 40
       name: lethal
       state: lethal
   - type: MagazineVisuals
