@@ -529,16 +529,16 @@
     maxOffset: 10
     pvsIncrease: 1
   # Ghost role stuff
-  - type: GhostRole
-    allowMovement: true
-    name: ghost-role-information-mercenary-captain-dungeon-name
-    description: ghost-role-information-mercenary-captain-dungeon-description
-    rules: ghost-role-information-dungeon-boss-rules
-    raffle:
-      settings: default
-    mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
-  - type: GhostTakeoverAvailable
+  # - type: GhostRole # CS - disable ghost role
+    # allowMovement: true
+    # name: ghost-role-information-mercenary-captain-dungeon-name
+    # description: ghost-role-information-mercenary-captain-dungeon-description
+    # rules: ghost-role-information-dungeon-boss-rules
+    # raffle:
+      # settings: default
+    # mindRoles:
+    # - MindRoleGhostRoleTeamAntagonist
+  # - type: GhostTakeoverAvailable
   - type: ActionGun
     action: ActionSideArmFan
     gunProto: GunSideArmFan
