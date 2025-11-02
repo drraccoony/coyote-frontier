@@ -1,0 +1,22 @@
+# Coyote: Pouchy - A friendly kangaroo that pouches nearby players
+- type: entity
+  name: Pouchy
+  parent: MobKangaroo
+  id: MobPouchy
+  description: An unusually friendly kangaroo with an insatiable desire to stuff things into its pouch. Approach with caution!
+  components:
+  - type: Pouchy
+    grabRange: 2.5
+    grabCooldown: 10
+    struggleTime: 10
+  - type: EntityStorage
+    maxSize: 100 # Can fit a whole player
+    capacity: 1 # Only one entity at a time
+    isCollidableWhenOpen: true
+    openOnMove: false # Prevent easy escape by moving
+  - type: ContainerContainer
+    containers:
+      entity_storage: !type:Container
+  - type: NpcFactionMember
+    factions:
+    - Passive
