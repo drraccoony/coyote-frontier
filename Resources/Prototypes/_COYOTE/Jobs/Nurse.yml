@@ -99,3 +99,15 @@
   - ContractorBackpackItems
   - ContractorHandItems
   - NFSpeciesSpecific
+
+- type: chameleonOutfit
+  id: MedicalNurseChameleonOutfit
+  job: MedicalNurse
+  equipment:
+    head: ClothingHeadNurseHat
+    eyes: ClothingEyesHudMedical
+    mask: ClothingMaskSterile
+    neck: ClothingNeckStethoscope
+    outerClothing: ClothingOuterCoatLab
+    gloves: ClothingHandsGlovesLatex
+

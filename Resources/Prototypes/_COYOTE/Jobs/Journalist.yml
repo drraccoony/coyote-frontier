@@ -101,3 +101,15 @@
   - ContractorBackpackItems
   - ContractorHandItems
   - NFSpeciesSpecific
+
+- type: chameleonOutfit
+  id: JournalistChameleonOutfit
+  job: Journalist
+  equipment:
+    head: ClothingHeadHatFedoraGrey
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskBreath
+    outerClothing: ClothingOuterCoatTrench
+    neck: ClothingNeckTieRed
+    gloves: ClothingHandsGlovesFingerless
+

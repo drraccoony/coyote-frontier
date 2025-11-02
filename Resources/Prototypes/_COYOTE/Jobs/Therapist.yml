@@ -77,3 +77,15 @@
   - ContractorBackpackItems
   - ContractorHandItems
   - NFSpeciesSpecific
+
+- type: chameleonOutfit
+  id: TherapistChameleonOutfit
+  job: Therapist
+  equipment:
+    head: ClothingHeadNurseHat
+    eyes: ClothingEyesHudMedical
+    mask: ClothingMaskSterile
+    neck: ClothingNeckStethoscope
+    outerClothing: ClothingOuterCoatLab
+    gloves: ClothingHandsGlovesLatex
+

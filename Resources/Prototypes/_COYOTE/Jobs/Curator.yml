@@ -108,3 +108,15 @@
   - ContractorBackpackItems
   - ContractorHandItems
   - NFSpeciesSpecific
+
+- type: chameleonOutfit
+  id: CuratorChameleonOutfit
+  job: Curator
+  equipment:
+    head: ClothingHeadHatCanadaBeanie
+    eyes: ClothingEyesGlassesJamjar
+    mask: ClothingMaskGas
+    neck: ClothingNeckScarfStripedGreen
+    outerClothing: ClothingOuterWinterColorGreen
+    gloves: ClothingHandsGlovesColorBlack
+

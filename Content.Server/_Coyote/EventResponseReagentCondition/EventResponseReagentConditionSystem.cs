@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server.EntityEffects.EffectConditions;
 
 namespace Content.Server._Coyote.EventResponseReagentCondition;
 
@@ -59,27 +60,5 @@ public sealed class EventResponseReagentConditionSystem : EntitySystem
         {
             args.AddResponse(response);
         }
-    }
-}
-
-// the event!
-public sealed class EntityEffectConditionMessageEvent(
-    EntityUid targetEntity,
-    string message) : EntityEventArgs
-{
-    public EntityUid TargetEntity { get; } = targetEntity;
-    public string Message { get; } = message;
-    public List<string> Responses { get; } = new();
-
-    public void AddResponse(string response)
-    {
-        if (HasResponse(response))
-            return;
-        Responses.Add(response);
-    }
-
-    public bool HasResponse(string response)
-    {
-        return Responses.Contains(response);
     }
 }
