@@ -20,14 +20,14 @@
     - SpawnDungeonLootClothesSalvage
     - SpawnDungeonLootOresSingle
     - SpawnDungeonLootMaterialsBasicSingle
+    - SpawnDungeonLootCircuitBoardSalvage
+    - SpawnDungeonLootFlatpacksSuppl
     - SpawnDungeonLootVendingRestocks
     chance: 0.9
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootOresFull
     - SpawnDungeonLootHardsuitsSalvage
-    - SpawnDungeonLootFlatpacksSuppl #moved to rare
-    - SpawnDungeonLootCircuitBoardSalvage #moved to rare
     rareChance: 0.01
 
 # Tools
@@ -315,6 +315,7 @@
     - TelecomServerFlatpack
     - OreProcessorFlatpack
     - SalvageTechfabNFFlatpack
+    - ProtolatheFlatpack
     - OreProcessorIndustrialFlatpack
     - MaterialReclaimerFlatpack
     - WeaponCapacitorRechargerFlatpack
@@ -323,5 +324,4 @@
     rarePrototypes:
     - ShuttleGunKineticFlatpack
     - AmmoTechFabFlatpack
-    - ProtolatheFlatpack #moved to rare
     rareChance: 0.01

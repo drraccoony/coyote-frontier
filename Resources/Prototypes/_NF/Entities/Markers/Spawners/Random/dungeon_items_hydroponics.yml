@@ -214,6 +214,7 @@
     offset: 0.0
     rarePrototypes:
     - ChemistryBottleCognizine
+    - ChemistryBottleOmnizine
     - ChemistryBottleLeft4Zed
     rareChance: 0.03
 
