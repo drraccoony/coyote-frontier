@@ -33,8 +33,6 @@ public sealed class ModifyUndiesSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly SharedConsentSystem _consentSystem = default!;
 
-    public static ProtoId<ConsentTogglePrototype> GenitalMarkingsConsent = "GenitalMarkings";
-
     public static readonly VerbCategory UndiesCat =
         new("verb-categories-undies", "/Textures/Interface/VerbIcons/undies.png");
 
@@ -62,22 +60,7 @@ public sealed class ModifyUndiesSystem : EntitySystem
             // check if the Bodypart is in the component's BodyPartTargets
             if (!component.BodyPartTargets.Contains(mProt.BodyPart))
                 continue;
-                
-            // Skip genital markings based on consent
-            if (mProt.BodyPart == HumanoidVisualLayers.Genital)
-            {
-                // If user and target are the same person, they can always interact with their own markings
-                if (args.User != args.Target)
-                {
-                    // For other players, only check the target's consent setting
-                    var hasTargetConsent = _consentSystem.HasConsent(args.Target, GenitalMarkingsConsent);
-                    if (!hasTargetConsent)
-                    {
-                        continue;
-                    }
-                }
-            }
-            
+
             var localizedName = Loc.GetString($"marking-{mProt.ID}");
             var partSlot = mProt.BodyPart;
             var isVisible = !humApp.HiddenMarkings.Contains(mProt.ID);
@@ -87,7 +70,6 @@ public sealed class ModifyUndiesSystem : EntitySystem
             {
                 HumanoidVisualLayers.UndergarmentTop => new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/bra.png")),
                 HumanoidVisualLayers.UndergarmentBottom => new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/underpants.png")),
-                HumanoidVisualLayers.Genital => new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/love.png")),
                 _ => new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/undies.png"))
             };
             // add the verb
