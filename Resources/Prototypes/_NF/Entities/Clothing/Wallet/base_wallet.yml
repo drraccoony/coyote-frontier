@@ -54,6 +54,7 @@
           - NFShipyardVoucher
           - Card
           - NFEmagPass
+          - IDCardStandard
       closed-cash:
         whitelist:
           components:
