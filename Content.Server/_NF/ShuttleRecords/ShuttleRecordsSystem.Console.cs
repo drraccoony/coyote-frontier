@@ -283,7 +283,7 @@ public sealed partial class ShuttleRecordsSystem
         // Try to store the shuttle using the drydock system
         // We'll use a temporary storage entity to hold the data during the process
         var tempStorage = Spawn(null, MapCoordinates.Nullspace);
-        
+
         // Create a temporary deed to pass to the drydock system
         var tempDeed = EnsureComp<ShuttleDeedComponent>(tempStorage);
         tempDeed.ShuttleUid = shuttleEntity;
@@ -375,8 +375,6 @@ public sealed partial class ShuttleRecordsSystem
 
         _popup.PopupEntity("Creating temp storage...", player); // DEBUG
 
-        _popup.PopupEntity("Creating temp storage...", player); // DEBUG
-
         // Create a temporary entity to hold the storage component
         var tempStorage = Spawn(null, MapCoordinates.Nullspace);
         var storageComp = EnsureComp<BluespaceStorageComponent>(tempStorage);
@@ -419,7 +417,7 @@ public sealed partial class ShuttleRecordsSystem
 
                 // Remove old entry with old EntityUid
                 dataComponent.ShuttleRecords.Remove(oldEntityUid);
-                
+
                 // Add new entry with new EntityUid
                 dataComponent.ShuttleRecords[record.EntityUid] = record;
                 

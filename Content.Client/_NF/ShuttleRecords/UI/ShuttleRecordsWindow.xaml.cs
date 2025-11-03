@@ -135,7 +135,7 @@ public sealed partial class ShuttleRecordsWindow : FancyWindow
         var shuttleExists = ShuttleExists(netEntity: shuttleRecord.EntityUid);
         var isInStorage = !string.IsNullOrEmpty(shuttleRecord.StoredGridData);
         var bluespaceDockingEnabled = _config.GetCVar(NFCCVars.BluespaceDockingEnabled);
-        
+
         string shuttleStatus;
         if (isInStorage)
         {
@@ -149,7 +149,7 @@ public sealed partial class ShuttleRecordsWindow : FancyWindow
         {
             shuttleStatus = _loc.GetString(messageId: "shuttle-records-shuttle-status-inactive");
         }
-        
+
         var timeOfPurchaseText = "N/A";
         if (shuttleRecord.TimeOfPurchase != null)
         {
