@@ -22,5 +22,27 @@
                 <Label Name="TransactionCostLabel" Text=""/>
             </BoxContainer>
         </Button>
+        <Button Name="StoreShuttleButton"
+                Access="Public"
+                Text=""
+                TextAlign="Center"
+                Margin="5"
+                StyleIdentifier="mainMenu">
+
+            <BoxContainer Orientation="Vertical" Access="Public" Margin="5">
+                <Label Name="StoreShuttleButtonLabel" Access="Public" Text="{Loc 'shuttle-records-store-shuttle-button'}"/>
+            </BoxContainer>
+        </Button>
+        <Button Name="RetrieveShuttleButton"
+                Access="Public"
+                Text=""
+                TextAlign="Center"
+                Margin="5"
+                StyleIdentifier="mainMenu">
+
+            <BoxContainer Orientation="Vertical" Access="Public" Margin="5">
+                <Label Name="RetrieveShuttleButtonLabel" Access="Public" Text="{Loc 'shuttle-records-retrieve-shuttle-button'}"/>
+            </BoxContainer>
+        </Button>
     </BoxContainer>
 </PanelContainer>

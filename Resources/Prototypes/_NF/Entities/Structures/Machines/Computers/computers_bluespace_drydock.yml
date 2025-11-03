@@ -1,0 +1,36 @@
+- type: entity
+  id: ComputerBluespaceDrydock
+  parent: [BaseStructureComputer, BaseStructureIndestructible]
+  name: bluespace drydock console
+  description: A specialized console that can store your ship in bluespace and retrieve it later.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: telesci
+    - map: ["computerLayerKeys"]
+      state: telesci_key
+  - type: BluespaceDrydockConsole
+  - type: ActivatableUI
+    key: enum.BluespaceDrydockConsoleUiKey.Key
+    singleUser: true
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.BluespaceDrydockConsoleUiKey.Key:
+        type: BluespaceDrydockConsoleBoundUserInterface
+  - type: ItemSlots
+    slots:
+      BluespaceDrydock-targetId:
+        name: ID Card
+        whitelist:
+          components:
+          - IdCard
+  - type: ContainerContainer
+    containers:
+      BluespaceDrydock-targetId: !type:ContainerSlot

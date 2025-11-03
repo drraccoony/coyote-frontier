@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server._NF.Bank;
+using Content.Server._NF.Shipyard.Systems;
 using Content.Server.Cargo.Components;
 using Content.Shared._NF.Bank.BUI;
 using Content.Shared._NF.ShuttleRecords;
@@ -10,16 +11,22 @@ using Content.Shared.Database;
 using Content.Shared._NF.Shipyard.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
+using Robust.Shared.Map;
+using Robust.Shared.Timing;
 
 namespace Content.Server._NF.ShuttleRecords;
 
 public sealed partial class ShuttleRecordsSystem
 {
     [Dependency] private readonly BankSystem _bank = default!;
+    [Dependency] private readonly BluespaceDrydockSystem _drydock = default!;
+
     public void InitializeShuttleRecords()
     {
         SubscribeLocalEvent<ShuttleRecordsConsoleComponent, BoundUIOpenedEvent>(OnConsoleUiOpened);
         SubscribeLocalEvent<ShuttleRecordsConsoleComponent, CopyDeedMessage>(OnCopyDeedMessage);
+        SubscribeLocalEvent<ShuttleRecordsConsoleComponent, StoreShuttleMessage>(OnStoreShuttleMessage);
+        SubscribeLocalEvent<ShuttleRecordsConsoleComponent, RetrieveShuttleMessage>(OnRetrieveShuttleMessage);
 
         SubscribeLocalEvent<ShuttleRecordsConsoleComponent, EntInsertedIntoContainerMessage>(OnIDSlotUpdated);
         SubscribeLocalEvent<ShuttleRecordsConsoleComponent, EntRemovedFromContainerMessage>(OnIDSlotUpdated);
@@ -224,5 +231,217 @@ public sealed partial class ShuttleRecordsSystem
             fixedPrice: component.FixedTransactionPrice,
             vesselPrice: vesselPrice
         );
+    }
+
+    private void OnStoreShuttleMessage(EntityUid uid, ShuttleRecordsConsoleComponent component, StoreShuttleMessage args)
+    {
+        if (args.Actor is not { Valid: true } player)
+            return;
+
+        // Get the station grid this console is on
+        var consoleGrid = Transform(uid).GridUid;
+        if (consoleGrid == null)
+        {
+            _popup.PopupEntity("Console must be on a station grid!", player);
+            _audioSystem.PlayPredicted(component.ErrorSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
+            return;
+        }
+
+        // Check access
+        if (!_access.IsAllowed(player, uid))
+        {
+            _popup.PopupEntity(Loc.GetString("shuttle-records-no-access"), player);
+            _audioSystem.PlayPredicted(component.ErrorSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
+            return;
+        }
+
+        // Get the shuttle entity
+        var shuttleEntity = GetEntity(args.ShuttleNetEntity);
+        if (!Exists(shuttleEntity))
+        {
+            _popup.PopupEntity("Shuttle no longer exists!", player);
+            _audioSystem.PlayPredicted(component.ErrorSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
+            return;
+        }
+
+        // Get the shuttle record
+        if (!TryGetRecord(args.ShuttleNetEntity, out var record))
+        {
+            _popup.PopupEntity("No shuttle record found!", player);
+            _audioSystem.PlayPredicted(component.ErrorSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
+            return;
+        }
+
+        // Check if already stored
+        if (!string.IsNullOrEmpty(record.StoredGridData))
+        {
+            _popup.PopupEntity("Shuttle is already stored!", player);
+            _audioSystem.PlayPredicted(component.ErrorSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
+            return;
+        }
+
+        // Try to store the shuttle using the drydock system
+        // We'll use a temporary storage entity to hold the data during the process
+        var tempStorage = Spawn(null, MapCoordinates.Nullspace);
+        
+        // Create a temporary deed to pass to the drydock system
+        var tempDeed = EnsureComp<ShuttleDeedComponent>(tempStorage);
+        tempDeed.ShuttleUid = shuttleEntity;
+        tempDeed.ShuttleName = record.Name;
+        tempDeed.ShuttleNameSuffix = record.Suffix ?? "";
+        tempDeed.ShuttleOwner = record.OwnerName;
+
+        if (_drydock.TryStoreShuttleFromRecords(player, shuttleEntity, tempStorage, uid, tempDeed))
+        {
+            // Schedule a delayed check to retrieve the stored data and update the record
+            // Wait 3 seconds to ensure all drydock operations complete (power down, serialize, etc.)
+            Timer.Spawn(TimeSpan.FromSeconds(3.0), () =>
+            {
+                if (!Exists(tempStorage))
+                    return;
+
+                if (TryComp<BluespaceStorageComponent>(tempStorage, out var storage) && !string.IsNullOrEmpty(storage.StoredGridData))
+                {
+                    // Update the shuttle record with the stored data
+                    record.StoredGridData = storage.StoredGridData;
+                    record.StoredShipFullName = storage.StoredShipFullName;
+                    TryUpdateRecord(record);
+                    RefreshStateForAll();
+                }
+
+                QueueDel(tempStorage);
+            });
+
+            _audioSystem.PlayPredicted(component.ConfirmSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
+
+            // Add to admin logs
+            _adminLogger.Add(
+                LogType.ShuttleRecordsUsage,
+                LogImpact.Medium,
+                $"{ToPrettyString(player):actor} stored shuttle {ToPrettyString(shuttleEntity)} using shuttle records console.");
+        }
+        else
+        {
+            QueueDel(tempStorage);
+            _audioSystem.PlayPredicted(component.ErrorSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
+        }
+    }
+
+    private void OnRetrieveShuttleMessage(EntityUid uid, ShuttleRecordsConsoleComponent component, RetrieveShuttleMessage args)
+    {
+        if (args.Actor is not { Valid: true } player)
+            return;
+
+        _popup.PopupEntity("Retrieve shuttle message received!", player); // DEBUG
+
+        // Get the station grid this console is on
+        var consoleGrid = Transform(uid).GridUid;
+        if (consoleGrid == null)
+        {
+            _popup.PopupEntity("Console must be on a station grid!", player);
+            _audioSystem.PlayPredicted(component.ErrorSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
+            return;
+        }
+
+        _popup.PopupEntity("Console grid check passed!", player); // DEBUG
+
+        // Check access
+        if (!_access.IsAllowed(player, uid))
+        {
+            _popup.PopupEntity(Loc.GetString("shuttle-records-no-access"), player);
+            _audioSystem.PlayPredicted(component.ErrorSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
+            return;
+        }
+
+        _popup.PopupEntity("Access check passed!", player); // DEBUG
+
+        // Get the shuttle record
+        if (!TryGetRecord(args.ShuttleNetEntity, out var record))
+        {
+            _popup.PopupEntity("No shuttle record found!", player);
+            _audioSystem.PlayPredicted(component.ErrorSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
+            return;
+        }
+
+        _popup.PopupEntity($"Record found! StoredData null? {string.IsNullOrEmpty(record.StoredGridData)}", player); // DEBUG
+
+        // Check if there's stored data
+        if (string.IsNullOrEmpty(record.StoredGridData))
+        {
+            _popup.PopupEntity("No stored ship data found!", player);
+            _audioSystem.PlayPredicted(component.ErrorSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
+            return;
+        }
+
+        _popup.PopupEntity("Creating temp storage...", player); // DEBUG
+
+        _popup.PopupEntity("Creating temp storage...", player); // DEBUG
+
+        // Create a temporary entity to hold the storage component
+        var tempStorage = Spawn(null, MapCoordinates.Nullspace);
+        var storageComp = EnsureComp<BluespaceStorageComponent>(tempStorage);
+        storageComp.StoredGridData = record.StoredGridData;
+        storageComp.StoredShipFullName = record.StoredShipFullName;
+        storageComp.StoredShipName = record.Name;
+
+        _popup.PopupEntity("Calling drydock retrieve...", player); // DEBUG
+
+        // Try to retrieve the shuttle using the drydock system (dock to the console's grid)
+        if (_drydock.TryRetrieveShuttleFromRecords(player, tempStorage, uid, storageComp, consoleGrid.Value))
+        {
+            _popup.PopupEntity("Drydock retrieve succeeded!", player); // DEBUG
+
+            // Schedule a delayed check to update the record with the new shuttle entity
+            // Wait 3 seconds to ensure all drydock operations complete (deserialize, dock, etc.)
+            Timer.Spawn(TimeSpan.FromSeconds(3.0), () =>
+            {
+                // Store the old entity UID before we change it
+                var oldEntityUid = record.EntityUid;
+
+                // Get the new shuttle entity from the deed that was created
+                if (TryComp<ShuttleDeedComponent>(tempStorage, out var deed) && deed.ShuttleUid != null)
+                {
+                    // Update the record with the new entity UID
+                    record.EntityUid = GetNetEntity(deed.ShuttleUid.Value);
+                }
+
+                // Clear the stored data from the record
+                record.StoredGridData = null;
+                record.StoredShipFullName = null;
+
+                // Remove the old record entry and add the new one
+                if (!TryGetShuttleRecordsDataComponent(out var dataComponent))
+                {
+                    if (Exists(tempStorage))
+                        QueueDel(tempStorage);
+                    return;
+                }
+
+                // Remove old entry with old EntityUid
+                dataComponent.ShuttleRecords.Remove(oldEntityUid);
+                
+                // Add new entry with new EntityUid
+                dataComponent.ShuttleRecords[record.EntityUid] = record;
+                
+                RefreshStateForAll();
+
+                if (Exists(tempStorage))
+                    QueueDel(tempStorage);
+            });
+
+            _audioSystem.PlayPredicted(component.ConfirmSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
+
+            // Add to admin logs
+            _adminLogger.Add(
+                LogType.ShuttleRecordsUsage,
+                LogImpact.Medium,
+                $"{ToPrettyString(player):actor} retrieved shuttle from storage using shuttle records console.");
+        }
+        else
+        {
+            _popup.PopupEntity("Drydock retrieve FAILED!", player); // DEBUG
+            QueueDel(tempStorage);
+            _audioSystem.PlayPredicted(component.ErrorSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
+        }
     }
 }

@@ -104,6 +104,12 @@ public sealed class NFCCVars
     public static readonly CVarDef<float> ShipyardSellRate =
         CVarDef.Create("shuttle.shipyard_base_sell_rate", 0.95f, CVar.SERVERONLY);
 
+    /// <summary>
+    /// Whether bluespace docking (shuttle storage/retrieval) is enabled in shuttle records consoles.
+    /// </summary>
+    public static readonly CVarDef<bool> BluespaceDockingEnabled =
+        CVarDef.Create("nf14.shuttle.bluespace_docking_enabled", true, CVar.SERVER | CVar.REPLICATED);
+
     /*
      * Salvage
      */
