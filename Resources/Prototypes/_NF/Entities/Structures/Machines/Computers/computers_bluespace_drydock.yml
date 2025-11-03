@@ -25,12 +25,8 @@
       enum.BluespaceDrydockConsoleUiKey.Key:
         type: BluespaceDrydockConsoleBoundUserInterface
   - type: ItemSlots
-    slots:
-      BluespaceDrydock-targetId:
-        name: ID Card
-        whitelist:
-          components:
-          - IdCard
   - type: ContainerContainer
     containers:
+      board: !type:Container
+        ents: []
       BluespaceDrydock-targetId: !type:ContainerSlot
