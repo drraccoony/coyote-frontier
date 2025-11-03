@@ -420,7 +420,7 @@ public sealed partial class ShuttleRecordsSystem
 
                 // Add new entry with new EntityUid
                 dataComponent.ShuttleRecords[record.EntityUid] = record;
-                
+
                 RefreshStateForAll();
 
                 if (Exists(tempStorage))
