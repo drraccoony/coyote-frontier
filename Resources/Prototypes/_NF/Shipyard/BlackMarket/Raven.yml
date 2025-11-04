@@ -15,8 +15,9 @@
   guidebookPage: Null
   class:
   - Pirate
+  - Expedition
   engine:
-  - Uranium
+  - AME
 
 - type: gameMap
   id: Raven
@@ -25,7 +26,7 @@
   minPlayers: 0
   stations:
     Raven:
-      stationProto: StandardFrontierAntagVessel
+      stationProto: StandardFrontierAntagExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Dove {1}' # Very fake name

@@ -151,6 +151,17 @@
   - BaseStationExpeditions
   categories: [ HideSpawnMenu ]
 
+- type: entity
+  id: StandardFrontierAntagExpeditionVessel
+  parent:
+  - StandardFrontierVessel
+  - BaseStationExpeditions
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+  - type: ExtraShuttleInformation
+    hiddenWithoutOpenJobs: true
+
 # region Frontier Depot
 - type: entity
   id: StandardFrontierDepot
