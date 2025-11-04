@@ -35,7 +35,7 @@ namespace Content.Client.Interactable.Components
                 var spriteScale = (sprite.Scale.X + sprite.Scale.Y) / 2.0f;
                 if (spriteScale > 1.3f)
                     return;
-                
+
                 // TODO why is this creating a new instance of the outline shader every time the mouse enters???
                 _shader = MakeNewShader(sprite, inInteractionRange, renderScale);
                 sprite.PostShader = _shader;
@@ -74,12 +74,12 @@ namespace Content.Client.Interactable.Components
             var shaderName = inRange ? ShaderInRange : ShaderOutOfRange;
 
             var instance = _prototypeManager.Index<ShaderPrototype>(shaderName).InstanceUnique();
-            
+
             // The outline shader samples texture pixels at outline_width distance
             // For scaled sprites, we need to reduce this to prevent sampling outside the
             // render target (which is sized as sprite screen bounds * 1.25)
             var spriteScale = (sprite.Scale.X + sprite.Scale.Y) / 2.0f;
-            
+
             // Clamp outline width to 0.5 pixels for heavily scaled sprites (>1.5x)
             // This prevents the outline from sampling outside the render target bounds
             float outlineWidth;
@@ -95,7 +95,7 @@ namespace Content.Client.Interactable.Components
             {
                 outlineWidth = DefaultWidth * renderScale;
             }
-            
+
             instance.SetParameter("outline_width", outlineWidth);
             return instance;
         }

@@ -129,13 +129,13 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         // Calculate the current scale vs the base customization
         var averageBase = (component.BaseHeight + component.BaseWidth) / 2.0f;
         var averageCurrent = (component.Height + component.Width) / 2.0f;
-        
+
         // // Show base customization if different from normal (1.0)
         // if (Math.Abs(averageBase - 1.0f) > 0.05f)
         // {
         //     args.PushMarkup(Loc.GetString("humanoid-appearance-component-examine-base-size", ("scale", averageBase.ToString("F2"))));
         // }
-        
+
         // Show active size modification if different from base
         if (Math.Abs(averageCurrent - averageBase) > 0.05f)
         {
