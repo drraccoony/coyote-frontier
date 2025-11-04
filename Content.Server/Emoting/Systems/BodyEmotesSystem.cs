@@ -35,6 +35,10 @@ public sealed class BodyEmotesSystem : EntitySystem
         {
             args.Handled = TryEmoteHands(uid, args.Emote, component);
         }
+        else if (cat.HasFlag(EmoteCategory.Lizard))
+        {
+            args.Handled = TryEmoteLizard(uid, args.Emote, component);
+        }
     }
 
     private bool TryEmoteHands(EntityUid uid, EmotePrototype emote, BodyEmotesComponent component)
@@ -43,6 +47,11 @@ public sealed class BodyEmotesSystem : EntitySystem
         if (!TryComp(uid, out HandsComponent? hands) || hands.Count <= 0)
             return false;
 
+        return _chat.TryPlayEmoteSound(uid, component.Sounds, emote);
+    }
+
+    private bool TryEmoteLizard(EntityUid uid, EmotePrototype emote, BodyEmotesComponent component)
+    {
         return _chat.TryPlayEmoteSound(uid, component.Sounds, emote);
     }
 }
