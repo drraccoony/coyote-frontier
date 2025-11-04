@@ -7,7 +7,7 @@
   id: Findsman
   parent: BaseVesselAntag
   name: Findsman
-  description: A Pathfinder modified to hunt down and capture people for ransom
+  description: A Pathfinder modified to hunt down and capture people for ransom, Exped Capable
   price: 65000 #29313 1.25 65954.25
   category: Small
   group: BlackMarket
