@@ -1,16 +1,16 @@
 meta:
   format: 7
-  category: Grid
+  category: Map
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/04/2025 23:24:34
-  entityCount: 1821
-maps: []
+  time: 11/04/2025 23:43:01
+  entityCount: 1822
+maps:
+- 1814
 grids:
 - 179
-orphans:
-- 179
+orphans: []
 nullspace: []
 tilemap:
   0: Space
@@ -27,7 +27,7 @@ entities:
     components:
     - type: MetaData
     - type: Transform
-      parent: invalid
+      parent: 1814
     - type: MapGrid
       chunks:
         -1,0:
@@ -610,6 +610,16 @@ entities:
     - type: GridPathfinding
     - type: NavMap
     - type: ImplicitRoof
+  - uid: 1814
+    components:
+    - type: MetaData
+      name: Map Entity
+    - type: Transform
+    - type: Map
+      mapPaused: True
+    - type: GridTree
+    - type: Broadphase
+    - type: OccluderTree
 - proto: AdvancedCapacitorStockPart
   entities:
   - uid: 266
@@ -8246,7 +8256,7 @@ entities:
       parent: 179
 - proto: SpawnPointEscort
   entities:
-  - uid: 1821
+  - uid: 1822
     components:
     - type: Transform
       pos: -3.5,2.5
@@ -8372,7 +8382,7 @@ entities:
       parent: 179
 - proto: SpawnPointSmuggler
   entities:
-  - uid: 1814
+  - uid: 1821
     components:
     - type: Transform
       pos: -3.5,2.5
