@@ -11,6 +11,7 @@
   price: 65000 #29313 1.25 65954.25
   category: Small
   group: BlackMarket
+  access: BlackMarket
   shuttlePath: /Maps/_NF/Shuttles/BlackMarket/Findsman.yml
   guidebookPage: Null
   class:

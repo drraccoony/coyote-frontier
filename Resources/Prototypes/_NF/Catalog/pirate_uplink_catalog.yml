@@ -535,7 +535,7 @@
         tags:
           - PirateUplink
 
-- type: listing
+- type: listing #Coyote
   id: UplinkTeleCrystal
   name:  uplink-Telecrystal
   description: uplink-Telecrystal-desc

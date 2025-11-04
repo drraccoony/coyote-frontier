@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/04/2025 00:23:46
-  entityCount: 3102
+  time: 11/04/2025 22:19:40
+  entityCount: 3104
 maps: []
 grids:
 - 1
@@ -15287,6 +15287,13 @@ entities:
     - type: Transform
       pos: 0.5,10.5
       parent: 1
+- proto: SpawnPointEscort
+  entities:
+  - uid: 3104
+    components:
+    - type: Transform
+      pos: -2.5,24.5
+      parent: 1
 - proto: SpawnPointNFPirate
   entities:
   - uid: 93
@@ -15307,6 +15314,13 @@ entities:
     components:
     - type: Transform
       pos: -7.5,9.5
+      parent: 1
+- proto: SpawnPointSmuggler
+  entities:
+  - uid: 3103
+    components:
+    - type: Transform
+      pos: -1.5,25.5
       parent: 1
 - proto: StairStageWood
   entities:
