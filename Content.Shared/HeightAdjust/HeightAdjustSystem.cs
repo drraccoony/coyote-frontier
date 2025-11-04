@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Numerics;
 using Content.Shared.CCVar;
@@ -37,10 +38,10 @@ public sealed class HeightAdjustSystem : EntitySystem
 
         // Calculate final scale by multiplying all modifiers
         float finalScale = 1.0f;
-        
+
         // Sort by priority (lower priority applied first, so higher priority can override)
         var sortedModifiers = getModifiersEvent.Modifiers.OrderBy(m => m.Priority).ToList();
-        
+
         foreach (var modifier in sortedModifiers)
         {
             finalScale *= modifier.Scale;
@@ -55,23 +56,27 @@ public sealed class HeightAdjustSystem : EntitySystem
     ///     Changes the density of fixtures and zoom of eyes based on a provided float scale
     /// </summary>
     /// <param name="uid">The entity to modify values for</param>
-    /// <param name="scale">The scale to multiply values by</param>
+    /// <param name="scale">The scale multiplier to apply to base height/width</param>
     /// <param name="bypassLimits">Whether to bypass species min/max limits (for temporary effects)</param>
     /// <returns>True if all operations succeeded</returns>
     public bool SetScale(EntityUid uid, float scale, bool bypassLimits = false)
     {
         var succeeded = true;
-        
+
         if (_config.GetCVar(CCVars.HeightAdjustModifiesHitbox) && EntityManager.TryGetComponent<FixturesComponent>(uid, out var fixtures))
             foreach (var fixture in fixtures.Fixtures)
                 _physics.SetRadius(uid, fixture.Key, fixture.Value, fixture.Value.Shape, MathF.MinMagnitude(fixture.Value.Shape.Radius * scale, 0.49f));
         else
             succeeded = false;
 
-        if (EntityManager.HasComponent<HumanoidAppearanceComponent>(uid))
+        if (EntityManager.TryGetComponent<HumanoidAppearanceComponent>(uid, out var humanoid))
         {
-            _appearance.SetHeight(uid, scale, bypassLimits: bypassLimits);
-            _appearance.SetWidth(uid, scale, bypassLimits: bypassLimits);
+            // Multiply the base height/width by the scale modifier
+            var newHeight = humanoid.BaseHeight * scale;
+            var newWidth = humanoid.BaseWidth * scale;
+
+            _appearance.SetHeight(uid, newHeight, bypassLimits: bypassLimits, humanoid: humanoid);
+            _appearance.SetWidth(uid, newWidth, bypassLimits: bypassLimits, humanoid: humanoid);
         }
         else
             succeeded = false;
@@ -83,7 +88,7 @@ public sealed class HeightAdjustSystem : EntitySystem
     ///     Changes the density of fixtures and zoom of eyes based on a provided Vector2 scale
     /// </summary>
     /// <param name="uid">The entity to modify values for</param>
-    /// <param name="scale">The scale to multiply values by (X = width, Y = height)</param>
+    /// <param name="scale">The base scale to set (X = width, Y = height). This sets BaseHeight/BaseWidth.</param>
     /// <returns>True if all operations succeeded</returns>
     public bool SetScale(EntityUid uid, Vector2 scale)
     {
@@ -111,8 +116,15 @@ public sealed class HeightAdjustSystem : EntitySystem
         else
             succeeded = false;
 
-        if (EntityManager.HasComponent<HumanoidAppearanceComponent>(uid))
-            _appearance.SetScale(uid, scale);
+        if (EntityManager.TryGetComponent<HumanoidAppearanceComponent>(uid, out var humanoid))
+        {
+            // This is setting the BASE scale from character customization
+            // Update both base and current values
+            humanoid.BaseWidth = scale.X;
+            humanoid.BaseHeight = scale.Y;
+
+            _appearance.SetScale(uid, scale, humanoid: humanoid);
+        }
         else
             succeeded = false;
 

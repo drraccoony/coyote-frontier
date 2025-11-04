@@ -55,7 +55,10 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         var height = component.Height;
         var width = component.Width;
 
+        // Directly set sprite scale - this is the original approach that worked
+        // Using SpriteSystem.SetScale() was causing issues with outline shader rendering
         sprite.Scale = new Vector2(width, height);
+
         UpdateLayersAgain(component, sprite); // cool
 
         sprite[sprite.LayerMapReserveBlank(HumanoidVisualLayers.Eyes)].Color = component.EyeColor;

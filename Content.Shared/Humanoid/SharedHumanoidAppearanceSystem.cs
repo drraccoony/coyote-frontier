@@ -87,6 +87,16 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
     private void OnInit(EntityUid uid, HumanoidAppearanceComponent humanoid, ComponentInit args)
     {
+        // Migration: Ensure BaseHeight and BaseWidth are initialized for existing characters
+        if (Math.Abs(humanoid.BaseHeight - 1.0f) < 0.001f && Math.Abs(humanoid.BaseWidth - 1.0f) < 0.001f)
+        {
+            if (Math.Abs(humanoid.Height - 1.0f) > 0.001f || Math.Abs(humanoid.Width - 1.0f) > 0.001f)
+            {
+                humanoid.BaseHeight = humanoid.Height;
+                humanoid.BaseWidth = humanoid.Width;
+            }
+        }
+
         if (string.IsNullOrEmpty(humanoid.Species) || _netManager.IsClient && !IsClientSide(uid))
         {
             return;
@@ -116,11 +126,21 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         args.PushText(Loc.GetString("humanoid-appearance-component-examine", ("user", identity), ("age", age), ("species", species)));
 
-        // Show size modification if significantly different from normal
-        var averageScale = (component.Height + component.Width) / 2.0f;
-        if (Math.Abs(averageScale - 1.0f) > 0.05f) // Only show if more than 5% different
+        // Calculate the current scale vs the base customization
+        var averageBase = (component.BaseHeight + component.BaseWidth) / 2.0f;
+        var averageCurrent = (component.Height + component.Width) / 2.0f;
+
+        // // Show base customization if different from normal (1.0)
+        // if (Math.Abs(averageBase - 1.0f) > 0.05f)
+        // {
+        //     args.PushMarkup(Loc.GetString("humanoid-appearance-component-examine-base-size", ("scale", averageBase.ToString("F2"))));
+        // }
+
+        // Show active size modification if different from base
+        if (Math.Abs(averageCurrent - averageBase) > 0.05f)
         {
-            args.PushMarkup(Loc.GetString("humanoid-appearance-component-examine-size", ("scale", averageScale.ToString("F2"))));
+            var modifier = averageCurrent / averageBase;
+            args.PushMarkup(Loc.GetString("humanoid-appearance-component-examine-modified-size", ("scale", averageCurrent.ToString("F2")), ("modifier", modifier.ToString("F2"))));
         }
     }
 
