@@ -7,7 +7,7 @@
   id: Findsman
   parent: BaseVesselAntag
   name: Findsman
-  description: A Pathfinder modified to hunt down and capture people for ransom
+  description: A Pathfinder modified to hunt down and capture people for ransom, Exped Capable
   price: 65000 #29313 1.25 65954.25
   category: Small
   group: BlackMarket
@@ -15,8 +15,9 @@
   guidebookPage: Null
   class:
   - Pirate
+  - Expedition
   engine:
-  - Uranium
+  - AME
 
 - type: gameMap
   id: Findsman
@@ -25,7 +26,7 @@
   minPlayers: 0
   stations:
     Findsman:
-      stationProto: StandardFrontierAntagVessel
+      stationProto: StandardFrontierAntagExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Pathfinder {1}' # Very fake name
