@@ -97,7 +97,7 @@
 - type: rcd
   id: PlastitaniumWindow
   category: WindowsAndGrilles
-  sprite: Structures/Windows/plastitanium.rsi/full.png
+  sprite: Structures/Windows/plastitanium_window.rsi/full.png
   mode: ConstructObject
   prototype: PlastitaniumWindow
   cost: 6
@@ -111,7 +111,7 @@
 - type: rcd
   id: PlastitaniumWindowDiagonal
   category: WindowsAndGrilles
-  sprite: Structures/Windows/plastitanium_diagonal.rsi/state0.png
+  sprite: Structures/Windows/plastitanium_window_diagonal.rsi/state0.png
   mode: ConstructObject
   prototype: PlastitaniumWindowDiagonal
   cost: 3
