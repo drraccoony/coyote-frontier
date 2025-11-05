@@ -1,0 +1,38 @@
+# Author Info
+# GitHub: EchoFade
+# Discord: @horribilisgoose
+- type: vessel
+  id: Salto
+  parent: BaseVessel
+  name: (LL0) Salto
+  description: You're taking a leap of faith flying this welded together scrapheap into hyperspace.
+  price: 37000
+  category: Small
+  group: Expedition
+  shuttlePath: /Maps/_NF/Shuttles/Expedition/salto.yml
+  guidebookPage: null
+  class:
+  - Expedition
+  engine:
+  - AME
+#
+- type: gameMap
+  id: Salto
+  mapName: 'HGH Salto'
+  mapPath: /Maps/_NF/Shuttles/Expedition/salto.yml
+  minPlayers: 0
+  stations:
+    Salto:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Salto {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
+
