@@ -501,12 +501,23 @@ public sealed class BluespaceDrydockSystem : EntitySystem
 
             // Read the saved file
             var userData = _resourceManager.UserData;
-            using var stream = userData.OpenRead(tempPath);
-            using var reader = new StreamReader(stream);
-            serializedData = reader.ReadToEnd();
+            
+            // Ensure streams are disposed before deletion (Windows file handle issue)
+            {
+                using var stream = userData.OpenRead(tempPath);
+                using var reader = new StreamReader(stream);
+                serializedData = reader.ReadToEnd();
+            }
 
-            // Clean up temp file
-            userData.Delete(tempPath);
+            // Clean up temp file - wrapped in try-catch for Windows file handle issues
+            try
+            {
+                userData.Delete(tempPath);
+            }
+            catch (IOException ioEx)
+            {
+                _sawmill.Warning($"Failed to delete temporary file {tempPath}: {ioEx.Message}. File will remain.");
+            }
 
             return !string.IsNullOrEmpty(serializedData);
         }
@@ -542,7 +553,17 @@ public sealed class BluespaceDrydockSystem : EntitySystem
             {
                 _sawmill.Error($"Failed to load grid from serialized data");
                 _map.DeleteMap(tempMapId);
-                userData.Delete(tempPath);
+                
+                // Clean up temp file - wrapped in try-catch for Windows file handle issues
+                try
+                {
+                    userData.Delete(tempPath);
+                }
+                catch (IOException ioEx)
+                {
+                    _sawmill.Warning($"Failed to delete temporary file {tempPath}: {ioEx.Message}. File will remain.");
+                }
+                
                 return false;
             }
 
@@ -581,8 +602,15 @@ public sealed class BluespaceDrydockSystem : EntitySystem
 
             _sawmill.Info($"Re-initialized {reInitCount} entities on deserialized grid {shuttleUid.Value} (skipped {allEnts.Count - reInitCount} lights/cabinets)");
 
-            // Clean up temp file
-            userData.Delete(tempPath);
+            // Clean up temp file - wrapped in try-catch for Windows file handle issues
+            try
+            {
+                userData.Delete(tempPath);
+            }
+            catch (IOException ioEx)
+            {
+                _sawmill.Warning($"Failed to delete temporary file {tempPath}: {ioEx.Message}. File will remain.");
+            }
 
             return true;
         }
