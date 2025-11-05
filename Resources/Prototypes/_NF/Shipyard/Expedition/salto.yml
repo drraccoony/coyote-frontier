@@ -21,7 +21,7 @@
   mapName: 'HGH Salto'
   mapPath: /Maps/_NF/Shuttles/Expedition/salto.yml
   minPlayers: 0
-  stations: 
+  stations:
     Salto:
       stationProto: StandardFrontierExpeditionVessel
       components:
