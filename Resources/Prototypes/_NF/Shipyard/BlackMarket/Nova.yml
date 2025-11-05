@@ -11,6 +11,7 @@
   price: 62000 #29313 1.25 65954.25
   category: Medium
   group: BlackMarket
+  access: BlackMarket
   shuttlePath: /Maps/_NF/Shuttles/BlackMarket/Nova.yml
   guidebookPage: Null
   class:

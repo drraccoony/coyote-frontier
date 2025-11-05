@@ -21,3 +21,9 @@ job-supervisors-curator = the Frontier Historical Society, and horny people ever
 job-name-therapist = Psychiatrist
 job-description-therapist = Provide mental health support and counseling to crew members and passengers. Your role is essential in maintaining the psychological well-being of everyone on board. As a therapist, you have access to confidential information and are often the first to know about personal struggles. You also receive a bonus to your Payward Incentive for being in such an important role!
 job-supervisors-therapist = the Frontier Wellness Council, and horny people everywhere
+
+job-name-smuggler = Smuggler
+job-description-smuggler = Run illicit cargo, sell illicit goods, keep the pirates supplied, and anyone else who's willing to pay.
+
+job-name-escort = Escort
+job-description-escort = Engage in the age-old profession of providing companionship and pleasure to those willing to pay. As a pirate prostitute, you navigate the fringes of society, offering your services to a diverse clientele. Your role is both lucrative and adventurous, allowing you to explore the depths of human desire while earning a handsome income. You also receive a bonus to your Payward Incentive for your daring profession!
