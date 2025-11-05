@@ -15,3 +15,9 @@ uplink-t5loot-desc = Salvaged Loot from the extreme expos
 
 uplink-contracrate = Contraband Crate
 uplink-contracrate-desc = Random Contraband Crate, deliver to it's destination asap.
+
+uplink-pirate-rcd-name = Pirate RCD
+uplink-pirate-rcd-desc = A blackmarket construction device which can place/remove walls, floors, and airlocks quickly. It has a slot to swipe ID cards.
+
+uplink-nfsd-rcd-name = NFSD RCD
+uplink-nfsd-rcd-desc = A security construction device which can place/remove walls, floors, and airlocks quickly. It has a slot to swipe ID cards.
