@@ -501,7 +501,7 @@ public sealed class BluespaceDrydockSystem : EntitySystem
 
             // Read the saved file
             var userData = _resourceManager.UserData;
-            
+
             // Ensure streams are disposed before deletion (Windows file handle issue)
             {
                 using var stream = userData.OpenRead(tempPath);
@@ -553,7 +553,7 @@ public sealed class BluespaceDrydockSystem : EntitySystem
             {
                 _sawmill.Error($"Failed to load grid from serialized data");
                 _map.DeleteMap(tempMapId);
-                
+
                 // Clean up temp file - wrapped in try-catch for Windows file handle issues
                 try
                 {
@@ -563,7 +563,7 @@ public sealed class BluespaceDrydockSystem : EntitySystem
                 {
                     _sawmill.Warning($"Failed to delete temporary file {tempPath}: {ioEx.Message}. File will remain.");
                 }
-                
+
                 return false;
             }
 
