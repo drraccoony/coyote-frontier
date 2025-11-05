@@ -4,7 +4,7 @@
 - type: vessel
   id: Salto
   parent: BaseVessel
-  name: HGH Salto
+  name: (LL0) Salto
   description: You're taking a leap of faith flying this welded together scrapheap into hyperspace.
   price: 37000
   category: Small
