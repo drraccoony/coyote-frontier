@@ -95,6 +95,7 @@
     useAnywhere: true
     vessels:
     - Hitchhiker
+    - Speakeasy
 
 - type: chameleonOutfit
   id: EscortChameleonOutfit
