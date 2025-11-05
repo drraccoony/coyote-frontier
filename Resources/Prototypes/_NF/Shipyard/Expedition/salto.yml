@@ -1,7 +1,6 @@
 # Author Info
 # GitHub: EchoFade
 # Discord: @horribilisgoose
-#
 - type: vessel
   id: Salto
   parent: BaseVessel
