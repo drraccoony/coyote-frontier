@@ -6,7 +6,7 @@
   parent: BaseVessel
   name: HGH Salto
   description: You're taking a leap of faith flying this welded together scrapheap into hyperspace.
-  price: 37000 
+  price: 37000
   category: Small
   group: Expedition
   shuttlePath: /Maps/_NF/Shuttles/Expedition/salto.yml
@@ -15,7 +15,7 @@
   - Expedition
   engine:
   - AME
-#
+
 - type: gameMap
   id: Salto
   mapName: 'HGH Salto'
