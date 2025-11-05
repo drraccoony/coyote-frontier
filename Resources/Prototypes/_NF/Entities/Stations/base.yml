@@ -62,20 +62,27 @@
   abstract: true
   components:
   - type: CargoMarketData
-    whitelist: #whitelist won't work if the item doesn't have a price, unless sold in a box with other items
+    whitelist:
       tags:
       - Ore
       - Sheet
       - Metal
       - Ingot
+      - RawMaterial
       - ArtifactFragment
+      - CrystalRed
+      - CrystalGreen
+      - CrystalPink
+      - CrystalOrange
+      - CrystalBlue
+      - CrystalCyan
       components:
       - Material
       - ConstructionMaterials
-      # ToolRefinable #only used by light bulbs and broken glass and blocked by SpaceTrash component anyway
+      - ToolRefinable
       - MachinePart
       - VendingMachineRestock
-      - Seed # do we really need that if everyone has a biogenerator already? It just clogs up the UI
+      - Seed
       - MachineBoard
       - ComputerBoard
     blacklist:
@@ -105,8 +112,6 @@
       - StorageFill # Till fixed
       - StationBoundObject # no laundering your rental ship machines
     whitelistOverride:
-      tags:
-      - RawMaterial
       components:
       - UraniumMaterials # Counts as food
 

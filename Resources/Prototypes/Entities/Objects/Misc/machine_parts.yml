@@ -32,5 +32,3 @@
       rating: 1 # Frontier
     - type: Stack
       stackType: Manipulator
-    - type: StackPrice # Frontier
-      price: 5 # Frontier
