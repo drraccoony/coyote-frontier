@@ -1,6 +1,6 @@
 - type: entity
   name: Pirate RCD
-  parent: RCD
+  parent: [BaseC3PirateContraband, RCD]
   id: PirateRCD
   description: A blackmarket construction device which can place/remove walls, floors, and airlocks quickly. It has a slot to swipe ID cards.
   components:
@@ -41,7 +41,7 @@
 
 - type: entity
   name: NFSD RCD
-  parent: RCD
+  parent: [BaseC2ContrabandUnredeemable, RCD]
   id: NFSDRCD
   description: A security construction device which can place/remove walls, floors, and airlocks quickly. It has a slot to swipe ID cards.
   components:
