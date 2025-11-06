@@ -8,3 +8,14 @@
     contents:
     - id: WeaponEnergyRevolver
       amount: 1
+
+- type: entity
+  parent: WeaponCaseLong
+  id: WeaponCaseLongPrototypePulseRifleExpedition
+  suffix: Dungeon, Pulse Rifle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponPrototypePulseRifle
+      amount: 1
