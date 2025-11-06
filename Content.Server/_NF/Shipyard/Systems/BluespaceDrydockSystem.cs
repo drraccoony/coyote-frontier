@@ -28,6 +28,7 @@ using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.EntitySerialization;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using Robust.Shared.Utility;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Serialization;
@@ -201,8 +202,9 @@ public sealed class BluespaceDrydockSystem : EntitySystem
                     UndockShuttle(shuttleUid);
                     ConsolePopup(player, "Serializing ship data...");
 
-                    // Step 4: Serialize (delayed - this is the heavy operation)
-                    Timer.Spawn(TimeSpan.FromSeconds(ProcessingDelaySeconds * 2), () =>
+                    // Step 4: Serialize asynchronously (heavy operation - don't block server)
+                    var serializeTask = TrySerializeShuttleAsync(shuttleUid);
+                    serializeTask.ContinueWith(task =>
                     {
                         if (!Exists(shuttleUid) || !Exists(targetId))
                         {
@@ -210,8 +212,11 @@ public sealed class BluespaceDrydockSystem : EntitySystem
                             return;
                         }
 
-                        _sawmill.Info($"Attempting to serialize ship {shuttleUid}");
-                        if (!TrySerializeShuttle(shuttleUid, out var serializedData))
+#pragma warning disable RA0004
+                        var (success, serializedData) = task.Result;
+#pragma warning restore RA0004
+
+                        if (!success || string.IsNullOrEmpty(serializedData))
                         {
                             ConsolePopup(player, "Failed to serialize ship data!");
                             PlayDenySound(player, consoleUid, component);
@@ -253,7 +258,7 @@ public sealed class BluespaceDrydockSystem : EntitySystem
                             _processingStores.Remove(shuttleUid);
                             _sawmill.Info($"{ToPrettyString(player)} stored ship {shuttleUid} on ID {ToPrettyString(targetId)}");
                         });
-                    });
+                    }, TaskScheduler.FromCurrentSynchronizationContext());
                 });
             });
         });
@@ -330,9 +335,11 @@ public sealed class BluespaceDrydockSystem : EntitySystem
 
         // Start the multi-step retrieval process with delays
         ConsolePopup(player, "Beginning ship retrieval sequence...");
+        ConsolePopup(player, "Materializing ship...");
 
-        // Step 1: Deserialize (delayed - this is heavy)
-        Timer.Spawn(TimeSpan.FromSeconds(ProcessingDelaySeconds * 2), () =>
+        // Step 1: Deserialize asynchronously (heavy operation - don't block server)
+        var deserializeTask = TryDeserializeShuttleAsync(storedData);
+        deserializeTask.ContinueWith(task =>
         {
             if (!Exists(targetId))
             {
@@ -340,9 +347,11 @@ public sealed class BluespaceDrydockSystem : EntitySystem
                 return;
             }
 
-            ConsolePopup(player, "Materializing ship...");
+#pragma warning disable RA0004
+            var shuttleUid = task.Result;
+#pragma warning restore RA0004
 
-            if (!TryDeserializeShuttle(storedData, out var shuttleUid) || shuttleUid == null)
+            if (shuttleUid == null)
             {
                 ConsolePopup(player, "Failed to retrieve ship from storage!");
                 PlayDenySound(player, consoleUid, component);
@@ -432,7 +441,7 @@ public sealed class BluespaceDrydockSystem : EntitySystem
                     });
                 });
             });
-        });
+        }, TaskScheduler.FromCurrentSynchronizationContext());
     }
 
     private bool IsShuttleDocked(EntityUid shuttleUid)
@@ -460,10 +469,8 @@ public sealed class BluespaceDrydockSystem : EntitySystem
         }
     }
 
-    private bool TrySerializeShuttle(EntityUid shuttleUid, out string? serializedData)
+    private async Task<(bool success, string? data)> TrySerializeShuttleAsync(EntityUid shuttleUid)
     {
-        serializedData = null;
-
         try
         {
             // Use a temporary path to save the grid
@@ -493,20 +500,21 @@ public sealed class BluespaceDrydockSystem : EntitySystem
                 if (!_mapLoader.TrySaveGrid(shuttleUid, tempPath, options))
                 {
                     _sawmill.Error($"Failed to save grid {shuttleUid} even with Ignore mode");
-                    return false;
+                    return (false, null);
                 }
 
                 _sawmill.Warning($"Saved grid {shuttleUid} with Ignore mode - some item functionality may be lost");
             }
 
-            // Read the saved file
+            // Read the saved file asynchronously to avoid blocking
             var userData = _resourceManager.UserData;
+            string serializedData;
 
             // Ensure streams are disposed before deletion (Windows file handle issue)
             {
                 using var stream = userData.OpenRead(tempPath);
                 using var reader = new StreamReader(stream);
-                serializedData = reader.ReadToEnd();
+                serializedData = await reader.ReadToEndAsync();
             }
 
             // Clean up temp file - wrapped in try-catch for Windows file handle issues
@@ -519,30 +527,28 @@ public sealed class BluespaceDrydockSystem : EntitySystem
                 _sawmill.Warning($"Failed to delete temporary file {tempPath}: {ioEx.Message}. File will remain.");
             }
 
-            return !string.IsNullOrEmpty(serializedData);
+            return (!string.IsNullOrEmpty(serializedData), serializedData);
         }
         catch (Exception ex)
         {
             _sawmill.Error($"Exception while serializing shuttle {shuttleUid}: {ex}");
-            return false;
+            return (false, null);
         }
     }
 
-    private bool TryDeserializeShuttle(string serializedData, out EntityUid? shuttleUid)
+    private async Task<EntityUid?> TryDeserializeShuttleAsync(string serializedData)
     {
-        shuttleUid = null;
-
         try
         {
             // Create a temporary file to load from
             var tempPath = new ResPath($"/drydock_retrieve_{Guid.NewGuid()}.yml");
             var userData = _resourceManager.UserData;
 
-            // Write the serialized data to a temp file
+            // Write the serialized data to a temp file asynchronously
             using (var stream = userData.OpenWrite(tempPath))
             using (var writer = new StreamWriter(stream))
             {
-                writer.Write(serializedData);
+                await writer.WriteAsync(serializedData);
             }
 
             // Create a temporary map to load the grid into
@@ -564,22 +570,22 @@ public sealed class BluespaceDrydockSystem : EntitySystem
                     _sawmill.Warning($"Failed to delete temporary file {tempPath}: {ioEx.Message}. File will remain.");
                 }
 
-                return false;
+                return null;
             }
 
-            shuttleUid = grid.Value.Owner;
+            var shuttleUid = grid.Value.Owner;
 
             // Initialize the grid's systems (device networks, atmos, power, etc.)
             // This is important because deserialized entities need their systems reconnected
-            var gridInit = new GridInitializeEvent(shuttleUid.Value);
-            RaiseLocalEvent(shuttleUid.Value, gridInit, broadcast: true);
+            var gridInit = new GridInitializeEvent(shuttleUid);
+            RaiseLocalEvent(shuttleUid, gridInit, broadcast: true);
 
             // Force re-initialization of all entities on the grid
             // This ensures components like Destructible, DeviceNetwork, etc. are properly set up
             // We skip PoweredLightComponent entities to avoid duplicating lightbulbs
             var xformQuery = GetEntityQuery<TransformComponent>();
             var allEnts = new HashSet<EntityUid>();
-            GetEntitiesOnGrid(shuttleUid.Value, allEnts, xformQuery);
+            GetEntitiesOnGrid(shuttleUid, allEnts, xformQuery);
 
             var reInitCount = 0;
             foreach (var ent in allEnts)
@@ -594,13 +600,18 @@ public sealed class BluespaceDrydockSystem : EntitySystem
                 if (HasComp<ItemSlotsComponent>(ent))
                     continue;
 
+                // Skip docking ports - they already have their joints from deserialization
+                // and MapInit would create duplicate joints
+                if (HasComp<DockingComponent>(ent))
+                    continue;
+
                 // Trigger MapInit for each entity to reinitialize components
                 var mapInitEv = new MapInitEvent();
                 RaiseLocalEvent(ent, mapInitEv, broadcast: false);
                 reInitCount++;
             }
 
-            _sawmill.Info($"Re-initialized {reInitCount} entities on deserialized grid {shuttleUid.Value} (skipped {allEnts.Count - reInitCount} lights/cabinets)");
+            _sawmill.Info($"Re-initialized {reInitCount} entities on deserialized grid {shuttleUid} (skipped {allEnts.Count - reInitCount} lights/cabinets/docks)");
 
             // Clean up temp file - wrapped in try-catch for Windows file handle issues
             try
@@ -612,12 +623,12 @@ public sealed class BluespaceDrydockSystem : EntitySystem
                 _sawmill.Warning($"Failed to delete temporary file {tempPath}: {ioEx.Message}. File will remain.");
             }
 
-            return true;
+            return shuttleUid;
         }
         catch (Exception ex)
         {
             _sawmill.Error($"Exception while deserializing shuttle: {ex}");
-            return false;
+            return null;
         }
     }
 
@@ -832,8 +843,9 @@ public sealed class BluespaceDrydockSystem : EntitySystem
                     UndockShuttle(shuttleUid);
                     ConsolePopup(player, "Serializing ship data...");
 
-                    // Step 4: Serialize (delayed - this is the heavy operation)
-                    Timer.Spawn(TimeSpan.FromSeconds(ProcessingDelaySeconds * 2), () =>
+                    // Step 4: Serialize asynchronously (heavy operation - don't block server)
+                    var serializeTask = TrySerializeShuttleAsync(shuttleUid);
+                    serializeTask.ContinueWith(task =>
                     {
                         if (!Exists(shuttleUid) || !Exists(targetId))
                         {
@@ -841,8 +853,11 @@ public sealed class BluespaceDrydockSystem : EntitySystem
                             return;
                         }
 
-                        _sawmill.Info($"Attempting to serialize ship {shuttleUid}");
-                        if (!TrySerializeShuttle(shuttleUid, out var serializedData))
+#pragma warning disable RA0004
+                        var (success, serializedData) = task.Result;
+#pragma warning restore RA0004
+
+                        if (!success || string.IsNullOrEmpty(serializedData))
                         {
                             ConsolePopup(player, "Failed to serialize ship data!");
                             _processingStores.Remove(shuttleUid);
@@ -880,7 +895,7 @@ public sealed class BluespaceDrydockSystem : EntitySystem
                             _processingStores.Remove(shuttleUid);
                             _sawmill.Info($"{ToPrettyString(player)} stored ship {shuttleUid} on ID {ToPrettyString(targetId)}");
                         });
-                    });
+                    }, TaskScheduler.FromCurrentSynchronizationContext());
                 });
             });
         });
@@ -935,9 +950,11 @@ public sealed class BluespaceDrydockSystem : EntitySystem
 
         // Start the multi-step retrieval process
         ConsolePopup(player, "Beginning ship retrieval sequence...");
+        ConsolePopup(player, "Materializing ship...");
 
-        // Step 1: Deserialize (delayed - this is a heavy operation)
-        Timer.Spawn(TimeSpan.FromSeconds(ProcessingDelaySeconds * 2), () =>
+        // Step 1: Deserialize asynchronously (heavy operation - don't block server)
+        var deserializeTask = TryDeserializeShuttleAsync(storage.StoredGridData);
+        deserializeTask.ContinueWith(task =>
         {
             if (!Exists(targetId))
             {
@@ -945,15 +962,11 @@ public sealed class BluespaceDrydockSystem : EntitySystem
                 return;
             }
 
-            _sawmill.Info($"Attempting to deserialize ship from ID {ToPrettyString(targetId)}");
-            if (!TryDeserializeShuttle(storage.StoredGridData, out var shuttleUid))
-            {
-                ConsolePopup(player, "Failed to deserialize ship data!");
-                _processingRetrieves.Remove(targetId);
-                return;
-            }
+#pragma warning disable RA0004
+            var shuttleUid = task.Result;
+#pragma warning restore RA0004
 
-            if (!shuttleUid.HasValue)
+            if (shuttleUid == null)
             {
                 ConsolePopup(player, "Failed to deserialize ship data!");
                 _processingRetrieves.Remove(targetId);
@@ -961,7 +974,6 @@ public sealed class BluespaceDrydockSystem : EntitySystem
             }
 
             _sawmill.Info($"Successfully deserialized ship {shuttleUid}");
-            ConsolePopup(player, "Materializing ship...");
 
             var shuttleUidValue = shuttleUid.Value;
 
@@ -1036,7 +1048,7 @@ public sealed class BluespaceDrydockSystem : EntitySystem
                     });
                 });
             });
-        });
+        }, TaskScheduler.FromCurrentSynchronizationContext());
 
         return true;
     }
