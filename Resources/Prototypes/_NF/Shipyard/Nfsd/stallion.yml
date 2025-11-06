@@ -7,7 +7,7 @@
   category: Small
   group: Security
   access: Security
-  shuttlePath: /Maps/_NF/Shuttles/Nfsd/stalion.yml
+  shuttlePath: /Maps/_NF/Shuttles/Nfsd/stallion.yml
   guidebookPage: Null
   class:
   - Cargo
