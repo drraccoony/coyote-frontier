@@ -72,7 +72,7 @@ public sealed class ModifyUndiesSystem : EntitySystem
             if (mProt.MarkingCategory == MarkingCategories.Genital)
             {
                 // Skip based on consent
-                if (!_consentSystem.HasConsent(args.Target, GenitalMarkingsConsent))
+                if (!_consentSystem.HasConsent(args.User, GenitalMarkingsConsent))
                     continue;
             }
 
