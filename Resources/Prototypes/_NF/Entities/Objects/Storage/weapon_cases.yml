@@ -84,7 +84,7 @@
   - type: Item
     sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
   - type: Storage # Coyote Additions Below
-    maxItemSize: Medium
+    maxItemSize: Normal
     grid:
     - 0,0,2,1
     - 4,0,6,1
