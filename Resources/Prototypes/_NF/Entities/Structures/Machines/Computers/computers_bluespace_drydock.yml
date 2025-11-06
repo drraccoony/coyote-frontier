@@ -29,4 +29,3 @@
     containers:
       board: !type:Container
         ents: []
-      BluespaceDrydock-targetId: !type:ContainerSlot
