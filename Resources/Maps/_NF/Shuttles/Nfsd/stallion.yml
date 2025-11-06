@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/06/2025 19:57:57
+  time: 11/06/2025 20:57:30
   entityCount: 221
 maps: []
 grids:
@@ -730,7 +730,6 @@ entities:
       parent: 1
     - type: DeviceNetwork
       configurators:
-      - invalid
       - invalid
   - uid: 99
     components:
