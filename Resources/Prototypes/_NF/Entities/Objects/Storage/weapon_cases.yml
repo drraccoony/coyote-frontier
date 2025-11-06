@@ -96,7 +96,7 @@
       - PowerCell
       tags:
       - Cartridge
-    blacklist: 
+    blacklist:
       components:
       - Gun
 
@@ -198,6 +198,6 @@
       - PowerCell
       tags:
       - Cartridge
-    blacklist: 
+    blacklist:
       components:
       - Gun
