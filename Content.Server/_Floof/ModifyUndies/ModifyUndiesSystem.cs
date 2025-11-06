@@ -34,6 +34,7 @@ public sealed class ModifyUndiesSystem : EntitySystem
     [Dependency] private readonly SharedConsentSystem _consentSystem = default!;
 
     public static ProtoId<ConsentTogglePrototype> GenitalMarkingsConsent = "GenitalMarkings";
+    public static ProtoId<ConsentTogglePrototype> ModifyUndiesConsent = "ModifyUndies";
 
     public static readonly VerbCategory UndiesCat =
         new("verb-categories-undies", "/Textures/Interface/VerbIcons/undies.png");
@@ -52,7 +53,12 @@ public sealed class ModifyUndiesSystem : EntitySystem
             return;
         if (!TryComp<HumanoidAppearanceComponent>(args.Target, out var humApp))
             return;
+
         var isMine = args.User == args.Target;
+
+        if (!isMine && !_consentSystem.HasConsent(args.Target, ModifyUndiesConsent))
+            return;
+
         // okay go through their markings, and find all the undershirts and underwear markings
         // <marking_ID>, list:(localized name, bodypart enum, isvisible)
         foreach (var marking in humApp.MarkingSet.Markings.Values.SelectMany(markingLust => markingLust))
