@@ -362,6 +362,8 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
                 RemoveMarking(marking, sprite);
             }
         }
+
+        humanoid.HiddenMarkings.Clear();
     }
 
     private void RemoveMarking(Marking marking, SpriteComponent spriteComp)
@@ -457,6 +459,8 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         // each sprite when we have one marking setting multiple layers,
         // lets just kinda sorta do that ourselves
         var layerDict = new Dictionary<string, int>();
+
+        MarkingAdded(markingPrototype, humanoid);
 
         visible &= !humanoid.HiddenMarkings.Contains(markingPrototype.ID); // FLOOF ADD
         // FLOOF ADD END
