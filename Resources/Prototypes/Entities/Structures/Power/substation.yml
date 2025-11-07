@@ -159,7 +159,8 @@
     mode: SnapgridCenter
   components:
   - type: AmbientSound
-    range: 2
+    volume: -8
+    range: 1.5
   - type: PointLight
     radius: 1.5
     energy: 1.6

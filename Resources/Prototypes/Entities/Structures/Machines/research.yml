@@ -78,8 +78,8 @@
             False: {visible: false}
   - type: AmbientOnPowered
   - type: AmbientSound
-    volume: -9
-    range: 5
+    volume: -12
+    range: 2.5
     enabled: false
     sound:
       path: /Audio/Ambience/Objects/server_fans.ogg
