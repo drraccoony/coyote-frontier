@@ -110,9 +110,9 @@
           bounds: "-0.4,-0.4,0.4,0.4"
         density: 3125
         mask:
-        - LargeMobMask
+        - MachineMask # Coyote LargeMobMask>MachineMask
         layer:
-        - WallLayer
+        - MachineLayer #Coyote WallLayer>MachineLayer
   - type: Destructible
     thresholds:
     - trigger:
