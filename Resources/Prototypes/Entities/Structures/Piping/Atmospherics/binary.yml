@@ -75,7 +75,7 @@
   - type: Construction
     graph: GasBinary
     node: pressurepump
-  - type: AmbientSound
+  - type: AmbientSound # Coyote Tweaked -9>-12 5>2.5
     enabled: false
     volume: -12
     range: 2.5
@@ -135,7 +135,7 @@
     - type: Construction
       graph: GasBinary
       node: volumepump
-    - type: AmbientSound
+    - type: AmbientSound # Coyote Tweaked -9>-12 5>2.5
       enabled: false
       volume: -12
       range: 2.5
@@ -180,7 +180,7 @@
     - type: Construction
       graph: GasBinary
       node: passivegate
-    - type: AmbientSound
+    - type: AmbientSound # Coyote Tweaked -9>-12 5>2.5
       enabled: true
       volume: -12
       range: 2.5
@@ -236,7 +236,7 @@
     - type: Construction
       graph: GasBinary
       node: valve
-    - type: AmbientSound
+    - type: AmbientSound # Coyote Tweaked -9>-12 5>2.5
       enabled: true
       volume: -12
       range: 2.5
@@ -303,7 +303,7 @@
   - type: Construction
     graph: GasBinary
     node: signalvalve
-  - type: AmbientSound
+  - type: AmbientSound # Coyote Tweaked -9>-12 5>2.5
     enabled: true
     volume: -12
     range: 2.5
@@ -468,7 +468,7 @@
         pipeDirection: South
   - type: AtmosDevice
   - type: AtmosPipeColor
-  - type: AmbientSound
+  - type: AmbientSound # Coyote Tweaked -9>-12 5>2.5
     enabled: true
     volume: -12
     range: 2.5

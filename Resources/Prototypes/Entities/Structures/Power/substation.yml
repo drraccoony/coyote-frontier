@@ -158,7 +158,7 @@
   placement:
     mode: SnapgridCenter
   components:
-  - type: AmbientSound
+  - type: AmbientSound # Coyote Tweaked -8 2>1.5
     volume: -8
     range: 1.5
   - type: PointLight
