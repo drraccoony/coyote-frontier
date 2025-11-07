@@ -26,7 +26,6 @@
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
     Genital: MobHumanoidAnyMarking
-    Penis: MobHumanoidAnyMarking
     Chest: MobVoxTorso
     Eyes: MobVoxEyes
     LArm: MobVoxLArm
