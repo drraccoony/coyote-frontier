@@ -108,7 +108,7 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.4,-0.4,0.4,0.4"
-        density: 3125
+        density: 250 # Coyote 3125>250
         mask:
         - MachineMask # Coyote LargeMobMask>MachineMask
         layer:
