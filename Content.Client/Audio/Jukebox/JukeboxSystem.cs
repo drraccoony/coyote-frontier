@@ -93,7 +93,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
             if (jukebox.AudioStream != null && TryComp<AudioComponent>(jukebox.AudioStream, out var audioComp))
             {
                 var targetVolume = audioComp.Params.Volume + _jukeboxVolumeMultiplier;
-                
+
                 // Only update if volume has changed to avoid unnecessary updates
                 if (!audioComp.Volume.Equals(targetVolume))
                 {
