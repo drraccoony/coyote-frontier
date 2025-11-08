@@ -90,6 +90,12 @@
   description: It's what keeps you to the floor, now in fun size.
   components:
   - type: StationAiWhitelist
+  - type: AmbientSound # Coyote Added
+    enabled: false
+    volume: -7
+    range: 3.5
+    sound:
+      path: /Audio/Ambience/Objects/gravity_gen_hum.ogg
   - type: Sprite
     sprite: Structures/Machines/gravity_generator_mini.rsi
     snapCardinals: true
