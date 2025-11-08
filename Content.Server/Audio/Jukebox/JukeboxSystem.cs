@@ -31,6 +31,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         SubscribeLocalEvent<JukeboxComponent, JukeboxStopMessage>(OnJukeboxStop);
         SubscribeLocalEvent<JukeboxComponent, JukeboxSetPlaybackModeMessage>(OnJukeboxSetPlayback); // Frontier
         SubscribeLocalEvent<JukeboxComponent, JukeboxSetTimeMessage>(OnJukeboxSetTime);
+        SubscribeLocalEvent<JukeboxComponent, JukeboxSetVolumeMessage>(OnJukeboxSetVolume);
         SubscribeLocalEvent<JukeboxComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<JukeboxComponent, ComponentShutdown>(OnComponentShutdown);
 
@@ -54,7 +55,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
     private void UpdateUI(Entity<JukeboxComponent> ent)
     {
-        var state = new JukeboxInterfaceState(ent.Comp.PlaybackMode);
+        var state = new JukeboxInterfaceState(ent.Comp.PlaybackMode, ent.Comp.Volume);
         _userInterface.SetUiState(ent.Owner, JukeboxUiKey.Key, state);
     }
     // End Frontier: Shuffle & Repeat
@@ -85,7 +86,18 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
                 return;
             }
 
-            component.AudioStream = Audio.PlayPvs(jukeboxProto.Path, uid, AudioParams.Default.WithMaxDistance(10f))?.Entity;
+            // Convert 0-1 scale to decibels using logarithmic mapping
+            float volumeDb;
+            if (component.Volume <= 0.001f)
+            {
+                volumeDb = -80f;
+            }
+            else
+            {
+                volumeDb = 20f * MathF.Log10(component.Volume) + 5f;
+            }
+
+            component.AudioStream = Audio.PlayPvs(jukeboxProto.Path, uid, AudioParams.Default.WithMaxDistance(10f).WithVolume(volumeDb))?.Entity;
 
             // Frontier: wallmount jukebox, shuffle state
             if (TryComp<TransformComponent>(component.AudioStream, out var xform))
@@ -130,6 +142,34 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
             var offset = actorComp.PlayerSession.Channel.Ping * 1.5f / 1000f;
             Audio.SetPlaybackPosition(component.AudioStream, args.SongTime + offset);
         }
+    }
+
+    private void OnJukeboxSetVolume(EntityUid uid, JukeboxComponent component, JukeboxSetVolumeMessage args)
+    {
+        component.Volume = Math.Clamp(args.Volume, 0f, 1f);
+
+        // Convert 0-1 scale to decibels using a more perceptually linear scale
+        // Use a logarithmic mapping: -20dB to +5dB range
+        // This gives better control across the slider range
+        float volumeDb;
+        if (component.Volume <= 0.001f)
+        {
+            volumeDb = -80f; // Effectively silent
+        }
+        else
+        {
+            // Logarithmic scale: 20 * log10(volume) with offset
+            volumeDb = 20f * MathF.Log10(component.Volume) + 5f;
+        }
+
+        // Update the volume of the currently playing audio stream
+        if (component.AudioStream != null && TryComp<AudioComponent>(component.AudioStream, out var audioComp))
+        {
+            Audio.SetVolume(component.AudioStream.Value, volumeDb, audioComp);
+        }
+
+        UpdateUI((uid, component));
+        Dirty(uid, component);
     }
 
     private void OnPowerChanged(Entity<JukeboxComponent> entity, ref PowerChangedEvent args)

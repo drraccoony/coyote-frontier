@@ -32,6 +32,7 @@ public sealed partial class JukeboxMenu : FancyWindow
     public event Action<JukeboxPlaybackMode>? OnModeChanged; // Frontier
     public event Action<ProtoId<JukeboxPrototype>>? OnSongSelected;
     public event Action<float>? SetTime;
+    public event Action<float>? OnVolumeChanged;
 
     private EntityUid? _audio;
 
@@ -63,6 +64,14 @@ public sealed partial class JukeboxMenu : FancyWindow
             OnStopPressed?.Invoke();
         };
         PlaybackSlider.OnReleased += PlaybackSliderKeyUp;
+
+        // Volume slider handler
+        VolumeSlider.OnValueChanged += args =>
+        {
+            var volumePercent = (int)args.Value;
+            VolumeLabel.Text = $"{volumePercent}%";
+            OnVolumeChanged?.Invoke(args.Value / 100f);
+        };
 
         // Frontier: Shuffle & Repeat
         ShuffleButton.OnToggled += args =>
@@ -189,12 +198,20 @@ public sealed partial class JukeboxMenu : FancyWindow
             return;
 
         UpdateJukeboxButtons(convState);
+        SetVolume(convState.Volume);
     }
 
     private void UpdateJukeboxButtons(JukeboxInterfaceState state)
     {
         ShuffleButton.Pressed = state.PlaybackMode == JukeboxPlaybackMode.Shuffle;
         RepeatButton.Pressed = state.PlaybackMode == JukeboxPlaybackMode.Repeat;
+    }
+
+    public void SetVolume(float volume)
+    {
+        var volumePercent = (int)(volume * 100f);
+        VolumeSlider.SetValueWithoutEvent(volumePercent);
+        VolumeLabel.Text = $"{volumePercent}%";
     }
     // End Frontier: Shuffle & Repeat
 }
