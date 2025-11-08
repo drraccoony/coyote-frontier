@@ -1018,9 +1018,9 @@
   name: MaleGasp
 #  showInWheel: false
   category: Male
-  whitelist:
-    components:
-    - Respirator
+  # whitelist:
+    # components:
+    # - Respirator # broken
   chatMessages: ["chat-emote-msg-gasp"]
   chatTriggers:
   - malegasp
@@ -1033,9 +1033,9 @@
   name: FemaleGasp
 #  showInWheel: false
   category: Female
-  whitelist:
-    components:
-    - Respirator
+  # whitelist:
+    # components:
+    # - Respirator # broken
   chatMessages: ["chat-emote-msg-gasp"]
   chatTriggers:
   - femalegasp
@@ -1048,9 +1048,9 @@
   name: GoblinGasp
 #  showInWheel: false
   category: Goblin
-  whitelist:
-    components:
-    - Respirator
+  # whitelist:
+    # components:
+    # - Respirator # broken
   chatMessages: ["chat-emote-msg-gasp"]
   chatTriggers:
   - goblingasp
@@ -1067,32 +1067,37 @@
 - type: emote
   id: RodentiaSqueak
   name: RodentiaSqueak
-  #  showInWheel: false
+  showInWheel: false # already in the wheel...
   category: Rodentia
-  whitelist:
-    components:
-    - Respirator
-  chatMessages: ["chat-emote-msg-gasp"]
+  # whitelist:
+    # components:
+    # - Respirator # broken
+  chatMessages: ["chat-emote-msg-squeak"]
   chatTriggers:
-  - squeak
-  - squeaks
-  - squeaked
-  - squeaking # Frontier
+  - rodentiasqueak
+  - rodentiasqueaks
+  - rodentiasqueaked
+  - rodentiasqueaking # Frontier
 
 - type: emote
   id: MothSqueak
   name: MothSqueak
   #  showInWheel: false
   category: Moth
-  whitelist:
-    components:
-    - Respirator
-  chatMessages: ["chat-emote-msg-gasp"]
+  icon: Interface/Emotes/squeak.png
+  # whitelist:
+    # components:
+    # - Respirator # broken
+  chatMessages: ["chat-emote-msg-squeak"]
   chatTriggers:
   - squack
   - squacks
   - squacked
   - squacking # Frontier
+  - mothsqueak
+  - mothsqueaks
+  - mothsqueaked
+  - mothsqueaking
 
 #######################################
 #######################################
