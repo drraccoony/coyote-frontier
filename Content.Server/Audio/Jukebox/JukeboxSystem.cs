@@ -86,16 +86,8 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
                 return;
             }
 
-            // Convert 0-1 scale to decibels using logarithmic mapping
-            float volumeDb;
-            if (component.Volume <= 0.001f)
-            {
-                volumeDb = -80f;
-            }
-            else
-            {
-                volumeDb = 20f * MathF.Log10(component.Volume) + 5f;
-            }
+            // Convert 0-1 scale to decibels using standard audio formula
+            var volumeDb = SharedAudioSystem.GainToVolume(component.Volume);
 
             component.AudioStream = Audio.PlayPvs(jukeboxProto.Path, uid, AudioParams.Default.WithMaxDistance(10f).WithVolume(volumeDb))?.Entity;
 
@@ -148,19 +140,8 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
     {
         component.Volume = Math.Clamp(args.Volume, 0f, 1f);
 
-        // Convert 0-1 scale to decibels using a more perceptually linear scale
-        // Use a logarithmic mapping: -20dB to +5dB range
-        // This gives better control across the slider range
-        float volumeDb;
-        if (component.Volume <= 0.001f)
-        {
-            volumeDb = -80f; // Effectively silent
-        }
-        else
-        {
-            // Logarithmic scale: 20 * log10(volume) with offset
-            volumeDb = 20f * MathF.Log10(component.Volume) + 5f;
-        }
+        // Convert 0-1 scale to decibels using standard audio formula
+        var volumeDb = SharedAudioSystem.GainToVolume(component.Volume);
 
         // Update the volume of the currently playing audio stream
         if (component.AudioStream != null && TryComp<AudioComponent>(component.AudioStream, out var audioComp))

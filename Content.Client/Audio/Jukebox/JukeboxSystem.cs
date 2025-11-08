@@ -1,6 +1,10 @@
 using Content.Shared.Audio.Jukebox;
+using Content.Shared.CCVar;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
+using Robust.Shared.Audio.Components;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.Audio.Jukebox;
@@ -13,6 +17,10 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+
+    private float _jukeboxVolumeMultiplier = 1f;
 
     public override void Initialize()
     {
@@ -22,12 +30,32 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         SubscribeLocalEvent<JukeboxComponent, AfterAutoHandleStateEvent>(OnJukeboxAfterState);
 
         _protoManager.PrototypesReloaded += OnProtoReload;
+
+        // Subscribe to jukebox volume changes
+        _cfg.OnValueChanged(CCVars.JukeboxVolume, OnJukeboxVolumeChanged, true);
     }
 
     public override void Shutdown()
     {
         base.Shutdown();
         _protoManager.PrototypesReloaded -= OnProtoReload;
+        _cfg.UnsubValueChanged(CCVars.JukeboxVolume, OnJukeboxVolumeChanged);
+    }
+
+    private void OnJukeboxVolumeChanged(float value)
+    {
+        // Use the standard GainToVolume conversion (10 * log10)
+        _jukeboxVolumeMultiplier = SharedAudioSystem.GainToVolume(value);
+
+        // Update volume on all active jukebox streams
+        var query = EntityQueryEnumerator<JukeboxComponent>();
+        while (query.MoveNext(out var uid, out var jukebox))
+        {
+            if (jukebox.AudioStream != null && TryComp<AudioComponent>(jukebox.AudioStream, out var audioComp))
+            {
+                _audioSystem.SetVolume(jukebox.AudioStream.Value, audioComp.Params.Volume + _jukeboxVolumeMultiplier, audioComp);
+            }
+        }
     }
 
     private void OnProtoReload(PrototypesReloadedEventArgs obj)
@@ -52,6 +80,27 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
             return;
 
         bui.Reload();
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        // Apply client-side volume multiplier to all jukebox audio streams
+        var query = EntityQueryEnumerator<JukeboxComponent>();
+        while (query.MoveNext(out var uid, out var jukebox))
+        {
+            if (jukebox.AudioStream != null && TryComp<AudioComponent>(jukebox.AudioStream, out var audioComp))
+            {
+                var targetVolume = audioComp.Params.Volume + _jukeboxVolumeMultiplier;
+                
+                // Only update if volume has changed to avoid unnecessary updates
+                if (!audioComp.Volume.Equals(targetVolume))
+                {
+                    _audioSystem.SetVolume(jukebox.AudioStream.Value, targetVolume, audioComp);
+                }
+            }
+        }
     }
 
     private void OnAnimationCompleted(EntityUid uid, JukeboxComponent component, AnimationCompletedEvent args)
