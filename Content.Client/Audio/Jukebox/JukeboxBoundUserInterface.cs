@@ -51,6 +51,7 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
         // End Frontier: Shuffle & Repeat
 
         _menu.SetTime += SetTime;
+        _menu.OnVolumeChanged += SetVolume;
         PopulateMusic();
         Reload();
     }
@@ -64,6 +65,9 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
             return;
 
         _menu.SetAudioStream(jukebox.AudioStream);
+
+        // Set the volume slider
+        _menu.SetVolume(jukebox.Volume);
 
         if (_protoManager.TryIndex(jukebox.SelectedSongId, out var songProto))
         {
@@ -103,6 +107,11 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
         }
 
         SendMessage(new JukeboxSetTimeMessage(sentTime));
+    }
+
+    public void SetVolume(float volume)
+    {
+        SendMessage(new JukeboxSetVolumeMessage(volume));
     }
 
     // Frontier: Shuffle & Repeat
