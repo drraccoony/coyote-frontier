@@ -121,7 +121,7 @@ public sealed class BlobFloorPlanBuilderSystem : BaseWorldSystem
         {
             tiles.Add((kvp.Key, kvp.Value));
         }
-        
+
         _map.SetTiles(gridUid, grid, tiles);
     }
 }

@@ -111,7 +111,7 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
 
         var xform = args.Component;
         var ownerXform = Transform(component.OwningController);
-        
+
         // Early exit checks - avoid unnecessary work
         if (xform.MapUid is null || ownerXform.MapUid is null)
             return; // not our problem
@@ -128,13 +128,13 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
         // Check if debris actually crossed chunk boundaries - skip dictionary updates if not
         var newChunkCoords = GetChunkCoords(uid);
         var oldChunkCoords = WorldGen.WorldToChunkCoords(component.LastKey);
-        
+
         if (newChunkCoords == oldChunkCoords)
             return; // Still in same chunk, no update needed
 
         var oldPlacer = Comp<DebrisFeaturePlacerControllerComponent>(component.OwningController);
         oldPlacer.OwnedDebris.Remove(component.LastKey);
-        
+
         var newChunk = GetOrCreateChunk(newChunkCoords, xform.MapUid!.Value);
         if (newChunk is null || !TryComp<DebrisFeaturePlacerControllerComponent>(newChunk, out var newPlacer))
         {
@@ -248,7 +248,7 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
 
         var safetyBounds = Box2.UnitCentered.Enlarged(component.SafetyZoneRadius);
         var failures = 0; // Avoid severe log spam.
-        
+
         foreach (var point in points)
         {
             if (component.OwnedDebris.TryGetValue(point, out var existing))
