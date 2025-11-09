@@ -20,7 +20,7 @@
   mapPath: /Maps/_NF/Shuttles/Nfsd/stallion.yml
   minPlayers: 0
   stations:
-    Hospitaller:
+    Stallion:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup

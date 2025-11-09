@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/07/2025 06:51:05
+  time: 11/09/2025 07:46:28
   entityCount: 221
 maps: []
 grids:
@@ -26,11 +26,11 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: Stallion
+      name: grid
     - type: Transform
       pos: -0.5,-0.546875
       parent: invalid
-    - type: BecomesStation
+    - type: MapGrid
       chunks:
         0,0:
           ind: 0,0
@@ -250,6 +250,8 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: BecomesStation
+      id: Stallion
 - proto: AirAlarm
   entities:
   - uid: 2
