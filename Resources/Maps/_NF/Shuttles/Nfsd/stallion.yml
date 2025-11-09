@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/09/2025 07:46:28
-  entityCount: 221
+  time: 11/09/2025 08:14:15
+  entityCount: 220
 maps: []
 grids:
 - 1
@@ -330,16 +330,6 @@ entities:
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
-  - uid: 15
-    components:
-    - type: Transform
-      pos: -1.5,-4.5
-      parent: 1
-  - uid: 16
-    components:
-    - type: Transform
-      pos: 2.5,-4.5
-      parent: 1
   - uid: 17
     components:
     - type: Transform
@@ -646,9 +636,9 @@ entities:
       - device-button-6
       - device-button-7
       - device-button-8
-- proto: ComputerTabletopIFF
+- proto: ComputerTabletopAdvancedRadar
   entities:
-  - uid: 73
+  - uid: 16
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -748,6 +738,10 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,1.5
       parent: 1
+    - type: GasMixer
+      inletTwoConcentration: 0.27999997
+      inletOneConcentration: 0.72
+      enabled: True
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasPassiveVent
@@ -1191,6 +1185,12 @@ entities:
       parent: 1
 - proto: Poweredlight
   entities:
+  - uid: 73
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,-2.5
+      parent: 1
   - uid: 165
     components:
     - type: Transform
@@ -1311,6 +1311,9 @@ entities:
         173:
         - - Pressed
           - Toggle
+        73:
+        - - Pressed
+          - Toggle
   - uid: 182
     components:
     - type: Transform
@@ -1361,8 +1364,6 @@ entities:
     - type: Transform
       pos: -1.5,-0.5
       parent: 1
-    - type: Thruster
-      enabled: False
     - type: ApcPowerReceiver
       powerLoad: 1
 - proto: SpawnMechEMU
@@ -1492,6 +1493,11 @@ entities:
     - type: Transform
       pos: 1.5,-4.5
       parent: 1
+  - uid: 15
+    components:
+    - type: Transform
+      pos: 2.5,-4.5
+      parent: 1
   - uid: 68
     components:
     - type: Transform
@@ -1508,6 +1514,11 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,8.5
+      parent: 1
+  - uid: 113
+    components:
+    - type: Transform
+      pos: -1.5,-4.5
       parent: 1
   - uid: 200
     components:
@@ -1672,18 +1683,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -2.5,-0.5
-      parent: 1
-  - uid: 232
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -1.5,-4.5
-      parent: 1
-  - uid: 233
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 2.5,-4.5
       parent: 1
   - uid: 234
     components:
