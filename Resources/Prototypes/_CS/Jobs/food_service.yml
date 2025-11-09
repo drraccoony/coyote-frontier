@@ -84,7 +84,7 @@
 - type: roleLoadout
   id: JobFoodService
   groups:
-  - ContractorHead
+  - FoodServiceHead
   - ContractorNeck
   - FoodServiceJumpsuit
   - ContractorGloves
@@ -110,14 +110,24 @@
   id: FoodServiceJumpsuit
   name: loadout-group-contractor-jumpsuit
   loadouts: #First Section: Role specific freebies/discounts/rewards
-  - ContractorClothingUniformJumpsuitChef
-  - ContractorClothingUniformJumpskirtChef
+  - FoodServiceClothingUniformJumpsuitChef
+  - FoodServiceClothingUniformJumpskirtChef
   subgroups:
   - PilotJumpsuit
   - ContractorJumpsuit
+  - CoyoteJumpsuit
   fallbacks:
-  - ContractorClothingUniformJumpsuitChef
-  - ContractorClothingUniformJumpskirtChef
+  - FoodServiceClothingUniformJumpsuitChef
+  - FoodServiceClothingUniformJumpskirtChef
+
+- type: loadoutGroup
+  id: FoodServiceHead
+  name: loadout-group-contractor-head
+  minLimit: 0
+  loadouts: #First Section: Role specific freebies/discounts/rewards
+  - FoodServiceClothingHeadHatChef
+  subgroups:
+  - ContractorHead
 
 - type: chameleonOutfit
   id: FoodServiceChameleonOutfit
