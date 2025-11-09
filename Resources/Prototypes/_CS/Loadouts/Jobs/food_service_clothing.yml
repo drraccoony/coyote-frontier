@@ -3,13 +3,13 @@
   price: 0
   equipment:
     jumpsuit: ClothingUniformJumpsuitChef
-    
+
 - type: loadout
   id: FoodServiceClothingUniformJumpskirtChef
   price: 0
   equipment:
     jumpsuit: ClothingUniformJumpskirtChef
-    
+
 - type: loadout
   id: FoodServiceClothingHeadHatChef
   hideEffects:
