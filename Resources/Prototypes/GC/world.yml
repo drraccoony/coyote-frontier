@@ -1,5 +1,5 @@
 ﻿- type: gcQueue
   id: SpaceDebris
-  depth: 256 # Frontier
-  minDepthToProcess: 128 # Frontier
+  depth: 512 # Frontier - Increased from 256 to handle burst unloads
+  minDepthToProcess: 256 # Frontier - Increased from 128 for better batching
   trySkipQueue: true  # Frontier - Attempt immediate removal if possible
