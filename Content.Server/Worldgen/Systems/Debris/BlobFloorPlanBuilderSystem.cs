@@ -40,7 +40,7 @@ public sealed class BlobFloorPlanBuilderSystem : BaseWorldSystem
         while (_pendingGridBuilds.TryDequeue(out var pending) && buildsThisTick < _maxGridBuildsPerTick)
         {
             var (uid, comp, grid) = pending;
-            
+
             // Skip if entity was deleted while queued
             if (Deleted(uid))
             {
