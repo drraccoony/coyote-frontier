@@ -1,6 +1,6 @@
 
 - type: vessel
-  id: Legman
+  id: Oculus
   parent: BaseVessel
   name: LVHI Oculus
   description: The voice of the people! Take to the solar winds and find stories to share with this all-seeing eye!
