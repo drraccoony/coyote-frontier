@@ -8,7 +8,7 @@
   parent: BaseVesselAntag
   name: Peeper
   description: "Once the voice of Nash, now the voice of freedom. Just don't get caught being a peeping tom!"
-  price: 62500 #29313 1.25 65954.25
+  price: 30000 #29313 1.25 65954.25
   category: Medium
   group: BlackMarket
   shuttlePath: /Maps/_NF/Shuttles/BlackMarket/peeper.yml
