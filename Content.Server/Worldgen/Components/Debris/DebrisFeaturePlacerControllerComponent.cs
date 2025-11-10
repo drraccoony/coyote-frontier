@@ -1,9 +1,22 @@
 ﻿using System.Numerics;
 using Content.Server.Worldgen.Prototypes;
 using Content.Server.Worldgen.Systems.Debris;
+using Robust.Shared.Map;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Worldgen.Components.Debris;
+
+/// <summary>
+///     Represents a debris entity waiting to be spawned.
+/// </summary>
+public struct PendingDebrisSpawn
+{
+    public Vector2 Point;
+    public string DebrisProto;
+    public EntityCoordinates Coords;
+    public EntityUid ControllerUid;
+    public EntityUid ChunkUid;
+}
 
 /// <summary>
 ///     This is used for controlling the debris feature placer.
@@ -23,6 +36,16 @@ public sealed partial class DebrisFeaturePlacerControllerComponent : Component
     public bool DoSpawns = true;
 
     [DataField("ownedDebris")] public Dictionary<Vector2, EntityUid?> OwnedDebris = new();
+
+    /// <summary>
+    ///     Queue of pending debris spawns to be processed gradually across ticks.
+    /// </summary>
+    public Queue<PendingDebrisSpawn> PendingSpawns = new();
+
+    /// <summary>
+    ///     Maximum number of debris entities to spawn per tick (performance tuning).
+    /// </summary>
+    [DataField("maxSpawnsPerTick")] public int MaxSpawnsPerTick = 5;
 
     /// <summary>
     ///     The chance spawning a piece of debris will just be cancelled randomly.
