@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/10/2025 23:05:07
+  time: 11/10/2025 23:35:45
   entityCount: 278
 maps: []
 grids:
@@ -278,20 +278,12 @@ entities:
       id: Alchemist
 - proto: AirAlarm
   entities:
-  - uid: 221
+  - uid: 135
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 3.5,2.5
       parent: 1
-    - type: DeviceList
-      devices:
-      - 137
-      - 138
-      - 139
-      - 135
-      - 204
-      - 136
 - proto: AirlockGlassShuttleNfsd
   entities:
   - uid: 58
@@ -1108,83 +1100,53 @@ entities:
       color: '#0055CCFF'
 - proto: GasVentPump
   entities:
-  - uid: 135
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -0.5,3.5
-      parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
-      deviceLists:
-      - 221
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
-  - uid: 136
-    components:
-    - type: Transform
-      pos: 0.5,8.5
-      parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
-      deviceLists:
-      - 221
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
-  - uid: 137
+  - uid: 138
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 7.5,3.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
-      deviceLists:
-      - 221
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
+  - uid: 139
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -0.5,3.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
+  - uid: 204
+    components:
+    - type: Transform
+      pos: 0.5,8.5
+      parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
   entities:
-  - uid: 138
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 7.5,4.5
-      parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
-      deviceLists:
-      - 221
-    - type: AtmosPipeColor
-      color: '#990000FF'
-  - uid: 139
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -1.5,3.5
-      parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
-      deviceLists:
-      - 221
-    - type: AtmosPipeColor
-      color: '#990000FF'
-  - uid: 204
+  - uid: 136
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 0.5,7.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
-      deviceLists:
-      - 221
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 137
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 7.5,4.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 221
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,3.5
+      parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GeneratorWallmountAPU
