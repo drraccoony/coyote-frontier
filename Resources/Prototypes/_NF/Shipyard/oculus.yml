@@ -1,0 +1,35 @@
+
+- type: vessel
+  id: Legman
+  parent: BaseVessel
+  name: LVHI Oculus
+  description: The voice of the people! Take to the solar winds and find stories to share with this all-seeing eye!
+  price: 27000 # 10675 0.05 11208.75 temporarily very expensive until a more robust version can be made, at present it's an obscene cheap shuttle with a broadcaster.
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/oculus.yml
+  guidebookPage: null
+  class:
+  - Civilian
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: Oculus
+  mapName: 'Oculus'
+  mapPath: /Maps/_NF/Shuttles/oculus.yml
+  minPlayers: 0
+  stations:
+    Oculus:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Oculus {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
