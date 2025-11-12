@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/10/2025 23:35:45
+  time: 11/12/2025 01:37:12
   entityCount: 278
 maps: []
 grids:
@@ -284,6 +284,17 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,2.5
       parent: 1
+    - type: DeviceList
+      devices:
+      - 230
+      - 231
+      - 232
+      - 221
+      - 136
+      - 204
+      - 138
+      - 137
+      - 139
 - proto: AirlockGlassShuttleNfsd
   entities:
   - uid: 58
@@ -811,18 +822,27 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.5,3.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 135
   - uid: 231
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -3.5,3.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 135
   - uid: 232
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -3.5,4.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 135
 - proto: FoodBurgerMcguffin
   entities:
   - uid: 275
@@ -1106,6 +1126,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 7.5,3.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 135
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 139
@@ -1114,6 +1137,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,3.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 135
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 204
@@ -1121,6 +1147,9 @@ entities:
     - type: Transform
       pos: 0.5,8.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 135
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -1131,6 +1160,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,7.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 135
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 137
@@ -1139,6 +1171,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 7.5,4.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 135
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 221
@@ -1147,6 +1182,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,3.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 135
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GeneratorWallmountAPU
