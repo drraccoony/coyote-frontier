@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/12/2025 01:37:12
-  entityCount: 278
+  time: 11/12/2025 03:50:33
+  entityCount: 297
 maps: []
 grids:
 - 1
@@ -1441,7 +1441,7 @@ entities:
   - uid: 254
     components:
     - type: Transform
-      pos: -1.4115524,10.531375
+      pos: -1.5367885,10.480778
       parent: 1
     - type: Paper
       content: >-
@@ -1754,6 +1754,176 @@ entities:
       rot: 3.141592653589793 rad
       pos: 8.481899,4.6287503
       parent: 1
+- proto: ShuttersNormalOpen
+  entities:
+  - uid: 279
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -2.5,9.5
+      parent: 1
+  - uid: 280
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -2.5,10.5
+      parent: 1
+  - uid: 281
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,11.5
+      parent: 1
+  - uid: 282
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,11.5
+      parent: 1
+  - uid: 283
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,11.5
+      parent: 1
+  - uid: 284
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,9.5
+      parent: 1
+  - uid: 285
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,8.5
+      parent: 1
+  - uid: 286
+    components:
+    - type: Transform
+      pos: -0.5,6.5
+      parent: 1
+  - uid: 287
+    components:
+    - type: Transform
+      pos: -1.5,6.5
+      parent: 1
+  - uid: 288
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,4.5
+      parent: 1
+  - uid: 289
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 9.5,6.5
+      parent: 1
+  - uid: 290
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 9.5,5.5
+      parent: 1
+  - uid: 291
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 9.5,4.5
+      parent: 1
+  - uid: 292
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 9.5,3.5
+      parent: 1
+  - uid: 293
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 9.5,2.5
+      parent: 1
+  - uid: 294
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 9.5,1.5
+      parent: 1
+  - uid: 295
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 9.5,7.5
+      parent: 1
+- proto: SignalButton
+  entities:
+  - uid: 296
+    components:
+    - type: Transform
+      pos: 0.5,10.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        283:
+        - - Pressed
+          - Toggle
+        282:
+        - - Pressed
+          - Toggle
+        281:
+        - - Pressed
+          - Toggle
+        280:
+        - - Pressed
+          - Toggle
+        279:
+        - - Pressed
+          - Toggle
+        284:
+        - - Pressed
+          - Toggle
+        285:
+        - - Pressed
+          - Toggle
+        286:
+        - - Pressed
+          - Toggle
+        287:
+        - - Pressed
+          - Toggle
+  - uid: 297
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 8.5,4.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        288:
+        - - Pressed
+          - Toggle
+        289:
+        - - Pressed
+          - Toggle
+        295:
+        - - Pressed
+          - Toggle
+        290:
+        - - Pressed
+          - Toggle
+        291:
+        - - Pressed
+          - Toggle
+        293:
+        - - Pressed
+          - Toggle
+        294:
+        - - Pressed
+          - Toggle
+        292:
+        - - Pressed
+          - Toggle
 - proto: StasisBed
   entities:
   - uid: 144
