@@ -30,7 +30,7 @@
   minPlayers: 0
   stations:
     Ambition:
-      stationProto: StandardFrontierVessel
+      stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Ambition {1}'
