@@ -19,9 +19,6 @@
     - !type:DepartmentTimeRequirement
       department: Security
       time: 43200 # 12 hours
-    - !type:RoleTimeRequirement
-      role: JobSeniorOfficer
-      time: 21600 # 6 hours
   startingGear: BailiffGear
   icon: JobIconBailiff
   supervisors: job-supervisors-sheriff
