@@ -31,7 +31,6 @@ ui-options-master-volume = Master Volume:
 ui-options-midi-volume = MIDI (Instrument) Volume:
 ui-options-ambient-music-volume = Ambient music volume:
 ui-options-ambience-volume = Ambience volume:
-ui-options-jukebox-volume = Jukebox volume:
 # Frontier: add expedition music volume
 ui-options-exped-music-volume = Expedition music volume:
 ui-options-lobby-volume = Lobby & Round-end volume:
