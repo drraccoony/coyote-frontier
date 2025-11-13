@@ -1,0 +1,32 @@
+- type: vessel
+  id: Alchemist
+  parent: BaseVessel
+  name: TSF Alchemist
+  description: An NFSD medical ship meant for triage and long-form usage, including a chemistry sidecar with all the bells and whistles.
+  price: 41250
+  category: Small
+  group: Security
+  access: Security
+  shuttlePath: /Maps/_NF/Shuttles/Nfsd/alchemist.yml
+  guidebookPage: Null
+  class:
+  - Medical
+  engine:
+  - APU
+
+- type: gameMap
+  id: Alchemist
+  mapName: 'TSF Alchemist'
+  mapPath: /Maps/_NF/Shuttles/Nfsd/alchemist.yml
+  minPlayers: 0
+  stations:
+    Alchemist:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Alchemist {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}
