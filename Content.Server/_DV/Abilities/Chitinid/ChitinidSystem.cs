@@ -41,15 +41,18 @@ public sealed partial class ChitinidSystem : EntitySystem
 
             chitinid.NextUpdate += chitinid.UpdateInterval;
 
-            if (chitinid.AmountAbsorbed >= chitinid.MaximumAbsorbed || _mobState.IsDead(uid))
+            if (_mobState.IsDead(uid))
                 continue;
 
             if (_damageable.TryChangeDamage(uid, chitinid.Healing, damageable: damageable) is {} delta)
             {
-                chitinid.AmountAbsorbed += -delta.GetTotal().Float();
-                if (chitinid.ChitziteAction != null && chitinid.AmountAbsorbed >= chitinid.MaximumAbsorbed)
+                if (chitinid.AmountAbsorbed < chitinid.MaximumAbsorbed)
                 {
-                    _actions.SetEnabled(chitinid.ChitziteAction, true);
+                    chitinid.AmountAbsorbed += -delta.GetTotal().Float();
+                    if (chitinid.ChitziteAction != null && chitinid.AmountAbsorbed >= chitinid.MaximumAbsorbed)
+                    {
+                        _actions.SetEnabled(chitinid.ChitziteAction, true);
+                    }
                 }
             }
         }
