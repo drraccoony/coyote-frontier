@@ -2,19 +2,19 @@
   id: felinid
   spritePath: /Textures/_DV/Effects/speech.rsi
   typingState: felinid0
-  idleState: felinid3
+  idleState: felinid0 # No idle sprite, reuse typing state
   offset: 0, 0.2 # 0625
 
 - type: typingIndicator
   id: rodentia
   spritePath: /Textures/_DV/Effects/speech.rsi
   typingState: rodentia0
-  idleState: rodentia3
+  idleState: rodentia0 # No idle sprite, reuse typing state
   offset: 0, 0.2 # 0625
 
 - type: typingIndicator
   id: Chitinid
   spritePath: /Textures/_DV/Effects/speech.rsi
   typingState: chitinid0
-  idleState: chitinid3
+  idleState: chitinid0 # No idle sprite, reuse typing state
   offset: -0.2, 0.1 # 0625
