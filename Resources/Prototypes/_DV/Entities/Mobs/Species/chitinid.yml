@@ -10,9 +10,10 @@
     hideLayersOnEquip:
     - HeadTop
 
-  - type: Hunger
-    baseDecayRate: 0.0467 #needs to eat more to survive
-  - type: Thirst
+  - type: Needs
+    needs:
+    - NeedHungerChitinid
+    - NeedThirstChitinid
 
   - type: UnpoweredFlashlight
   - type: PointLight
