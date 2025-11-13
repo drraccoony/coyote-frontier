@@ -49,10 +49,6 @@ public sealed partial class ChitinidSystem : EntitySystem
                 if (chitinid.AmountAbsorbed < chitinid.MaximumAbsorbed)
                 {
                     chitinid.AmountAbsorbed += -delta.GetTotal().Float();
-                    if (chitinid.ChitziteAction != null && chitinid.AmountAbsorbed >= chitinid.MaximumAbsorbed)
-                    {
-                        _actions.SetEnabled(chitinid.ChitziteAction, true);
-                    }
                 }
             }
         }
@@ -81,6 +77,13 @@ public sealed partial class ChitinidSystem : EntitySystem
 
     private void OnChitzite(Entity<ChitinidComponent> ent, ref ChitziteActionEvent args)
     {
+        // Check if they have absorbed enough radiation
+        if (ent.Comp.AmountAbsorbed < ent.Comp.MaximumAbsorbed)
+        {
+            _popup.PopupEntity(Loc.GetString("chitzite-not-ready"), ent, ent);
+            return;
+        }
+
         if (_inventory.TryGetSlotEntity(ent, "mask", out var maskUid) &&
             TryComp<IngestionBlockerComponent>(maskUid, out var blocker) &&
             blocker.Enabled)
@@ -94,10 +97,6 @@ public sealed partial class ChitinidSystem : EntitySystem
 
         var chitzite = EnsureComp<CoughingUpChitziteComponent>(ent);
         chitzite.NextCough = _timing.CurTime + chitzite.CoughUpTime;
-        
-        // Disable the action until it's enabled again by absorbing enough radiation
-        if (ent.Comp.ChitziteAction != null)
-            _actions.SetEnabled(ent.Comp.ChitziteAction, false);
         
         args.Handled = true;
     }
