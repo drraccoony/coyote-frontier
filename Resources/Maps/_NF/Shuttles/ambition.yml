@@ -21363,16 +21363,6 @@ entities:
         2807:
         - - Pressed
           - Toggle
-  - uid: 3193
-    components:
-    - type: Transform
-      pos: 3.5,27.5
-      parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        2607:
-        - - Pressed
-          - Toggle
 - proto: SignalButtonExt1
   entities:
   - uid: 2842
