@@ -1733,18 +1733,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: -9.5,-16.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 1706
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -5.5,-17.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
 - proto: APCBasic
   entities:
   - uid: 89
@@ -6231,9 +6225,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-14.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 705
       - 1653
@@ -6244,9 +6235,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -3.5,-16.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 705
       - 1653
@@ -6256,9 +6244,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -3.5,-19.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 705
       - 1653
@@ -6268,9 +6253,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-14.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 705
       - 1653
@@ -6281,9 +6263,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,-14.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 705
       - 1653
@@ -6294,9 +6273,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-14.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 705
       - 1653
@@ -6307,9 +6283,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,-14.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 705
       - 1653
@@ -6320,9 +6293,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,-4.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 706
       - 1651
@@ -6332,9 +6302,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,-4.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 706
       - 1651
@@ -6344,9 +6311,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-4.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 706
       - 1651
@@ -6356,9 +6320,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,-4.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 706
       - 1651
@@ -6368,9 +6329,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-4.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 706
       - 1651
@@ -6615,9 +6573,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.5,-18.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 705
       - 1653
@@ -6627,9 +6582,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.5,-19.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 705
       - 1653
@@ -6639,18 +6591,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-2.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 1778
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 3.5,-2.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 1782
     components:
     - type: Transform
@@ -8903,9 +8849,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -4.5,-20.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 705
     - type: AtmosPipeColor
@@ -8939,9 +8882,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-0.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 706
     - type: AtmosPipeColor
@@ -8952,9 +8892,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-16.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 705
     - type: AtmosPipeColor
@@ -9071,9 +9008,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -5.5,-3.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 706
     - type: AtmosPipeColor
@@ -9084,9 +9018,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,-3.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 706
     - type: AtmosPipeColor
@@ -9150,9 +9081,6 @@ entities:
     - type: Transform
       pos: -8.5,-16.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 705
     - type: AtmosPipeColor
@@ -9174,9 +9102,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -5.5,-2.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 706
     - type: AtmosPipeColor
@@ -9186,9 +9111,6 @@ entities:
     - type: Transform
       pos: -4.5,-15.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 705
     - type: AtmosPipeColor
@@ -9199,9 +9121,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-20.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 705
     - type: AtmosPipeColor
@@ -9234,9 +9153,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,1.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 706
     - type: AtmosPipeColor
@@ -9270,9 +9186,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,-20.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 705
     - type: AtmosPipeColor
@@ -9356,9 +9269,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,-2.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 706
     - type: AtmosPipeColor
