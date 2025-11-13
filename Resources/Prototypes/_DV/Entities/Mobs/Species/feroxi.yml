@@ -103,8 +103,8 @@
 #  - type: Perishable
   - type: Damageable
     damageModifierSet: Feroxi
-  - type: TypingIndicator
-    proto: feroxi
+#  - type: TypingIndicator # Removed - no feroxi typing indicator sprites exist
+#    proto: feroxi
 #  - type: FeroxiDehydrate # hey bby, the CPAP stays on while we make out
 #    overhydrated: 1.05 # removed until we can make this less awful
 #    okay: 1
