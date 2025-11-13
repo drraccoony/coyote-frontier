@@ -69,10 +69,10 @@
     Chest:
       points: 1
       required: false
-    Underwear:
+    UndergarmentBottom:
       points: 1
       required: false
-    Undershirt:
+    UndergarmentTop:
       points: 1
       required: false
     Legs:
