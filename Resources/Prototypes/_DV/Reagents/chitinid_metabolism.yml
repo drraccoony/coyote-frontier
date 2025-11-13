@@ -1,15 +1,15 @@
 # Chitinid species-specific metabolism for radioactive materials
-# Chitinids can safely process uranium and benefit from it
+# Adds Chitinid metabolism to Uranium - they benefit from radiation instead of being harmed
 
-- type: metabolism
-  id: Chitinid
-  removeEmpty: true
-  
-# Override uranium metabolism for Chitinids - they benefit from radiation instead of being harmed
 - type: reagent
   id: Uranium
-  parent: Uranium
   metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Radiation: 2
     Chitinid:
       effects:
       - !type:HealthChange
