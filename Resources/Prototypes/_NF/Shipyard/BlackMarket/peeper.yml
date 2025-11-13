@@ -1,0 +1,38 @@
+# Author Info
+# GitHub: SimplyPoodle
+
+# Shuttle Notes:
+# pirate version of my reporter shuttle, the oculus, for pirate rp and uh. other nefarious things that you might do with a camera and being illicit
+- type: vessel
+  id: Peeper
+  parent: BaseVesselAntag
+  name: Peeper
+  description: "Once the voice of Nash, now the voice of freedom. Just don't get caught being a peeping tom!"
+  price: 30000 #29313 1.25 65954.25
+  category: Small
+  group: BlackMarket
+  shuttlePath: /Maps/_NF/Shuttles/BlackMarket/peeper.yml
+  guidebookPage: Null
+  class:
+  - Pirate
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: peeper
+  mapName: 'Peeper'
+  mapPath: /Maps/_NF/Shuttles/BlackMarket/peeper.yml
+  minPlayers: 0
+  stations:
+    Speakeasy:
+      stationProto: StandardFrontierAntagVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Oculus  {1}' # Very fake name
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            NFPirate: [ 0, 0 ]
+            Escort: [ 0, 0 ]
