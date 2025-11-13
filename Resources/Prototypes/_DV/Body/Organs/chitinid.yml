@@ -27,7 +27,7 @@
   - type: Metabolizer
     # mm yummy
     maxReagents: 3
-    metabolizerTypes: [Human]
+    metabolizerTypes: [Human, Chitinid]  # Chitinids can metabolize radioactive materials safely
     groups:
     - id: Food
     - id: Drink
