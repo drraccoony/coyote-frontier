@@ -44,8 +44,6 @@
   description: Purge the excess radiation build-up from your body, and gain a cool danger rock.
   components:
   - type: InstantAction
-    icon:
-      sprite: _DV/Objects/Specific/Species/chitinid.rsi
-      state: chitzite
+    icon: _DV/Interface/Actions/chitzite.png
     useDelay: 300
     event: !type:ChitziteActionEvent
