@@ -6121,7 +6121,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,22.5
       parent: 1
-- proto: FaxMachineBase
+- proto: FaxMachineShip
   entities:
   - uid: 38
     components:
@@ -10113,11 +10113,15 @@ entities:
     - type: Transform
       pos: -9.5,-15.5
       parent: 1
+    - type: FuelGenerator
+      targetPower: 35000
   - uid: 1132
     components:
     - type: Transform
       pos: -8.5,-15.5
       parent: 1
+    - type: FuelGenerator
+      targetPower: 35000
 - proto: PosterLegitCleanliness
   entities:
   - uid: 1370
