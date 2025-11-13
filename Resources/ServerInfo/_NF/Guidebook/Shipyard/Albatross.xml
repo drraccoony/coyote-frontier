@@ -44,7 +44,7 @@
   - Check that the S.U.P.E.R.P.A.C.M.A.N. generators units are anchored to the floor.
   - Check that the S.U.P.E.R.P.A.C.M.A.N. generators units has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
   - Check that the S.U.P.E.R.P.A.C.M.A.N. generators units are set to HV output.
-  - Set the Target Power for 24-30 [bold]kW[/bold].
+  - Set the Target Power on both units for 35 [bold]kW[/bold]. This will ensure there is no power deficit; the running power draw with thrusters enabled is 67.3kw.
   - Start the S.U.P.E.R.P.A.C.M.A.N. generators units.
   
   ## 2. Atmospherics
