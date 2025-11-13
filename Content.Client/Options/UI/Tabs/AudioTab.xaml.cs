@@ -44,11 +44,6 @@ public sealed partial class AudioTab : Control
             SliderVolumeAmbience,
             scale: ContentAudioSystem.AmbienceMultiplier);
 
-        Control.AddOptionPercentSlider(
-            CCVars.JukeboxVolume,
-            SliderVolumeJukebox,
-            scale: ContentAudioSystem.JukeboxMultiplier);
-
         // Frontier: add expedition volume slider
         Control.AddOptionPercentSlider(
             NFCCVars.SalvageExpeditionMusicVolume,

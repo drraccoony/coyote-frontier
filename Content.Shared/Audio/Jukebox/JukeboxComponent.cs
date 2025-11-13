@@ -55,12 +55,6 @@ public sealed partial class JukeboxComponent : Component
     [DataField]
     public Vector2 AudioOffset = Vector2.Zero;
     // End Frontier
-
-    /// <summary>
-    /// Volume level for jukebox playback (0.0 to 1.0).
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public float Volume = 0.5f;
 }
 
 [Serializable, NetSerializable]
@@ -82,12 +76,6 @@ public sealed class JukeboxSelectedMessage(ProtoId<JukeboxPrototype> songId) : B
 public sealed class JukeboxSetTimeMessage(float songTime) : BoundUserInterfaceMessage
 {
     public float SongTime { get; } = songTime;
-}
-
-[Serializable, NetSerializable]
-public sealed class JukeboxSetVolumeMessage(float volume) : BoundUserInterfaceMessage
-{
-    public float Volume { get; } = volume;
 }
 
 // Frontier: Shuffle & Repeat
