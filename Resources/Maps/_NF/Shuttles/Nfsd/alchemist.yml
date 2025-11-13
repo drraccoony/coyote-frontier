@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/12/2025 04:07:02
-  entityCount: 296
+  time: 11/13/2025 21:34:49
+  entityCount: 297
 maps: []
 grids:
 - 1
@@ -787,6 +787,20 @@ entities:
       - device-button-6
       - device-button-7
       - device-button-8
+- proto: CrateHydroponicsSeedsMedicinal
+  entities:
+  - uid: 274
+    components:
+    - type: Transform
+      pos: 7.5,6.5
+      parent: 1
+- proto: CrateHydroponicsTools
+  entities:
+  - uid: 208
+    components:
+    - type: Transform
+      pos: 8.5,6.5
+      parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 225
@@ -1334,6 +1348,18 @@ entities:
     - type: Transform
       pos: 3.5,4.5
       parent: 1
+- proto: hydroponicsTray
+  entities:
+  - uid: 209
+    components:
+    - type: Transform
+      pos: 6.5,7.5
+      parent: 1
+  - uid: 241
+    components:
+    - type: Transform
+      pos: 7.5,7.5
+      parent: 1
 - proto: KitchenReagentGrinder
   entities:
   - uid: 217
@@ -1372,8 +1398,11 @@ entities:
   - uid: 140
     components:
     - type: Transform
+      anchored: True
       pos: -0.5,7.5
       parent: 1
+    - type: Physics
+      bodyType: Static
     - type: EntityStorage
       air:
         volume: 200
@@ -1395,13 +1424,19 @@ entities:
   - uid: 202
     components:
     - type: Transform
+      anchored: True
       pos: -1.5,4.5
       parent: 1
+    - type: Physics
+      bodyType: Static
   - uid: 223
     components:
     - type: Transform
+      anchored: True
       pos: -1.5,7.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: LockerWallColorChemistryFilled
   entities:
   - uid: 156
@@ -1653,12 +1688,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,2.5
       parent: 1
-  - uid: 241
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,5.5
-      parent: 1
   - uid: 242
     components:
     - type: Transform
@@ -1745,14 +1774,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -1.5,12.5
-      parent: 1
-- proto: SheetPlasma10
-  entities:
-  - uid: 274
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 8.481899,4.6287503
       parent: 1
 - proto: ShuttersNormalOpen
   entities:
@@ -2029,19 +2050,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: -3.5,0.5
       parent: 1
-- proto: VendingMachineChemicals
+- proto: VendingMachineWallMedical
   entities:
-  - uid: 208
+  - uid: 295
     components:
     - type: Transform
-      pos: 7.5,7.5
-      parent: 1
-- proto: VendingMachineMedical
-  entities:
-  - uid: 209
-    components:
-    - type: Transform
-      pos: 6.5,7.5
+      rot: -1.5707963267948966 rad
+      pos: 2.5,5.5
       parent: 1
 - proto: WallPlastitanium
   entities:
