@@ -38,6 +38,7 @@
 # Removed ActionPrecognition - requires PrecognitionPowerActionEvent which doesn't exist in this codebase
 
 - type: entity
+  parent: BaseAction
   id: ActionChitzite
   name: Cough Up Chitzite
   description: Purge the excess radiation build-up from your body, and gain a cool danger rock.
