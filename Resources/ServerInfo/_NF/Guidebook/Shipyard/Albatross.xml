@@ -4,6 +4,9 @@
   <GuideEntityEmbed Entity="CrateTradeSecureNormal" Caption="cargo"/>
   <GuideEntityEmbed Entity="CrateTradeSecureHigh" Caption="hauling"/>
   </Box>  
+    <Box>
+  <GuideEntityEmbed Entity="ShuttleMapAlbatross" Caption=""/>
+  </Box>
     [color=#a4885c]Ship Size:[/color] Large
 	
 	[color=#a4885c]Recommended Crew:[/color] 2-5

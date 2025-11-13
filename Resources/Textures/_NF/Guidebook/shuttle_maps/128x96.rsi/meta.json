@@ -9,7 +9,8 @@
         "apothecary, charon, caladrius, druid, pulsar, retort, stasis, surveyor by dustylens (discord/github).",
         "barge, eagle, hauler, phoenix, placebo, skipper, sparrow by Mygnol (discord/github)",
         "izakaya by AF-Buyrcsp2 (discord/github)",
-        "nook by Chervjakys (discord/github)"
+        "nook by Chervjakys (discord/github)",
+        "albatross by UBlueberry (discord/github)"
     ],
     "metaAtlas": false,
     "size": {
@@ -22,6 +23,9 @@
         },
         {
             "name": "ambition"
+        },
+        {
+            "name": "albatross"
         },
         {
             "name": "apothecary"
