@@ -8,14 +8,14 @@
     amount: 3
     id: Mail
 
-- type: pirateBounty
-  id: PirateBountyPDA
-  reward: 5
-  description: pirate-bounty-description-generic
-  entries:
-  - name: pirate-bounty-item-pda
-    amount: 3
-    id: Pda
+#- type: pirateBounty
+#  id: PirateBountyPDA
+#  reward: 5
+#  description: pirate-bounty-description-generic
+#  entries:
+#  - name: pirate-bounty-item-pda
+#    amount: 3
+#    id: Pda
 
 - type: pirateBounty
   id: PirateBountyExtinguisher
@@ -301,3 +301,33 @@
   - name: pirate-bounty-item-enforcer
     amount: 1
     id: Enforcer
+
+- type: pirateBounty
+  id: PirateBountyPlushie
+  reward: 1
+  description: pirate-bounty-description-plushies
+  spawnChest: false
+  entries:
+  - name: pirate-bounty-item-plushies
+    amount: 10
+    id: Plushie
+
+- type: pirateBounty
+  id: PirateBountyPlushieLots
+  reward: 35
+  description: pirate-bounty-description-plushies-lots
+  spawnChest: false
+  entries:
+  - name: pirate-bounty-item-plushies-lots
+    amount: 100
+    id: Plushie
+
+- type: pirateBounty
+  id: PirateBountyPlushieLotsAndLots
+  reward: 200
+  description: pirate-bounty-description-plushies-lots-er
+  spawnChest: false
+  entries:
+  - name: pirate-bounty-item-plushies-lots-er
+    amount: 500 # five, hundred, plushies
+    id: Plushie
