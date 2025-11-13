@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/09/2025 08:14:15
-  entityCount: 220
+  time: 11/12/2025 03:17:43
+  entityCount: 232
 maps: []
 grids:
 - 1
@@ -42,7 +42,7 @@ entities:
           version: 7
         0,-1:
           ind: 0,-1
-          tiles: AQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAEAAAAAAAABAAAAAAAAAUAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAgAAAAAAAAYAAAAAAwAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAIAAAAAAAAGAAAAAAAAAAAAAAAAAAUAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAgAAAAAAAAYAAAAAAAAGAAAAAAEABgAAAAABAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAA==
+          tiles: AQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAEAAAAAAAABAAAAAAAAAUAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAgAAAAAAAAYAAAAAAwAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAIAAAAAAAAGAAAAAAAAAAAAAAAAAAUAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAABAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAA==
           version: 7
         -1,-1:
           ind: -1,-1
@@ -68,119 +68,131 @@ entities:
         version: 2
         nodes:
         - node:
+            color: '#FFFFFFFF'
             id: BrickTileDarkEndE
           decals:
-            181: 1,7
+            278: 1,7
         - node:
+            color: '#FFFFFFFF'
             id: BrickTileDarkEndN
           decals:
-            180: 0,8
+            279: 0,8
         - node:
+            color: '#FFFFFFFF'
             id: BrickTileDarkEndW
           decals:
-            182: -1,7
+            277: -1,7
         - node:
+            color: '#FFFFFFFF'
             id: BrickTileDarkInnerNe
           decals:
-            184: 0,7
-            204: 0,0
+            273: 0,0
+            280: 0,7
         - node:
+            color: '#FFFFFFFF'
             id: BrickTileDarkInnerNw
           decals:
-            185: 0,7
-            205: 0,0
+            274: 0,0
+            281: 0,7
         - node:
+            color: '#FFFFFFFF'
             id: BrickTileDarkInnerSe
           decals:
-            186: 0,7
-            206: 0,0
+            275: 0,0
+            282: 0,7
+            283: 0,7
         - node:
+            color: '#FFFFFFFF'
             id: BrickTileDarkInnerSw
           decals:
-            187: 0,7
-            207: 0,0
+            276: 0,0
+            284: 0,7
         - node:
+            color: '#FFFFFFFF'
             id: BrickTileDarkLineE
           decals:
-            171: 0,3
-            172: 0,4
-            183: 0,6
-            188: 0,1
-            189: 0,-1
-            190: 0,-3
-            191: 0,-4
+            259: 0,-1
+            260: 0,-3
+            261: 0,-4
+            262: 0,1
+            263: 0,3
+            264: 0,4
+            265: 0,6
         - node:
+            color: '#FFFFFFFF'
             id: BrickTileDarkLineN
           decals:
-            192: -3,0
-            193: -2,0
-            194: -1,0
-            195: 1,0
-            196: 2,0
-            197: 3,0
+            253: -3,0
+            254: -2,0
+            255: -1,0
+            256: 1,0
+            257: 2,0
+            258: 3,0
         - node:
+            color: '#FFFFFFFF'
             id: BrickTileDarkLineS
           decals:
-            198: -3,0
-            199: -2,0
-            200: -1,0
-            201: 1,0
-            202: 2,0
-            203: 3,0
+            247: -3,0
+            248: -2,0
+            249: -1,0
+            250: 1,0
+            251: 2,0
+            252: 3,0
         - node:
+            color: '#FFFFFFFF'
             id: BrickTileDarkLineW
           decals:
-            173: 0,3
-            174: 0,4
-            175: 0,1
-            176: 0,-1
-            177: 0,-3
-            178: 0,-4
-            179: 0,6
+            266: 0,6
+            267: 0,4
+            268: 0,3
+            269: 0,1
+            270: 0,-1
+            271: 0,-3
+            272: 0,-4
         - node:
-            color: '#3F3026FF'
+            color: '#4B653EFF'
             id: CheckerNESW
           decals:
-            153: 0,0
-            154: 1,0
-            155: 2,0
-            156: 3,0
-            157: 0,-1
-            158: -1,0
-            159: -2,0
-            160: -3,0
-            161: 0,1
-            162: 0,-3
-            163: 0,-4
-            164: 0,3
-            165: 0,4
-            166: 0,6
-            167: 0,7
-            168: 0,8
-            169: 1,7
-            170: -1,7
+            211: -3,0
+            212: -2,0
+            213: -1,0
+            214: 0,0
+            215: 1,0
+            216: 2,0
+            217: 3,0
+            218: 0,-1
+            219: 0,-3
+            220: 0,-4
+            221: 0,1
+            222: 0,3
+            223: 0,4
+            224: 0,6
+            225: 0,7
+            226: 0,8
+            227: -1,7
+            228: 1,7
         - node:
-            color: '#4A663DFF'
+            color: '#493926FF'
             id: CheckerNWSE
           decals:
-            133: -1,0
-            134: -2,0
-            135: -3,0
-            137: 1,0
-            138: 2,0
-            139: 3,0
-            140: 0,-1
-            141: 0,1
-            142: 0,3
-            143: 0,4
-            144: 0,6
-            145: 1,7
-            146: 0,7
-            147: 0,8
-            148: -1,7
-            149: 0,-3
-            150: 0,-4
-            152: 0,0
+            229: 0,7
+            230: 1,7
+            231: 0,8
+            232: -1,7
+            233: 0,6
+            234: 0,4
+            235: 0,3
+            236: 0,1
+            237: 0,0
+            238: 0,-1
+            239: 1,0
+            240: 2,0
+            241: 3,0
+            242: -1,0
+            243: -2,0
+            244: -3,0
+            245: 0,-3
+            246: 0,-4
     - type: GridAtmosphere
       version: 2
       data:
@@ -259,6 +271,21 @@ entities:
     - type: Transform
       pos: 1.5,2.5
       parent: 1
+    - type: DeviceList
+      devices:
+      - 95
+      - 110
+      - 97
+      - 101
+      - 8
+      - 102
+      - 190
+      - 133
+      - 132
+      - 136
+      - 135
+      - 131
+      - 137
 - proto: AirlockGlassShuttleNfsd
   entities:
   - uid: 98
@@ -392,8 +419,8 @@ entities:
   - uid: 80
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,-1.5
+      rot: 1.5707963267948966 rad
+      pos: -1.5,-2.5
       parent: 1
 - proto: ButtonFrameGrey
   entities:
@@ -705,32 +732,50 @@ entities:
     - type: Transform
       pos: 0.5,5.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2
   - uid: 95
     components:
     - type: Transform
       pos: 4.5,0.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2
   - uid: 97
     components:
     - type: Transform
       pos: 0.5,-4.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2
   - uid: 101
     components:
     - type: Transform
       pos: -3.5,0.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2
   - uid: 102
     components:
     - type: Transform
       pos: 0.5,2.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2
   - uid: 110
     components:
     - type: Transform
       pos: 0.5,-1.5
       parent: 1
-- proto: GasMixerFlipped
+    - type: DeviceNetwork
+      deviceLists:
+      - 2
+- proto: GasMixerOnFlipped
   entities:
   - uid: 85
     components:
@@ -741,7 +786,6 @@ entities:
     - type: GasMixer
       inletTwoConcentration: 0.27999997
       inletOneConcentration: 0.72
-      enabled: True
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasPassiveVent
@@ -786,6 +830,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-0.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
   - uid: 93
     components:
     - type: Transform
@@ -794,11 +840,41 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
+  - uid: 103
+    components:
+    - type: Transform
+      pos: 0.5,-0.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
   - uid: 107
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,-1.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 155
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,-0.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 186
+    components:
+    - type: Transform
+      pos: -1.5,0.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 189
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,0.5
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
@@ -910,6 +986,14 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
+  - uid: 164
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -0.5,-0.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
 - proto: GasPipeTJunction
   entities:
   - uid: 81
@@ -974,6 +1058,9 @@ entities:
     - type: Transform
       pos: -0.5,6.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 132
@@ -982,6 +1069,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,-2.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 133
@@ -990,22 +1080,21 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
   entities:
-  - uid: 134
-    components:
-    - type: Transform
-      pos: 0.5,-0.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
   - uid: 135
     components:
     - type: Transform
       pos: 1.5,6.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 136
@@ -1014,6 +1103,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,-2.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 137
@@ -1022,8 +1114,21 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,4.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2
     - type: AtmosPipeColor
-      color: '#0055CCFF'
+      color: '#990000FF'
+  - uid: 190
+    components:
+    - type: Transform
+      pos: -2.5,1.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2
+    - type: AtmosPipeColor
+      color: '#990000FF'
 - proto: GeneratorWallmountBasic
   entities:
   - uid: 138
@@ -1048,7 +1153,7 @@ entities:
       parent: 1
 - proto: GravityGeneratorMini
   entities:
-  - uid: 142
+  - uid: 114
     components:
     - type: Transform
       pos: 2.5,-0.5
@@ -1097,6 +1202,14 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,10.5
       parent: 1
+- proto: GyroscopeNfsd
+  entities:
+  - uid: 119
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,-0.5
+      parent: 1
 - proto: JukeboxWallmountShip
   entities:
   - uid: 29
@@ -1123,15 +1236,27 @@ entities:
   - uid: 153
     components:
     - type: Transform
+      anchored: True
       pos: 2.5,1.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: Construction
+      step: 1
+      edge: 0
 - proto: OxygenCanister
   entities:
   - uid: 154
     components:
     - type: Transform
+      anchored: True
       pos: 3.5,1.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: Construction
+      step: 1
+      edge: 0
 - proto: PlasticFlapsAirtightOpaque
   entities:
   - uid: 156
@@ -1237,6 +1362,48 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-0.5
       parent: 1
+  - uid: 183
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.5,8.5
+      parent: 1
+- proto: PoweredlightExterior
+  entities:
+  - uid: 121
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -2.5,-2.5
+      parent: 1
+  - uid: 127
+    components:
+    - type: Transform
+      pos: -3.5,-1.5
+      parent: 1
+  - uid: 128
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 3.5,-2.5
+      parent: 1
+  - uid: 134
+    components:
+    - type: Transform
+      pos: 4.5,-1.5
+      parent: 1
+  - uid: 142
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,3.5
+      parent: 1
+  - uid: 150
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,3.5
+      parent: 1
 - proto: PoweredStrobeRed
   entities:
   - uid: 173
@@ -1297,11 +1464,11 @@ entities:
       parent: 1
 - proto: SignalButton
   entities:
-  - uid: 103
+  - uid: 115
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,-1.5
+      rot: 1.5707963267948966 rad
+      pos: -1.5,-2.5
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
@@ -1309,9 +1476,6 @@ entities:
         - - Pressed
           - Toggle
         173:
-        - - Pressed
-          - Toggle
-        73:
         - - Pressed
           - Toggle
   - uid: 182
@@ -1357,15 +1521,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.5,1.5
       parent: 1
-- proto: SmallGyroscopeNfsd
-  entities:
-  - uid: 186
-    components:
-    - type: Transform
-      pos: -1.5,-0.5
-      parent: 1
-    - type: ApcPowerReceiver
-      powerLoad: 1
 - proto: SpawnMechEMU
   entities:
   - uid: 187
