@@ -682,7 +682,7 @@
     listNumber: false
 
 - type: entity
-  parent: [ BaseC3PirateContraband, IDCardStandard ] # Frontier: BaseMajorContraband<BaseC3PirateContraband
+  parent: [ IDCardStandard ] # Frontier: BaseMajorContraband<BaseC3PirateContraband #Coyote: Removes C3 Contraband from Pirate ID Card
   id: PirateIDCard
   name: pirate ID card
   categories: [ HideSpawnMenu ] # Frontier
