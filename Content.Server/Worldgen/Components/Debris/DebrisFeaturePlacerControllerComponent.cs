@@ -43,6 +43,11 @@ public sealed partial class DebrisFeaturePlacerControllerComponent : Component
     public Queue<PendingDebrisSpawn> PendingSpawns = new();
 
     /// <summary>
+    ///     Queue of debrises that are scheduled to be despawned.
+    /// </summary>
+    public Queue<EntityUid> PendingDeSpawns = new();
+
+    /// <summary>
     ///     Maximum number of debris entities to spawn per tick (performance tuning).
     /// </summary>
     [DataField("maxSpawnsPerTick")] public int MaxSpawnsPerTick = 5;

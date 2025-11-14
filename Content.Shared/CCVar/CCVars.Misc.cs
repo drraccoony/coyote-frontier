@@ -84,10 +84,22 @@ public sealed partial class CCVars
         CVarDef.Create("entgc.maximum_time_ms", 10, CVar.SERVERONLY); // Frontier: 5<10
 
     /// <summary>
+    ///   Delay in seconds between debris updates (performance tuning).
+    /// </summary>
+    public static readonly CVarDef<int> DebrisDelayBetweenUpdates =
+        CVarDef.Create("debris.seconds_between_updates", 1, CVar.SERVERONLY);
+
+    /// <summary>
     ///     Maximum number of debris entities to spawn per tick (performance tuning).
     /// </summary>
     public static readonly CVarDef<int> DebrisMaxSpawnsPerTick =
         CVarDef.Create("debris.max_spawns_per_tick", 5, CVar.SERVERONLY);
+
+    /// <summary>
+    ///     Maximum number of debris entities to DEspawn per tick (performance tuning).
+    /// </summary>
+    public static readonly CVarDef<int> DebrisMaxDeSpawnsPerTick =
+        CVarDef.Create("debris.max_despawns_per_tick", 1, CVar.SERVERONLY);
 
     /// <summary>
     ///     Maximum number of debris grids to build per tick (performance tuning).
