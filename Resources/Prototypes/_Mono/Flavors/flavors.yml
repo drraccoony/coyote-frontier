@@ -8,7 +8,6 @@
   id: resomi
   flavorType: Complex
   description: flavor-complex-resomi
-
 # MARK: Teas
 - type: flavor
   id: teaGreen
@@ -44,7 +43,6 @@
   id: teaSyndie
   flavorType: Complex
   description: flavor-complex-tea-syndie
-
 # MARK: Coffee
 - type: flavor
   id: coffeeDecaf
