@@ -1525,6 +1525,8 @@
   description: Yargh!
   categories: [ HideSpawnMenu ] # Frontier
   components:
+  - type: Contraband
+    hideValues: true
   - type: Pda
     id: PirateIDCard
   - type: Appearance
