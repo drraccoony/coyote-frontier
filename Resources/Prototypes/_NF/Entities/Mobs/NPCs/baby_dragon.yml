@@ -3,7 +3,7 @@
   - SimpleSpaceMobBase
   - FlyingMobBase
   id: MobDragonPet
-  name: mini space dragon
+  name: space drake
   description: The smaller cousin to the much larger space dragon.
   components:
   - type: Body
@@ -146,7 +146,7 @@
   categories: [ HideSpawnMenu ]
   id: BabyDragonsSparkGun
   name: mini dragon spark
-  description: A tiny burning ember from a mini dragon.
+  description: A tiny burning ember from a space drake.
   components:
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 120
@@ -163,7 +163,7 @@
   categories: [ HideSpawnMenu ]
   id: ActionDragonsBreathBaby
   parent: BaseAction
-  name: "[color=orange]Dragon's Breath[/color]"
+  name: "[color=orange]Drake's Breath[/color]"
   description: Spew out tiny flames at anyone foolish enough to attack you!
   components:
   - type: Action
