@@ -31,6 +31,10 @@
   id: SizeManipulation
   priority: 6
 
+- type: consentToggle
+  id: Transformation
+  priority: 7
+
 #- type: consentToggle
 #  id: Cum
 #  priority: 6
