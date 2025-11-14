@@ -282,7 +282,7 @@
     sprite: Clothing/Ears/Headsets/service.rsi
 
 - type: entity
-  parent: [ClothingHeadset, BaseC3PirateContraband, ContrabandClothing] # Frontier: add BaseC3Contraband, ContrabandClothing
+  parent: [ClothingHeadset] # Frontier: add BaseC3Contraband, ContrabandClothing #Coyote: Removes C3 Contraband and Contraband Clothing
   id: ClothingHeadsetFreelance
   name: freelancer headset
   description: This is used by a roaming group of freelancers.
