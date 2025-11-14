@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/12/2025 03:17:43
+  time: 11/14/2025 09:59:35
   entityCount: 232
 maps: []
 grids:
@@ -269,23 +269,23 @@ entities:
   - uid: 2
     components:
     - type: Transform
-      pos: 1.5,2.5
+      pos: 2.5,2.5
       parent: 1
     - type: DeviceList
       devices:
       - 95
-      - 110
-      - 97
-      - 101
-      - 8
-      - 102
-      - 190
-      - 133
       - 132
       - 136
+      - 101
+      - 190
+      - 133
+      - 130
+      - 137
       - 135
       - 131
-      - 137
+      - 110
+      - 102
+      - 8
 - proto: AirlockGlassShuttleNfsd
   entities:
   - uid: 98
@@ -557,12 +557,12 @@ entities:
   - uid: 54
     components:
     - type: Transform
-      pos: 2.5,-1.5
+      pos: 1.5,2.5
       parent: 1
   - uid: 55
     components:
     - type: Transform
-      pos: 0.5,-2.5
+      pos: 1.5,-0.5
       parent: 1
   - uid: 56
     components:
@@ -592,27 +592,22 @@ entities:
   - uid: 61
     components:
     - type: Transform
-      pos: 2.5,-0.5
+      pos: 1.5,0.5
       parent: 1
   - uid: 62
     components:
     - type: Transform
-      pos: 2.5,0.5
+      pos: 1.5,1.5
       parent: 1
-  - uid: 64
+  - uid: 69
     components:
     - type: Transform
-      pos: 3.5,1.5
+      pos: 2.5,-1.5
       parent: 1
-  - uid: 65
+  - uid: 188
     components:
     - type: Transform
-      pos: 3.5,2.5
-      parent: 1
-  - uid: 67
-    components:
-    - type: Transform
-      pos: 3.5,0.5
+      pos: 2.5,-2.5
       parent: 1
 - proto: CableMV
   entities:
@@ -621,12 +616,12 @@ entities:
     - type: Transform
       pos: 2.5,3.5
       parent: 1
-  - uid: 66
+  - uid: 65
     components:
     - type: Transform
-      pos: 3.5,2.5
+      pos: 1.5,2.5
       parent: 1
-  - uid: 69
+  - uid: 66
     components:
     - type: Transform
       pos: 2.5,2.5
@@ -748,9 +743,6 @@ entities:
     - type: Transform
       pos: 0.5,-4.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 2
   - uid: 101
     components:
     - type: Transform
@@ -1051,6 +1043,9 @@ entities:
     - type: Transform
       pos: 0.5,3.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 131
@@ -1131,6 +1126,11 @@ entities:
       color: '#990000FF'
 - proto: GeneratorWallmountBasic
   entities:
+  - uid: 67
+    components:
+    - type: Transform
+      pos: 2.5,-2.5
+      parent: 1
   - uid: 138
     components:
     - type: Transform
@@ -1531,11 +1531,10 @@ entities:
       parent: 1
 - proto: SubstationWallBasic
   entities:
-  - uid: 188
+  - uid: 64
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 3.5,2.5
+      pos: 1.5,2.5
       parent: 1
 - proto: SuitStorageEVANfsd
   entities:
