@@ -747,11 +747,11 @@
           - SecurityUplink
 
 - type: listing # Coyote added NFSD esword
-  id: UplinkSecurityCaptainSword
-  name:  uplink-security-captainsword-name
-  description: uplink-security-captainsword-desc
-  productEntity: ClothingBeltSheathFilled
-  icon: { sprite: Objects/Weapons/Melee/captain_sabre.rsi, state: icon }
+  id: UplinkSecurityEnergySword
+  name:  uplink-security-energysword-name
+  description: uplink-security-energysword-name
+  productEntity: EnergySwordNfsd
+  icon: { sprite: Objects/Weapons/Melee/e_sword.rsi, state: e_sword }
   cost:
     FrontierUplinkCoin: 8
   categories:
