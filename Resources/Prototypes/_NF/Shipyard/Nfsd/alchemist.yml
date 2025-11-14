@@ -3,7 +3,7 @@
   parent: BaseVessel
   name: TSF Alchemist
   description: An NFSD medical ship meant for triage and long-form usage, including a chemistry sidecar with all the bells and whistles.
-  price: 41250
+  price: 34850
   category: Small
   group: Security
   access: Security
