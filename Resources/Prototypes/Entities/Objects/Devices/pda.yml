@@ -1519,7 +1519,7 @@
     state: pda-seniorofficer
 
 - type: entity
-  parent: [ BaseC3PirateContrabandNoValue, SyndiPDA ] # Frontier: BaseMajorContraband<BaseC3PirateContrabandNoValue
+  parent: [ SyndiPDA ] # Frontier: BaseMajorContraband<BaseC3PirateContrabandNoValue #Coyote: Removes C3 Contraband from PDA
   id: PiratePDA
   name: pirate PDA
   description: Yargh!
