@@ -60,7 +60,7 @@ uplink-security-disablersmg-name = Disabler SMG
 uplink-security-disablersmg-desc = Fully automatic, rapid fire disabler. Tuned to the same frequency as standard disablers, the ultimate less-lethal instrument. Has an internal battery, but requires using a security charging dock.
 
 uplink-security-energysword-name = Energy Sword
-uplink-security-energysword-desc = Reverse-engineered, NT manufactured energy sword. Chance to reflect projectiles.
+uplink-security-energysword-desc = Reverse-engineered, TSF manufactured energy sword. Chance to reflect projectiles.
 
 uplink-security-wt550-name = WT550
 uplink-security-wt550-desc = A fully automatic submachine gun. This design uses special top-mounted magazines, allowing for simpler and faster operation in the field. Uses .35 auto.

@@ -737,6 +737,22 @@
   productEntity: ClothingBeltSheathFilled
   icon: { sprite: Objects/Weapons/Melee/captain_sabre.rsi, state: icon }
   cost:
+    FrontierUplinkCoin: 5 #Coyote changed 5>8
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing # Coyote added NFSD esword
+  id: UplinkSecurityEnergySword
+  name:  uplink-security-energysword-name
+  description: uplink-security-energysword-name
+  productEntity: EnergySwordNfsd
+  icon: { sprite: Objects/Weapons/Melee/e_sword.rsi, state: e_sword }
+  cost:
     FrontierUplinkCoin: 8
   categories:
     - UplinkSecurityWeapons
