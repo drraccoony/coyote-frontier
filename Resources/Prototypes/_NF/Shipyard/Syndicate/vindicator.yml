@@ -3,7 +3,7 @@
   parent: BaseVesselAntag
   name: Vindicator
   description: A Syndicate solo operations ship, for those with a death wish or those who want to send a message.
-  price: 60000
+  price: 35000
   category: Small
   group: Syndicate
   shuttlePath: /Maps/_NF/Shuttles/Syndicate/vindicator.yml
