@@ -737,7 +737,7 @@
   productEntity: ClothingBeltSheathFilled
   icon: { sprite: Objects/Weapons/Melee/captain_sabre.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 5 #coyote changed 5>8
+    FrontierUplinkCoin: 5 #Coyote changed 5>8
   categories:
     - UplinkSecurityWeapons
   conditions:
