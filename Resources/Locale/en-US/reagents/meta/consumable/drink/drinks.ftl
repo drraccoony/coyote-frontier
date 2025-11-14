@@ -85,10 +85,6 @@ reagent-desc-dry-ramen = Dry noodles and salt.
 reagent-name-hot-ramen = hot ramen
 reagent-desc-hot-ramen = Hot noodles.
 
-# Mono edit
-reagent-name-tea = black tea
-reagent-desc-tea = A classic, robust black tea with a deep, rich flavor.
-
 reagent-name-pilk = pilk
 reagent-desc-pilk = A sickening mixture of milk and cola.
 
