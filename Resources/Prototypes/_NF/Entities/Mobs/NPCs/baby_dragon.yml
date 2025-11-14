@@ -145,7 +145,7 @@
 - type: entity
   categories: [ HideSpawnMenu ]
   id: BabyDragonsSparkGun
-  name: mini dragon spark
+  name: space drake spark
   description: A tiny burning ember from a space drake.
   components:
   - type: RechargeBasicEntityAmmo
