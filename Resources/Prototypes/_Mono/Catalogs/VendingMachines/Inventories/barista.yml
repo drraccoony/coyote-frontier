@@ -24,7 +24,7 @@
     FoodBoxBiscuitSimple: 2
     FoodBoxBiscuitOatmeal: 2
     FoodBoxBiscuitSugar: 2
-    PaperWrittenTeaGuide: 4294967295 # Infinite
+# removed the paper tea written guide because i cant find it.
   contrabandInventory:
     DrinkMugRainbow: 1
     ReagentContainerYorkshireTeaPouch: 4
