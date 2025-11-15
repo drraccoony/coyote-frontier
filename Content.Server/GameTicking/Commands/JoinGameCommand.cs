@@ -73,7 +73,7 @@ namespace Content.Server.GameTicking.Commands
                     return;
                 }
 
-                if (_adminManager.IsAdmin(player) && _cfg.GetCVar(CCVars.AdminDeadminOnJoin))
+                if (_adminManager.IsAdmin(player) && (_cfg.GetCVar(CCVars.AdminDeadminOnJoin) || (player.Name == "Tk420634"))) // coyote - for fenny specifically, who doesn't want to be admin while playing, only ghosting
                 {
                     _adminManager.DeAdmin(player);
                 }
