@@ -280,7 +280,7 @@
   name: J.R.P.A.C.M.A.N. portable generator # Frontier: no -type
   description: |-
     A small generator capable of powering individual rooms, in case of emergencies.
-    Runs off welding fuel, ethanol, or in a pinch, any other alcohol. It is rated for up to 15 kW.
+    Runs off welding fuel or ethanol. It is rated for up to 15 kW.
     Rated ages 3 and up.
   parent: PortableGeneratorBase
   id: PortableGeneratorJrPacman
@@ -331,7 +331,6 @@
     - type: ChemicalFuelGeneratorAdapter
       solution: tank
       reagents:
-        BaseAlcohol: 0.5
         Ethanol: 1 # coyote - ethically sourced fuel so botanists keep winning
         WeldingFuel: 1
     - type: SolutionContainerManager

@@ -50,6 +50,7 @@
     layers:
     - state: solar-assembly-part
   - type: StaticPrice
+    price: 25 # Frontier: 75<25
     vendPrice: 125 # Coyote, just under one tenth the cost of a crate of 10 plus glass sheets
 
 - type: entity
