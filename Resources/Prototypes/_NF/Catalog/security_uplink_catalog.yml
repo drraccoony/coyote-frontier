@@ -314,22 +314,6 @@
         tags:
           - SecurityUplink
 
-- type: listing # Added to the NFSD uplink because it wasn't in here before. Icon might be the wrong sprite, but I can't find a sprite for the NFSD sword
-  id: UplinkSecurityEnergySword
-  name:  uplink-security-energysword-name
-  description: uplink-security-energysword-desc
-  productEntity: EnergySwordNfsd
-  icon: { sprite: Objects/Weapons/Melee/e_sword.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 8
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-
 - type: listing # Coyote removed job restrictions for this weapon
   id: UplinkSecurityLaserCannon
   name:  uplink-security-lasercanon-name
@@ -762,12 +746,12 @@
         tags:
           - SecurityUplink
 
-- type: listing # Coyote added NFSD esword
+- type: listing # Coyote added NFSD esword. for some reason this was here and didnt work...
   id: UplinkSecurityEnergySword
   name:  uplink-security-energysword-name
-  description: uplink-security-energysword-name
+  description: uplink-security-energysword-desc
   productEntity: EnergySwordNfsd
-  icon: { sprite: Objects/Weapons/Melee/e_sword.rsi, state: e_sword }
+  icon: { sprite: Objects/Weapons/Melee/e_sword.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 8
   categories:
