@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 10/20/2025 01:18:12
-  entityCount: 3319
+  time: 11/14/2025 23:51:11
+  entityCount: 3317
 maps: []
 grids:
 - 1
@@ -115,7 +115,7 @@ entities:
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
-      dampingModifier: 0.25
+      dampingModifier: 2
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -3691,7 +3691,7 @@ entities:
       pos: -2.5,-5.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -115729.734
+      secondsUntilStateChange: -121710.61
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -3767,7 +3767,7 @@ entities:
       pos: 10.5,-3.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -96511.42
+      secondsUntilStateChange: -102492.3
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -3799,7 +3799,7 @@ entities:
       pos: -11.5,-3.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -38689.64
+      secondsUntilStateChange: -44670.516
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -10933,6 +10933,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 10.5,25.5
       parent: 1
+- proto: ComputerTabletopSalvageExpedition
+  entities:
+  - uid: 1412
+    components:
+    - type: Transform
+      pos: 1.5,-0.5
+      parent: 1
 - proto: ComputerTabletopShuttle
   entities:
   - uid: 1410
@@ -10940,6 +10947,18 @@ entities:
     - type: Transform
       pos: 0.5,-0.5
       parent: 1
+    - type: DeviceLinkSource
+      linkedPorts: {}
+      lastSignals: {}
+      ports:
+      - device-button-1
+      - device-button-2
+      - device-button-3
+      - device-button-4
+      - device-button-5
+      - device-button-6
+      - device-button-7
+      - device-button-8
 - proto: ComputerTabletopStationRecords
   entities:
   - uid: 1411
@@ -10950,10 +10969,10 @@ entities:
       parent: 1
 - proto: ComputerTabletopSurveillanceCameraMonitor
   entities:
-  - uid: 1412
+  - uid: 2606
     components:
     - type: Transform
-      pos: 1.5,-0.5
+      pos: -4.5,2.5
       parent: 1
 - proto: ComputerWallmountWithdrawBankATM
   entities:
@@ -18909,7 +18928,7 @@ entities:
   - uid: 2472
     components:
     - type: Transform
-      pos: -4.9273014,2.6381946
+      pos: -5.114817,2.7400637
       parent: 1
 - proto: MachineFlatpacker
   entities:
@@ -19089,7 +19108,7 @@ entities:
   - uid: 2498
     components:
     - type: Transform
-      pos: -4.5054264,2.6225696
+      pos: -5.802317,2.5004802
       parent: 1
     - type: Paper
       stampState: paper_stamp-deny
@@ -20885,14 +20904,14 @@ entities:
   - uid: 2798
     components:
     - type: Transform
-      pos: -5.032132,2.5876853
+      pos: -5.1356506,2.6150637
       parent: 1
 - proto: RubberStampDenied
   entities:
   - uid: 2799
     components:
     - type: Transform
-      pos: -4.8648014,2.7788196
+      pos: -4.989817,2.854647
       parent: 1
     - type: UseDelay
       delays:
