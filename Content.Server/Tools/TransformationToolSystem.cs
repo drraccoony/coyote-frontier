@@ -13,9 +13,16 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Systems;
 
 namespace Content.Server.Tools;
 
+// *********
+// Created solely to tease Cuffle (Robyn) helplessly
+// Love ya Cuffle <3
+// Rico of CoyoteSector - November 2025
+// *********
 public sealed class TransformationToolSystem : EntitySystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -27,6 +34,7 @@ public sealed class TransformationToolSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly ConsentSystem _consent = default!;
     [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
 
     private static readonly ProtoId<ConsentTogglePrototype> TransformationConsent = "Transformation";
 
@@ -174,6 +182,14 @@ public sealed class TransformationToolSystem : EntitySystem
         {
             component.ActiveTransformations[transformed.Value] = target;
 
+            // Check if the scanned entity is a plushie and restrict movement
+            if (component.ScannedEntity != null && IsPlushie(component.ScannedEntity.Value))
+            {
+                // Remove movement capability by setting speed to 0
+                EnsureComp<MovementSpeedModifierComponent>(transformed.Value);
+                _movement.ChangeBaseSpeed(transformed.Value, 0, 0, 20);
+            }
+
             if (component.TransformSound != null)
                 _audio.PlayPvs(component.TransformSound, tool);
 
@@ -251,5 +267,67 @@ public sealed class TransformationToolSystem : EntitySystem
         );
 
         _ui.SetUiState(uid, TransformationToolUiKey.Key, state);
+    }
+
+    /// <summary>
+    /// Checks if an entity is a plushie by checking if it or any of its parent prototypes is "BasePlushie"
+    /// </summary>
+    private bool IsPlushie(EntityUid entity)
+    {
+        if (!TryComp<MetaDataComponent>(entity, out var metaData))
+            return false;
+
+        var prototype = metaData.EntityPrototype;
+        if (prototype == null)
+            return false;
+
+        // Check if this prototype is BasePlushie
+        if (prototype.ID == "BasePlushie" || prototype.ID == "BasePlushieVulp")
+            return true;
+
+        // Check if any parent prototype is BasePlushie
+        if (prototype.Parents != null)
+        {
+            foreach (var parentId in prototype.Parents)
+            {
+                if (parentId == "BasePlushie" || parentId == "BasePlushieVulp")
+                    return true;
+
+                // Recursively check parent's parents
+                if (_prototype.TryIndex<EntityPrototype>(parentId, out var parentProto))
+                {
+                    if (HasParentPrototype(parentProto, "BasePlushie") || HasParentPrototype(parentProto, "BasePlushieVulp"))
+                        return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Recursively checks if a prototype has a specific parent in its inheritance chain
+    /// </summary>
+    private bool HasParentPrototype(EntityPrototype prototype, string targetParentId)
+    {
+        if (prototype.ID == targetParentId)
+            return true;
+
+        if (prototype.Parents == null)
+            return false;
+
+        foreach (var parentId in prototype.Parents)
+        {
+            if (parentId == targetParentId)
+                return true;
+
+            if (_prototype.TryIndex<EntityPrototype>(parentId, out var parentProto))
+            {
+                if (HasParentPrototype(parentProto, targetParentId))
+                    return true;
+            }
+        }
+
+        return false;
     }
 }

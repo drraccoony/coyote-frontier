@@ -1,9 +1,9 @@
 <DefaultWindow xmlns="https://spacestation14.io"
-                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
-                       xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
-                       Title="Transformation Tool"
-                       MinSize="400 300"
-                       SetSize="450 400">
+               xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+               xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+               Title="Transformation Tool"
+               MinSize="400 300"
+               SetSize="450 400">
     <BoxContainer Orientation="Vertical" Margin="4">
         <!-- Scanned Entity Info -->
         <PanelContainer StyleClasses="AngleRect">
