@@ -23,8 +23,7 @@
   weight: 105
   displayWeight: 16
   access:
-  - Sergeant
-  - Sheriff
+  - HeadOfSecurity
   accessGroups:
   - CadetNfsdAccess
   special:
