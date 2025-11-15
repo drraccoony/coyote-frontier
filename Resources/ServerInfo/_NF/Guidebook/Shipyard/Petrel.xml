@@ -5,17 +5,14 @@
     <GuideEntityEmbed Entity="CrateGenericSteel" Caption="mystery loot"/>
     <GuideEntityEmbed Entity="OreProcessor"/>
   </Box>
-  <Box>
-    <GuideEntityEmbed Entity="ShuttleMapPetrel" Caption=""/>
-  </Box>
 
     [color=#a4885c]Ship Size:[/color] Medium
 
 	[color=#a4885c]Recommended Crew:[/color] 2-4
 
-	[color=#a4885c]Power Gen Type:[/color] Uranium
+	[color=#a4885c]Power Gen Type:[/color] AME
 
-	[color=#a4885c]Expeditions:[/color] No
+	[color=#a4885c]Expeditions:[/color] Yes
 
 	[color=#a4885c]IFF Console:[/color] None
 
@@ -88,5 +85,5 @@
   - Check that the gyroscope is anchored, powered, and enabled.
   - Check that the mini gravity generator is anchored, powered, and enabled.
   - Ensure shutter and bolt switches are functional.
-
+  
 </Document>

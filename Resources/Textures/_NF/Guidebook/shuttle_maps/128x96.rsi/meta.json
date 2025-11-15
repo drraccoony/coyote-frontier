@@ -10,7 +10,7 @@
         "barge, eagle, hauler, phoenix, placebo, skipper, sparrow by Mygnol (discord/github)",
         "izakaya by AF-Buyrcsp2 (discord/github)",
         "nook by Chervjakys (discord/github)",
-        "albatross, petrel by UBlueberry (discord/github)"
+        "albatross by UBlueberry (discord/github)"
     ],
     "metaAtlas": false,
     "size": {
@@ -116,9 +116,6 @@
         },
         {
             "name": "pathfinder"
-        },
-        {
-            "name": "petrel"
         },
         {
             "name": "phoenix"

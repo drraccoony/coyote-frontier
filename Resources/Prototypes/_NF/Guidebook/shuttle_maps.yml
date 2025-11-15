@@ -363,17 +363,6 @@
 
 - type: entity
   parent: PosterBase
-  id: ShuttleMapPetrel
-  name: "KAZ Petrel"
-  description: "Detailed map of a Petrel shuttle."
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
-    state: petrel
-
-- type: entity
-  parent: PosterBase
   id: ShuttleMapPhoenix
   name: "NR Phoenix"
   description: "Detailed map of a Phoenix shuttle."
