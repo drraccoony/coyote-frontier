@@ -11,7 +11,7 @@
     sprite: _Mono/Objects/Consumable/Food/Baked/misc.rsi
     state: biscuit-simple
   - type: Tag
-    tags: 
+    tags:
     - SimpleBiscuit
 
 - type: entity
@@ -24,7 +24,7 @@
     sprite: _Mono/Objects/Consumable/Food/Baked/misc.rsi
     state: biscuit-sugar
   - type: Tag
-    tags: 
+    tags:
     - SugarBiscuit
 
 - type: entity
@@ -37,5 +37,5 @@
     sprite: _Mono/Objects/Consumable/Food/Baked/misc.rsi
     state: biscuit-oatmeal
   - type: Tag
-    tags: 
+    tags:
     - OatmealBiscuit

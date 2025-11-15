@@ -84,7 +84,7 @@
 - type: entity
   parent: DrinkGlass
   id: DrinkTeaGlassEmpty
-  suffix: Empty 
+  suffix: Empty
   components:
   - type: Icon
     sprite: Objects/Consumable/Drinks/teaglass.rsi
