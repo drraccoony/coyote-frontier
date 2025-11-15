@@ -87,6 +87,7 @@ guide-entry-shipyard-nightlight = Nightlight
 guide-entry-shipyard-nook = Nook
 guide-entry-shipyard-pathfinder = Pathfinder
 guide-entry-shipyard-phoenix = Phoenix
+guide-entry-shipyard-pathfinder = Petrel
 guide-entry-shipyard-pioneer = Pioneer
 guide-entry-shipyard-placebo = Placebo
 guide-entry-shipyard-prospector = Prospector
