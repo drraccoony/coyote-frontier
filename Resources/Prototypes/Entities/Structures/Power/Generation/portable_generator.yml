@@ -167,7 +167,7 @@
       fuelMaterial: FuelGradePlasma # Frontier: Plasma<FuelGradePlasma
       multiplier: 0.01
     - type: MaterialStorage
-      storageLimit: 3000
+      storageLimit: 120000 # 3000>12000 to let people see how much power they have in their silly stack of fuel
       materialWhiteList: [Plasma, FuelGradePlasma, RawPlasma, Skrungle] # Frontier: add FuelGradePlasma, RawPlasma, Scrungle
     - type: PortableGenerator
       startChance: 0.8
@@ -244,7 +244,7 @@
       fuelMaterial: FuelGradeUranium # Frontier: Uranium<FuelGradeUranium
       multiplier: 0.01
     - type: MaterialStorage
-      storageLimit: 3000
+      storageLimit: 120000
       materialWhiteList: [Uranium, FuelGradeUranium, RawUranium, Skrungle] # Frontier: add FuelGradeUranium, RawUranium, Skrungle
     - type: PortableGenerator
     - type: UpgradePowerSupplier
@@ -280,7 +280,7 @@
   name: J.R.P.A.C.M.A.N. portable generator # Frontier: no -type
   description: |-
     A small generator capable of powering individual rooms, in case of emergencies.
-    Runs off welding fuel and is rated for up to 15 kW.
+    Runs off welding fuel, ethanol, or in a pinch, any other alcohol. It is rated for up to 15 kW.
     Rated ages 3 and up.
   parent: PortableGeneratorBase
   id: PortableGeneratorJrPacman
@@ -331,11 +331,13 @@
     - type: ChemicalFuelGeneratorAdapter
       solution: tank
       reagents:
+        BaseAlcohol: 0.5
+        Ethanol: 1 # coyote - ethically sourced fuel so botanists keep winning
         WeldingFuel: 1
     - type: SolutionContainerManager
       solutions:
         tank:
-          maxVol: 400 # Frontier - 50<200
+          maxVol: 1000 # Frontier - 50<200, Coyote 400>1000 to let it run overnight
     - type: RefillableSolution
       solution: tank
     - type: PortableGenerator
