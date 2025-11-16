@@ -59,7 +59,8 @@ public sealed partial class TransformationToolComponent : Component
         "Airlock",
         "Wall",
         "AirAlarm",
-        "FireAlarm"
+        "FireAlarm",
+        "Uplink"
     };
 
     /// <summary>

@@ -11,6 +11,7 @@ using Content.Shared.Tag;
 using Content.Shared.Tools;
 using Content.Shared.UserInterface;
 using Content.Shared.Weapons.Melee;
+using Content.Shared.Mobs.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
@@ -84,6 +85,13 @@ public sealed class TransformationToolSystem : EntitySystem
         // Don't scan the tool itself
         if (target == tool)
             return;
+
+        // Don't scan living mobs (prevents issues with complex entity types like turrets, NPCs, etc.)
+        if (HasComp<Shared.Mobs.Components.MobStateComponent>(target))
+        {
+            _popup.PopupEntity("Cannot scan living entities!", tool, user, PopupType.Medium);
+            return;
+        }
 
         // Check blacklist tags
         if (component.BlacklistTags.Count > 0)
