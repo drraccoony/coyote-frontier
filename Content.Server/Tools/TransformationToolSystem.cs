@@ -242,6 +242,11 @@ public sealed class TransformationToolSystem : EntitySystem
     private void OnRevert(EntityUid uid, TransformationToolComponent component, TransformationToolRevertMessage args)
     {
         var target = GetEntity(args.Target);
+        
+        // Verify entity exists and is in our tracking dictionary
+        if (!Exists(target))
+            return;
+            
         if (component.ActiveTransformations.ContainsKey(target))
         {
             // Revert will trigger entity deletion, which will trigger OnPolymorphedEntityTerminating
@@ -276,11 +281,31 @@ public sealed class TransformationToolSystem : EntitySystem
         if (!_ui.HasUi(uid, TransformationToolUiKey.Key))
             return;
 
+        // Clean up any stale entries (deleted or terminating entities)
+        var toRemove = new List<EntityUid>();
+        foreach (var (transformed, original) in component.ActiveTransformations)
+        {
+            if (!Exists(transformed) || LifeStage(transformed) >= EntityLifeStage.Terminating ||
+                !Exists(original) || LifeStage(original) >= EntityLifeStage.Terminating)
+            {
+                toRemove.Add(transformed);
+            }
+        }
+
+        foreach (var entity in toRemove)
+        {
+            component.ActiveTransformations.Remove(entity);
+        }
+
+        if (toRemove.Count > 0)
+            Dirty(uid, component);
+
         var netTransformations = new Dictionary<NetEntity, NetEntity>();
         foreach (var (transformed, original) in component.ActiveTransformations)
         {
-            // Only include entities that still exist
-            if (Exists(transformed) && Exists(original))
+            // Double-check entities are valid and fully initialized
+            if (Exists(transformed) && LifeStage(transformed) == EntityLifeStage.MapInitialized &&
+                Exists(original) && LifeStage(original) == EntityLifeStage.MapInitialized)
             {
                 netTransformations[GetNetEntity(transformed)] = GetNetEntity(original);
             }
