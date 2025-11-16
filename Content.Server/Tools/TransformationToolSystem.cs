@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.Consent;
 using Content.Server.Polymorph.Systems;
+using Content.Server.Polymorph.Components;
 using Content.Shared.Consent;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
@@ -44,11 +45,14 @@ public sealed class TransformationToolSystem : EntitySystem
 
         SubscribeLocalEvent<TransformationToolComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<TransformationToolComponent, AfterActivatableUIOpenEvent>(OnUIOpened);
+        SubscribeLocalEvent<TransformationToolComponent, EntityTerminatingEvent>(OnToolTerminating);
 
         SubscribeLocalEvent<TransformationToolComponent, TransformationToolClearScanMessage>(OnClearScan);
         SubscribeLocalEvent<TransformationToolComponent, TransformationToolRevertMessage>(OnRevert);
         SubscribeLocalEvent<TransformationToolComponent, TransformationToolRevertAllMessage>(OnRevertAll);
         SubscribeLocalEvent<TransformationToolComponent, TransformationToolSetDurationMessage>(OnSetDuration);
+
+        SubscribeLocalEvent<PolymorphedEntityComponent, EntityTerminatingEvent>(OnPolymorphedEntityTerminating);
     }
 
     private void OnAfterInteract(EntityUid uid, TransformationToolComponent component, AfterInteractEvent args)
@@ -169,7 +173,7 @@ public sealed class TransformationToolSystem : EntitySystem
             TransferDamage = true,
             TransferName = true,
             TransferHumanoidAppearance = false,
-            Inventory = PolymorphInventoryChange.Transfer,
+            Inventory = PolymorphInventoryChange.Drop, // Drop items since target may not have inventory
             RevertOnCrit = false,
             RevertOnDeath = false,
             RevertOnEat = false,
@@ -205,6 +209,26 @@ public sealed class TransformationToolSystem : EntitySystem
         UpdateUI(uid, component);
     }
 
+    private void OnPolymorphedEntityTerminating(EntityUid uid, PolymorphedEntityComponent component, ref EntityTerminatingEvent args)
+    {
+        // When a polymorphed entity is being deleted, remove it from any transformation tools tracking it
+        var query = EntityQueryEnumerator<TransformationToolComponent>();
+        while (query.MoveNext(out var toolUid, out var tool))
+        {
+            if (tool.ActiveTransformations.Remove(uid))
+            {
+                Dirty(toolUid, tool);
+                UpdateUI(toolUid, tool);
+            }
+        }
+    }
+
+    private void OnToolTerminating(EntityUid uid, TransformationToolComponent component, ref EntityTerminatingEvent args)
+    {
+        // Clean up when the tool itself is being deleted
+        component.ActiveTransformations.Clear();
+    }
+
     private void OnClearScan(EntityUid uid, TransformationToolComponent component, TransformationToolClearScanMessage args)
     {
         component.ScannedEntity = null;
@@ -218,13 +242,14 @@ public sealed class TransformationToolSystem : EntitySystem
     private void OnRevert(EntityUid uid, TransformationToolComponent component, TransformationToolRevertMessage args)
     {
         var target = GetEntity(args.Target);
-        if (component.ActiveTransformations.TryGetValue(target, out var original))
+        if (component.ActiveTransformations.ContainsKey(target))
         {
+            // Revert will trigger entity deletion, which will trigger OnPolymorphedEntityTerminating
+            // which will clean up the dictionary entry for us
             _polymorph.Revert(target);
-            component.ActiveTransformations.Remove(target);
-
-            Dirty(uid, component);
-            UpdateUI(uid, component);
+            
+            // Don't update UI here - let OnPolymorphedEntityTerminating handle it
+            // to avoid race conditions with entity deletion
         }
     }
 
@@ -236,9 +261,7 @@ public sealed class TransformationToolSystem : EntitySystem
                 _polymorph.Revert(transformed);
         }
 
-        component.ActiveTransformations.Clear();
-        Dirty(uid, component);
-        UpdateUI(uid, component);
+        // The dictionary will be cleaned up by OnPolymorphedEntityTerminating as each entity is deleted
     }
 
     private void OnSetDuration(EntityUid uid, TransformationToolComponent component, TransformationToolSetDurationMessage args)
@@ -256,7 +279,11 @@ public sealed class TransformationToolSystem : EntitySystem
         var netTransformations = new Dictionary<NetEntity, NetEntity>();
         foreach (var (transformed, original) in component.ActiveTransformations)
         {
-            netTransformations[GetNetEntity(transformed)] = GetNetEntity(original);
+            // Only include entities that still exist
+            if (Exists(transformed) && Exists(original))
+            {
+                netTransformations[GetNetEntity(transformed)] = GetNetEntity(original);
+            }
         }
 
         var state = new TransformationToolBoundUserInterfaceState(
