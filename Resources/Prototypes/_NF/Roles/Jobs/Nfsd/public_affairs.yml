@@ -5,7 +5,7 @@
   playTimeTracker: JobPublicAffairsLiaison
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 43200 # 12 hours
+      time: 129600 # 36 hours
     - !type:DepartmentTimeRequirement
       department: Security
       time: 21600 # 6 hours
@@ -22,11 +22,16 @@
   canBeAntag: false
   weight: 105
   displayWeight: 16
+  access:
+  - HeadOfSecurity
   accessGroups:
   - CadetNfsdAccess
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
