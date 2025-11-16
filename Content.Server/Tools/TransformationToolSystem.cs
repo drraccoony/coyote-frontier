@@ -247,7 +247,7 @@ public sealed class TransformationToolSystem : EntitySystem
             // Revert will trigger entity deletion, which will trigger OnPolymorphedEntityTerminating
             // which will clean up the dictionary entry for us
             _polymorph.Revert(target);
-            
+
             // Don't update UI here - let OnPolymorphedEntityTerminating handle it
             // to avoid race conditions with entity deletion
         }
