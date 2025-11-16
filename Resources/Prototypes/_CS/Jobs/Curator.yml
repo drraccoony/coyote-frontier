@@ -48,19 +48,16 @@
 - type: startingGear
   id: CuratorGear
   equipment:
-    shoes: ClothingShoesBootsLaceup
-    id: LibrarianPDA
-    ears: ClothingHeadsetService
     pocket1: d20Dice
     pocket2: HandLabeler # for making named bestsellers
   storage:
     back:
     - BookRandom
-    - EncryptionKeyService
-    - EncryptionKeyScience
+    - EncryptionKeyService # TODO: make unique encryption key loadout group and remove this
+    - EncryptionKeyScience # TODO: make unique encryption key loadout group and remove this
     - ShipVoucherCoyoteCurator
 
-# Food Service Ship Voucher
+# Curator Ship Voucher
 - type: entity
   parent: BaseShipVoucher
   id: ShipVoucherCoyoteCurator
@@ -83,7 +80,7 @@
     - Investigator
     - Pulsar
 
-# Food Service Role Loadout
+# Curator Role Loadout
 - type: roleLoadout
   id: JobCurator
   groups:
@@ -98,10 +95,10 @@
   - ContractorFace
   - ContractorGlasses
   - ContractorBelt
-  - ContractorEars
+  - ContractorEars # TODO: should maybe make a unique loadout group to give librarian and science headets for free
   - ContractorEncryptionKey
   - ContractorBoxSurvival
-  - ContractorPDA
+  - ContractorPDA # TODO: make a unique loadout group that gives them librarian (and maybe science?) PDA for free
   - ContractorWallet
   - ContractorCartridge
   - ContractorImplanter
