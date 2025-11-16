@@ -1,5 +1,6 @@
 - type: entity
   id: TransformationTool
+  parent: BaseItem
   name: transformation tool
   description: A digital tool that can scan entities and transform players into them.
   components:
@@ -8,6 +9,7 @@
     state: icon
   - type: Item
     size: Small
+    sprite: Objects/Tools/multitool.rsi
   - type: TransformationTool
     defaultDurationMinutes: 5
   - type: ActivatableUI
