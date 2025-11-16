@@ -10,6 +10,7 @@ using Content.Shared.Popups;
 using Content.Shared.Tag;
 using Content.Shared.Tools;
 using Content.Shared.UserInterface;
+using Content.Shared.Weapons.Melee;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
@@ -242,13 +243,20 @@ public sealed class TransformationToolSystem : EntitySystem
     private void OnRevert(EntityUid uid, TransformationToolComponent component, TransformationToolRevertMessage args)
     {
         var target = GetEntity(args.Target);
-        
+
         // Verify entity exists and is in our tracking dictionary
         if (!Exists(target))
             return;
-            
+
         if (component.ActiveTransformations.ContainsKey(target))
         {
+            // Stop any active melee weapon attacks before reverting to prevent client-side rendering issues
+            if (TryComp<MeleeWeaponComponent>(target, out var meleeWeapon))
+            {
+                meleeWeapon.Attacking = false;
+                Dirty(target, meleeWeapon);
+            }
+
             // Revert will trigger entity deletion, which will trigger OnPolymorphedEntityTerminating
             // which will clean up the dictionary entry for us
             _polymorph.Revert(target);
