@@ -22,7 +22,7 @@
   - Scrapyard
   - Civilian
   engine:
-  - Welding Fuel
+  - Welding
 
 - type: gameMap
   id: Chunk
