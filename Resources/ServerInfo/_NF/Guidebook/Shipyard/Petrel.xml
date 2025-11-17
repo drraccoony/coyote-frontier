@@ -1,0 +1,92 @@
+<Document>
+  # PETREL-CLASS CARGO TUG
+  <Box>
+    <GuideEntityEmbed Entity="CrateTradeSecureHigh" Caption="trading crate"/>
+    <GuideEntityEmbed Entity="CrateGenericSteel" Caption="mystery loot"/>
+    <GuideEntityEmbed Entity="OreProcessor"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="ShuttleMapPetrel" Caption=""/>
+  </Box>
+
+    [color=#a4885c]Ship Size:[/color] Medium
+
+	[color=#a4885c]Recommended Crew:[/color] 2-4
+
+	[color=#a4885c]Power Gen Type:[/color] Uranium
+
+	[color=#a4885c]Expeditions:[/color] No
+
+	[color=#a4885c]IFF Console:[/color] None
+
+  "A medium sized space forklift from the USSP-based Kesha Aerospace Plant, with a massive vacuum-exposed cargo rack ready to shove station-constructing loads of material wherever you need it to go!"
+  
+  "The Petrel is designed around two unique components; the ship itself, which is based on an old tug design, and the large vacuum-exposed cargo rack. Be sure to wear EVA gear when operating the Emu PLUs!"
+
+  # PREFLIGHT CHECKLIST
+
+  ## 1. Power supply
+
+  ## 1.1. Battery units
+  <Box>
+  <GuideEntityEmbed Entity="SMESBasic"/>
+  <GuideEntityEmbed Entity="SubstationBasic"/>
+  <GuideEntityEmbed Entity="APCBasic"/>
+  </Box>
+
+  - Check that the SMES unit is anchored to the floor.
+  - Check that the substation unit is anchored to the floor.
+  - Check that the APC unit's Main Breaker is toggled on.
+  - Check the APC unit's current Load* (W).
+
+  ## 1.2. S.U.P.E.R.P.A.C.M.A.N. generator unit
+  <Box>
+    <GuideEntityEmbed Entity="PortableGeneratorSuperPacman"/>
+    <GuideEntityEmbed Entity="SheetUranium"/>
+    <GuideEntityEmbed Entity="SignRadiationMed"/>
+  </Box>
+  
+  - Open radiation shielding.
+  - Check if the S.U.P.E.R.P.A.C.M.A.N. generator unit is anchored to the floor.
+  - Check if the S.U.P.E.R.P.A.C.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
+  - Check if the S.U.P.E.R.P.A.C.M.A.N. generator unit is set to HV output.
+  - Set Target Power for 40 [bold]k[/bold]W.
+  - Start the S.U.P.E.R.P.A.C.M.A.N. generator unit.
+  - Close radiation shielding.
+
+  ## 2. Atmospherics
+
+  ## 2.1. Distribution Loop
+  <Box>
+  <GuideEntityEmbed Entity="OxygenCanister"/>
+  <GuideEntityEmbed Entity="NitrogenCanister"/>
+  <GuideEntityEmbed Entity="GasPort"/>
+  <GuideEntityEmbed Entity="GasMixer"/>
+  <GuideEntityEmbed Entity="GasPressurePump"/>
+  </Box>
+
+  - Check that the O2 canister is anchored to connector port.
+  - Check that the N2 canister is anchored to connector port.
+  - Check that the gas mixer is set to the correct mixing ratio (21% Oxygen, 79% Nitrogen).
+  - Check that the gas mixer is set to 101kPa.
+  - Enable gas mixer.
+
+  ## 2.2. Waste Loop
+  <Box>
+  <GuideEntityEmbed Entity="GasPressurePump"/>
+  </Box>
+
+  - Enable waste loop pump (located in ore silo/gyroscope room).
+
+  ## 3. Other checks
+  <Box>
+  <GuideEntityEmbed Entity="Gyroscope"/>
+  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
+  <GuideEntityEmbed Entity="BlastDoor"/>
+  </Box>
+
+  - Check that the gyroscope is anchored, powered, and enabled.
+  - Check that the mini gravity generator is anchored, powered, and enabled.
+  - Ensure shutter and bolt switches are functional.
+
+</Document>

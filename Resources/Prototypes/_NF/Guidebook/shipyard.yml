@@ -49,6 +49,7 @@
   - ShipyardNightlight
   - ShipyardNook
   - ShipyardPathfinder
+  - ShipyardPetrel
   - ShipyardPhoenix
   - ShipyardPlacebo
   - ShipyardProspector
@@ -287,6 +288,11 @@
   id: ShipyardPathfinder
   name: guide-entry-shipyard-pathfinder
   text: "/ServerInfo/_NF/Guidebook/Shipyard/Pathfinder.xml"
+
+- type: guideEntry
+  id: ShipyardPetrel
+  name: guide-entry-shipyard-petrel
+  text: "/ServerInfo/_NF/Guidebook/Shipyard/Petrel.xml"
 
 - type: guideEntry
   id: ShipyardPhoenix
