@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/17/2025 19:00:40
-  entityCount: 2502
+  time: 11/17/2025 19:28:12
+  entityCount: 2504
 maps: []
 grids:
 - 1
@@ -6961,6 +6961,13 @@ entities:
     - type: Transform
       pos: 0.5,-20.5
       parent: 1
+- proto: DefaultStationBeaconBar
+  entities:
+  - uid: 2503
+    components:
+    - type: Transform
+      pos: 0.5,9.5
+      parent: 1
 - proto: DefaultStationBeaconBridge
   entities:
   - uid: 906
@@ -7002,6 +7009,13 @@ entities:
     components:
     - type: Transform
       pos: -8.5,-5.5
+      parent: 1
+- proto: DefaultStationBeaconFrontierCafe
+  entities:
+  - uid: 2504
+    components:
+    - type: Transform
+      pos: -8.5,5.5
       parent: 1
 - proto: DefaultStationBeaconFrontierConference
   entities:
@@ -8132,6 +8146,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,-20.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
     - type: GasMixer
       inletTwoConcentration: 0.20999998
       inletOneConcentration: 0.79
@@ -8160,14 +8176,14 @@ entities:
       pos: 2.5,-24.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#9955CCFF'
+      color: '#7E21CEFF'
   - uid: 1094
     components:
     - type: Transform
       pos: -1.5,-24.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#9955CCFF'
+      color: '#7E21CEFF'
   - uid: 1095
     components:
     - type: Transform
@@ -8175,7 +8191,7 @@ entities:
       pos: 2.5,-30.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#9955CCFF'
+      color: '#7E21CEFF'
   - uid: 1096
     components:
     - type: Transform
@@ -8189,7 +8205,7 @@ entities:
       pos: -1.5,-30.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#9955CCFF'
+      color: '#7E21CEFF'
   - uid: 1098
     components:
     - type: Transform
@@ -8661,7 +8677,7 @@ entities:
       pos: -1.5,-29.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#9955CCFF'
+      color: '#7E21CEFF'
   - uid: 1161
     components:
     - type: Transform
@@ -8669,7 +8685,7 @@ entities:
       pos: 2.5,-26.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#9955CCFF'
+      color: '#7E21CEFF'
   - uid: 1162
     components:
     - type: Transform
@@ -8677,7 +8693,7 @@ entities:
       pos: 2.5,-27.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#9955CCFF'
+      color: '#7E21CEFF'
   - uid: 1163
     components:
     - type: Transform
@@ -8685,7 +8701,7 @@ entities:
       pos: 2.5,-28.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#9955CCFF'
+      color: '#7E21CEFF'
   - uid: 1164
     components:
     - type: Transform
@@ -8765,7 +8781,7 @@ entities:
       pos: 2.5,-29.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#9955CCFF'
+      color: '#7E21CEFF'
   - uid: 1174
     components:
     - type: Transform
@@ -8773,7 +8789,7 @@ entities:
       pos: 0.5,-25.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#9955CCFF'
+      color: '#7E21CEFF'
   - uid: 1175
     components:
     - type: Transform
@@ -8811,7 +8827,7 @@ entities:
       pos: -1.5,-28.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#9955CCFF'
+      color: '#7E21CEFF'
   - uid: 1180
     components:
     - type: Transform
@@ -9013,7 +9029,7 @@ entities:
       pos: 1.5,-25.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#9955CCFF'
+      color: '#7E21CEFF'
   - uid: 1206
     components:
     - type: Transform
@@ -9357,7 +9373,7 @@ entities:
       pos: -1.5,-26.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#9955CCFF'
+      color: '#7E21CEFF'
   - uid: 1251
     components:
     - type: Transform
@@ -9466,7 +9482,7 @@ entities:
       pos: -1.5,-27.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#9955CCFF'
+      color: '#7E21CEFF'
   - uid: 1265
     components:
     - type: Transform
@@ -11007,7 +11023,7 @@ entities:
       pos: 2.5,-25.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#9955CCFF'
+      color: '#7E21CEFF'
   - uid: 1461
     components:
     - type: Transform
@@ -11156,7 +11172,7 @@ entities:
       pos: -1.5,-25.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#9955CCFF'
+      color: '#7E21CEFF'
   - uid: 1480
     components:
     - type: Transform
@@ -11164,7 +11180,7 @@ entities:
       pos: -0.5,-25.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#9955CCFF'
+      color: '#7E21CEFF'
   - uid: 1481
     components:
     - type: Transform
@@ -11429,7 +11445,7 @@ entities:
       pos: -0.5,-24.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#9955CCFF'
+      color: '#7E21CEFF'
   - uid: 1515
     components:
     - type: Transform
@@ -14630,6 +14646,12 @@ entities:
         1911:
         - - Pressed
           - Toggle
+        1908:
+        - - Pressed
+          - Toggle
+        1909:
+        - - Pressed
+          - Toggle
   - uid: 2495
     components:
     - type: Transform
@@ -14658,7 +14680,7 @@ entities:
     - type: GasValve
       open: False
     - type: AtmosPipeColor
-      color: '#9955CCFF'
+      color: '#990000FF'
 - proto: SignAtmos
   entities:
   - uid: 1936
@@ -15193,6 +15215,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,19.5
       parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraEngineering
+      nameSet: True
+      id: Fore Dock
   - uid: 959
     components:
     - type: Transform
@@ -15358,6 +15385,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-11.5
       parent: 1
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraEngineering
+      nameSet: True
+      id: Engine Room
   - uid: 2484
     components:
     - type: Transform
