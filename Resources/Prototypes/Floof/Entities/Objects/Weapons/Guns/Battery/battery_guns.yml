@@ -22,7 +22,7 @@
     - Back
     - suitStorage
   - type: Gun
-    fireRate: 2.4
+    fireRate: 2.2 # 70.4 DPS versus Laser Carbine's 70.3
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: HitscanBatteryAmmoProvider
