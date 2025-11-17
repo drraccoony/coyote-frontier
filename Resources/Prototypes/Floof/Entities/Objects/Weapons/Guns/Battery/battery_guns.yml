@@ -27,10 +27,10 @@
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: HitscanBatteryAmmoProvider
     proto: PulseWeak # Flooftier Weak Pulse Rifle
-    fireCost: 60
+    fireCost: 80
   - type: Battery
-    maxCharge: 1560
-    startingCharge: 1560
+    maxCharge: 2400
+    startingCharge: 2400
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 30
+    autoRechargeRate: 4
