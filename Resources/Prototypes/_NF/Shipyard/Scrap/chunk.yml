@@ -1,0 +1,45 @@
+# Author Info
+# GitHub: SmolGreenBuggo https://github.com/SmolGreenBuggo
+# Discord: kazako
+
+# Maintainer Info
+# GitHub: SmolGreenBuggo https://github.com/SmolGreenBuggo
+# Discord: kazako
+
+# Shuttle Notes: This is a temp NT-licensed solution to the current issues with making new grids in space.
+#
+- type: vessel
+  id: Chunk
+  parent: BaseVessel
+  name: NT Chunk
+  description: Nanotrasen has heard about the issue with regards to station licensing in your sector, and has provided this... wonderful vessel as a temporary solution.Runs off welding fuel. Handle with care.
+  price: 1000 # ~1015
+  category: Small
+  group: Scrap
+  shuttlePath: /Maps/_NF/Shuttles/Scrap/chunk.yml
+  guidebookPage: Null
+  class:
+  - Scrapyard
+  - Civilian
+  engine:
+  - Welding Fuel
+
+- type: gameMap
+  id: Chunk
+  mapName: 'NT Chunk'
+  mapPath: /Maps/_NF/Shuttles/Scrap/chunk.yml
+  minPlayers: 0
+  stations:
+    Chunk:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Disciple {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
