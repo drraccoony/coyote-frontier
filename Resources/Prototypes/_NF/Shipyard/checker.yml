@@ -8,7 +8,7 @@
   parent: BaseVessel
   name: LVHI Checker
   description: The pinnacle of entertainment, sporting the universes oldest game with class. Who needs money when you got board games?
-  price: 85000
+  price: 40000 # 34999, upcharged because teehee
   category: Medium
   group: Shipyard
   shuttlePath: /Maps/_NF/Shuttles/checker.yml
