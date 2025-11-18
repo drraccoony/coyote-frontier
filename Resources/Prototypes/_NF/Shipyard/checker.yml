@@ -1,0 +1,40 @@
+# Author Info
+# GitHub: SimplyPoodle
+# Discord: SimplyPoodle
+
+# made for a friend! love ya archee <3
+- type: vessel
+  id: Checker
+  parent: BaseVessel
+  name: LVHI Checker
+  description: The pinnacle of entertainment, sporting the universes oldest game with class. Who needs computers when you got board games?
+  price: 85000
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/checker.yml
+  guidebookPage: ShipyardLegman
+  class:
+  - Civilian
+  - Service
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Checker
+  mapName: 'Checker'
+  mapPath: /Maps/_NF/Shuttles/checker.yml
+  minPlayers: 0
+  stations:
+    Checker:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Checker {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            ContractorInterview: [ 0, 0 ]
+            PilotInterview: [ 0, 0 ]
+            MercenaryInterview: [ 0, 0 ]
