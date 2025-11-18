@@ -555,3 +555,10 @@
   storage:
     back:
     - RubberStampEngineer
+
+- type: loadout
+  id: ContractorClicker
+  price: 500
+  storage:
+    back:
+    - Clicker
