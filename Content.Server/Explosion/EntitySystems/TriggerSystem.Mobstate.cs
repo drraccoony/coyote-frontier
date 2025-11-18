@@ -18,6 +18,7 @@ public sealed partial class TriggerSystem
         SubscribeLocalEvent<TriggerOnMobstateChangeComponent, ImplantRelayEvent<SuicideEvent>>(OnSuicideRelay);
         SubscribeLocalEvent<TriggerOnMobstateChangeComponent, ImplantRelayEvent<MobStateChangedEvent>>(OnMobStateRelay);
         SubscribeLocalEvent<TriggerOnMobstateChangeComponent, ImplantRelayEvent<GetVerbsEvent<Verb>>>(OnVerbRelay);
+        SubscribeLocalEvent<TriggerOnMobstateChangeComponent, ImplantRelayEvent<ReTriggerRattleImplantEvent>>(OnFtlArriveRelay);
     }
 
     private void OnMobStateChanged(
@@ -28,12 +29,27 @@ public sealed partial class TriggerSystem
         if (!component.MobState.Contains(args.NewMobState))
             return;
 
+        TryRunTrigger(
+            uid,
+            component,
+            args.Target,
+            args.NewMobState,
+            args.Origin);
+    }
+
+    private void TryRunTrigger(
+        EntityUid uid,
+        TriggerOnMobstateChangeComponent component,
+        EntityUid changedStateMobUid,
+        MobState coolState,
+        EntityUid? stateChangerUid = null)
+    {
         if (!component.Enabled)
             return;
 
         if (component.PreventVore)
         {
-            if (HasComp<VoredComponent>(args.Target))
+            if (HasComp<VoredComponent>(changedStateMobUid))
             {
                 // Typically, if someone is vored, they dont want people to come rush to
                 // their aid, so just block the trigger if they are vored.
@@ -47,7 +63,7 @@ public sealed partial class TriggerSystem
         {
             HandleTimerTrigger(
                 uid,
-                args.Origin,
+                stateChangerUid,
                 timerTrigger.Delay,
                 timerTrigger.BeepInterval,
                 timerTrigger.InitialBeepDelay,
@@ -95,6 +111,22 @@ public sealed partial class TriggerSystem
             component,
             args.Event);
     }
+
+    /// <summary>
+    /// When ftl arrives, and they are fucked, do the needful
+    /// </summary>
+    private void OnFtlArriveRelay(EntityUid uid,
+        TriggerOnMobstateChangeComponent component,
+        ImplantRelayEvent<ReTriggerRattleImplantEvent> args)
+    {
+        TryRunTrigger(
+            uid,
+            component,
+            args.Event.Implanted,
+            args.Event.CurrentState,
+            null);
+    }
+
 
     private void OnVerbRelay(EntityUid uid,
         TriggerOnMobstateChangeComponent component,

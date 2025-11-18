@@ -16,7 +16,14 @@ using Robust.Shared.Map; // Frontier
 using Content.Server.GameTicking; // Frontier
 using Content.Server._NF.Salvage.Expeditions.Structure; // Frontier
 using Content.Server._NF.Salvage.Expeditions;
-using Content.Shared.Salvage; // Frontier
+using Content.Server.Buckle.Systems;
+using Content.Shared._Coyote;
+using Content.Shared.Buckle.Components;
+using Content.Shared.Mind.Components;
+using Content.Shared.Salvage;
+using Content.Shared.Warps;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems; // Frontier
 
 namespace Content.Server.Salvage;
 
@@ -28,6 +35,7 @@ public sealed partial class SalvageSystem
 
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!; // Frontier
+    [Dependency] private readonly BuckleSystem _buckle = default!;
 
     private void InitializeRunner()
     {
@@ -249,7 +257,38 @@ public sealed partial class SalvageSystem
                                 continue;
                             }
 
-                            // Destination generator parameters (move to CVAR?)
+                            // rescue all the losers on the map who arent on the ship for whatever reason
+                            var shuttleGrid = shuttleXform.GridUid;
+                            DestinationPriority? deadLoserDestinations = null;
+                            if (shuttleGrid != null)
+                            {
+                                var mobQuery = EntityQueryEnumerator<MindContainerComponent, TransformComponent>();
+                                while (mobQuery.MoveNext(
+                                       out var mobUid,
+                                       out var mindC,
+                                       out var mobXform))
+                                {
+                                    if (mobXform.MapUid != uid)
+                                        continue;
+                                    if (mobXform.GridUid == shuttleGrid)
+                                        continue; // they're already on the shuttle
+                                    // only count creatures that have at one point had a player controlling them
+                                    if (!mindC.HasHadMind)
+                                        continue;
+                                    // move them to the shuttle
+                                    deadLoserDestinations ??= GetDeadLoserDestinations(shuttleGrid.Value);
+                                    RescueDork(
+                                        mobUid,
+                                        deadLoserDestinations,
+                                        shuttleGrid.Value);
+                                    Spawn("EffectSparks", Transform(mobUid).Coordinates);
+                                    Spawn("EffectGravityPulse", Transform(mobUid).Coordinates);
+                                    SoundSpecifier Sound = new SoundPathSpecifier("/Audio/_COYOTE/ExpedReturnToBed.ogg");
+                                    _audio.PlayPvs(Sound, mobUid);
+                                }
+                            }
+
+                                // Destination generator parameters (move to CVAR?)
                             int numRetries = 20; // Maximum number of retries
                             float minDistance = 200f; // Minimum distance from another object, in meters
                             float minRange = 750f; // Minimum distance from sector centre, in meters
@@ -284,7 +323,13 @@ public sealed partial class SalvageSystem
                                 dropLocation = _random.NextVector2(minRange, maxRange);
                             }
 
-                            _shuttle.FTLToCoordinates(shuttleUid, shuttle, new EntityCoordinates(mapUid.Value, dropLocation), 0f, ftlTime, TravelTime);
+                            _shuttle.FTLToCoordinates(
+                                shuttleUid,
+                                shuttle,
+                                new EntityCoordinates(mapUid.Value, dropLocation),
+                                0f,
+                                ftlTime,
+                                TravelTime);
                             // End Frontier:  try to find a potential destination for ship that doesn't collide with other grids.
                             //_shuttle.FTLToDock(shuttleUid, shuttle, member, ftlTime); // Frontier: use above instead
                         }
@@ -362,5 +407,156 @@ public sealed partial class SalvageSystem
             }
         }
         // End Frontier: mission-specific logic
+    }
+
+    /// <summary>
+    /// Takes a mob, and puts them onto this shuttle.
+    /// </summary>
+    private void RescueDork(
+        EntityUid mobUid,
+        DestinationPriority possibleDestinations,
+        EntityUid shuttleGrid)
+    {
+        Spawn("EffectGravityPulse", Transform(mobUid).Coordinates);
+        Spawn("EffectSparks", Transform(mobUid).Coordinates);
+        // unbuckle them if they are buckled
+        _buckle.TryUnbuckle(mobUid, null);
+        // try beds first
+        foreach (var bedUid in possibleDestinations.Beds)
+        {
+            if (TryTeleportToStrap(mobUid, bedUid))
+                return;
+        }
+        // then chairs
+        foreach (var chairUid in possibleDestinations.Chairs)
+        {
+            if (TryTeleportToStrap(mobUid, chairUid))
+                return;
+        }
+        // then consoles
+        foreach (var consoleUid in possibleDestinations.Consoles)
+        {
+            var consoleXform = Transform(consoleUid);
+            var mobXform = Transform(mobUid);
+            _transform.SetCoordinates(mobUid, consoleXform.Coordinates);
+            _transform.AttachToGridOrMap(mobUid, mobXform);
+            return;
+        }
+        // then fallback
+        foreach (var fallbackUid in possibleDestinations.Fallback)
+        {
+            var fallbackXform = Transform(fallbackUid);
+            var mobXform = Transform(mobUid);
+            _transform.SetCoordinates(mobUid, fallbackXform.Coordinates);
+            _transform.AttachToGridOrMap(mobUid, mobXform);
+            return;
+        }
+    }
+
+    /// <summary>
+    /// Gets a list of possible destinations for dead/dying crew to be rescued to.
+    /// Tries to find a location based on a list of priorities.
+    /// HERES THE PRIORITIES:
+    /// 2: Beds with no mobs in them.
+    /// 3: Chairs with no mobs in them.
+    /// 4: I dunno the console I guess
+    /// </summary>
+    private DestinationPriority GetDeadLoserDestinations(EntityUid shuttleGrid)
+    {
+        DestinationPriority destinations = new();
+        // first, find the exped consoles on the grid
+        var destQuery = EntityQueryEnumerator<SalvageExpeditionConsoleComponent, TransformComponent>();
+        while (destQuery.MoveNext(
+                   out var uid,
+                   out var _,
+                   out var xform))
+        {
+            if (xform.GridUid != shuttleGrid)
+                continue;
+            destinations.Add(uid, DestinationType.Console);
+        }
+        // then, all beds / chairs (theyre both strap components)
+        var strapQuery = EntityQueryEnumerator<StrapComponent, TransformComponent>();
+        while (strapQuery.MoveNext(
+                   out var uid,
+                   out var strap,
+                   out var xform))
+        {
+            if (xform.GridUid != shuttleGrid)
+                continue;
+            destinations.Add(uid, strap.Position == StrapPosition.Stand ? DestinationType.Chair : DestinationType.Bed);
+        }
+        // then some fallback stuff, find the warp point
+        // worst case, we just teleport them to the center of the grid. hope its not in a wall!!
+        var warpQuery = EntityQueryEnumerator<WarpPointComponent, TransformComponent>();
+        while (warpQuery.MoveNext(
+                   out var uid,
+                   out var _,
+                   out var xform))
+        {
+            if (xform.GridUid != shuttleGrid)
+                continue;
+            destinations.Add(uid, DestinationType.Fallback);
+        }
+        return destinations;
+    }
+
+    /// <summary>
+    /// Tries to teleport the mob to the strap and buckle them in.
+    /// Returns true on success.
+    /// </summary>
+    private bool TryTeleportToStrap(EntityUid mobUid, EntityUid strapUid)
+    {
+        if (!TryComp<BuckleComponent>(mobUid, out var buckle))
+            return false;
+        if (!TryComp<StrapComponent>(strapUid, out var strap))
+            return false;
+        if (strap.BuckledEntities.Count > 0)
+            return false; // already occupied
+        var strapXform = Transform(strapUid);
+        var mobXform = Transform(mobUid);
+        _transform.SetCoordinates(mobUid, strapXform.Coordinates);
+        _transform.AttachToGridOrMap(mobUid, mobXform);
+        return _buckle.TryBuckle(
+            mobUid,
+            null,
+            strapUid);
+    }
+
+    // class that holds a set of destinations with a priority
+    private sealed class DestinationPriority
+    {
+        public List<EntityUid> Beds = new();
+        public List<EntityUid> Chairs = new();
+        public List<EntityUid> Consoles = new();
+        public List<EntityUid> Fallback = new();
+        public void Add(EntityUid uid, DestinationType type)
+        {
+            switch (type)
+            {
+                case DestinationType.Bed:
+                    Beds.Add(uid);
+                    break;
+                case DestinationType.Chair:
+                    Chairs.Add(uid);
+                    break;
+                case DestinationType.Console:
+                    Consoles.Add(uid);
+                    break;
+                default:
+                case DestinationType.Fallback:
+                    Fallback.Add(uid);
+                    break;
+            }
+        }
+    }
+
+    // enum for destination types
+    private enum DestinationType
+    {
+        Bed,
+        Chair,
+        Console,
+        Fallback,
     }
 }
