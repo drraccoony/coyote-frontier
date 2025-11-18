@@ -99,7 +99,7 @@
       - Power
     # Frontier: upgradable SMES
     - type: UpgradeBattery
-      maxChargeMultiplier: 2
+      maxChargeMultiplier: 1.5875 # works out at a 300% increase
       baseMaxCharge: 36000000
     - type: UpgradePowerSupplyRamping
       scaling: Linear
@@ -177,6 +177,7 @@
   # Frontier: upgradable SMES
   - type: UpgradeBattery
     baseMaxCharge: 90000000
+    maxChargeMultiplier: 2
   # End Frontier: upgradable SMES
 
 - type: entity
