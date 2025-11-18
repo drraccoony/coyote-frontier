@@ -3,7 +3,7 @@
   name: job-name-senior-officer
   description: job-description-senior-officer
   playTimeTracker: JobSeniorOfficer
-  requirements:
+  requirements: # Coyote editted the playtime required for Sergeant
     - !type:OverallPlaytimeRequirement
       time: 108000 # 30 hours
     - !type:DepartmentTimeRequirement
