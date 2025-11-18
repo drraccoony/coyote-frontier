@@ -1,6 +1,6 @@
-# Shower
+# Floor Drain
 - type: constructionGraph
-  id: Shower
+  id: FloorDrain
   start: start
   graph:
   - node: start
@@ -8,11 +8,11 @@
     - to: body
       steps:
       - material: Steel
-        amount: 1
+        amount: 2
         doAfter: 1
 
   - node: body
-    entity: ShowerUnfinished
+    entity: FloorDrainUnfinished
     edges:
     - to: start
       conditions:
@@ -21,7 +21,7 @@
       completed:
       - !type:SpawnPrototype
         prototype: SheetSteel1
-        amount: 1
+        amount: 2
       - !type:DeleteEntity
       steps:
       - tool: Screwing
@@ -38,7 +38,7 @@
         doAfter: 1
 
   - node: plumbing
-    entity: ShowerUnfinished
+    entity: FloorDrainUnfinished
     edges:
     - to: body
       completed:
@@ -47,17 +47,20 @@
       steps:
       - tool: Prying
         doAfter: 1
-    - to: shower
+    - to: floorDrain
       steps:
       - tool: Anchoring
         doAfter: 1
 
-  - node: shower
-    entity: Shower
+  - node: floorDrain
+    entity: FloorDrain
     edges:
     - to: plumbing
       completed:
       - !type:SetAnchor
+      - !type:EmptySolution
+        solution: drainBuffer
+        spill: true
       steps:
       - tool: Anchoring
         doAfter: 1
