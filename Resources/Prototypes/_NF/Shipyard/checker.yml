@@ -12,7 +12,7 @@
   category: Medium
   group: Shipyard
   shuttlePath: /Maps/_NF/Shuttles/checker.yml
-  guidebookPage: ShipyardLegman
+  guidebookPage: Null
   class:
   - Civilian
   - Service
