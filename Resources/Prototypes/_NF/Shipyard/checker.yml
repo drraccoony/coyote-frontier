@@ -7,7 +7,7 @@
   id: Checker
   parent: BaseVessel
   name: LVHI Checker
-  description: The pinnacle of entertainment, sporting the universes oldest game with class. Who needs computers when you got board games?
+  description: The pinnacle of entertainment, sporting the universes oldest game with class. Who needs money when you got board games?
   price: 85000
   category: Medium
   group: Shipyard
@@ -15,7 +15,6 @@
   guidebookPage: Null
   class:
   - Civilian
-  - Service
   engine:
   - Uranium
 
