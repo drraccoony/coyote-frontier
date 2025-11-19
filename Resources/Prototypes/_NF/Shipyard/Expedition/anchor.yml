@@ -11,7 +11,7 @@
 - type: vessel
   id: Anchor
   parent: BaseVessel
-  name: (LL2) Anchor # COYOTE: Added intended license Level to name.
+  name: LL2 Anchor # COYOTE: Added intended license Level to name.
   description: A large luxury cruiser capable of long ranged travel across the sector, expedition capable. # COYOTE: This thing is TRYING to be a LL2, but it's not. Will be priced as an LL2.
   price: 165000 # $109804 0.2 131764.8 # COYOTE: 116,794 * (1.35+0.5) ^= 165,000 (163,511)
   category: Large
