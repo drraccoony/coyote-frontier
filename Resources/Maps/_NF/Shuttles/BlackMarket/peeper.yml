@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/19/2025 09:50:40
+  time: 11/19/2025 12:41:34
   entityCount: 355
 maps: []
 grids:
@@ -190,25 +190,21 @@ entities:
       id: Peeper
 - proto: AirAlarm
   entities:
-  - uid: 211
+  - uid: 216
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 4.5,1.5
+      pos: 3.5,-1.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 211
     - type: DeviceList
       devices:
       - 225
-      - 211
-      - 216
       - 305
-      - 226
-- proto: AirlockGlassShuttleSyndicatePirateLocked
+      - 3
+      - 211
+- proto: AirlockShuttleSyndicatePirateLocked
   entities:
-  - uid: 3
+  - uid: 226
     components:
     - type: Transform
       pos: 0.5,-3.5
@@ -222,7 +218,7 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 211
+      - 216
 - proto: APCBasic
   entities:
   - uid: 4
@@ -1262,14 +1258,14 @@ entities:
       parent: 1
 - proto: Firelock
   entities:
-  - uid: 216
+  - uid: 225
     components:
     - type: Transform
       pos: 0.5,-3.5
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 211
+      - 216
 - proto: GasMixerFlipped
   entities:
   - uid: 217
@@ -1348,19 +1344,17 @@ entities:
       color: '#0055CCFF'
 - proto: GasVentPump
   entities:
-  - uid: 225
+  - uid: 3
     components:
     - type: Transform
       pos: 1.5,-0.5
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 211
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
+      - 216
 - proto: GasVentScrubber
   entities:
-  - uid: 226
+  - uid: 211
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -1368,9 +1362,7 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 211
-    - type: AtmosPipeColor
-      color: '#990000FF'
+      - 216
 - proto: GravityGeneratorMini
   entities:
   - uid: 114
