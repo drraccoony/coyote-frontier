@@ -125,3 +125,57 @@
   cost: 1000 # Frontier - set to 1000, original price 400
   category: cargoproduct-category-name-engineering
   group: market
+
+- type: cargoProduct
+  id: EngineAmeJarBig
+  name: bulk AME fuel jar crate
+  icon:
+    sprite: _NF/Objects/Power/big_ame_jar.rsi
+    state: jar
+  product: CrateEngineeringAMEJarBig
+  cost: 150000 # Frontier - Up the price Coyote: very slight discount for almost 3 days of fuel
+  category: cargoproduct-category-name-engineering
+  group: market
+
+- type: cargoProduct
+  id: CargoBarrelWelding
+  name: barrel of welding fuel
+  icon:
+    sprite: _NF/Objects/Specific/Chemistry/jerrycan.rsi
+    state: jerrycan
+  product: ChemicalBarrelExplosiveMarket
+  cost: 5000 # cost of the fuel is 2000, cost of the barrel is 1250
+  category: cargoproduct-category-name-engineering
+  group: market
+
+- type: cargoProduct
+  id: BulkFuelPlasma
+  icon:
+    sprite: _NF/Objects/Specific/Fuel/fuelgrade_material.rsi
+    state: plasma
+  product: CrateEngineeringPlasmaFuel
+  cost: 40000 # cost of the fuel is 36000
+  category: cargoproduct-category-name-engineering
+  group: market
+
+- type: cargoProduct
+  id: BulkFuelUranium
+  icon:
+    sprite: _NF/Objects/Specific/Fuel/fuelgrade_material.rsi
+    state: uranium
+  product: CrateEngineeringUraniumFuel
+  cost: 80000 # cost of the fuel is 75000
+  category: cargoproduct-category-name-engineering
+  group: market
+
+- type: cargoProduct
+  id: BulkFuelBananium
+  icon:
+    sprite: _NF/Objects/Specific/Fuel/fuelgrade_material.rsi
+    state: bananium
+  product: CrateEngineeringBananiumFuel
+  cost: 160000 # cost of the fuel is 150000
+  category: cargoproduct-category-name-engineering
+  group: market
+
+
