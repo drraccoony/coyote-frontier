@@ -8,7 +8,7 @@
   parent: BaseVessel
   name: TSF Stallion
   description: A small NFSD shuttle designed for the securing and safe transport of illicit goods into safe hands; the reliable workhorse of the NFSD.
-  price: 20000 # price was adjusted per appraisegrid; upcharged from 16601
+  price: 25000 # price was adjusted per appraisegrid; upcharged from 16601
   category: Small
   group: Security
   access: Security

@@ -8,7 +8,7 @@
   parent: BaseVesselAntag
   name: Peeper
   description: "Once the voice of Nash, now the voice of freedom. Just don't get caught being a peeping tom!"
-  price: 18000 # price was adjusted per appraisegrid and made to match the oculus; upcharged from 11610
+  price: 26000 # price was adjusted per appraisegrid and made to match the oculus; upcharged from 11610
 # i have no fucking idea how the peeper is cheaper than the oculus
 # they're literally the same ship
 # but whatever whatever the fucking game says i guess mining walls are cheaper somehow???
