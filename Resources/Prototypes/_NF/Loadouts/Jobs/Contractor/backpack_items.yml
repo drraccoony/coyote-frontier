@@ -231,6 +231,13 @@
     back:
     - Wristwatch
 
+- type: loadout
+  id: ContractorAACTablet
+  price: 500
+  storage:
+    back:
+    - AACTablet
+
 #T1
 - type: loadout
   id: ContractorBasketball
@@ -555,3 +562,10 @@
   storage:
     back:
     - RubberStampEngineer
+
+- type: loadout
+  id: ContractorClicker
+  price: 500
+  storage:
+    back:
+    - Clicker
