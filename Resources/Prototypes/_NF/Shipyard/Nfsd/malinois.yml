@@ -7,7 +7,7 @@
   parent: BaseVessel
   name: TSF Malinois
   description: A medium assault craft designed to facilitate prisoner rehabilitation through labour, equipped with an EXP-2100g mounted grenade launcher.
-  price: 39500 #Appraised at 35k
+  price: 39500 #Appraised at 35k, should be LL1 30% markup but 45k makes this unappealing compared to a hypnos.
   category: Medium
   group: Security
   access: Sergeant
