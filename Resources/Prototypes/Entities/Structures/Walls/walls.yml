@@ -43,7 +43,7 @@
         - FullTileMask
         layer:
         - WallLayer
-        density: 1000
+        density: 400 #Coyote
   - type: Airtight
   - type: StaticPrice
     price: 25 # Frontier 75<25
@@ -512,7 +512,7 @@
           - FullTileMask
           layer:
           - WallLayer
-          density: 4000
+          density: 600 #Coyote
     - type: Damageable
       damageContainer: StructuralInorganic
       damageModifierSet: StructuralMetallicStrong
@@ -543,6 +543,9 @@
               acts: [ "Destruction" ]
     - type: RCDDeconstructable # Coyote
       deconstructable: true
+      cost: 6
+      delay: 8
+      fx: EffectRCDDeconstruct8
 
 - type: entity
   parent: WallDiagonalBase
@@ -597,6 +600,9 @@
             collection: MetalSlam
   - type: RCDDeconstructable # Coyote
     deconstructable: true
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8
 
 - type: entity
   parent: BaseWall
