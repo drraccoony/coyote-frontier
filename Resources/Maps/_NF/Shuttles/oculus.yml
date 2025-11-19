@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/19/2025 09:49:22
+  time: 11/19/2025 12:32:12
   entityCount: 342
 maps: []
 grids:
@@ -188,25 +188,21 @@ entities:
       id: Oculus
 - proto: AirAlarm
   entities:
-  - uid: 2
+  - uid: 212
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 4.5,1.5
+      pos: 3.5,-1.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 2
     - type: DeviceList
       devices:
-      - 227
-      - 226
-      - 2
+      - 197
       - 192
-      - 217
+      - 3
+      - 2
 - proto: AirlockShuttle
   entities:
-  - uid: 3
+  - uid: 209
     components:
     - type: Transform
       pos: 0.5,-3.5
@@ -220,7 +216,7 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 2
+      - 212
 - proto: APCBasic
   entities:
   - uid: 4
@@ -1254,14 +1250,14 @@ entities:
       parent: 1
 - proto: Firelock
   entities:
-  - uid: 217
+  - uid: 197
     components:
     - type: Transform
       pos: 0.5,-3.5
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 2
+      - 212
 - proto: GasMixerOnFlipped
   entities:
   - uid: 181
@@ -1337,19 +1333,17 @@ entities:
       color: '#0055CCFF'
 - proto: GasVentPump
   entities:
-  - uid: 226
+  - uid: 2
     components:
     - type: Transform
       pos: 1.5,-0.5
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 2
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
+      - 212
 - proto: GasVentScrubber
   entities:
-  - uid: 227
+  - uid: 3
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -1357,9 +1351,7 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 2
-    - type: AtmosPipeColor
-      color: '#990000FF'
+      - 212
 - proto: GravityGeneratorMini
   entities:
   - uid: 228
