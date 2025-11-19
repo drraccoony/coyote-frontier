@@ -81,12 +81,12 @@
       shader: unshaded
   - type: UpgradeBattery
     maxChargeMultiplier: 3
-    baseMaxCharge: 2700000
+    baseMaxCharge: 2880000
   - type: UpgradePowerSupplyRamping
     scaling: Linear
     supplyRampingMultiplier: 1.25
   - type: Battery
-    maxCharge: 2700000
+    maxCharge: 2880000
     startingCharge: 0
   - type: PointLight
     radius: 1.5
@@ -224,11 +224,11 @@
 - type: entity
   parent: BaseSubstation
   id: SubstationBasic
-  suffix: Basic, 750Wh
+  suffix: Basic, 800Wh
   components:
   - type: Battery
-    maxCharge: 2700000
-    startingCharge: 2700000
+    maxCharge: 2880000
+    startingCharge: 2880000
 
 - type: entity
   parent: SubstationBasic
