@@ -2176,9 +2176,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
-    - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 152
     components:
     - type: Transform
@@ -2186,9 +2183,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
-    - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 278
     components:
     - type: Transform
@@ -2197,9 +2191,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
-    - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 302
     components:
     - type: Transform
@@ -2207,9 +2198,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
-    - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 313
     components:
     - type: Transform
@@ -2218,9 +2206,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
-    - type: DeviceNetwork
-      configurators:
-      - invalid
 - proto: GasVentScrubber
   entities:
   - uid: 47
@@ -2231,9 +2216,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-    - type: DeviceNetwork
-      configurators:
-      - invalid
     - type: AtmosPipeLayers
       pipeLayer: Secondary
   - uid: 268
@@ -2254,9 +2236,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-    - type: DeviceNetwork
-      configurators:
-      - invalid
     - type: AtmosPipeLayers
       pipeLayer: Secondary
   - uid: 321
@@ -2267,9 +2246,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-    - type: DeviceNetwork
-      configurators:
-      - invalid
     - type: AtmosPipeLayers
       pipeLayer: Secondary
   - uid: 375
@@ -2280,9 +2256,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-    - type: DeviceNetwork
-      configurators:
-      - invalid
     - type: AtmosPipeLayers
       pipeLayer: Secondary
   - uid: 379
@@ -2293,9 +2266,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-    - type: DeviceNetwork
-      configurators:
-      - invalid
     - type: AtmosPipeLayers
       pipeLayer: Secondary
 - proto: GeneratorWallmountAPU
