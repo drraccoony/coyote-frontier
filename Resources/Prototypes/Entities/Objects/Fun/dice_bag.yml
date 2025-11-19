@@ -19,14 +19,14 @@
   - type: Item
     size: Small
   - type: Storage
+    maxItemSize: Small
     grid:
     - 0,0,3,1
     whitelist:
       tags:
       - Dice
       - Paper
-      - BaseFigurine
-      - BaseFigurineMech
+      - Figurine
       - Pen
 
 - type: entity
