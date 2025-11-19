@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/19/2025 07:59:43
+  time: 11/19/2025 08:29:50
   entityCount: 293
 maps: []
 grids:
@@ -197,32 +197,31 @@ entities:
       data:
         tiles:
           0,0:
-            0: 62224
+            0: 65296
             1: 6
           -1,0:
             0: 65152
             1: 2
           0,1:
-            0: 12607
-            1: 2048
+            0: 14847
+            1: 32768
           -1,1:
-            0: 16623
-            2: 32768
+            0: 49391
             1: 4096
           0,2:
             0: 307
-            1: 16384
+            1: 16392
           -1,2:
             0: 3276
-            1: 8192
+            1: 8193
           0,3:
             1: 3
           -1,3:
             1: 12
-          1,0:
-            0: 65216
           1,1:
-            0: 52974
+            0: 52975
+          1,0:
+            0: 61120
           2,0:
             0: 4368
             1: 32
@@ -260,21 +259,6 @@ entities:
           - 0
           - 0
           - 0
-        - volume: 2500
-          temperature: 293.14996
-          moles:
-          - 20.078888
-          - 75.53487
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: ImplicitRoof
@@ -291,33 +275,19 @@ entities:
       parent: 1
     - type: DeviceList
       devices:
-      - 229
-      - 230
-      - 227
-      - 137
       - 138
-      - 260
-      - 139
-      - 221
+      - 137
+      - 230
       - 30
       - 204
+      - 227
       - 136
-      - 231
+      - 229
       - 232
-- proto: AirlockGlassShuttleNfsd
-  entities:
-  - uid: 58
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -3.5,4.5
-      parent: 1
-  - uid: 99
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -3.5,3.5
-      parent: 1
+      - 231
+      - 221
+      - 139
+      - 99
 - proto: AirlockNfsdLocked
   entities:
   - uid: 8
@@ -330,6 +300,20 @@ entities:
     - type: Transform
       pos: 4.5,4.5
       parent: 1
+- proto: AirlockShuttleNfsdLocked
+  entities:
+  - uid: 58
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,3.5
+      parent: 1
+  - uid: 84
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,4.5
+      parent: 1
 - proto: AirSensor
   entities:
   - uid: 30
@@ -338,6 +322,19 @@ entities:
       pos: -0.5,8.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 83
+  - uid: 99
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -0.5,2.5
+      parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 83
   - uid: 227
@@ -346,14 +343,8 @@ entities:
       pos: 7.5,5.5
       parent: 1
     - type: DeviceNetwork
-      deviceLists:
-      - 83
-  - uid: 260
-    components:
-    - type: Transform
-      pos: 0.5,3.5
-      parent: 1
-    - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 83
 - proto: APCConstructed
@@ -851,6 +842,8 @@ entities:
       pos: 0.5,6.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 83
   - uid: 230
@@ -859,6 +852,8 @@ entities:
       pos: 4.5,4.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 83
   - uid: 231
@@ -867,6 +862,8 @@ entities:
       pos: -3.5,3.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 83
   - uid: 232
@@ -875,6 +872,8 @@ entities:
       pos: -3.5,4.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 83
 - proto: FoodBurgerMcguffin
@@ -1161,6 +1160,8 @@ entities:
       pos: 7.5,3.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 83
     - type: AtmosPipeColor
@@ -1172,6 +1173,8 @@ entities:
       pos: -0.5,3.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 83
     - type: AtmosPipeColor
@@ -1182,6 +1185,8 @@ entities:
       pos: 0.5,8.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 83
     - type: AtmosPipeColor
@@ -1195,6 +1200,8 @@ entities:
       pos: 0.5,7.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 83
     - type: AtmosPipeColor
@@ -1206,6 +1213,8 @@ entities:
       pos: 7.5,4.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 83
     - type: AtmosPipeColor
@@ -1217,6 +1226,8 @@ entities:
       pos: -1.5,3.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 83
     - type: AtmosPipeColor
@@ -1891,11 +1902,11 @@ entities:
           - Toggle
 - proto: SpawnPointLatejoin
   entities:
-  - uid: 84
+  - uid: 260
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -1.5,3.5
+      pos: 2.5,3.5
       parent: 1
 - proto: StasisBed
   entities:
@@ -2247,6 +2258,7 @@ entities:
   - uid: 212
     components:
     - type: Transform
-      pos: -0.5,3.5
+      rot: -1.5707963267948966 rad
+      pos: 2.5,4.5
       parent: 1
 ...

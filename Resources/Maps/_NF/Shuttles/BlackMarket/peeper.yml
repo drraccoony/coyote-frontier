@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/19/2025 07:59:31
-  entityCount: 350
+  time: 11/19/2025 08:32:45
+  entityCount: 352
 maps: []
 grids:
 - 1
@@ -119,12 +119,12 @@ entities:
       data:
         tiles:
           0,0:
-            0: 65535
+            0: 14335
           0,-1:
-            0: 65393
+            0: 63281
             1: 8
           -1,0:
-            0: 52974
+            0: 36078
             1: 4096
           0,1:
             1: 4408
@@ -141,7 +141,7 @@ entities:
           -2,0:
             1: 4080
           -1,-1:
-            0: 61120
+            0: 60544
             1: 18
           1,-1:
             1: 60944
@@ -1079,6 +1079,16 @@ entities:
     components:
     - type: Transform
       pos: 0.5,11.5
+      parent: 1
+  - uid: 328
+    components:
+    - type: Transform
+      pos: -0.5,-1.5
+      parent: 1
+  - uid: 349
+    components:
+    - type: Transform
+      pos: -0.5,-2.5
       parent: 1
 - proto: CableTerminal
   entities:
