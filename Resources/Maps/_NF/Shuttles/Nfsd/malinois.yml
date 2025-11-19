@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/19/2025 01:45:42
-  entityCount: 484
+  time: 11/19/2025 02:14:09
+  entityCount: 485
 maps: []
 grids:
 - 1
@@ -2539,6 +2539,13 @@ entities:
     - type: Transform
       pos: -1.5,-2.5
       parent: 1
+- proto: NFHolopadShip
+  entities:
+  - uid: 485
+    components:
+    - type: Transform
+      pos: 0.5,7.5
+      parent: 1
 - proto: NFMagazineGrenadeEMP
   entities:
   - uid: 458
@@ -2925,20 +2932,14 @@ entities:
   entities:
   - uid: 359
     components:
-    - type: MetaData
-      name: remote signaller (Trigger EXP-2100g)
     - type: Transform
-      pos: 5.5870914,-1.5080347
+      pos: 5.673086,-1.6044741
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
         288:
         - - Pressed
           - Trigger
-    - type: Label
-      currentLabel: Trigger EXP-2100g
-    - type: NameModifier
-      baseName: remote signaller
 - proto: SalvageTechfabNF
   entities:
   - uid: 145
