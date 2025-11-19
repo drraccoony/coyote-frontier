@@ -1341,6 +1341,9 @@
   - type: Appearance
   - type: RCDDeconstructable # Coyote
     deconstructable: true
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8
 
 - type: entity
   parent: WallDiagonalBase
@@ -1384,6 +1387,9 @@
         acts: ["Destruction"]
   - type: RCDDeconstructable # Coyote
     deconstructable: true
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8
 
 
 # Vault Walls
