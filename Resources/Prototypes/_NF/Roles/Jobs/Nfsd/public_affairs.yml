@@ -3,7 +3,7 @@
   name: job-name-pal
   description: job-description-public-affairs-liaison
   playTimeTracker: JobPublicAffairsLiaison
-  requirements:
+  requirements: # Coyote editted the playtime of the PAL to reflect their access
     - !type:OverallPlaytimeRequirement
       time: 129600 # 36 hours
     - !type:DepartmentTimeRequirement
@@ -22,7 +22,7 @@
   canBeAntag: false
   weight: 105
   displayWeight: 16
-  access:
+  access: # Coyote editted the access of the PAL to better suit their role
   - HeadOfSecurity
   accessGroups:
   - CadetNfsdAccess

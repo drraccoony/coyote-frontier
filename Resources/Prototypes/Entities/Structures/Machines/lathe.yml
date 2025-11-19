@@ -143,6 +143,7 @@
     - NFServiceStatic # Frontier
     - ReportingStatic # DeltaV
     - NFPaperAndPaperAccessories # Frontier
+    - AACTableStatic # DeltaV - AAC Tablets
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
@@ -439,6 +440,7 @@
     - NfsdPracticeStatic # Frontier: SecurityPracticeStatic<NfsdPracticeStatic
     - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
     - SecurityWeaponsStatic
+    - AACTableStatic # DeltaV - AAC Tablets
     # dynamicPacks:
     # - SalvageSecurityBoards # Frontier
     # - SalvageSecurityWeapons # Frontier
@@ -529,6 +531,7 @@
     - EmptyMedkitsStatic
     - SurgeryStatic
     - NFMedicalStatic # Frontier
+    - AACTableStatic # DeltaV - AAC Tablets
     # dynamicPacks: # Frontier
     # - Chemistry # Frontier
   - type: Machine
@@ -586,12 +589,14 @@
     - ClothingSocksAndSuch # Floof
     - ClothingCollars # Floof
     - ClothingBags # Coyote
+    - ClothingTowels # Coyote
     dynamicPacks: # Frontier
     - NFPouches # Frontier
   - type: EmagLatheRecipes
     emagStaticPacks:
     # - ClothingCentComm # Frontier
     - ClothingSyndie
+    - ClothingEmagTowels
   - type: MaterialStorage
     whitelist:
       tags:
