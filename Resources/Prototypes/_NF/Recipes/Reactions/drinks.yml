@@ -1,15 +1,21 @@
-- type: reaction
+- type: reaction # a poodle was here. this was editted to be in line with the recipes from the baristavend
   id: Coffee
   minTemp: 353 # ~80 deg C
-  requiredMixerCategories:
-  - Stir
+# keeping the former stuff right here in case it breaks somehow
+#  requiredMixerCategories:
+#  - Stir
+#  reactants:
+#    Water:
+#      amount: 3
+#    CoffeeGrounds:
+#      amount: 1
   reactants:
     Water:
-      amount: 3
+      amount: 5
     CoffeeGrounds:
       amount: 1
   products:
-    Coffee: 4
+    Coffee: 6
 
 - type: reaction
   id: PumpkinSpiceLatte
