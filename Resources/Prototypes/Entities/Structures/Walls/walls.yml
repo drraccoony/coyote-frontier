@@ -541,6 +541,8 @@
                   max: 1
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
+    - type: RCDDeconstructable # Coyote
+      deconstructable: true
 
 - type: entity
   parent: WallDiagonalBase
@@ -593,8 +595,8 @@
         - !type:PlaySoundBehavior
           sound:
             collection: MetalSlam
-  - type: RCDDeconstructable # Frontier
-    deconstructable: false # Frontier
+  - type: RCDDeconstructable # Coyote
+    deconstructable: true
 
 - type: entity
   parent: BaseWall
@@ -1331,6 +1333,8 @@
     - mining
     - miningB
   - type: Appearance
+  - type: RCDDeconstructable # Coyote
+    deconstructable: true
 
 - type: entity
   parent: WallDiagonalBase
@@ -1372,8 +1376,8 @@
           collection: MetalSlam
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: RCDDeconstructable # Frontier
-    deconstructable: false # Frontier
+  - type: RCDDeconstructable # Coyote
+    deconstructable: true
 
 
 # Vault Walls

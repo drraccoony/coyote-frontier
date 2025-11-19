@@ -45,6 +45,8 @@
         layer:
         - WallLayer
         density: 4000
+  - type: RCDDeconstructable # Coyote
+    deconstructable: true
 
 - type: entity
   id: PlastitaniumWindowSquareBase
