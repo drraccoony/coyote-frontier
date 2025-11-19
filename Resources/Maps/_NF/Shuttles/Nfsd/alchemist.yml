@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/19/2025 09:25:30
+  time: 11/19/2025 09:51:51
   entityCount: 293
 maps: []
 grids:
@@ -273,21 +273,25 @@ entities:
     - type: Transform
       pos: 2.5,6.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 83
     - type: DeviceList
       devices:
-      - 230
       - 229
-      - 231
-      - 232
-      - 30
-      - 136
-      - 204
+      - 230
       - 227
       - 137
       - 138
       - 99
       - 139
       - 221
+      - 30
+      - 204
+      - 136
+      - 232
+      - 231
+      - 83
 - proto: AirlockNfsdLocked
   entities:
   - uid: 8

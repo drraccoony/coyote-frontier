@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/19/2025 09:25:14
+  time: 11/19/2025 09:50:40
   entityCount: 355
 maps: []
 grids:
@@ -196,12 +196,16 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 211
     - type: DeviceList
       devices:
+      - 225
+      - 211
       - 216
       - 305
       - 226
-      - 225
 - proto: AirlockGlassShuttleSyndicatePirateLocked
   entities:
   - uid: 3

@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/19/2025 09:24:54
+  time: 11/19/2025 09:55:17
   entityCount: 231
 maps: []
 grids:
@@ -192,24 +192,28 @@ entities:
     - type: Transform
       pos: -0.5,-2.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 197
     - type: DeviceList
       devices:
-      - 228
-      - 102
-      - 107
-      - 229
-      - 93
-      - 108
       - 205
       - 204
-      - 201
-      - 113
-      - 227
-      - 94
-      - 199
-      - 200
-      - 203
       - 202
+      - 203
+      - 200
+      - 199
+      - 201
+      - 227
+      - 113
+      - 94
+      - 107
+      - 228
+      - 102
+      - 93
+      - 108
+      - 229
+      - 197
 - proto: AirlockGlassShuttleSyndicate
   entities:
   - uid: 66
