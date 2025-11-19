@@ -27,20 +27,12 @@
   ## 1. Power supply
   
   ## 1.1. Battery units
-  <Box>
-  <GuideEntityEmbed Entity="SubstationWallBasic"/>
-  <GuideEntityEmbed Entity="APCBasic"/>
-  </Box>
 
   - Check that the substation unit is anchored to the wall.
   - Check that the APC unit's Main Breaker is toggled on.
   - Check the APC unit's current Load (W).
   
   ## 1.2. P.A.C.M.A.N. generator unit.
-  <Box>
-  <GuideEntityEmbed Entity="PortableGeneratorPacmanShuttle"/>
-  <GuideEntityEmbed Entity="SheetPlasma"/>
-  </Box>
   
   - Check that P.A.C.M.A.N. generator units are anchored to the floor.
   - Check that P.A.C.M.A.N. generator units are fueled. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation.
