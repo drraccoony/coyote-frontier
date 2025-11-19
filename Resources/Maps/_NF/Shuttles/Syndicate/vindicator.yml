@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/14/2025 03:03:29
-  entityCount: 226
+  time: 11/19/2025 07:59:16
+  entityCount: 231
 maps: []
 grids:
 - 1
@@ -26,7 +26,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: grid
+      name: Vindicator
     - type: Transform
       pos: -0.5,-0.546875
       parent: invalid
@@ -207,6 +207,9 @@ entities:
       - 204
       - 205
       - 201
+      - 229
+      - 228
+      - 227
 - proto: AirlockGlassShuttleSyndicate
   entities:
   - uid: 66
@@ -233,6 +236,32 @@ entities:
     - type: Transform
       pos: 0.5,-2.5
       parent: 1
+- proto: AirSensor
+  entities:
+  - uid: 227
+    components:
+    - type: Transform
+      pos: 0.5,0.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 197
+  - uid: 228
+    components:
+    - type: Transform
+      pos: 1.5,-4.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 197
+  - uid: 229
+    components:
+    - type: Transform
+      pos: 0.5,-6.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 197
 - proto: APCConstructed
   entities:
   - uid: 91
@@ -1017,7 +1046,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,-7.5
       parent: 1
-- proto: LockerWallMaterialsFuelPlasmaFilled
+- proto: LockerWallMaterialsFuelUraniumFilled
   entities:
   - uid: 92
     components:
@@ -1102,6 +1131,34 @@ entities:
     - type: Transform
       pos: 2.5,-6.5
       parent: 1
+- proto: PosterContrabandAyaya
+  entities:
+  - uid: 163
+    components:
+    - type: Transform
+      pos: 1.5,-2.5
+      parent: 1
+- proto: PosterContrabandC20r
+  entities:
+  - uid: 162
+    components:
+    - type: Transform
+      pos: -1.5,1.5
+      parent: 1
+- proto: PosterContrabandEnlistGorlex
+  entities:
+  - uid: 179
+    components:
+    - type: Transform
+      pos: 3.5,-1.5
+      parent: 1
+- proto: PosterContrabandMoth
+  entities:
+  - uid: 164
+    components:
+    - type: Transform
+      pos: -1.5,-5.5
+      parent: 1
 - proto: Poweredlight
   entities:
   - uid: 216
@@ -1182,28 +1239,6 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-1.5
-      parent: 1
-- proto: RandomPosterContraband
-  entities:
-  - uid: 162
-    components:
-    - type: Transform
-      pos: -1.5,1.5
-      parent: 1
-  - uid: 163
-    components:
-    - type: Transform
-      pos: 1.5,-2.5
-      parent: 1
-  - uid: 164
-    components:
-    - type: Transform
-      pos: -1.5,-5.5
-      parent: 1
-  - uid: 179
-    components:
-    - type: Transform
-      pos: 3.5,-1.5
       parent: 1
 - proto: ReinforcedPlasmaWindow
   entities:
@@ -1295,6 +1330,14 @@ entities:
     components:
     - type: Transform
       pos: 1.4989846,-6.4338684
+      parent: 1
+- proto: SpawnPointLatejoin
+  entities:
+  - uid: 230
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,-1.5
       parent: 1
 - proto: StealthBox
   entities:
@@ -1658,6 +1701,14 @@ entities:
     components:
     - type: Transform
       pos: -3.5,1.5
+      parent: 1
+- proto: WallWeaponCapacitorRecharger
+  entities:
+  - uid: 231
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,0.5
       parent: 1
 - proto: WarpPoint
   entities:

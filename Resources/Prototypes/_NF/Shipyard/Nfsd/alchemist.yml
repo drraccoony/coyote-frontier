@@ -1,9 +1,14 @@
+# Author Info
+# GitHub: SimplyPoodle
+
+# Shuttle Notes:
+# my chud brigmedic ship, i love it so much
 - type: vessel
   id: Alchemist
   parent: BaseVessel
   name: TSF Alchemist
   description: An NFSD medical ship meant for triage and long-form usage, including a chemistry sidecar with all the bells and whistles.
-  price: 34850
+  price: 18500 # price was adjusted per appraisegrid, upcharged from 14590
   category: Small
   group: Security
   access: Brigmedic

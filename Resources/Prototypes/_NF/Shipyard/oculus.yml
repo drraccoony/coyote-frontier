@@ -1,10 +1,14 @@
+# Author Info
+# GitHub: SimplyPoodle
 
+# Shuttle Notes:
+# reporter shuttle that is made to look like a satellite, to give more variety to reporters besides the legman
 - type: vessel
   id: Oculus
   parent: BaseVessel
   name: LVHI Oculus
   description: The voice of the people! Take to the solar winds and find stories to share with this all-seeing eye!
-  price: 27000 # 10675 0.05 11208.75 temporarily very expensive until a more robust version can be made, at present it's an obscene cheap shuttle with a broadcaster.
+  price: 18000 # price was adjusted per appraisegrid and made to match the peeper, upcharged from 15520
   category: Small
   group: Shipyard
   shuttlePath: /Maps/_NF/Shuttles/oculus.yml
