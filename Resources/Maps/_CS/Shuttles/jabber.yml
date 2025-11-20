@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/19/2025 05:58:39
-  entityCount: 211
+  time: 11/20/2025 16:55:02
+  entityCount: 214
 maps: []
 grids:
 - 1
@@ -395,6 +395,20 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -3.5,-3.5
+      parent: 1
+- proto: AtmosDeviceFanDirectional
+  entities:
+  - uid: 212
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,-2.5
+      parent: 1
+  - uid: 213
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -4.5,-2.5
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
@@ -1911,6 +1925,14 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,-6.5
+      parent: 1
+- proto: WallWeaponCapacitorRecharger
+  entities:
+  - uid: 214
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,-1.5
       parent: 1
 - proto: WarpPoint
   entities:

@@ -16,7 +16,7 @@
   price: 620000 # 154034 * (3.5+0.5) ^= 615,000 (616,136).
   category: Large
   group: Expedition
-  shuttlePath: /Maps/_NF/Shuttles/Expedition/yegorov.yml
+  shuttlePath: /Maps/_CS/Shuttles/Expedition/yegorov.yml
   guidebookPage: ShipyardYegorov
   class:
   - Expedition
@@ -28,7 +28,7 @@
 - type: gameMap
   id: Yegorov
   mapName: 'KAZ Yegorov'
-  mapPath: /Maps/_NF/Shuttles/Expedition/yegorov.yml
+  mapPath: /Maps/_CS/Shuttles/Expedition/yegorov.yml
   minPlayers: 0
   stations:
     Yegorov:

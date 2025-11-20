@@ -3,6 +3,7 @@
 
 # Shuttle Notes:
 # my chud brigmedic ship, i love it so much
+
 - type: vessel
   id: Alchemist
   parent: BaseVessel
@@ -12,7 +13,7 @@
   category: Small
   group: Security
   access: Brigmedic
-  shuttlePath: /Maps/_NF/Shuttles/Nfsd/alchemist.yml
+  shuttlePath: /Maps/_CS/Shuttles/Nfsd/alchemist.yml
   guidebookPage: Null
   class:
   - Medical
@@ -22,7 +23,7 @@
 - type: gameMap
   id: Alchemist
   mapName: 'TSF Alchemist'
-  mapPath: /Maps/_NF/Shuttles/Nfsd/alchemist.yml
+  mapPath: /Maps/_CS/Shuttles/Nfsd/alchemist.yml
   minPlayers: 0
   stations:
     Alchemist:

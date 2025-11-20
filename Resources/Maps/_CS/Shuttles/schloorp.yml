@@ -23,7 +23,9 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: grid
+      name: Schloorp
+    - type: BecomesStation
+      id: Schloorp
     - type: Transform
       pos: 7.002694,-2.1834617
       parent: invalid

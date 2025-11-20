@@ -3,6 +3,7 @@
 
 # Shuttle Notes:
 # my stupid fucking horse.
+
 - type: vessel
   id: Stallion
   parent: BaseVessel
@@ -12,7 +13,7 @@
   category: Small
   group: Security
   access: Security
-  shuttlePath: /Maps/_NF/Shuttles/Nfsd/stallion.yml
+  shuttlePath: /Maps/_CS/Shuttles/Nfsd/stallion.yml
   guidebookPage: Null
   class:
   - Cargo
@@ -22,7 +23,7 @@
 - type: gameMap
   id: Stallion
   mapName: 'TSF Stallion'
-  mapPath: /Maps/_NF/Shuttles/Nfsd/stallion.yml
+  mapPath: /Maps/_CS/Shuttles/Nfsd/stallion.yml
   minPlayers: 0
   stations:
     Stallion:

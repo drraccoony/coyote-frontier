@@ -2,34 +2,35 @@
 # GitHub: R3N0mon
 
 # Shuttle Notes:
-# Modified Pulsar for pirate salvage
+# retrofit of the shipyard's surveyor.
+
 - type: vessel
-  id: Nova
+  id: Watcher
   parent: BaseVesselAntag
-  name: Nova
-  description: A Pulsar retrofitted for illegal salvage operations
-  price: 62000 #29313 1.25 65954.25
-  category: Medium
+  name: Watcher
+  description: Once a simple mining Surveyor, now a light little raiding ship with some teeth
+  price: 34500 #29313 1.25 65954.25
+  category: Small
   group: BlackMarket
   access: BlackMarket
-  shuttlePath: /Maps/_NF/Shuttles/BlackMarket/Nova.yml
+  shuttlePath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/watcher.yml
   guidebookPage: Null
   class:
   - Pirate
   engine:
-  - Bananium
+  - Plasma
 
 - type: gameMap
-  id: Nova
-  mapName: 'Nova'
-  mapPath: /Maps/_NF/Shuttles/BlackMarket/Nova.yml
+  id: Watcher
+  mapName: 'Watcher'
+  mapPath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/watcher.yml
   minPlayers: 0
   stations:
-    Nova:
+    Watcher:
       stationProto: StandardFrontierAntagVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Pulsar {1}' # Very fake name
+          mapNameTemplate: 'Surveyor {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
