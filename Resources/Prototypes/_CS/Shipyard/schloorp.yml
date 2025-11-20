@@ -13,7 +13,7 @@
   price: 5000
   category: Small
   group: Shipyard
-  shuttlePath: /Maps/_CS/Shuttles/Schloorp.yml
+  shuttlePath: /Maps/_CS/Shuttles/schloorp.yml
   guidebookPage: Null
   class:
   - Civilian
@@ -23,7 +23,7 @@
 - type: gameMap
   id: Schloorp
   mapName: 'Schloorp'
-  mapPath: /Maps/_CS/Shuttles/Schloorp.yml
+  mapPath: /Maps/_CS/Shuttles/schloorp.yml
   minPlayers: 0
   stations:
     Schloorp:

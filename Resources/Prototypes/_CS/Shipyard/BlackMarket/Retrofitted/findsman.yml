@@ -13,7 +13,7 @@
   category: Small
   group: BlackMarket
   access: BlackMarket
-  shuttlePath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/Findsman.yml
+  shuttlePath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/findsman.yml
   guidebookPage: Null
   class:
   - Pirate
@@ -24,7 +24,7 @@
 - type: gameMap
   id: Findsman
   mapName: 'Findsman'
-  mapPath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/Findsman.yml
+  mapPath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/findsman.yml
   minPlayers: 0
   stations:
     Findsman:

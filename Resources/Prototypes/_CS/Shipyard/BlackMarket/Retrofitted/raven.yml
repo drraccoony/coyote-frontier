@@ -13,7 +13,7 @@
   category: Medium
   group: BlackMarket
   access: BlackMarket
-  shuttlePath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/Raven.yml
+  shuttlePath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/raven.yml
   guidebookPage: Null
   class:
   - Pirate
@@ -24,7 +24,7 @@
 - type: gameMap
   id: Raven
   mapName: 'Raven'
-  mapPath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/Raven.yml
+  mapPath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/raven.yml
   minPlayers: 0
   stations:
     Raven:

@@ -12,7 +12,7 @@
   price: 20000 #29313 1.25 65954.25
   category: Small
   group: BlackMarket
-  shuttlePath: /Maps/_CS/Shuttles/BlackMarket/Escort/Hitchhiker.yml
+  shuttlePath: /Maps/_CS/Shuttles/BlackMarket/Escort/hitchhiker.yml
   guidebookPage: Null
   class:
   - Pirate
@@ -22,7 +22,7 @@
 - type: gameMap
   id: Hitchhiker
   mapName: 'Hitchhiker'
-  mapPath: /Maps/_CS/Shuttles/BlackMarket/Escort/Hitchhiker.yml
+  mapPath: /Maps/_CS/Shuttles/BlackMarket/Escort/hitchhiker.yml
   minPlayers: 0
   stations:
     Hitchhiker:

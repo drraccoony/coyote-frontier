@@ -13,7 +13,7 @@
   category: Medium
   group: BlackMarket
   access: BlackMarket
-  shuttlePath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/Nova.yml
+  shuttlePath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/nova.yml
   guidebookPage: Null
   class:
   - Pirate
@@ -23,7 +23,7 @@
 - type: gameMap
   id: Nova
   mapName: 'Nova'
-  mapPath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/Nova.yml
+  mapPath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/nova.yml
   minPlayers: 0
   stations:
     Nova:

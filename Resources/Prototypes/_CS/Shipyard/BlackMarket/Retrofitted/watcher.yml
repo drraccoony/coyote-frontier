@@ -13,7 +13,7 @@
   category: Small
   group: BlackMarket
   access: BlackMarket
-  shuttlePath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/Watcher.yml
+  shuttlePath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/watcher.yml
   guidebookPage: Null
   class:
   - Pirate
@@ -23,7 +23,7 @@
 - type: gameMap
   id: Watcher
   mapName: 'Watcher'
-  mapPath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/Watcher.yml
+  mapPath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/watcher.yml
   minPlayers: 0
   stations:
     Watcher:
