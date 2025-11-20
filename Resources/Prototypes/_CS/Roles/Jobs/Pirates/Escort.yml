@@ -73,29 +73,8 @@
     belt: ClothingBeltUtility
   storage:
     back:
-    - AppraisalTool
+    - EncryptionKeyFreelance
     - ShipVoucherCoyoteEscort
-
-# Food Service Ship Voucher
-- type: entity
-  parent: BaseShipVoucher
-  id: ShipVoucherCoyoteEscort
-  name: Escort ship voucher
-  description: Allows for one (1) free rental of the Hitchhiker!
-  components:
-  - type: Sprite
-    layers:
-    - state: blue
-    - state: vouchervalet
-  - type: Item
-    heldPrefix: blue
-  - type: ShipyardVoucher
-    destroyOnEmpty: true
-    consoleType: BlackMarket
-    useAnywhere: true
-    vessels:
-    - Hitchhiker
-    - Speakeasy
 
 - type: chameleonOutfit
   id: EscortChameleonOutfit

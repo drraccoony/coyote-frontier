@@ -206,11 +206,9 @@
   minLimit: 0
   maxLimit: 6 
   loadouts:
+  - ContractorEncryptionKeyCommon 
   - ContractorEncryptionKeyTraffic
   - ContractorEncryptionKeyMedical
   - ContractorEncryptionKeyCargo
   - ContractorEncryptionKeyEngineering
   - ContractorEncryptionKeyScience
-  - ContractorEncryptionKeyCommon 
-  fallbacks:
-  - ContractorEncryptionKeyTraffic

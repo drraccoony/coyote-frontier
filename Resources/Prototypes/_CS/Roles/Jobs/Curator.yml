@@ -57,29 +57,6 @@
     - EncryptionKeyScience # TODO: make unique encryption key loadout group and remove this
     - ShipVoucherCoyoteCurator
 
-# Curator Ship Voucher
-- type: entity
-  parent: BaseShipVoucher
-  id: ShipVoucherCoyoteCurator
-  name: curator ship voucher
-  description: Allows for one (1) free rental of some cute geek ships!
-  components:
-  - type: Sprite
-    layers:
-    - state: blue
-    - state: vouchervalet
-  - type: Item
-    heldPrefix: blue
-  - type: ShipyardVoucher
-    destroyOnEmpty: true
-    consoleType: Sr
-    useAnywhere: true
-    vessels:
-    - Bookworm
-    - Nook
-    - Investigator
-    - Pulsar
-
 # Curator Role Loadout
 - type: roleLoadout
   id: JobCurator
