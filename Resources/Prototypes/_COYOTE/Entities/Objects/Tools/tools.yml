@@ -27,6 +27,10 @@
     - ReinforcedWindow
     - Airlock
     - AirlockGlass
+    - AirlockHatchPirateLocked
+    - AirlockMiningGlassPirateLocked
+    - AirlockShuttleSyndicatePirateLocked
+    - AirlockGlassShuttleSyndicatePirateLocked
     - Firelock
     - TubeLight
     - BulbLight
@@ -36,7 +40,13 @@
     - CableTerminal
     - Deconstruct
   - type: Sprite
-    state: icon-shipyard
+    sprite: _CS/Objects/Tools/rcd_pirate.rsi
+    state: icon
+  - type: Clothing
+    sprite: _CS/Objects/Tools/rcd_pirate.rsi
+    quickEquip: false
+    slots:
+    - Belt
   - type: GridAccess
 
 - type: entity
@@ -63,6 +73,10 @@
     - ReinforcedWindow
     - Airlock
     - AirlockGlass
+    - AirlockNfsdLocked
+    - AirlockNfsdGlassLocked
+    - AirlockExternalNfsdLocked
+    - AirlockExternalGlassNfsdLocked
     - Firelock
     - TubeLight
     - BulbLight
@@ -72,5 +86,11 @@
     - CableTerminal
     - Deconstruct
   - type: Sprite
-    state: icon-shipyard
+    sprite: _CS/Objects/Tools/rcd_nfsd.rsi
+    state: icon
+  - type: Clothing
+    sprite: _CS/Objects/Tools/rcd_nfsd.rsi
+    quickEquip: false
+    slots:
+    - Belt
   - type: GridAccess
