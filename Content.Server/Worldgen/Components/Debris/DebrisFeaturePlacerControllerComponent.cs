@@ -35,22 +35,20 @@ public sealed partial class DebrisFeaturePlacerControllerComponent : Component
     /// </summary>
     public bool DoSpawns = true;
 
-    [DataField("ownedDebris")] public Dictionary<Vector2, EntityUid?> OwnedDebris = new();
+    [DataField("ownedDebris")]
+    public Dictionary<Vector2, EntityUid?> OwnedDebris = new();
 
     /// <summary>
     ///     Queue of pending debris spawns to be processed gradually across ticks.
     /// </summary>
+    [DataField("pendingSpawns")]
     public Queue<PendingDebrisSpawn> PendingSpawns = new();
 
     /// <summary>
     ///     Queue of debrises that are scheduled to be despawned.
     /// </summary>
-    public Queue<EntityUid> PendingDeSpawns = new();
-
-    /// <summary>
-    ///     Maximum number of debris entities to spawn per tick (performance tuning).
-    /// </summary>
-    [DataField("maxSpawnsPerTick")] public int MaxSpawnsPerTick = 5;
+    [DataField("pendingDeSpawns")]
+    public Queue<(Vector2, EntityUid, EntityUid)> PendingDeSpawns = new();
 
     /// <summary>
     ///     The chance spawning a piece of debris will just be cancelled randomly.
