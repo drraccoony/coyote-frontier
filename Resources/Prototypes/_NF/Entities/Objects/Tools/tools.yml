@@ -31,6 +31,7 @@
     sprite: _CS/Objects/Tools/rcd_shipyard.rsi # Coyote
     state: ammo # Coyote
   - type: Item
+    sprite: _CS/Objects/Tools/rcd_shipyard.rsi # Coyote
     heldPrefix: ammo # Coyote
 
 - type: entity
