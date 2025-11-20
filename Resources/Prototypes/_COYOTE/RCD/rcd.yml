@@ -1,4 +1,4 @@
-# Flooring
+#region Flooring
 - type: rcd
   id: FloorWood
   name: rcd-component-floor-wood
@@ -13,7 +13,7 @@
     - CanBuildOnEmptyTile
   fx: EffectRCDConstruct1
 
-# Walls
+#region Walls
 - type: rcd
   id: WallMining
   category: WallsAndFlooring
@@ -64,7 +64,7 @@
   rotation: User
   fx: EffectRCDConstruct2
 
-# Windows
+#region Windows
 - type: rcd
   id: MiningWindow
   category: WindowsAndGrilles
@@ -123,10 +123,103 @@
   rotation: User
   fx: EffectRCDConstruct2
 
-# Airlocks
+#region Airlocks
+#NFSD Access Locked
+- type: rcd
+  id: AirlockNfsdLocked
+  category: Airlocks
+  sprite: _NF/Structures/Doors/Airlocks/Standard/nfsd.rsi/closed.png
+  mode: ConstructObject
+  prototype: AirlockNfsdLocked
+  cost: 4
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: Camera
+  fx: EffectRCDConstruct4
 
+- type: rcd
+  id: AirlockNfsdGlassLocked
+  category: Airlocks
+  sprite: _NF/Structures/Doors/Airlocks/Standard/nfsd.rsi/closed.png
+  mode: ConstructObject
+  prototype: AirlockNfsdGlassLocked
+  cost: 4
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: Camera
+  fx: EffectRCDConstruct4
 
-# Lighting
+- type: rcd
+  id: AirlockExternalNfsdLocked
+  category: Airlocks
+  sprite: _NF/Structures/Doors/Airlocks/Glass/docknfsd.rsi/closed.png
+  mode: ConstructObject
+  prototype: AirlockShuttleNfsdLocked
+  cost: 12
+  delay: 12
+  collisionMask: FullTileMask
+  rotation: User
+  fx: EffectRCDConstruct4
 
+- type: rcd
+  id: AirlockExternalGlassNfsdLocked
+  category: Airlocks
+  sprite: _NF/Structures/Doors/Airlocks/Glass/docknfsd.rsi/closed.png
+  mode: ConstructObject
+  prototype: AirlockGlassShuttleNfsdLocked
+  cost: 12
+  delay: 12
+  collisionMask: FullTileMask
+  rotation: User
+  fx: EffectRCDConstruct4
 
+#Pirate Access Locked
+- type: rcd
+  id: AirlockHatchPirateLocked
+  category: Airlocks
+  sprite: Structures/Doors/Airlocks/Standard/hatch.rsi/closed.png
+  mode: ConstructObject
+  prototype: AirlockHatchPirateLocked
+  cost: 4
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: Camera
+  fx: EffectRCDConstruct4
 
+- type: rcd
+  id: AirlockMiningGlassPirateLocked
+  category: Airlocks
+  sprite: Structures/Doors/Airlocks/Glass/mining.rsi/closed.png
+  mode: ConstructObject
+  prototype: AirlockMiningGlassPirateLocked
+  cost: 4
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: Camera
+  fx: EffectRCDConstruct4
+
+- type: rcd
+  id: AirlockShuttleSyndicatePirateLocked
+  category: Airlocks
+  sprite: Structures/Doors/Airlocks/Standard/shuttle_syndicate.rsi/closed.png
+  mode: ConstructObject
+  prototype: AirlockShuttleSyndicatePirateLocked
+  cost: 12
+  delay: 12
+  collisionMask: FullTileMask
+  rotation: User
+  fx: EffectRCDConstruct4
+
+- type: rcd
+  id: AirlockGlassShuttleSyndicatePirateLocked
+  category: Airlocks
+  sprite: Structures/Doors/Airlocks/Glass/shuttle_syndicate.rsi/closed.png
+  mode: ConstructObject
+  prototype: AirlockGlassShuttleSyndicatePirateLocked
+  cost: 12
+  delay: 12
+  collisionMask: FullTileMask
+  rotation: User
+  fx: EffectRCDConstruct4
+
+#region Lighting

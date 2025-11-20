@@ -9,6 +9,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
+using Content.Shared._Coyote;
 using Content.Shared._NF.Shuttles.Events;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared.Audio;
@@ -356,11 +357,14 @@ public sealed partial class ShuttleSystem
             }
             var attached = sesh.AttachedEntity.Value;
             // If the player is in crit or dead, skip them
-            if (!_mobState.IsAlive(attached)
-                || HasComp<GhostComponent>(attached))
+            if (!HasComp<AdminGhostComponent>(attached))
             {
-                // Log.Debug($"Skipping for E-Brake: Player session {sesh.Name} ({sesh.UserId}) is in crit or dead.");
-                continue;
+                if (!_mobState.IsAlive(attached)
+                    || HasComp<GhostComponent>(attached))
+                {
+                    // Log.Debug($"Skipping for E-Brake: Player session {sesh.Name} ({sesh.UserId}) is in crit or dead.");
+                    continue;
+                }
             }
 
             // Get the shuttle the player is on, if any

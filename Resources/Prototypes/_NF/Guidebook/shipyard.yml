@@ -63,7 +63,11 @@
   - ShipyardTide
   - ShipyardVagabond
   - ShipyardVitalis
+  # Coyote start
+  - ShipyardGlizzy
+  - ShipyardJabber
   - ShipyardYegorov
+  # Coyote end
 
 - type: guideEntry
   id: ShipyardAdder
@@ -360,7 +364,19 @@
   name: guide-entry-shipyard-vitalis
   text: "/ServerInfo/_NF/Guidebook/Shipyard/Vitalis.xml"
 
+# Coyote Start
+- type: guideEntry
+  id: ShipyardGlizzy
+  name: guide-entry-shipyard-glizzy
+  text: "/ServerInfo/_CS/Guidebook/Shipyard/Glizzy.xml"
+
+- type: guideEntry
+  id: ShipyardJabber
+  name: guide-entry-shipyard-jabber
+  text: "/ServerInfo/_CS/Guidebook/Shipyard/Jabber.xml"
+
 - type: guideEntry
   id: ShipyardYegorov
   name: guide-entry-shipyard-yegorov
-  text: "/ServerInfo/_NF/Guidebook/Shipyard/Yegorov.xml"
+  text: "/ServerInfo/_CS/Guidebook/Shipyard/Yegorov.xml"
+# Coyote End
