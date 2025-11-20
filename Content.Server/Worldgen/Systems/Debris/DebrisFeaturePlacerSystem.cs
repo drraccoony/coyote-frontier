@@ -34,6 +34,8 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
 
     private ISawmill _sawmill = default!;
 
+    private Queue<DebrisFeaturePlacerControllerComponent> _debrisQ = new();
+
     private List<Entity<MapGridComponent>> _mapGrids = new();
     private int _maxSpawnsPerTick = 1;
     private int _maxDeSpawnsPerTick = 1;
@@ -72,32 +74,44 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
         _deSpawnsThisTick = 0;
         _spawnsThisTick = 0;
 
-        // Process pending debris spawns across all controllers
-        var query = EntityQueryEnumerator<DebrisFeaturePlacerControllerComponent>();
-        while (query.MoveNext(out var uid, out var component))
+        if (_debrisQ.Count <= 0)
         {
-            ProcessPendingSpawns(uid, component);
-            ProcessPendingDeSpawns(uid, component);
+            var query = EntityQueryEnumerator<DebrisFeaturePlacerControllerComponent>();
+            while (query.MoveNext(out var uid, out var component))
+            {
+                _debrisQ.Enqueue(component);
+            }
+        }
+        while (_debrisQ.Count > 0)
+        {
+            if (_spawnsThisTick >= _maxSpawnsPerTick
+                && _deSpawnsThisTick >= _maxDeSpawnsPerTick)
+                break;
+            if (!_debrisQ.TryDequeue(out var component))
+                break;
+            if (component.Deleted)
+                continue;
+            ProcessPendingDeSpawns(component);
+            ProcessPendingSpawns(component);
         }
     }
 
     /// <summary>
     ///     Processes queued debris spawns gradually to avoid lag spikes.
     /// </summary>
-    private void ProcessPendingSpawns(EntityUid uid, DebrisFeaturePlacerControllerComponent component)
+    private void ProcessPendingSpawns(DebrisFeaturePlacerControllerComponent component)
     {
-        if (component.PendingSpawns.Count == 0)
-            return;
         if (_maxSpawnsPerTick <= 0)
             return;
-        var maxSpawns = Math.Min(_maxSpawnsPerTick, component.MaxSpawnsPerTick);
-
-        while (component.PendingSpawns.TryDequeue(out var pending) && _spawnsThisTick < maxSpawns)
+        if (_spawnsThisTick >= _maxSpawnsPerTick)
+            return;
+        while (component.PendingSpawns.TryDequeue(out var pending)
+               && _spawnsThisTick < _maxSpawnsPerTick)
         {
             // Skip if already exists or chunk is gone
-            if (component.OwnedDebris.ContainsKey(pending.Point) || Deleted(pending.ChunkUid))
+            if (component.OwnedDebris.ContainsKey(pending.Point)
+                || Deleted(pending.ChunkUid))
             {
-                _spawnsThisTick++;
                 continue;
             }
 
@@ -117,27 +131,33 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
     /// <summary>
     ///     Processes queued debris despawns gradually to avoid lag spikes.
     /// </summary>
-    private void ProcessPendingDeSpawns(EntityUid uid, DebrisFeaturePlacerControllerComponent component)
+    private void ProcessPendingDeSpawns(DebrisFeaturePlacerControllerComponent component)
     {
-        if (component.PendingDeSpawns.Count == 0)
-            return;
         if (_maxDeSpawnsPerTick <= 0)
             return;
-
-        while (component.PendingDeSpawns.TryDequeue(out var pending)
+        if (_deSpawnsThisTick >= _maxDeSpawnsPerTick)
+            return;
+        while (component.PendingDeSpawns.TryPeek(out var debrisTuple)
                && _deSpawnsThisTick < _maxDeSpawnsPerTick)
         {
-            if (Deleted(pending))
+            var vect = debrisTuple.Item1;
+            var debris = debrisTuple.Item2;
+            var chunk = debrisTuple.Item3;
+            if (Deleted(debris))
             {
-                _deSpawnsThisTick++;
+                component.PendingDeSpawns.Dequeue();
+                component.OwnedDebris.Remove(vect);
+                component.DoSpawns = true;
                 continue;
             }
-            _gc.TryGCEntity(pending);
+            if (HasComp<LoadedChunkComponent>(chunk))
+            {
+                break; // Can't despawn while loaded
+            }
             _deSpawnsThisTick++;
-        }
-
-        if (component.OwnedDebris.Count == 0)
-        {
+            QueueDel(debris);
+            component.PendingDeSpawns.Dequeue();
+            component.OwnedDebris.Remove(vect);
             component.DoSpawns = true;
         }
     }
@@ -215,13 +235,14 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
     private void OnChunkUnloaded(EntityUid uid, DebrisFeaturePlacerControllerComponent component,
         ref WorldChunkUnloadedEvent args)
     {
-        foreach (var (_, debris) in component.OwnedDebris)
+        foreach (var (vector, debris) in component.OwnedDebris)
         {
             if (debris is not null)
-                component.PendingDeSpawns.Enqueue(debris.Value);
+            {
+                component.PendingDeSpawns.Enqueue((vector, debris.Value, args.Chunk));
                 // _gc.TryGCEntity(debris.Value); // gonb.
+            }
         }
-
         // component.DoSpawns = true;
     }
 
