@@ -2,6 +2,7 @@
 - type: entity
   id: ShuttleGunFriendshipNfsd
   parent: [BaseStructureDisableToolUse, ShuttleGunFriendship]
+  categories: []
   suffix: NFSD
   components:
   - type: Machine
@@ -10,6 +11,7 @@
 - type: entity
   id: ShuttleGunDusterNfsd
   parent: [BaseStructureDisableToolUse, ShuttleGunDuster]
+  categories: []
   suffix: NFSD
   components:
   - type: Machine
