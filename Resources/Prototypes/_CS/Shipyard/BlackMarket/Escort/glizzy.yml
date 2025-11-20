@@ -1,6 +1,8 @@
 # Author Info
 # GitHub: Archee1 (https://github.com/archee1)
-# Discord: ???
+
+# Shuttle Notes:
+# retrofit of the scrapyard's hotdog.
 
 - type: vessel
   id: Glizzy
@@ -10,8 +12,8 @@
   price: 14750 #appraised 13421, LL0 10% markup.
   category: Small
   group: BlackMarket
-  shuttlePath: /Maps/_CS/Shuttles/BlackMarket/glizzy.yml
-  guidebookPage: Null
+  shuttlePath: /Maps/_CS/Shuttles/BlackMarket/Escort/glizzy.yml
+  guidebookPage: ShipyardGlizzy
   class:
   - Pirate
   - Cargo
@@ -21,7 +23,7 @@
 - type: gameMap
   id: Glizzy
   mapName: 'Glizzy'
-  mapPath: /Maps/_CS/Shuttles/BlackMarket/glizzy.yml
+  mapPath: /Maps/_CS/Shuttles/BlackMarket/Escort/glizzy.yml
   minPlayers: 0
   stations:
     Glizzy:

@@ -2,7 +2,8 @@
 # GitHub: R3N0mon
 
 # Shuttle Notes:
-# Modified surveyor for stealthy raiding of miners
+# retrofit of the shipyard's surveyor.
+
 - type: vessel
   id: Watcher
   parent: BaseVesselAntag
@@ -12,7 +13,7 @@
   category: Small
   group: BlackMarket
   access: BlackMarket
-  shuttlePath: /Maps/_NF/Shuttles/BlackMarket/Watcher.yml
+  shuttlePath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/Watcher.yml
   guidebookPage: Null
   class:
   - Pirate
@@ -22,14 +23,14 @@
 - type: gameMap
   id: Watcher
   mapName: 'Watcher'
-  mapPath: /Maps/_NF/Shuttles/BlackMarket/Watcher.yml
+  mapPath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/Watcher.yml
   minPlayers: 0
   stations:
     Watcher:
       stationProto: StandardFrontierAntagVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Surveyor {1}' # Very fake name
+          mapNameTemplate: 'Surveyor {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

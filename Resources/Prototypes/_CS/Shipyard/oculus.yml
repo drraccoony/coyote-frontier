@@ -2,7 +2,8 @@
 # GitHub: SimplyPoodle
 
 # Shuttle Notes:
-# reporter shuttle that is made to look like a satellite, to give more variety to reporters besides the legman
+# reporter shuttle that is made to look like a satellite, to give more variety to reporters besides the legman.
+
 - type: vessel
   id: Oculus
   parent: BaseVessel
@@ -11,7 +12,7 @@
   price: 26000 # price was adjusted per appraisegrid and made to match the peeper, upcharged from 15520
   category: Small
   group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/oculus.yml
+  shuttlePath: /Maps/_CS/Shuttles/oculus.yml
   guidebookPage: null
   class:
   - Civilian
@@ -21,7 +22,7 @@
 - type: gameMap
   id: Oculus
   mapName: 'Oculus'
-  mapPath: /Maps/_NF/Shuttles/oculus.yml
+  mapPath: /Maps/_CS/Shuttles/oculus.yml
   minPlayers: 0
   stations:
     Oculus:

@@ -241,11 +241,6 @@
   text: "/ServerInfo/_NF/Guidebook/Shipyard/Izakaya.xml"
 
 - type: guideEntry
-  id: ShipyardJabber
-  name: guide-entry-shipyard-jabber
-  text: "/ServerInfo/_NF/Guidebook/Shipyard/Jabber.xml"
-
-- type: guideEntry
   id: ShipyardKestrel
   name: guide-entry-shipyard-kestrel
   text: "/ServerInfo/_NF/Guidebook/Shipyard/Kestrel.xml"
@@ -374,15 +369,15 @@
 - type: guideEntry
   id: ShipyardGlizzy
   name: guide-entry-shipyard-glizzy
-  text: "/ServerInfo/_NF/Guidebook/Shipyard/Glizzy.xml"
+  text: "/ServerInfo/_CS/Guidebook/Shipyard/Glizzy.xml"
 
 - type: guideEntry
   id: ShipyardJabber
   name: guide-entry-shipyard-jabber
-  text: "/ServerInfo/_NF/Guidebook/Shipyard/Jabber.xml"
+  text: "/ServerInfo/_CS/Guidebook/Shipyard/Jabber.xml"
 
 - type: guideEntry
   id: ShipyardYegorov
   name: guide-entry-shipyard-yegorov
-  text: "/ServerInfo/_NF/Guidebook/Shipyard/Yegorov.xml"
+  text: "/ServerInfo/_CS/Guidebook/Shipyard/Yegorov.xml"
 # Coyote End

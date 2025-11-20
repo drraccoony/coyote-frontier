@@ -2,19 +2,17 @@
 # GitHub: SimplyPoodle
 
 # Shuttle Notes:
-# pirate version of my reporter shuttle, the oculus, for pirate rp and uh. other nefarious things that you might do with a camera and being illicit
+# retrofit of the shipyard's oculus.
+
 - type: vessel
   id: Peeper
   parent: BaseVesselAntag
   name: Peeper
   description: "Once the voice of Nash, now the voice of freedom. Just don't get caught being a peeping tom!"
-  price: 26000 # price was adjusted per appraisegrid and made to match the oculus; upcharged from 11610
-# i have no fucking idea how the peeper is cheaper than the oculus
-# they're literally the same ship
-# but whatever whatever the fucking game says i guess mining walls are cheaper somehow???
+  price: 26000
   category: Small
   group: BlackMarket
-  shuttlePath: /Maps/_NF/Shuttles/BlackMarket/peeper.yml
+  shuttlePath: /Maps/_CS/Shuttles/BlackMarket/Escort/peeper.yml
   guidebookPage: Null
   class:
   - Pirate
@@ -24,14 +22,14 @@
 - type: gameMap
   id: peeper
   mapName: 'Peeper'
-  mapPath: /Maps/_NF/Shuttles/BlackMarket/peeper.yml
+  mapPath: /Maps/_CS/Shuttles/BlackMarket/Escort/peeper.yml
   minPlayers: 0
   stations:
     Speakeasy:
       stationProto: StandardFrontierAntagVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Oculus  {1}' # Very fake name
+          mapNameTemplate: 'Oculus  {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

@@ -1,6 +1,9 @@
 # Author Info
 # Discord: Fenny8008
-#
+
+# Shuttle Notes:
+# tech skips and starts with dragon thrusters
+
 - type: vessel
   id: Hotdog
   parent: BaseVessel
@@ -9,7 +12,7 @@
   price: 20500 #5% markup, cheap as dirt (literally)
   category: Small
   group: Scrap
-  shuttlePath: /Maps/_NF/Shuttles/Scrap/hotdog.yml
+  shuttlePath: /Maps/_CS/Shuttles/Scrap/hotdog.yml
   class:
   - Scrapyard
   - Civilian
@@ -20,7 +23,7 @@
 - type: gameMap
   id: Hotdog
   mapName: 'FCY Hotdog'
-  mapPath: /Maps/_NF/Shuttles/Scrap/hotdog.yml
+  mapPath: /Maps/_CS/Shuttles/Scrap/hotdog.yml
   minPlayers: 0
   stations:
     Hotdog:

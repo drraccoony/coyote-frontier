@@ -2,7 +2,8 @@
 # GitHub: R3N0mon
 
 # Shuttle Notes:
-# Modified pathfinder for running down escaping vessels
+# retrofit of the expeditionary's pathfinder.
+
 - type: vessel
   id: Findsman
   parent: BaseVesselAntag
@@ -12,7 +13,7 @@
   category: Small
   group: BlackMarket
   access: BlackMarket
-  shuttlePath: /Maps/_NF/Shuttles/BlackMarket/Findsman.yml
+  shuttlePath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/Findsman.yml
   guidebookPage: Null
   class:
   - Pirate
@@ -23,14 +24,14 @@
 - type: gameMap
   id: Findsman
   mapName: 'Findsman'
-  mapPath: /Maps/_NF/Shuttles/BlackMarket/Findsman.yml
+  mapPath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/Findsman.yml
   minPlayers: 0
   stations:
     Findsman:
       stationProto: StandardFrontierAntagExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Pathfinder {1}' # Very fake name
+          mapNameTemplate: 'Pathfinder {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

@@ -1,6 +1,12 @@
 <Document>
   # HOTMEAT-CLASS SMUGGLER SHUTTLE
-
+    <Box>
+  <GuideEntityEmbed Entity="FastStrongThruster" Caption="High Speed"/>
+  <GuideEntityEmbed Entity="MechEmu" Caption="Emu PLU"/>
+  <GuideEntityEmbed Entity="CrateStorageRack" Caption="Storage"/>
+  </Box>
+  ## Brief Overview
+  
   [color=#a4885c]Ship Size:[/color] Small
 
 	[color=#a4885c]Recommended Crew:[/color] 1
@@ -10,17 +16,28 @@
 	[color=#a4885c]Expeditions:[/color] None
 
 	[color=#a4885c]IFF Console:[/color] Yes
-  ## Brief
-  - Comes with 3 racks for storing cargo, a single EMU.
+  
+	[color=#a4885c]Notable Features:[/color]
+  - Comes with 3 racks for storing cargo.
+  - Emu PLU for moving cargo and loading racks.
   - Single tank atmospherics input loaded with an o2 canister.
 
-  ## Shuttle Port Control
+  # OWNERS MANUAL
+
+  ## 1. Shuttle Console Ports
+  [color=#a4885c][bold=true]1.a List of Ports	[/bold][/color]
   - \[Port 1\] Enables all thrusters.
   - \[Port 2\] Disables all thrusters.
   - \[Port 3\] Opens all blastdoors.
   - \[Port 4\] Closes all blastdoors.
 
-  "100 Glizzys, Entering glizzy overdrive!!
-  -A legendary smuggler"
+  ## 2. P.A.C.M.A.N. generator unit.
+
+  - The Glizzy comes with a P.A.C.M.A.N generator to supply power to the shuttle's systems.
+  - This generator uses plasma as fuel, which can be bought at most locations via fuel vendors, it also accepts plasma ore, and plasma sheets.
+  - It is recommeneded to have at least 10 sheets of plasma spare in the wall closet located by the generator for emergencies.
+
+  [italic=true]100 Glizzys, Entering glizzy overdrive!![/italic]
+  \-A legendary smuggler
 
 </Document>

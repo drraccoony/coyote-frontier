@@ -3,6 +3,7 @@
 
 # Shuttle Notes:
 # recreation of the lone operative shuttle on more 'vanilla' servers.
+
 - type: vessel
   id: Vindicator
   parent: BaseVesselAntag
@@ -11,7 +12,7 @@
   price: 35000 # price was adjusted per appraisegrid, upcharged from 21860 STEEPLY
   category: Small
   group: Syndicate
-  shuttlePath: /Maps/_NF/Shuttles/Syndicate/vindicator.yml
+  shuttlePath: /Maps/_CS/Shuttles/Syndicate/vindicator.yml
   guidebookPage: Null
   class:
   - Syndicate
@@ -21,7 +22,7 @@
 - type: gameMap
   id: Vindicator
   mapName: 'Vindicator'
-  mapPath: /Maps/_NF/Shuttles/Syndicate/vindicator.yml
+  mapPath: /Maps/_CS/Shuttles/Syndicate/vindicator.yml
   minPlayers: 0
   stations:
     Vindicator:

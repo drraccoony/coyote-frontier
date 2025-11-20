@@ -2,7 +2,8 @@
 # GitHub: R3N0mon
 
 # Shuttle Notes:
-# Modified Dove for stealing cargo crates and hauling weapons
+# retrofit of the expeditionary's dove.
+
 - type: vessel
   id: Raven
   parent: BaseVesselAntag
@@ -12,7 +13,7 @@
   category: Medium
   group: BlackMarket
   access: BlackMarket
-  shuttlePath: /Maps/_NF/Shuttles/BlackMarket/Raven.yml
+  shuttlePath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/Raven.yml
   guidebookPage: Null
   class:
   - Pirate
@@ -23,14 +24,14 @@
 - type: gameMap
   id: Raven
   mapName: 'Raven'
-  mapPath: /Maps/_NF/Shuttles/BlackMarket/Raven.yml
+  mapPath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/Raven.yml
   minPlayers: 0
   stations:
     Raven:
       stationProto: StandardFrontierAntagExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Dove {1}' # Very fake name
+          mapNameTemplate: 'Dove {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

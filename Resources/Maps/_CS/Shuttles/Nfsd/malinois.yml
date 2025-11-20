@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/19/2025 03:07:16
+  time: 11/20/2025 17:05:39
   entityCount: 485
 maps: []
 grids:
@@ -41,7 +41,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: grid
+      name: Malinois
     - type: Transform
       pos: -0.4375,-0.5
       parent: invalid
@@ -901,6 +901,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 5.5,3.5
+      parent: 1
+- proto: BoxPaperOffice
+  entities:
+  - uid: 338
+    components:
+    - type: Transform
+      pos: -0.5053215,8.11661
       parent: 1
 - proto: ButtonFrameCaution
   entities:
@@ -2526,13 +2533,6 @@ entities:
       locked: False
     - type: Physics
       bodyType: Static
-- proto: PaperBin10
-  entities:
-  - uid: 64
-    components:
-    - type: Transform
-      pos: -0.5,7.5
-      parent: 1
 - proto: PlastitaniumWindow
   entities:
   - uid: 6
@@ -3527,6 +3527,13 @@ entities:
     components:
     - type: Transform
       pos: 0.5,1.5
+      parent: 1
+- proto: WeaponCapacitorRecharger
+  entities:
+  - uid: 64
+    components:
+    - type: Transform
+      pos: -0.5,7.5
       parent: 1
 - proto: WindoorSecureSecurityLocked
   entities:

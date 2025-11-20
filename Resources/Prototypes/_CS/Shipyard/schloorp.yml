@@ -2,12 +2,9 @@
 # GitHub: Tk420634
 # Discord: fenny8008
 
-# Maintainer Info
-# GitHub: Tk420634
-# Discord: fenny8008r
-
 # Shuttle Notes:
-#
+# Its made of wood and moves REALLY fast, Trust.
+
 - type: vessel
   id: Schloorp
   parent: BaseVessel
@@ -16,7 +13,7 @@
   price: 5000
   category: Small
   group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/Schloorp.yml
+  shuttlePath: /Maps/_CS/Shuttles/Schloorp.yml
   guidebookPage: Null
   class:
   - Civilian
@@ -26,7 +23,7 @@
 - type: gameMap
   id: Schloorp
   mapName: 'Schloorp'
-  mapPath: /Maps/_NF/Shuttles/Schloorp.yml
+  mapPath: /Maps/_CS/Shuttles/Schloorp.yml
   minPlayers: 0
   stations:
     Schloorp:
