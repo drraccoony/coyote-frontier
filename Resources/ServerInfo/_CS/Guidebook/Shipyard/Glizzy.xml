@@ -1,0 +1,26 @@
+<Document>
+  # HOTMEAT-CLASS SMUGGLER SHUTTLE
+
+  [color=#a4885c]Ship Size:[/color] Small
+
+	[color=#a4885c]Recommended Crew:[/color] 1
+
+	[color=#a4885c]Power Gen Type:[/color] Plasma
+
+	[color=#a4885c]Expeditions:[/color] None
+
+	[color=#a4885c]IFF Console:[/color] Yes
+  ## Brief
+  - Comes with 3 racks for storing cargo, a single EMU.
+  - Single tank atmospherics input loaded with an o2 canister.
+
+  ## Shuttle Port Control
+  - \[Port 1\] Enables all thrusters.
+  - \[Port 2\] Disables all thrusters.
+  - \[Port 3\] Opens all blastdoors.
+  - \[Port 4\] Closes all blastdoors.
+
+  "100 Glizzys, Entering glizzy overdrive!!
+  -A legendary smuggler"
+
+</Document>
