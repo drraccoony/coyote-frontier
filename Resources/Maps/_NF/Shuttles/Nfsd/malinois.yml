@@ -2714,13 +2714,6 @@ entities:
     - type: Transform
       pos: 6.5,-4.5
       parent: 1
-- proto: PoweredlightExterior
-  entities:
-  - uid: 338
-    components:
-    - type: Transform
-      pos: -5.5,-4.5
-      parent: 1
 - proto: PoweredlightRed
   entities:
   - uid: 73
