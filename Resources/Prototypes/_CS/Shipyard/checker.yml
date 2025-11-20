@@ -11,7 +11,7 @@
   price: 40000 # 34999, upcharged because teehee
   category: Medium
   group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/checker.yml
+  shuttlePath: /Maps/_CS/Shuttles/checker.yml
   guidebookPage: Null
   class:
   - Civilian
@@ -21,7 +21,7 @@
 - type: gameMap
   id: Checker
   mapName: 'Checker'
-  mapPath: /Maps/_NF/Shuttles/checker.yml
+  mapPath: /Maps/_CS/Shuttles/checker.yml
   minPlayers: 0
   stations:
     Checker:
