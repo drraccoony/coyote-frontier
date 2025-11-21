@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/21/2025 00:35:33
-  entityCount: 587
+  time: 11/21/2025 02:17:29
+  entityCount: 588
 maps: []
 grids:
 - 1
@@ -664,19 +664,19 @@ entities:
       rot: 3.141592653589793 rad
       pos: -5.5,-0.5
       parent: 1
-  - uid: 581
+  - uid: 582
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 8.5,-3.5
       parent: 1
-  - uid: 582
+  - uid: 583
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 8.5,-2.5
       parent: 1
-  - uid: 583
+  - uid: 584
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -1456,92 +1456,92 @@ entities:
     - type: Transform
       pos: -6.5,6.5
       parent: 1
-  - uid: 561
+  - uid: 562
     components:
     - type: Transform
       pos: 6.5,3.5
       parent: 1
-  - uid: 562
+  - uid: 563
     components:
     - type: Transform
       pos: 6.5,2.5
       parent: 1
-  - uid: 563
+  - uid: 564
     components:
     - type: Transform
       pos: 6.5,4.5
       parent: 1
-  - uid: 564
+  - uid: 565
     components:
     - type: Transform
       pos: 6.5,5.5
       parent: 1
-  - uid: 565
+  - uid: 566
     components:
     - type: Transform
       pos: 7.5,5.5
       parent: 1
-  - uid: 566
+  - uid: 567
     components:
     - type: Transform
       pos: 7.5,6.5
       parent: 1
-  - uid: 567
+  - uid: 568
     components:
     - type: Transform
       pos: -1.5,-6.5
       parent: 1
-  - uid: 568
+  - uid: 569
     components:
     - type: Transform
       pos: -2.5,-6.5
       parent: 1
-  - uid: 569
+  - uid: 570
     components:
     - type: Transform
       pos: -2.5,-5.5
       parent: 1
-  - uid: 570
+  - uid: 571
     components:
     - type: Transform
       pos: 2.5,-6.5
       parent: 1
-  - uid: 571
+  - uid: 572
     components:
     - type: Transform
       pos: 3.5,-6.5
       parent: 1
-  - uid: 572
+  - uid: 573
     components:
     - type: Transform
       pos: 3.5,-5.5
       parent: 1
-  - uid: 573
+  - uid: 574
     components:
     - type: Transform
       pos: 7.5,-6.5
       parent: 1
-  - uid: 574
+  - uid: 575
     components:
     - type: Transform
       pos: -6.5,-6.5
       parent: 1
-  - uid: 575
+  - uid: 576
     components:
     - type: Transform
       pos: -0.5,4.5
       parent: 1
-  - uid: 576
+  - uid: 577
     components:
     - type: Transform
       pos: -1.5,4.5
       parent: 1
-  - uid: 577
+  - uid: 578
     components:
     - type: Transform
       pos: 1.5,4.5
       parent: 1
-  - uid: 578
+  - uid: 579
     components:
     - type: Transform
       pos: 2.5,4.5
@@ -2856,7 +2856,7 @@ entities:
       color: '#990000FF'
 - proto: GravityGeneratorMini
   entities:
-  - uid: 579
+  - uid: 580
     components:
     - type: Transform
       pos: -2.5,0.5
@@ -3252,6 +3252,13 @@ entities:
     - type: Transform
       pos: -0.5,9.5
       parent: 1
+- proto: PlushieExperiment
+  entities:
+  - uid: 561
+    components:
+    - type: Transform
+      pos: -6.5203595,-6.4624496
+      parent: 1
 - proto: PortableGeneratorSuperPacmanShuttle
   entities:
   - uid: 103
@@ -3520,17 +3527,17 @@ entities:
       parent: 1
 - proto: RandomPosterLegit
   entities:
-  - uid: 584
+  - uid: 585
     components:
     - type: Transform
       pos: 1.5,3.5
       parent: 1
-  - uid: 585
+  - uid: 586
     components:
     - type: Transform
       pos: 0.5,-8.5
       parent: 1
-  - uid: 586
+  - uid: 587
     components:
     - type: Transform
       pos: -2.5,-0.5
@@ -3640,7 +3647,7 @@ entities:
           - Open
         - - Off
           - Close
-  - uid: 587
+  - uid: 588
     components:
     - type: Transform
       pos: 2.150467,-4.455999
@@ -3745,7 +3752,7 @@ entities:
       parent: 1
 - proto: SubstationBasic
   entities:
-  - uid: 580
+  - uid: 581
     components:
     - type: Transform
       pos: -1.5,0.5

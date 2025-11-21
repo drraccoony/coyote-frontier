@@ -10,7 +10,7 @@
   parent: BaseVessel
   name: TSF Gadfly
   description: An NFSD medical ship meant for triage and long-form usage, including a chemistry sidecar with all the bells and whistles.
-  price: 62000 # 26180 apppraised, with an upcharge of *2.4 due to the facilities and space included (and the alchemist's own upcharge)
+  price: 52000 # 26180 apppraised, with an upcharge of *2 due to the facilities and space included (and the alchemist's own upcharge)
   category: Medium
   group: Security
   access: Brigmedic
