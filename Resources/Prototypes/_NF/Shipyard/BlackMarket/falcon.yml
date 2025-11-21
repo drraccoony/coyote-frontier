@@ -36,3 +36,4 @@
         - type: StationJobs
           availableJobs:
             NFPirate: [ 0, 0 ]
+            Escort: [ 0, 0 ]
