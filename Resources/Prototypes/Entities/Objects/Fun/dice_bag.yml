@@ -24,10 +24,6 @@
     whitelist:
       tags:
       - Dice
-      - Paper
-      - BaseFigurine
-      - BaseFigurineMech
-      - Pen
 
 - type: entity
   parent: DiceBag
