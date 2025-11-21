@@ -270,6 +270,6 @@
   description: Perfect for matching with your polycule!
   components:
   - type: Sprite
-    sprite: Clothing/Neck/Scarfs/PrideScarfs/poly-long.rsi
+    sprite: Clothing/Neck/Scarfs/PrideScarfs/poly.rsi
   - type: Clothing
-    sprite: Clothing/Neck/Scarfs/PrideScarfs/poly-long.rsi
+    sprite: Clothing/Neck/Scarfs/PrideScarfs/poly.rsi

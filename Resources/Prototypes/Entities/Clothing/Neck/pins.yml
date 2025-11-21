@@ -217,6 +217,6 @@
   description: Be open, love more.
   components:
   - type: Sprite
-    state: polysprite
+    state: poly
   - type: Clothing
-    equippedPrefix: polyclothing
+    equippedPrefix: poly
