@@ -1,0 +1,39 @@
+# Author Info
+# GitHub: R3N0mon
+
+# Shuttle Notes:
+# retrofit of the shipyard's pulsar.
+
+- type: vessel
+  id: Nova
+  parent: BaseVesselAntag
+  name: Nova
+  description: A Pulsar retrofitted for illegal salvage operations
+  price: 62000 #29313 1.25 65954.25
+  category: Medium
+  group: BlackMarket
+  access: BlackMarket
+  shuttlePath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/nova.yml
+  guidebookPage: Null
+  class:
+  - Pirate
+  engine:
+  - Bananium
+
+- type: gameMap
+  id: Nova
+  mapName: 'Nova'
+  mapPath: /Maps/_CS/Shuttles/BlackMarket/Retrofitted/nova.yml
+  minPlayers: 0
+  stations:
+    Nova:
+      stationProto: StandardFrontierAntagVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Pulsar {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            NFPirate: [ 0, 0 ]

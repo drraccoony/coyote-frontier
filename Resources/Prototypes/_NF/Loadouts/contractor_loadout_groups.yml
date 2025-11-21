@@ -802,10 +802,12 @@
   - ContractorWristwatchGold
   - ContractorSilverRing
   - ContractorGoldRing
+  - ContractorAACTablet
   - ContractorBasketball
   - ContractorFootball
   - ContractorBeachBall
   - ContractorCrayonBox
+  - ContractorClicker
   - ContractorSoapNT
   - PlushieLizard
   - ContractorPlushieSharkGrey
@@ -910,14 +912,13 @@
   id: ContractorEncryptionKey
   name: loadout-group-contractor-encryption-key
   minLimit: 0
-  maxLimit: 6 # Coyote Edit
+  maxLimit: 5
   loadouts:
   - ContractorEncryptionKeyTraffic
   - ContractorEncryptionKeyMedical
   - ContractorEncryptionKeyCargo
   - ContractorEncryptionKeyEngineering
   - ContractorEncryptionKeyScience
-  - ContractorEncryptionKeyCommon # Coyote Edit
   fallbacks:
   - ContractorEncryptionKeyTraffic
 

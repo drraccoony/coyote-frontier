@@ -1,0 +1,95 @@
+# The job itself
+# Journalist - ERP RPI boost, aura, free legman
+- type: job
+  id: Journalist
+  name: job-name-journalist
+  description: job-description-journalist
+  playTimeTracker: JobJournalist
+  startingGear: JournalistGear
+  icon: "JobIconReporter"
+  supervisors: job-supervisors-journalist
+  weight: 40 # Prioritize station & department jobs
+  displayWeight: 3 # idk
+  access:
+  - Service
+  - Janitor
+  - Maintenance
+  - External
+  - Frontier
+  accessGroups:
+  - GeneralAccess
+  special:
+  - !type:AddImplantSpecial
+    implants: [ TrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+  - !type:AddRpiAuraSpecial
+    aurasToAdd:
+    - rpiAuraJournalist
+  - !type:RpiChatJudgementModifierSpecial
+    modsToAdd:
+    - rpiChatJudgementModifierJournalist
+  - !type:AddComponentSpecial
+    components:
+    - type: PaywardActionNewsArticleCreation # basically this
+      # they have a ship, thats their office
+
+# play time tracker
+- type: playTimeTracker
+  id: JobJournalist
+
+- type: entity
+  id: SpawnPointJournalist
+  parent: SpawnPointPassenger
+  name: journalist spawn point
+  components:
+  - type: SpawnPoint
+    job_id: Journalist
+
+
+# starting gear
+- type: startingGear
+  id: JournalistGear
+  storage:
+    back:
+    - EncryptionKeyService
+    - ShipVoucherCoyoteJournalist
+
+# Food Service Role Loadout
+- type: roleLoadout
+  id: JobJournalist
+  groups:
+  - ContractorHead
+  - ContractorNeck
+  - PilotJumpsuit
+  - ContractorGloves
+  - ContractorBackpack
+  - ContractorOuterClothing
+  - ContractorForcedOuterClothing
+  - ContractorShoes
+  - ContractorFace
+  - ContractorGlasses
+  - ContractorBelt
+  - ContractorEars
+  - ContractorEncryptionKey
+  - ContractorBoxSurvival
+  - ContractorPDA
+  - ContractorWallet
+  - ContractorCartridge
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
+  - NFSpeciesSpecific
+
+- type: chameleonOutfit
+  id: JournalistChameleonOutfit
+  job: Journalist
+  equipment:
+    head: ClothingHeadHatFedoraGrey
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskBreath
+    outerClothing: ClothingOuterCoatTrench
+    neck: ClothingNeckTieRed
+    gloves: ClothingHandsGlovesFingerless
+

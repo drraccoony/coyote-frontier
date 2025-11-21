@@ -5,6 +5,7 @@
   name: Hiss
   icon: Interface/Actions/scream.png
   available: false
+  showInWheel: false # CS
   whitelist:
     components:
     - Vocal
@@ -90,6 +91,7 @@
   name: Growl
   icon: Interface/Actions/scream.png
   available: false
+  showInWheel: false # CS
   whitelist:
     components:
     - Vocal
