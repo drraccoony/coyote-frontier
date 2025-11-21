@@ -1,0 +1,36 @@
+- type: entity
+  name: prototype pulse rifle
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseC2ExpeditionContraband] # Frontier: added BaseC2ExpeditionContraband
+  id: WeaponPrototypePulseRifle
+  description: Some nutjob built this pulse rifle in their spess garage. It's quite power hungry. And why is it a lever action?!
+  components:
+  - type: Sprite
+    sprite: Floof/Objects/Weapons/Guns/Battery/prototype_pulse_rifle.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Clothing
+    sprite: Floof/Objects/Weapons/Guns/Battery/prototype_pulse_rifle.rsi
+    slots:
+    - Back
+    - suitStorage
+  - type: Gun
+    fireRate: 2.2 # 70.4 DPS versus Laser Carbine's 70.3
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: PulseWeak # Flooftier Weak Pulse Rifle
+    fireCost: 80
+  - type: Battery
+    maxCharge: 2400
+    startingCharge: 2400
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 4

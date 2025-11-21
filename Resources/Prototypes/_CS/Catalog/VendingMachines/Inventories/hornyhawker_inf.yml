@@ -13,7 +13,7 @@
     FuzzycuffsPink: 4294967295 # Infinite
     FuzzycuffsPurple: 4294967295 # Infinite
     FuzzycuffsRed: 4294967295 # Infinite
-    Handcuffs: 4294967295 # Infinite
+    # Handcuffs: 4294967295 # Infinite
     Zipties: 4294967295 # Infinite
     TwistTies: 4294967295 # Infinite
     LeashBasic: 4294967295 # Infinite
@@ -22,6 +22,8 @@
     # Whips & Paddles
     WhipPink: 4294967295 # Infinite
     WhipTeal: 4294967295 # Infinite
+    WhipPinkCrotch: 4294967295 # Infinite
+    WhipTealCrotch: 4294967295 # Infinite
     SpankPinkPaddle: 4294967295 # Infinite
     SpankTealPaddle: 4294967295 # Infinite
     # Sexy Outfits
@@ -74,8 +76,12 @@
     # Snacks
     FoodTinPeachesMaint: 8
     # Weapons
-    WeaponSizeManipulator: 0 # Removed for rollback
+    WeaponSizeManipulator: 10 # Removed for rollback
   contrabandInventory:
+    # Coder Items
+    ClothingUnderSocksCoder: 4294967295 # Infinite
+    ClothingUnderSocksCoderValid: 4294967295 # Infinite
+    ClothingHandsCoderValidWarmers: 4294967295 # Infinite
     # Snacks
     FoodTinPeachesMaint: 10
   emaggedInventory:

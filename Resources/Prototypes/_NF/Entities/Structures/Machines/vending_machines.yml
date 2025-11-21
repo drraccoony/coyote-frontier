@@ -834,7 +834,7 @@
     pack: TankDispenserEVAPOIInventory
 
 - type: entity
-  parent: [VendingMachinePickNPack, BaseStructureDisableAnchoring]
+  parent: [VendingMachinePickNPack, BaseStructureDisableToolUse] # Coyote: no more hacking, contractors!
   id: VendingMachinePickNPackPOI
   suffix: POI
   components:

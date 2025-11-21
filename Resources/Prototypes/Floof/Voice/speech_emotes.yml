@@ -2,7 +2,7 @@
 - type: emote
   id: Yap
   name: chat-emote-name-yap
-  category: Vocal
+  category: Vulp # CS
   available: false
   whitelist:
     components:
@@ -10,7 +10,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: [yaps]
+  chatMessages: [yaps.] # CS added period
   chatTriggers:
   - yap
   - yaps
@@ -20,7 +20,7 @@
 - type: emote
   id: Gekker
   name: chat-emote-name-gekker
-  category: Vocal
+  category: Vulp # CS
   available: false
   whitelist:
     components:
@@ -28,7 +28,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: [gekkers]
+  chatMessages: [gekkers.] # CS added period
   chatTriggers:
   - gekker
   - gekkers

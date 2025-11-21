@@ -6,6 +6,7 @@
   children:
   - ShipyardAdder
   - ShipyardAkupara
+  - ShipyardAlbatross
   - ShipyardAmbition
   - ShipyardApothecary
   - ShipyardBarge
@@ -48,6 +49,7 @@
   - ShipyardNightlight
   - ShipyardNook
   - ShipyardPathfinder
+  - ShipyardPetrel
   - ShipyardPhoenix
   - ShipyardPlacebo
   - ShipyardProspector
@@ -61,6 +63,11 @@
   - ShipyardTide
   - ShipyardVagabond
   - ShipyardVitalis
+  # Coyote start
+  - ShipyardGlizzy
+  - ShipyardJabber
+  - ShipyardYegorov
+  # Coyote end
 
 - type: guideEntry
   id: ShipyardAdder
@@ -71,6 +78,11 @@
   id: ShipyardAkupara
   name: guide-entry-shipyard-akupara
   text: "/ServerInfo/_NF/Guidebook/Shipyard/Akupara.xml"
+
+- type: guideEntry
+  id: ShipyardAlbatross
+  name: guide-entry-shipyard-albatross
+  text: "/ServerInfo/_NF/Guidebook/Shipyard/Albatross.xml"
 
 - type: guideEntry
   id: ShipyardAmbition
@@ -283,6 +295,11 @@
   text: "/ServerInfo/_NF/Guidebook/Shipyard/Pathfinder.xml"
 
 - type: guideEntry
+  id: ShipyardPetrel
+  name: guide-entry-shipyard-petrel
+  text: "/ServerInfo/_NF/Guidebook/Shipyard/Petrel.xml"
+
+- type: guideEntry
   id: ShipyardPhoenix
   name: guide-entry-shipyard-phoenix
   text: "/ServerInfo/_NF/Guidebook/Shipyard/Phoenix.xml"
@@ -296,7 +313,7 @@
   id: ShipyardProspector
   name: guide-entry-shipyard-prospector
   text: "/ServerInfo/_NF/Guidebook/Shipyard/Prospector.xml"
-  
+
 - type: guideEntry
   id: ShipyardPulsar
   name: guide-entry-shipyard-pulsar
@@ -346,3 +363,20 @@
   id: ShipyardVitalis
   name: guide-entry-shipyard-vitalis
   text: "/ServerInfo/_NF/Guidebook/Shipyard/Vitalis.xml"
+
+# Coyote Start
+- type: guideEntry
+  id: ShipyardGlizzy
+  name: guide-entry-shipyard-glizzy
+  text: "/ServerInfo/_CS/Guidebook/Shipyard/Glizzy.xml"
+
+- type: guideEntry
+  id: ShipyardJabber
+  name: guide-entry-shipyard-jabber
+  text: "/ServerInfo/_CS/Guidebook/Shipyard/Jabber.xml"
+
+- type: guideEntry
+  id: ShipyardYegorov
+  name: guide-entry-shipyard-yegorov
+  text: "/ServerInfo/_CS/Guidebook/Shipyard/Yegorov.xml"
+# Coyote End

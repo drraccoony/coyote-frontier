@@ -116,6 +116,7 @@
   - type: StaticPrice
     price: 50 # Frontier: 75<50 - TODO: material value rework
   - type: SpaceJanitor # delete me after a while if im just in space
+  - type: NFForkLiftable # Frontier
 
 # steel closet base (that can be constructed/deconstructed)
 - type: entity

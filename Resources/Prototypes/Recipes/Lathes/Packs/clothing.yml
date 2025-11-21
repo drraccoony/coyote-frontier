@@ -340,7 +340,7 @@
   - ClothingBackpackSatchelChemistry
   - ClothingBackpackSatchelHydroponics
   - ClothingBackpackSatchelScience
-  - ClothingBackpackSatchelVirology 
+  - ClothingBackpackSatchelVirology
   - ClothingBackpackSatchelGenetics
   - ClothingBackpackSatchelCargo
   - ClothingBackpackSatchelSalvage # 13 satchels 31 total
@@ -369,7 +369,7 @@
   - ClothingBackpackMessengerClown
   - ClothingBackpackMessengerMime #24 messengers 54 total
   - ClothingBackpackDuffel # Department Duffels here
-  - ClothingBackpackDuffelCaptain 
+  - ClothingBackpackDuffelCaptain
   - ClothingBackpackDuffelSalvage
   - ClothingBackpackDuffelCargo
   - ClothingBackpackDuffelHydroponics
@@ -381,4 +381,31 @@
   - ClothingBackpackDuffelEngineering
   - ClothingBackpackDuffelAtmospherics
   - NFClothingBackpackDuffelChaplain #13 department duffels 67 total
-  
+
+- type: latheRecipePack
+  id: ClothingTowels
+  recipes:
+  - TowelColorWhite
+  - TowelColorPurple
+  - TowelColorRed
+  - TowelColorBlue
+  - TowelColorDarkBlue
+  - TowelColorLightBlue
+  - TowelColorTeal
+  - TowelColorBrown
+  - TowelColorLightBrown
+  - TowelColorGray
+  - TowelColorGreen
+  - TowelColorDarkGreen
+  - TowelColorOrange
+  - TowelColorBlack
+  - TowelColorPink
+  - TowelColorYellow
+  - TowelColorMaroon
+  - TowelColorMime
+
+- type: latheRecipePack
+  id: ClothingEmagTowels
+  recipes:
+  - TowelColorNT
+  - TowelColorSyndicate
