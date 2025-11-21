@@ -35,6 +35,7 @@
       - NFShipyardVoucher
       - Card # single cards
       - NFEmagPass
+      - IDCardStandard
     blacklist:
       tags:
       - Book
@@ -55,6 +56,7 @@
           - NFShipyardVoucher
           - Card
           - NFEmagPass
+          - IDCardStandard
       closed-cash:
         whitelist:
           components:
