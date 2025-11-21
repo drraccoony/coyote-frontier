@@ -20,12 +20,12 @@
   - Plasma
 
 - type: gameMap
-  id: peeper
+  id: Peeper
   mapName: 'Peeper'
   mapPath: /Maps/_CS/Shuttles/BlackMarket/Escort/peeper.yml
   minPlayers: 0
   stations:
-    Speakeasy:
+    Peeper:
       stationProto: StandardFrontierAntagVessel
       components:
         - type: StationNameSetup
