@@ -13,7 +13,7 @@
   parent: BaseVesselAntag
   name: Peeper
   description: "Once the voice of Nash, now the voice of freedom. Just don't get caught being a peeping tom!"
-  price: 26000
+  price: 18000 #15583, LL1 115% (Bar and Solar equipment push it over LL0)
   category: Small
   group: BlackMarket
   shuttlePath: /Maps/_CS/Shuttles/BlackMarket/Escort/peeper.yml
@@ -24,7 +24,7 @@
   - Plasma
 
 - type: gameMap
-  id: peeper
+  id: Peeper
   mapName: 'Peeper'
   mapPath: /Maps/_CS/Shuttles/BlackMarket/Escort/peeper.yml
   minPlayers: 0
@@ -38,6 +38,4 @@
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationJobs
-          availableJobs:
-            NFPirate: [ 0, 0 ]
-            Escort: [ 0, 0 ]
+          availableJobs: {}

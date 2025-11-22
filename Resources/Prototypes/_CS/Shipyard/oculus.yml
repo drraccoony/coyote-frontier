@@ -11,9 +11,9 @@
 - type: vessel
   id: Oculus
   parent: BaseVessel
-  name: LVHI Oculus
+  name: LL1 Oculus
   description: The voice of the people! Take to the solar winds and find stories to share with this all-seeing eye!
-  price: 26000 # price was adjusted per appraisegrid and made to match the peeper, upcharged from 15520
+  price: 21500 #18667, LL1 115% (Bar and Solar equipment push it over LL0)
   category: Small
   group: Shipyard
   shuttlePath: /Maps/_CS/Shuttles/oculus.yml
