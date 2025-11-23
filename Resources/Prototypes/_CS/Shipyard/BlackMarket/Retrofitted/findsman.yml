@@ -1,5 +1,5 @@
 # Author Info
-# GitHub: R3N0mon
+# GitHub: archee1
 
 # Shuttle Notes:
 # retrofit of the expeditionary's pathfinder.
@@ -9,7 +9,7 @@
   parent: BaseVesselAntag
   name: Findsman
   description: A Pathfinder modified to hunt down and capture people for ransom, Exped Capable
-  price: 65000 #
+  price: 105500 #34413, +50$k(exped) LL2 x1.3 = 109,736
   category: Small
   group: BlackMarket
   access: BlackMarket
