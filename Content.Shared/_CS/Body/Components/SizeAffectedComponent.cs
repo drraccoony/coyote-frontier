@@ -41,8 +41,8 @@ public sealed partial class SizeAffectedComponent : Component
     public float BaseScale = 1.0f;
 
     /// <summary>
-    /// Stores original fixture radii for scaling calculations (fixture id -> original radius)
+    /// Stores original fixture densities for mass scaling (fixture id -> original density)
     /// </summary>
     [DataField]
-    public Dictionary<string, float> OriginalFixtureRadii = new();
+    public Dictionary<string, float> OriginalFixtureDensities = new();
 }

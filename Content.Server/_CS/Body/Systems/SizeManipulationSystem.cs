@@ -3,16 +3,10 @@ using Content.Server.Consent;
 using Content.Shared.Body.Components;
 using Content.Shared.Consent;
 using Content.Shared.HeightAdjust;
-using Content.Shared.Humanoid;
-using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Log;
-using Robust.Shared.Physics;
-using Robust.Shared.Physics.Collision.Shapes;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Body.Systems;
