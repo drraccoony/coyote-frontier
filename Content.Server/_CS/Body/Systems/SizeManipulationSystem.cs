@@ -73,7 +73,7 @@ public sealed class SizeManipulationSystem : EntitySystem
         {
             if (user != null)
                 _popup.PopupEntity(Loc.GetString("size-manipulator-consent-denied"), target, user.Value);
-            
+
             Logger.Debug($"SizeManipulation: Consent denied for {ToPrettyString(target)}");
             return false;
         }
@@ -107,7 +107,7 @@ public sealed class SizeManipulationSystem : EntitySystem
         // Update the component's scale multiplier
         sizeComp.ScaleMultiplier = newScale;
         Dirty(target, sizeComp);
-        
+
         Logger.Debug($"SizeManipulation: Set scale multiplier to {newScale} for {ToPrettyString(target)}");
 
         // Request a size recalculation - this will collect all modifiers and apply the final scale

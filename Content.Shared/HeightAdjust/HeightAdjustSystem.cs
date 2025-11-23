@@ -76,7 +76,7 @@ public sealed class HeightAdjustSystem : EntitySystem
             EntityManager.TryGetComponent<PhysicsComponent>(uid, out var physics))
         {
             var sizeComp = EntityManager.EnsureComponent<Body.Components.SizeAffectedComponent>(uid);
-            
+
             foreach (var (id, fixture) in fixtures.Fixtures.ToArray())
             {
                 // Store original density on first scaling
@@ -86,7 +86,7 @@ public sealed class HeightAdjustSystem : EntitySystem
                 }
 
                 var originalDensity = sizeComp.OriginalFixtureDensities[id];
-                
+
                 // Scale density by scale^2 to make mass scale with "volume" in 2D
                 // Since Area = originalArea * scale^2, and Mass = Density * Area
                 // To get Mass = originalMass * scale^2, we need Density = originalDensity * scale^2 / scale^2 = originalDensity
@@ -95,7 +95,7 @@ public sealed class HeightAdjustSystem : EntitySystem
                 // originalMass * scale^2 = newDensity * (originalArea * scale^2)
                 // originalDensity * originalArea * scale^2 = newDensity * originalArea * scale^2
                 // So newDensity = originalDensity (density stays constant, mass scales with area)
-                
+
                 // Actually for proper 3D->2D representation, mass should scale with scale^2
                 // Area already scales with fixture radius changes (if we were scaling hitboxes)
                 // But since we're NOT scaling hitboxes, we need to scale density to compensate
@@ -103,11 +103,11 @@ public sealed class HeightAdjustSystem : EntitySystem
                 // We want: newMass = originalMass * scale^2
                 // So: newDensity * originalArea = originalDensity * originalArea * scale^2
                 // Therefore: newDensity = originalDensity * scale^2
-                
+
                 var newDensity = originalDensity * scale * scale;
                 _physics.SetDensity(uid, id, fixture, newDensity, false, fixtures);
             }
-            
+
             // Recalculate mass after all density changes
             _fixtures.FixtureUpdate(uid, manager: fixtures, body: physics);
             succeeded = true;
