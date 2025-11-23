@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/23/2025 16:47:21
-  entityCount: 527
+  time: 11/23/2025 17:14:40
+  entityCount: 534
 maps: []
 grids:
 - 1
@@ -496,6 +496,44 @@ entities:
     - type: BecomesStation
       id: Pathfinder
     - type: ImplicitRoof
+- proto: AirAlarm
+  entities:
+  - uid: 532
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,-17.5
+      parent: 1
+    - type: DeviceList
+      devices:
+      - 454
+      - 202
+  - uid: 533
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,-5.5
+      parent: 1
+    - type: DeviceList
+      devices:
+      - 252
+      - 468
+      - 65
+      - 273
+      - 219
+      - 404
+      - 410
+      - 262
+  - uid: 534
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,-2.5
+      parent: 1
+    - type: DeviceList
+      devices:
+      - 194
+      - 466
 - proto: AirlockExternalGlassPirateLocked
   entities:
   - uid: 21
@@ -512,7 +550,7 @@ entities:
       pos: -3.5,-7.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -776.55615
+      secondsUntilStateChange: -1041.4045
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -590,6 +628,14 @@ entities:
     - type: Transform
       pos: 6.5,-3.5
       parent: 1
+    - type: AmeController
+      injecting: True
+    - type: ContainerContainer
+      containers:
+        fuelSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 528
 - proto: AmeJar
   entities:
   - uid: 156
@@ -602,6 +648,12 @@ entities:
     - type: Transform
       pos: 7.652444,-4.481455
       parent: 1
+  - uid: 528
+    components:
+    - type: Transform
+      parent: 137
+    - type: Physics
+      canCollide: False
 - proto: AmeShielding
   entities:
   - uid: 2
@@ -624,6 +676,9 @@ entities:
     - type: Transform
       pos: 4.5,-3.5
       parent: 1
+    - type: PointLight
+      radius: 2
+      enabled: True
   - uid: 230
     components:
     - type: Transform
@@ -662,13 +717,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -1.5,-11.5
-      parent: 1
-- proto: Ashtray
-  entities:
-  - uid: 233
-    components:
-    - type: Transform
-      pos: 7.390256,-9.259895
       parent: 1
 - proto: AtmosDeviceFanDirectional
   entities:
@@ -1399,6 +1447,16 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-16.5
+      parent: 1
+  - uid: 530
+    components:
+    - type: Transform
+      pos: 1.5,-3.5
+      parent: 1
+  - uid: 531
+    components:
+    - type: Transform
+      pos: 2.5,-3.5
       parent: 1
 - proto: CablecuffsBroken
   entities:
@@ -2515,6 +2573,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,-12.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 533
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 404
@@ -2522,6 +2583,9 @@ entities:
     - type: Transform
       pos: 7.5,-8.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 533
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 410
@@ -2529,6 +2593,9 @@ entities:
     - type: Transform
       pos: 7.5,-4.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 533
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 454
@@ -2537,6 +2604,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-15.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 532
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 466
@@ -2544,6 +2614,9 @@ entities:
     - type: Transform
       pos: 0.5,1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 534
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 468
@@ -2552,6 +2625,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-8.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 533
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -2561,6 +2637,9 @@ entities:
     - type: Transform
       pos: 0.5,0.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 534
     - type: AtmosPipeLayers
       pipeLayer: Secondary
     - type: AtmosPipeColor
@@ -2571,6 +2650,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-15.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 532
     - type: AtmosPipeLayers
       pipeLayer: Secondary
     - type: AtmosPipeColor
@@ -2581,6 +2663,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 7.5,-9.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 533
     - type: AtmosPipeLayers
       pipeLayer: Secondary
     - type: AtmosPipeColor
@@ -2591,6 +2676,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,-9.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 533
     - type: AtmosPipeLayers
       pipeLayer: Secondary
     - type: AtmosPipeColor
@@ -2601,6 +2689,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 6.5,-6.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 533
     - type: AtmosPipeLayers
       pipeLayer: Secondary
     - type: AtmosPipeColor
@@ -2611,6 +2702,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,-11.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 533
     - type: AtmosPipeLayers
       pipeLayer: Secondary
     - type: AtmosPipeColor
@@ -2816,6 +2910,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -1.5,-15.5
+      parent: 1
+- proto: NFAshtray
+  entities:
+  - uid: 233
+    components:
+    - type: Transform
+      pos: 7.390256,-9.259895
       parent: 1
 - proto: NFHolopadShipAntag
   entities:
@@ -3395,6 +3496,20 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,-12.5
       parent: 1
+- proto: TwoWayLever
+  entities:
+  - uid: 529
+    components:
+    - type: Transform
+      pos: 3.5,2.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        128:
+        - - Left
+          - Trigger
+        - - Right
+          - Trigger
 - proto: VendingMachineTankDispenserEVA
   entities:
   - uid: 374
