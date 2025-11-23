@@ -76,7 +76,7 @@ public sealed class HeightAdjustSystem : EntitySystem
         if (EntityManager.TryGetComponent<FixturesComponent>(uid, out var fixtures) &&
             EntityManager.TryGetComponent<PhysicsComponent>(uid, out var physics))
         {
-            var sizeComp = EntityManager.EnsureComponent<Body.Components.SizeAffectedComponent>(uid);
+            var sizeComp = EntityManager.EnsureComponent<SizeAffectedComponent>(uid);
 
             foreach (var (id, fixture) in fixtures.Fixtures.ToArray())
             {
