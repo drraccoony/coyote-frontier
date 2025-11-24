@@ -67,7 +67,7 @@
 - type: entity
   id: NFMagazineHighCapacityPistol40Empty
   name: high capacity pistol magazine (.40 pistol, any)
-  parent: CSBaseMagazineHighCapacityPistol40
+  parent: CSBaseMagazinePistol40
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -75,7 +75,7 @@
 - type: entity
   id: NFMagazineHighCapacityPistol40
   name: high capacity pistol magazine (.40 pistol)
-  parent: CSBaseMagazineHighCapacityPistol40
+  parent: CSBaseMagazinePistol40
   components:
   - type: BallisticAmmoProvider
     proto: CSCartridgePistol40
@@ -83,7 +83,7 @@
 - type: entity
   id: NFMagazineHighCapacityPistol40Overpressure
   name: high capacity pistol magazine (.40 pistol, overpressure)
-  parent: CSBaseMagazineHighCapacityPistol40
+  parent: CSBaseMagazinePistol40
   components:
   - type: BallisticAmmoProvider
     proto: CSCartridgePistol40Overpressure
@@ -112,7 +112,7 @@
 - type: entity
   id: NFMagazineHighCapacityPistol40Incendiary
   name: high capacity pistol magazine (.40 pistol, incendiary)
-  parent: CSBaseMagazineHighCapacityPistol40
+  parent: CSBaseMagazinePistol40
   components:
   - type: BallisticAmmoProvider
     proto: CSCartridgePistol40Incendiary
@@ -141,7 +141,7 @@
 - type: entity
   id: NFMagazineHighCapacityPistol40Uranium
   name: high capacity pistol magazine (.40 pistol, uranium)
-  parent: CSBaseMagazineHighCapacityPistol40
+  parent: CSBaseMagazinePistol40
   components:
   - type: BallisticAmmoProvider
     proto: CSCartridgePistol40Uranium
@@ -170,7 +170,7 @@
 - type: entity
   id: NFMagazineHighCapacityPistol40Practice
   name: high capacity pistol magazine (.40 pistol, practice)
-  parent: CSBaseMagazineHighCapacityPistol40
+  parent: CSBaseMagazinePistol40
   components:
   - type: BallisticAmmoProvider
     proto: CSCartridgePistol40Practice
@@ -196,7 +196,7 @@
 - type: entity
   id: NFMagazineHighCapacityPistol40Emp
   name: high capacity pistol magazine (.40 pistol, EMP)
-  parent: CSBaseMagazineHighCapacityPistol40
+  parent: CSBaseMagazinePistol40
   components:
   - type: BallisticAmmoProvider
     proto: CSCartridgePistol40Emp
@@ -225,7 +225,7 @@
 - type: entity
   id: NFMagazineHighCapacityPistol40Rubber
   name: high capacity pistol magazine (.40 pistol, rubber)
-  parent: CSBaseMagazineHighCapacityPistol40
+  parent: CSBaseMagazinePistol40
   components:
   - type: BallisticAmmoProvider
     proto: CSCartridgePistol40Rubber
