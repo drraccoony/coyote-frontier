@@ -716,6 +716,14 @@
     - JugMercury
     - JugSilver
     - JugWeldingFuel
+    # Coyote: Doubled entries of 'useful' chemicals
+    - JugCarbon
+    - JugSilicon
+    - JugOxygen
+    - JugNitrogen
+    - JugHydrogen
+    - JugSugar
+    - JugEthanol
     chance: 1
     offset: 0.0
     rarePrototypes:
