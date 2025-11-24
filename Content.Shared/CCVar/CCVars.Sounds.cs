@@ -24,6 +24,9 @@ public sealed partial class CCVars
     public static readonly CVarDef<bool> BwoinkSoundEnabled =
         CVarDef.Create("audio.bwoink_sound_enabled", true, CVar.ARCHIVE | CVar.CLIENTONLY);
 
+    public static readonly CVarDef<bool> MentionSoundEnabled =
+        CVarDef.Create("audio.mention_sound_enabled", false, CVar.ARCHIVE | CVar.CLIENTONLY);
+
     public static readonly CVarDef<string> AdminChatSoundPath =
         CVarDef.Create("audio.admin_chat_sound_path",
             "/Audio/Items/pop.ogg",
