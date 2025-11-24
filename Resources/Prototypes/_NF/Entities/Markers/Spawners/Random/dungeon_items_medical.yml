@@ -299,6 +299,10 @@
     - Ointment
     - Gauze
     - Bloodpack
+    # Coyote
+    - SpawnDungeonClutterMedsSingle
+    - SpawnDungeonClutterMedsSingle
+    - SpawnDungeonClutterMedsSingle
     chance: 0.7
     offset: 0.0
     rarePrototypes:
