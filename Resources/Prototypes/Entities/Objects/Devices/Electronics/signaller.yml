@@ -27,7 +27,7 @@
   # Coyote
   - type: StaticPrice
     price: 20
-  - type: PhysicalComposition 
+  - type: PhysicalComposition
     materialComposition:
       Steel: 250
     chemicalComposition:
