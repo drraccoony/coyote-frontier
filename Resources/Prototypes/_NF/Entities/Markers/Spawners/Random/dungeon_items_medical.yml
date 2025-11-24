@@ -70,30 +70,32 @@
     - MedkitFilled
     - MedkitFilled
     - MedkitFilled
-    - MedkitFilled
     - Medkit
-    - Medkit
-    - MedkitBruteFilled
     - MedkitBruteFilled
     - MedkitBrute
     - MedkitBurnFilled
-    - MedkitBurnFilled
     - MedkitBurn
-    - MedkitToxinFilled
     - MedkitToxinFilled
     - MedkitToxin
     - MedkitRadiationFilled
-    - MedkitRadiationFilled
     - MedkitRadiation
-    chance: 0.6
+    # Coyote
+    - MedkitFilled
+    - Medkit
+    - MedkitBruteFilled
+    - MedkitBurnFilled
+    - MedkitToxinFilled
+    - MedkitRadiationFilled
+    chance: 0.6 # Coyote
     offset: 0.0
     rarePrototypes:
     - MedkitAdvancedFilled
-    - MedkitAdvancedFilled
     - MedkitAdvanced
     - MedkitCombatFilled
-    - MedkitCombatFilled
     - MedkitCombat
+    # Coyote
+    - MedkitAdvancedFilled
+    - MedkitCombatFilled
     rareChance: 0.01
 
 - type: entity
