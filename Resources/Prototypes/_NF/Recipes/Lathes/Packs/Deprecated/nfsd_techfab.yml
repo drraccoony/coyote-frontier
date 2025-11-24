@@ -36,14 +36,13 @@
   id: NfsdPracticeStatic
   recipes:
   - NFAmmunitionBoxPistol35Practice
+  - CSAmmunitionBoxPistol40Practice
   - NFAmmunitionBoxPistol45Practice
   - NFAmmunitionBoxRifle20Practice
   - NFAmmunitionBoxRifle30Practice
   - NFAmmunitionBoxShellShotgunPractice
   - NFWeaponEnergyPistolDisablerPractice
   - NFWeaponEnergyRifleCarbinePractice
-  # Coyote
-  - CSAmmunitionBoxPistol40Practice
 
 # Shared between secfab and emagged autolathe
 - type: latheRecipePack
@@ -62,22 +61,21 @@
   - NFAmmunitionBoxPistol35
   - NFAmmunitionBoxPistol35Overpressure
   - NFAmmunitionBoxPistol35Rubber
+  - CSAmmunitionBoxPistol40
+  - CSAmmunitionBoxPistol40Overpressure
+  - CSAmmunitionBoxPistol40Rubber
   - NFAmmunitionBoxPistol45
   - NFAmmunitionBoxPistol45Overpressure
   - NFAmmunitionBoxPistol45Rubber
   # Magazines (Empty)
   - NFMagazineHighCapacityPistol35Empty
+  - CSMagazinePistol40Empty
   - NFMagazinePistol45Empty
   - NFMagazineSubMachineGun35Empty
   - NFMagazineSubMachineGunTopMounted35Empty
+  - CSMagazineSubMachineGun40Empty
   - NFMagazineRifle20Empty
   - NFMagazineRifle30Empty
   - NFSpeedLoaderPistol35Empty
   - NFSpeedLoaderPistol45Empty
   - MagazineAsmgtUniversalEmpty
-  # Coyote
-  - CSAmmunitionBoxPistol40
-  - CSAmmunitionBoxPistol40Overpressure
-  - CSAmmunitionBoxPistol40Rubber
-  - CSMagazineSubMachineGun40Empty
-  - CSMagazinePistol40Empty
