@@ -72,7 +72,7 @@
     proto: null
 
 - type: entity
-  id: NFMagazineHighCapacityPistol40
+  id: CSMagazinePistol40
   name: high capacity pistol magazine (.40 pistol)
   parent: CSBaseMagazinePistol40
   components:
@@ -80,7 +80,7 @@
     proto: CSCartridgePistol40
 
 - type: entity
-  id: NFMagazineHighCapacityPistol40Overpressure
+  id: CSMagazinePistol40Overpressure
   name: high capacity pistol magazine (.40 pistol, overpressure)
   parent: CSBaseMagazinePistol40
   components:
@@ -109,7 +109,7 @@
         color: "#ff8d00"
 
 - type: entity
-  id: NFMagazineHighCapacityPistol40Incendiary
+  id: CSMagazinePistol40Incendiary
   name: high capacity pistol magazine (.40 pistol, incendiary)
   parent: CSBaseMagazinePistol40
   components:
@@ -138,7 +138,7 @@
         color: "#ff0000"
 
 - type: entity
-  id: NFMagazineHighCapacityPistol40Uranium
+  id: CSMagazinePistol40Uranium
   name: high capacity pistol magazine (.40 pistol, uranium)
   parent: CSBaseMagazinePistol40
   components:
@@ -167,7 +167,7 @@
         color: "#00ff00"
 
 - type: entity
-  id: NFMagazineHighCapacityPistol40Practice
+  id: CSMagazinePistol40Practice
   name: high capacity pistol magazine (.40 pistol, practice)
   parent: CSBaseMagazinePistol40
   components:
@@ -193,7 +193,7 @@
       - state: inhand-right-stripe
 
 - type: entity
-  id: NFMagazineHighCapacityPistol40Emp
+  id: CSMagazinePistol40Emp
   name: high capacity pistol magazine (.40 pistol, EMP)
   parent: CSBaseMagazinePistol40
   components:
@@ -222,7 +222,7 @@
         color: "#00ffff"
 
 - type: entity
-  id: NFMagazineHighCapacityPistol40Rubber
+  id: CSMagazinePistol40Rubber
   name: high capacity pistol magazine (.40 pistol, rubber)
   parent: CSBaseMagazinePistol40
   components:

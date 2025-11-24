@@ -1,0 +1,146 @@
+#region frame
+- type: entity
+  id: CSBaseWeaponFrameHeavySubMachineGun
+  parent: [ NFBaseWeaponEncumbranceSubMachineGun, NFBaseItemWeaponGunMagazineFed ]
+  name: heavy submachine gun
+  abstract: true
+  components:
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus
+    minAngle: -0.8
+    maxAngle: -4
+  - type: Gun
+    projectileSpeed: 30
+    minAngle: 3.7
+    maxAngle: 18.5
+    angleIncrease: 1
+    angleDecay: 5
+    fireRate: 6
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+  - type: StaticPrice
+    price: 350
+  - type: NFWeaponDetails
+    class: weapon-details-class-heavy-submachine-gun
+
+#region manufacturer
+- type: entity
+  id: CSBaseWeaponFrameHeavySubMachineGunNanotrasen
+  parent: CSBaseWeaponFrameHeavySubMachineGun
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 4.3
+    maxAngle: 21.5
+    angleIncrease: 1.4
+    angleDecay: 4.8
+    fireRate: 5.1
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-nanotrasen-munitions
+
+- type: entity
+  id: CSBaseWeaponFrameHeavySubMachineGunCybersun
+  parent: [ BaseC3SyndicateContraband, CSBaseWeaponFrameHeavySubMachineGun ]
+  abstract: true
+  components:
+  - type: Gun
+    angleIncrease: 1.1
+    angleDecay: 7.7
+    fireRate: 4.8
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-cybersun-industries
+
+- type: entity
+  id: CSBaseWeaponFrameHeavySubMachineGunGorlex
+  parent: [ BaseC3SyndicateContraband, CSBaseWeaponFrameHeavySubMachineGun ]
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 4.1
+    maxAngle: 20.5
+    angleIncrease: 1.8
+    angleDecay: 6.5
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-gorlex-steel-works
+
+- type: entity
+  id: CSBaseWeaponFrameHeavySubMachineGunFrontierGunsmith
+  parent: [ CSBaseWeaponFrameHeavySubMachineGun ]
+  abstract: true
+  components:
+  - type: Gun
+    minAngle: 4.4
+    maxAngle: 22
+    angleIncrease: 2.1
+    angleDecay: 6.7
+    fireRate: 4.8
+  - type: NFWeaponDetails
+    manufacturer: weapon-details-manufacturer-frontier-gunsmith-consortium
+
+#region chamber
+- type: entity
+  id: CSBaseWeaponHeavySubMachineGunChamber
+  abstract: true
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-40
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/smg.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
+  id: CSBaseWeaponHeavySubMachineGunChamber40
+  parent: CSBaseWeaponHeavySubMachineGunChamber
+  abstract: true
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: CSMagazineSubMachineGun40
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist: &mag40Whitelist
+          tags:
+            - CSMagazineSubMachineGunPistol40
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber: &chamber40Standard
+        name: Chamber
+        startingItem: CSCartridgePistol40
+        priority: 1
+        whitelist:
+          tags:
+            - CSCartridgePistol40
+
+- type: entity
+  id: CSBaseWeaponHeavySubMachineGunChamber40Rubber
+  parent: CSBaseWeaponHeavySubMachineGunChamber40
+  abstract: true
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: CSMagazineSubMachineGun40Rubber
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist: *mag40Whitelist
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber: &chamber40Rubber
+        name: Chamber
+        startingItem: CSCartridgePistol40Rubber
+        priority: 1
+        whitelist:
+          tags:
+            - CSCartridgePistol40
