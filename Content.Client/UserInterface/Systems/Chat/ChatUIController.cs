@@ -23,6 +23,7 @@ using Content.Shared.Decals;
 using Content.Shared.Input;
 using Content.Shared.Radio;
 using Content.Shared.Roles.RoleCodeword;
+using Robust.Client.Audio;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
@@ -36,6 +37,7 @@ using Robust.Shared.GameObjects.Components.Localization;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Replays;
 using Robust.Shared.Timing;
@@ -66,6 +68,7 @@ public sealed partial class ChatUIController : UIController
     [UISystemDependency] private readonly TransformSystem? _transform = default;
     [UISystemDependency] private readonly MindSystem? _mindSystem = default!;
     [UISystemDependency] private readonly RoleCodewordSystem? _roleCodewordSystem = default!;
+    [UISystemDependency] private readonly AudioSystem? _audio = default!;
 
     [ValidatePrototypeId<ColorPalettePrototype>]
     private const string ChatNamePalette = "ChatNames";
@@ -844,9 +847,19 @@ public sealed partial class ChatUIController : UIController
         }
 
         // Color any words chosen by the client.
+        var highlightMatched = false;
         foreach (var highlight in _highlights)
         {
+            var oldMessage = msg.WrappedMessage;
             msg.WrappedMessage = SharedChatSystem.InjectTagAroundString(msg, highlight, "color", _highlightsColor);
+            if (!highlightMatched && oldMessage != msg.WrappedMessage)
+                highlightMatched = true;
+        }
+
+        // Play mention sound if a highlight was matched
+        if (highlightMatched && _mentionSoundEnabled && _audio != null)
+        {
+            _audio.PlayGlobal("/Audio/_COYOTE/UserInterface/mention.ogg", Filter.Local(), false);
         }
 
         // Color any codewords for minds that have roles that use them

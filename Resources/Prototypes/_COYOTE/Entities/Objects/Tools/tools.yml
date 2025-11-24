@@ -1,6 +1,6 @@
 - type: entity
   name: Pirate RCD
-  parent: [BaseC3PirateContraband, RCD]
+  parent: [BaseC3MetaPirate, RCD] # COYOTE: BaseC3PirateContraband -> BaseC3MetaPirate
   id: PirateRCD
   description: A blackmarket construction device which can place/remove walls, floors, and airlocks quickly. It has a slot to swipe ID cards.
   components:
@@ -51,8 +51,8 @@
 
 - type: entity
   name: NFSD RCD
-  parent: [BaseC2ContrabandUnredeemable, RCD]
-  id: NFSDRCD
+  parent: [BaseC3MetaSec, RCD] # BaseC2ContrabandUnredeemable -> BaseC3MetaSec
+  id: NfsdRCD
   description: A security construction device which can place/remove walls, floors, and airlocks quickly. It has a slot to swipe ID cards.
   components:
   - type: RCD

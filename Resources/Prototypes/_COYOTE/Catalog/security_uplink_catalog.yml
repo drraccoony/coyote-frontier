@@ -2,7 +2,7 @@
   id: UplinkNfsdRCD
   name:  uplink-nfsd-rcd-name
   description: uplink-nfsd-rcd-desc
-  productEntity: NFSDRCD
+  productEntity: NfsdRCD
   icon: { sprite: _NF/Objects/Tools/rcd.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 10

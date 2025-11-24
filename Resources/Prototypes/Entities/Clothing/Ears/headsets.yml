@@ -233,7 +233,7 @@
       - EncryptionKeyCommon
 
 - type: entity
-  parent: [ClothingHeadset, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityLawyerContraband<BaseC2ContrabandUnredeemable
+  parent: [ClothingHeadset, BaseC3MetaSec] # Frontier: BaseSecurityLawyerContraband<BaseC2ContrabandUnredeemable # COYOTE: BaseC2ContrabandUnredeemable -> BaseC3MetaSec
   id: ClothingHeadsetSecurity
   name: security headset
   description: This is used by your elite security force.
@@ -249,7 +249,7 @@
     sprite: Clothing/Ears/Headsets/security.rsi
 
 - type: entity
-  parent: [ClothingHeadset, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
+  parent: [ClothingHeadset, BaseC3MetaSec] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable # COYOTE: BaseC2ContrabandUnredeemable -> BaseC3MetaSec
   id: ClothingHeadsetBrigmedic
   name: brigmedic headset
   description: A headset that helps to hear the death cries.
@@ -282,7 +282,7 @@
     sprite: Clothing/Ears/Headsets/service.rsi
 
 - type: entity
-  parent: [ClothingHeadset] # Frontier: add BaseC3Contraband, ContrabandClothing #Coyote: Removes C3 Contraband and Contraband Clothing
+  parent: [ClothingHeadset, BaseC3MetaPirate] # Frontier: add BaseC3Contraband, ContrabandClothing #Coyote: Removes C3 Contraband and Contraband Clothing, changes c3 to c3meta
   id: ClothingHeadsetFreelance
   name: freelancer headset
   description: This is used by a roaming group of freelancers.
