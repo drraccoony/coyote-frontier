@@ -21,7 +21,7 @@
   productEntity: ClothingOuterHardsuitPirateCap
   icon: { sprite: Clothing/OuterClothing/Hardsuits/piratecaptain.rsi, state: icon }
   cost:
-    Doubloon: 3
+    Doubloon: 5
   categories:
     - UplinkPirateHardsuits
   conditions:
@@ -29,9 +29,6 @@
       whitelist:
         tags:
           - PirateUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - NFPirateCaptain
 
 - type: listing
   id: UplinkPirateHardsuitElite
@@ -40,7 +37,7 @@
   productEntity: ClothingOuterHardsuitPirateElite
   icon: { sprite: _NF/Clothing/OuterClothing/Hardsuits/pirate_elite.rsi, state: icon }
   cost:
-    Doubloon: 10
+    Doubloon: 20 # COYOTE: 10 -> 20. It's juiced now.
   categories:
     - UplinkPirateHardsuits
   conditions:

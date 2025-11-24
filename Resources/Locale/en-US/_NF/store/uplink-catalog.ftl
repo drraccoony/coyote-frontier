@@ -240,11 +240,11 @@ uplink-security-hristov-ammo-name = .60 Ammo Box
 uplink-security-hristov-ammo-desc = A box of .60 ammunition, for antimaterial rifles.
 
 # region Pirate
-uplink-pirate-hardsuit-name = Pirate Hardsuit
-uplink-pirate-hardsuit-desc = A heavy space suit that provides some basic protection from the cold harsh realities of deep space.
+uplink-pirate-hardsuit-name = Pirate EVA suit
+uplink-pirate-hardsuit-desc = An EVA suit with a built in helmet commonly used by pirates.
 
-uplink-pirate-hardsuit-captain-name = Pirate Captain's Hardsuit
-uplink-pirate-hardsuit-captain-desc = An ancient armored hardsuit, perfect for defending against space scurvy and toolbox-wielding scallywags.
+uplink-pirate-hardsuit-captain-name = Pirate Hardsuit
+uplink-pirate-hardsuit-captain-desc = An armored hardsuit, perfect for defending against space scurvy and toolbox-wielding scallywags.
 
 uplink-pirate-hardsuit-elite-name = Elite Pirate's Hardsuit
 uplink-pirate-hardsuit-elite-desc = An ancient elite armored hardsuit, designed by an unknown bearded man and built like a brick house.

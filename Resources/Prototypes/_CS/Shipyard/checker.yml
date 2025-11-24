@@ -1,18 +1,20 @@
 # Author Info
-# GitHub: Unknown
-# Discord: Unknown
+# GitHub: archee1
+# Discord: simplypoodle & archee
 
 # Maintainer Info
 # GitHub: archee1 (https://github.com/archee1)
 # Discord: Archee
 
+# Shuttle Notes:
 # made for a friend! love ya archee <3
+
 - type: vessel
   id: Checker
   parent: BaseVessel
   name: LVHI Checker
   description: The pinnacle of entertainment, sporting the universes oldest game with class. Who needs money when you got board games?
-  price: 40000 # 34999, upcharged because teehee
+  price: 51500 # 39276 LL1 130% = 51058
   category: Medium
   group: Shipyard
   shuttlePath: /Maps/_CS/Shuttles/checker.yml
@@ -20,7 +22,7 @@
   class:
   - Civilian
   engine:
-  - Uranium
+  - Plasma
 
 - type: gameMap
   id: Checker
