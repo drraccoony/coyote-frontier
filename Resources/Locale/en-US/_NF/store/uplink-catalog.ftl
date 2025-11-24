@@ -60,7 +60,7 @@ uplink-security-disablersmg-name = Disabler SMG
 uplink-security-disablersmg-desc = Fully automatic, rapid fire disabler. Tuned to the same frequency as standard disablers, the ultimate less-lethal instrument. Has an internal battery, but requires using a security charging dock.
 
 uplink-security-energysword-name = Energy Sword
-uplink-security-energysword-desc = Reverse-engineered, NT manufactured energy sword. Chance to reflect projectiles.
+uplink-security-energysword-desc = Reverse-engineered, TSF manufactured energy sword. Chance to reflect projectiles.
 
 uplink-security-wt550-name = WT550
 uplink-security-wt550-desc = A fully automatic submachine gun. This design uses special top-mounted magazines, allowing for simpler and faster operation in the field. Uses .35 auto.
@@ -218,6 +218,9 @@ uplink-security-emp-bundle-desc = A bundle containing a Lake type launcher and 1
 uplink-security-emp-ammo-name = EMP Projectile Ammo
 uplink-security-emp-ammo-desc = A box containing 4 EMP projectile grenades.
 
+uplink-security-emp-ammo-mags-name = EMP Grenade Cartridge
+uplink-security-emp-ammo-mags-desc = A single EMP grenade cartridge, for shipboard weapons.
+
 uplink-security-trackingdart-ammo-name = Tracking Darts Ammo
 uplink-security-trackingdart-ammo-desc = A box containing 3 tracking darts and 3 pinpointers.
 
@@ -230,12 +233,18 @@ uplink-security-contraband-forensics-module-desc = A program for scanning and re
 uplink-security-lasercanon-name = Laser Cannon
 uplink-security-lasercanon-desc = A heavy duty, high powered laser sniper rifle.
 
-# region Pirate
-uplink-pirate-hardsuit-name = Pirate Hardsuit
-uplink-pirate-hardsuit-desc = A heavy space suit that provides some basic protection from the cold harsh realities of deep space.
+uplink-security-hristov-name = Antimaterial Rifle
+uplink-security-hristov-desc = A heavy, antimaterial rifle.
 
-uplink-pirate-hardsuit-captain-name = Pirate Captain's Hardsuit
-uplink-pirate-hardsuit-captain-desc = An ancient armored hardsuit, perfect for defending against space scurvy and toolbox-wielding scallywags.
+uplink-security-hristov-ammo-name = .60 Ammo Box
+uplink-security-hristov-ammo-desc = A box of .60 ammunition, for antimaterial rifles.
+
+# region Pirate
+uplink-pirate-hardsuit-name = Pirate EVA suit
+uplink-pirate-hardsuit-desc = An EVA suit with a built in helmet commonly used by pirates.
+
+uplink-pirate-hardsuit-captain-name = Pirate Hardsuit
+uplink-pirate-hardsuit-captain-desc = An armored hardsuit, perfect for defending against space scurvy and toolbox-wielding scallywags.
 
 uplink-pirate-hardsuit-elite-name = Elite Pirate's Hardsuit
 uplink-pirate-hardsuit-elite-desc = An ancient elite armored hardsuit, designed by an unknown bearded man and built like a brick house.
@@ -356,3 +365,6 @@ uplink-speedloader-magnum-non-ap-desc = A .45 pistol speed loader with 6 .45 pis
 
 uplink-syndicate-segway-name = Syndicate Segway
 uplink-syndicate-segway-desc = Move around in style without dirtying your blood red boots.
+
+uplink-Telecrystal = Telecrystal
+uplink-Telecrystal-desc = Telecrystals for use in Syndicate Uplinks

@@ -41,6 +41,16 @@
   - type: NFWeaponDetails
     class: weapon-details-manufacturer-cybersun-industries
 
+- type: entity # Coyote added NFSD version of the Hristov
+  id: NFBaseWeaponFrameRifleSniperNFSD
+  parent: [ BaseC3MetaSec, NFBaseWeaponFrameRifleSniper ] # COYOTE: BaseC2ContrabandUnredeemable -> BaseC3MetaSec
+  abstract: true
+  components:
+  - type: Gun
+    angleIncrease: 0.5
+    angleDecay: 3.5
+    fireRate: 0.8
+
 #region chamber
 - type: entity
   id: NFBaseWeaponRifleChamber60

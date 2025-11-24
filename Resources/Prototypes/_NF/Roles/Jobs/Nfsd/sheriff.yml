@@ -44,10 +44,12 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:AddRpiJobModifierSpecial
+    modifiersToAdd:
+    - rpiJobModifierSheriff
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
-      - type: CoolSheriff
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
@@ -66,3 +68,18 @@
     - BaseSecurityUplinkRadioSheriff
     - RubberStampSheriff
     - ShipVoucherNfsdBailiff
+    - FrontierUplinkCoin5 # Coyote added 5 uplink coins to Sheriff
+
+- type: chameleonOutfit
+  id: SheriffChameleonOutfit
+  job: Sheriff
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatNfsdCampaignFilled
+    mask: ClothingMaskGasSheriff
+    eyes: ClothingEyesGlassesNfsd
+    outerClothing: ClothingOuterCoatNfsdFormalSheriff
+    neck: ClothingNeckNfsdBadgeSheriff
+    belt: ClothingBeltNfsdFilled
+    gloves: ClothingHandsGlovesCombatNfsdCream
+    shoes: ClothingShoesBootsNfsdBrown

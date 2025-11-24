@@ -11,6 +11,7 @@
   price: 20000 # 14289 1.25 32150.25
   category: Small
   group: BlackMarket
+  access: BlackMarket
   shuttlePath: /Maps/_NF/Shuttles/BlackMarket/barnacle.yml
   guidebookPage: Null
   class:
@@ -33,5 +34,6 @@
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationJobs
-          availableJobs: 
+          availableJobs:
             NFPirate: [ 0, 0 ]
+            Escort: [ 0, 0 ]

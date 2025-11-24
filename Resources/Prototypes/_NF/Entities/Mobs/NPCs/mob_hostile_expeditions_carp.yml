@@ -339,11 +339,11 @@
   id: NFMobDragonDungeon
   suffix: Dungeon, Frontier
   components:
-  - type: GhostRole
-    description: ghost-role-information-space-dragon-dungeon-description
-    rules: ghost-role-information-dungeon-boss-rules
-    raffle:
-      settings: default
+  # - type: GhostRole # CS - disable ghost role
+    # description: ghost-role-information-space-dragon-dungeon-description
+    # rules: ghost-role-information-dungeon-boss-rules
+    # raffle:
+      # settings: default
   - type: SlowOnDamage
     speedModifierThresholds:
       100: 0.7

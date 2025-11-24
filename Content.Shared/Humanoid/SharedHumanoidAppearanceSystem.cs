@@ -87,6 +87,16 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
     private void OnInit(EntityUid uid, HumanoidAppearanceComponent humanoid, ComponentInit args)
     {
+        // Migration: Ensure BaseHeight and BaseWidth are initialized for existing characters
+        if (Math.Abs(humanoid.BaseHeight - 1.0f) < 0.001f && Math.Abs(humanoid.BaseWidth - 1.0f) < 0.001f)
+        {
+            if (Math.Abs(humanoid.Height - 1.0f) > 0.001f || Math.Abs(humanoid.Width - 1.0f) > 0.001f)
+            {
+                humanoid.BaseHeight = humanoid.Height;
+                humanoid.BaseWidth = humanoid.Width;
+            }
+        }
+
         if (string.IsNullOrEmpty(humanoid.Species) || _netManager.IsClient && !IsClientSide(uid))
         {
             return;
@@ -115,6 +125,23 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         var age = GetAgeRepresentation(component.Species, component.Age);
 
         args.PushText(Loc.GetString("humanoid-appearance-component-examine", ("user", identity), ("age", age), ("species", species)));
+
+        // Calculate the current scale vs the base customization
+        var averageBase = (component.BaseHeight + component.BaseWidth) / 2.0f;
+        var averageCurrent = (component.Height + component.Width) / 2.0f;
+
+        // // Show base customization if different from normal (1.0)
+        // if (Math.Abs(averageBase - 1.0f) > 0.05f)
+        // {
+        //     args.PushMarkup(Loc.GetString("humanoid-appearance-component-examine-base-size", ("scale", averageBase.ToString("F2"))));
+        // }
+
+        // Show active size modification if different from base
+        if (Math.Abs(averageCurrent - averageBase) > 0.05f)
+        {
+            var modifier = averageCurrent / averageBase;
+            args.PushMarkup(Loc.GetString("humanoid-appearance-component-examine-modified-size", ("scale", averageCurrent.ToString("F2")), ("modifier", modifier.ToString("F2"))));
+        }
     }
 
     /// <summary>
@@ -371,14 +398,22 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     /// <param name="uid">The humanoid mob's UID</param>
     /// <param name="height">The height to set the mob to</param>
     /// <param name="sync">Whether to immediately synchronize this to the humanoid mob, or not</param>
+    /// <param name="bypassLimits">Whether to bypass species min/max height limits (for temporary effects like size gun)</param>
     /// <param name="humanoid">Humanoid component of the entity</param>
-    public void SetHeight(EntityUid uid, float height, bool sync = true, HumanoidAppearanceComponent? humanoid = null)
+    public void SetHeight(EntityUid uid, float height, bool sync = true, bool bypassLimits = false, HumanoidAppearanceComponent? humanoid = null)
     {
         if (!Resolve(uid, ref humanoid) || MathHelper.CloseTo(humanoid.Height, height, 0.001f))
             return;
 
-        var species = _proto.Index(humanoid.Species);
-        humanoid.Height = Math.Clamp(height, species.MinHeight, species.MaxHeight);
+        if (bypassLimits)
+        {
+            humanoid.Height = height;
+        }
+        else
+        {
+            var species = _proto.Index(humanoid.Species);
+            humanoid.Height = Math.Clamp(height, species.MinHeight, species.MaxHeight);
+        }
 
         if (sync)
             Dirty(uid, humanoid);
@@ -390,14 +425,22 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     /// <param name="uid">The humanoid mob's UID</param>
     /// <param name="width">The width to set the mob to</param>
     /// <param name="sync">Whether to immediately synchronize this to the humanoid mob, or not</param>
+    /// <param name="bypassLimits">Whether to bypass species min/max width limits (for temporary effects like size gun)</param>
     /// <param name="humanoid">Humanoid component of the entity</param>
-    public void SetWidth(EntityUid uid, float width, bool sync = true, HumanoidAppearanceComponent? humanoid = null)
+    public void SetWidth(EntityUid uid, float width, bool sync = true, bool bypassLimits = false, HumanoidAppearanceComponent? humanoid = null)
     {
         if (!Resolve(uid, ref humanoid) || MathHelper.CloseTo(humanoid.Width, width, 0.001f))
             return;
 
-        var species = _proto.Index(humanoid.Species);
-        humanoid.Width = Math.Clamp(width, species.MinWidth, species.MaxWidth);
+        if (bypassLimits)
+        {
+            humanoid.Width = width;
+        }
+        else
+        {
+            var species = _proto.Index(humanoid.Species);
+            humanoid.Width = Math.Clamp(width, species.MinWidth, species.MaxWidth);
+        }
 
         if (sync)
             Dirty(uid, humanoid);
@@ -595,6 +638,12 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         var markingObject = new Marking(marking, colors);
         markingObject.Forced = forced;
         humanoid.MarkingSet.AddBack(prototype.MarkingCategory, markingObject);
+
+        // Automatically hide Genital markings by default (like undergarments)
+        if (prototype.MarkingCategory == MarkingCategories.Genital)
+        {
+            humanoid.HiddenMarkings.Add(marking);
+        }
 
         if (sync)
             Dirty(uid, humanoid);

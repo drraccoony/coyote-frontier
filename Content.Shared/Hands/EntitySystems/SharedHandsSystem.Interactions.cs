@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared.Cuffs.Components;
 using Content.Shared.Examine;
 using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
@@ -30,8 +31,9 @@ public abstract partial class SharedHandsSystem : EntitySystem
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.UseItemInHand, InputCmdHandler.FromDelegate(HandleUseItem, handle: false, outsidePrediction: false))
             .Bind(ContentKeyFunctions.AltUseItemInHand, InputCmdHandler.FromDelegate(HandleAltUseInHand, handle: false, outsidePrediction: false))
-            .Bind(ContentKeyFunctions.SwapHandsPrevious, InputCmdHandler.FromDelegate(SwapHandsPreviousPressed, handle: false, outsidePrediction: false)) // Frontier
+            .Bind(ContentKeyFunctions.SwapHandsReverse, InputCmdHandler.FromDelegate(SwapHandsPreviousPressed, handle: false, outsidePrediction: false)) // Frontier
             .Bind(ContentKeyFunctions.SwapHands, InputCmdHandler.FromDelegate(SwapHandsPressed, handle: false, outsidePrediction: false))
+            .Bind(ContentKeyFunctions.SwapHandsReverse, InputCmdHandler.FromDelegate(SwapHandsReversePressed, handle: false, outsidePrediction: false))
             .Bind(ContentKeyFunctions.Drop, new PointerInputCmdHandler(DropPressed))
             .Register<SharedHandsSystem>();
     }
@@ -81,6 +83,16 @@ public abstract partial class SharedHandsSystem : EntitySystem
 
     private void SwapHandsPressed(ICommonSession? session)
     {
+        SwapHands(session, false);
+    }
+
+    private void SwapHandsReversePressed(ICommonSession? session)
+    {
+        SwapHands(session, true);
+    }
+
+    private void SwapHands(ICommonSession? session, bool reverse)
+    {
         if (!TryComp(session?.AttachedEntity, out HandsComponent? component))
             return;
 
@@ -90,8 +102,9 @@ public abstract partial class SharedHandsSystem : EntitySystem
         if (component.ActiveHand == null || component.Hands.Count < 2)
             return;
 
-        var newActiveIndex = component.SortedHands.IndexOf(component.ActiveHand.Name) + 1;
-        var nextHand = component.SortedHands[newActiveIndex % component.Hands.Count];
+        var currentIndex = component.SortedHands.IndexOf(component.ActiveHand.Name);
+        var newActiveIndex = (currentIndex + (reverse ? -1 : 1) + component.Hands.Count) % component.Hands.Count;
+        var nextHand = component.SortedHands[newActiveIndex];
 
         TrySetActiveHand(session.AttachedEntity.Value, nextHand, component);
     }
@@ -220,19 +233,52 @@ public abstract partial class SharedHandsSystem : EntitySystem
     //TODO: Actually shows all items/clothing/etc.
     private void HandleExamined(EntityUid examinedUid, HandsComponent handsComp, ExaminedEvent args)
     {
-        var heldItemNames = EnumerateHeld(examinedUid, handsComp)
-            .Where(entity => !HasComp<VirtualItemComponent>(entity))
-            .Select(item => FormattedMessage.EscapeText(Identity.Name(item, EntityManager)))
-            .Select(itemName => Loc.GetString("comp-hands-examine-wrapper", ("item", itemName)))
-            .ToList();
-
-        var locKey = heldItemNames.Count != 0 ? "comp-hands-examine" : "comp-hands-examine-empty";
-        var locUser = ("user", Identity.Entity(examinedUid, EntityManager));
-        var locItems = ("items", ContentLocalizationManager.FormatList(heldItemNames));
-
+        // Floof: total overhaul
+        var held = new List<EntityUid>();
+        var cuffed = 0;
+        foreach (var entity in EnumerateHeld(examinedUid, handsComp))
+        {
+            if (TryComp(entity, out VirtualItemComponent? virtualItem))
+            {
+                // Carried or cuffed
+                if (TransformSystem.GetParentUid(virtualItem.BlockingEntity) == examinedUid)
+                {
+                    if (TryComp(examinedUid, out CuffableComponent? cuffable) &&
+                        cuffable.Container.ContainedEntities.Contains(virtualItem.BlockingEntity))
+                        cuffed++;
+                    else
+                        held.Add(virtualItem.BlockingEntity);
+                }
+            }
+            else
+                held.Add(entity);
+        }
         using (args.PushGroup(nameof(HandsComponent)))
         {
-            args.PushMarkup(Loc.GetString(locKey, locUser, locItems));
+            var locUser = ("user", Identity.Entity(examinedUid, EntityManager));
+
+            if (cuffed == EnumerateHands(examinedUid, handsComp).Count())
+            {
+                args.PushMarkup(Loc.GetString("comp-hands-examine-cuffed-all", locUser));
+                // If all their hands are cuffed, there's nothing else to do.
+                return;
+            }
+            if (cuffed > 0)
+                args.PushMarkup(Loc.GetString("comp-hands-examine-cuffed-some", locUser, ("number", cuffed)));
+
+            var heldItemNames = held
+                .Distinct()
+                .Select(item => Loc.GetString("comp-hands-examine-wrapper", ("item", item)))
+                .ToList();
+            var heldKey = heldItemNames.Count != 0 ? "comp-hands-examine" : "comp-hands-examine-empty";
+            var heldItems = ("items", ContentLocalizationManager.FormatList(heldItemNames));
+            args.PushMarkup(Loc.GetString(heldKey, locUser, heldItems));
+
+            if (_pulling.GetPulling(examinedUid) is { } pulled)
+            {
+                var pulledItemText = Loc.GetString("comp-hands-examine-wrapper", ("item", pulled));
+                args.PushMarkup(Loc.GetString("comp-hands-examine-drag", locUser, ("item", pulledItemText)));
+            }
         }
     }
 }

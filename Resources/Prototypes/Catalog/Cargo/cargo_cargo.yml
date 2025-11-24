@@ -39,6 +39,7 @@
   cost: 750
   category: cargoproduct-category-name-cargo
   group: market
+
 # frontier: Unused
 # - type: cargoProduct
 #   id: CargoCrusherDagger

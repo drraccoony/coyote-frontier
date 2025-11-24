@@ -39,6 +39,9 @@ public abstract class SharedShipyardSystem : EntitySystem
         SubscribeLocalEvent<ShipyardConsoleComponent, ComponentRemove>(OnComponentRemove);
         SubscribeLocalEvent<ShipyardConsoleComponent, ComponentGetState>(OnGetState);
         SubscribeLocalEvent<ShipyardConsoleComponent, ComponentHandleState>(OnHandleState);
+
+        SubscribeLocalEvent<BluespaceDrydockConsoleComponent, ComponentInit>(OnDrydockComponentInit);
+        SubscribeLocalEvent<BluespaceDrydockConsoleComponent, ComponentRemove>(OnDrydockComponentRemove);
     }
 
     private void OnHandleState(EntityUid uid, ShipyardConsoleComponent component, ref ComponentHandleState args)
@@ -58,6 +61,16 @@ public abstract class SharedShipyardSystem : EntitySystem
     }
 
     private void OnComponentRemove(EntityUid uid, ShipyardConsoleComponent component, ComponentRemove args)
+    {
+        _itemSlotsSystem.RemoveItemSlot(uid, component.TargetIdSlot);
+    }
+
+    private void OnDrydockComponentInit(EntityUid uid, BluespaceDrydockConsoleComponent component, ComponentInit args)
+    {
+        _itemSlotsSystem.AddItemSlot(uid, BluespaceDrydockConsoleComponent.TargetIdCardSlotId, component.TargetIdSlot);
+    }
+
+    private void OnDrydockComponentRemove(EntityUid uid, BluespaceDrydockConsoleComponent component, ComponentRemove args)
     {
         _itemSlotsSystem.RemoveItemSlot(uid, component.TargetIdSlot);
     }

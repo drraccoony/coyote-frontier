@@ -187,9 +187,6 @@
     - type: HTN
       rootTask:
         task: DragonCarpCompound
-    - type: LeashAnchor # Floofstation - we can't exactly remove this component coming from the parent, so we disable it
-      enabled: false
-
 
 - type: entity
   id: MobCarpDungeon
@@ -208,8 +205,6 @@
     damage:
       types:
         Slash: 6
-  - type: LeashAnchor # Floofstation - we can't exactly remove this component coming from the parent, so we disable it
-    enabled: false
 
 - type: entity
   name: sharkminnow
@@ -259,8 +254,7 @@
         - id: FoodMeatFish
           amount: 4
         - id: MaterialToothSharkminnow1
-          amount: 1
-          maxAmount: 3
+          amount: 3
     - type: MeleeWeapon
       damage:
         types:

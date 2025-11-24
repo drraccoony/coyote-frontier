@@ -25,6 +25,11 @@
   - !type:GiveItemOnHolidaySpecial # Frontier
     holiday: FrontierBirthday # Frontier
     prototype: FrontierBirthdayGift # Frontier
+#  - !type:AddComponentSpecial # Frottage - soon
+#    components:
+#    - type: PaywardActionMailOpenedByOwners # Coyote Sector
+#    - type: PaywardAuraMailCarrier # Coyote Sector
+#    - type: PaywardModifierMailStats # Coyote Sector
 
 - type: startingGear
   id: MailCarrierGear
@@ -40,3 +45,8 @@
     - HandheldCrewMonitor # Frontier
     - ShipVoucherFrontierMailCarrier # Frontier
     - MailMetricsCartridge # Frontier
+
+- type: chameleonOutfit
+  id: MailCarrierChameleonOutfit
+  job: MailCarrier
+  hasMindShield: true

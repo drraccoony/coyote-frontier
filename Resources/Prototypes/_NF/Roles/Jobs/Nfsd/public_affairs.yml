@@ -3,9 +3,9 @@
   name: job-name-pal
   description: job-description-public-affairs-liaison
   playTimeTracker: JobPublicAffairsLiaison
-  requirements:
+  requirements: # Coyote editted the playtime of the PAL to reflect their access
     - !type:OverallPlaytimeRequirement
-      time: 43200 # 12 hours
+      time: 129600 # 36 hours
     - !type:DepartmentTimeRequirement
       department: Security
       time: 21600 # 6 hours
@@ -13,23 +13,28 @@
     longerPlaytimeLessSec:
     - !type:OverallPlaytimeRequirement
       time: 360000 # 100 hours
+    - !type:DepartmentTimeRequirement # CS - require at least some security time so the whitelist intent functions
+      department: Security
+      time: 3600 # 1 hour
   startingGear: PublicAffairGear
   icon: "JobIconPublicAffairsLiaison"
   supervisors: job-supervisors-cadet
   canBeAntag: false
   weight: 105
   displayWeight: 16
+  access: # Coyote editted the access of the PAL to better suit their role
+  - HeadOfSecurity
   accessGroups:
   - CadetNfsdAccess
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
-  - !type:AddComponentSpecial
-    components:
-    - type: CoolNfsd
 
 - type: startingGear
   id: PublicAffairGear
@@ -42,3 +47,15 @@
     - BoxFolderPalBrown
     - BoxFolderNfsdForms
     - RubberStampPal
+
+- type: chameleonOutfit
+  id: PublicAffairsLiaisonChameleonOutfit
+  job: PublicAffairsLiaison
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatBowlerHat
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskBreath
+    neck: ClothingNeckLawyerbadge
+    outerClothing: ClothingOuterWinterColorBlack
+    gloves: ClothingHandsGlovesColorBlack

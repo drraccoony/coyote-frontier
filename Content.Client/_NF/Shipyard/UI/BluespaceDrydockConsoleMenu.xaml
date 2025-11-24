@@ -1,0 +1,70 @@
+<ui:FancyWindow xmlns="https://spacestation14.io"
+                xmlns:ui="clr-namespace:Content.Client.UserInterface.Controls"
+                xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                Title="{Loc 'bluespace-drydock-console-menu-title'}"
+                MinSize="400 300"
+                SetSize="500 400">
+    <BoxContainer Orientation="Vertical" Margin="10">
+        <!-- Header -->
+        <Label Text="{Loc 'bluespace-drydock-console-menu-description'}" 
+               Margin="0 0 0 10" 
+               HorizontalAlignment="Center"/>
+
+        <BoxContainer Orientation="Vertical" VerticalExpand="True">
+            <!-- ID Card Status -->
+            <BoxContainer Orientation="Vertical" Margin="0 5">
+                <Label Text="{Loc 'bluespace-drydock-console-idcard-status'}" StyleClasses="LabelSubText"/>
+                <Label Name="IdCardStatus" Text="{Loc 'bluespace-drydock-console-no-idcard'}" Margin="5 2 0 0"/>
+            </BoxContainer>
+
+            <PanelContainer Margin="0 10">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BackgroundColor="#1B1B1E"/>
+                </PanelContainer.PanelOverride>
+            </PanelContainer>
+
+            <!-- Active Ship Section -->
+            <BoxContainer Orientation="Vertical" Margin="0 10">
+                <Label Text="{Loc 'bluespace-drydock-console-active-ship-label'}" StyleClasses="LabelSubText"/>
+                <BoxContainer Orientation="Horizontal" Margin="5 5 0 5">
+                    <Label Name="ActiveShipName" 
+                           Text="{Loc 'bluespace-drydock-console-no-active-ship'}" 
+                           HorizontalExpand="True"/>
+                </BoxContainer>
+                <Button Name="StoreButton" 
+                        Text="{Loc 'bluespace-drydock-console-store-button'}"
+                        Disabled="True"
+                        MinSize="0 40"
+                        Margin="5 0 5 0"/>
+            </BoxContainer>
+
+            <PanelContainer Margin="0 10">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BackgroundColor="#1B1B1E"/>
+                </PanelContainer.PanelOverride>
+            </PanelContainer>
+
+            <!-- Stored Ship Section -->
+            <BoxContainer Orientation="Vertical" Margin="0 10" VerticalExpand="True">
+                <Label Text="{Loc 'bluespace-drydock-console-stored-ship-label'}" StyleClasses="LabelSubText"/>
+                <BoxContainer Orientation="Horizontal" Margin="5 5 0 5">
+                    <Label Name="StoredShipName" 
+                           Text="{Loc 'bluespace-drydock-console-no-stored-ship'}"
+                           HorizontalExpand="True"/>
+                </BoxContainer>
+                <Button Name="RetrieveButton" 
+                        Text="{Loc 'bluespace-drydock-console-retrieve-button'}"
+                        Disabled="True"
+                        MinSize="0 40"
+                        Margin="5 0 5 0"/>
+            </BoxContainer>
+        </BoxContainer>
+
+        <!-- Info Text -->
+        <Label Text="{Loc 'bluespace-drydock-console-info'}" 
+               Margin="0 10 0 0" 
+               StyleClasses="LabelSubText"
+               HorizontalAlignment="Center"/>
+    </BoxContainer>
+</ui:FancyWindow>

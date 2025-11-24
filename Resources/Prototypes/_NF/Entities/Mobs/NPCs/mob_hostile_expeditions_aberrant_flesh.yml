@@ -381,16 +381,16 @@
         Slash: 12
         Structural: 30
   # Ghost role stuff
-  - type: GhostRole
-    allowMovement: true
-    name: ghost-role-information-aberrant-flesh-horror-dungeon-name
-    description: ghost-role-information-aberrant-flesh-horror-dungeon-description
-    rules: ghost-role-information-dungeon-boss-rules
-    raffle:
-      settings: default
-    mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
-  - type: GhostTakeoverAvailable
+  # - type: GhostRole # CS - disable ghost role
+    # allowMovement: true
+    # name: ghost-role-information-aberrant-flesh-horror-dungeon-name
+    # description: ghost-role-information-aberrant-flesh-horror-dungeon-description
+    # rules: ghost-role-information-dungeon-boss-rules
+    # raffle:
+      # settings: default
+    # mindRoles:
+    # - MindRoleGhostRoleTeamAntagonist
+  # - type: GhostTakeoverAvailable
   - type: ActionGun
     action: ActionBoneSpike
     gunProto: BoneSpikeGun
@@ -423,17 +423,20 @@
 
 - type: entity
   id: ActionBoneSpike
+  parent: BaseAction
   categories: [ HideSpawnMenu ]
   name: "[color=yellow]Bone Spike[/color]"
   description: "Shoot a short salvo of bone spikes laced with toxins. [color=yellow]5 second cooldown.[/color]"
   components:
-  - type: WorldTargetAction
+  - type: Action
     icon: { sprite : _NF/Mobs/Aliens/flesh.rsi, state: spike }
-    event: !type:ActionGunShootEvent
     priority: 2
+    itemIconStyle: BigAction
+  - type: TargetAction
     checkCanAccess: false
     range: 0
-    itemIconStyle: BigAction
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
 
 #region FUNNY LITTLE GUY
 # embedable projectile that bites you until you either kill it or detach it or die (or it despawns)

@@ -1,0 +1,46 @@
+<Document>
+  # CARGO-CLASS PERSONAL SHUTTLE
+  <Box>
+  <GuideEntityEmbed Entity="ChairPilotSeat" Caption="Cockpit"/>
+  <GuideEntityEmbed Entity="Bed" Caption="Bedroom"/>
+  <GuideEntityEmbed Entity="ComputerTelevision" Caption="Lounge"/>
+  <GuideEntityEmbed Entity="CrateStorageRack" Caption="Storage"/>
+  </Box>
+
+  [color=#a4885c]Ship Size:[/color] Small
+	
+  [color=#a4885c]Recommended Crew:[/color] 1-2
+	
+  [color=#a4885c]Power Gen Type:[/color] Plasma
+	
+  [color=#a4885c]Expeditions:[/color] No
+	
+  "A cargo shuttle focusing on comfort and lite atmosphere, has an advanced dragon thruster to help it get to voidports."
+
+  # OWNERS MANUAL
+
+  ## 1. Shuttle Console Ports
+  ## 1.a List of Ports
+  "Find below a list of the shuttle console's port's and their linked functions:"
+  - \[Port 1\]: Engage low power thrusters.
+  - \[Port 2\]: Disengage all thrusters.
+  - \[Port 3\]: Engage high power thrusters (Forward only).
+
+  ## 1.b Initial Setup
+  - Due to manufacturing limitations, please engage your shuttle consoles \[Port 1\] at your earliest convenience to avoid wasted power.
+  
+  ## 2. Optimal Use.
+  ## 2.a. Thruster Settings
+
+  - The Jabber comes equipped with a single Dragon Thruster, which is a high-output thruster capable of reaching greater speeds, however it consumes a lot of power while active.
+  - Take note of the Substations Load (kW).
+  - If planning to use high power mode (\[Port 3\]), it is recommeneded to have your P.A.C.M.A.N generator set to 20kw, otherwise it is recommended to have the generator set to 13kW
+  
+  ## 2.b. P.A.C.M.A.N. generator unit.
+
+  - The Jabber comes with a P.A.C.M.A.N generator to supply power to the shuttle's systems.
+  - This generator uses plasma as fuel, which can be bought at most locations via fuel vendors, it also accepts plasma ore, and plasma sheets.
+  - It is recommeneded to have at least 10 sheets of plasma spare in the wall closet located in the engineering room for emergencies.
+  - In the event of a power crisis, it is recommeneded to use \[Port 2\] on the shuttle console to disable all thrusters and allow the substation to recharge, it is also recommended to unanchor any non-essential electrical equipment to reduce power draw.
+
+</Document>

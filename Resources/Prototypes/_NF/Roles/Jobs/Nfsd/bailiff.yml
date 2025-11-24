@@ -19,16 +19,14 @@
     - !type:DepartmentTimeRequirement
       department: Security
       time: 43200 # 12 hours
-    - !type:RoleTimeRequirement
-      role: JobSeniorOfficer
-      time: 21600 # 6 hours
   startingGear: BailiffGear
   icon: JobIconBailiff
   supervisors: job-supervisors-sheriff
   weight: 150
   displayWeight: 60
   canBeAntag: false
-  access:
+  access: # Access was editted by Coyote
+  - HeadOfSecurity
   - Armory
   - Sergeant
   - Bailiff
@@ -41,9 +39,13 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
+  - !type:AddRpiJobModifierSpecial
+    modifiersToAdd:
+    - rpiJobModifierBailiff
   - !type:AddComponentSpecial
     components:
-    - type: CoolNfsd
+      - type: CommandStaff
+
 
 - type: startingGear
   id: BailiffGear
@@ -56,5 +58,20 @@
     - NFMagazineHighCapacityPistol35Overpressure
     - NFMagazineHighCapacityPistol35Rubber
     - BaseSecurityUplinkRadioOfficer
+    - FrontierUplinkCoin5 # Coyote added 5 starting FUCs to Bailiff
     - ShipVoucherNfsdBailiff
     - RubberStampBailiff
+
+- type: chameleonOutfit
+  id: BailiffChameleonOutfit
+  job: Bailiff
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatNfsdBeretBrown
+    mask: ClothingMaskGasNfsd
+    eyes: ClothingEyesGlassesNfsd
+    outerClothing: ClothingOuterCoatNfsdFormal
+    neck: ClothingNeckNfsdBadgeWarden
+    belt: ClothingBeltNfsdFilled
+    gloves: ClothingHandsGlovesCombatNfsdCream
+    shoes: ClothingShoesBootsNfsdCreamFilled

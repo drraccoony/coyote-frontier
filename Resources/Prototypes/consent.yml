@@ -20,12 +20,24 @@
   priority: 3
 
 - type: consentToggle
-  id: Aphrodisiacs
+  id: GenitalMarkings
   priority: 4
+
+- type: consentToggle
+  id: Aphrodisiacs
+  priority: 5
+
+- type: consentToggle
+  id: SizeManipulation
+  priority: 6
+
+- type: consentToggle
+  id: Transformation
+  priority: 7
 
 #- type: consentToggle
 #  id: Cum
-#  priority: 5
+#  priority: 6
 #
 #- type: consentToggle
 #  id: NaturalLubricant

@@ -158,7 +158,11 @@ public sealed class LightReplacerSystem : SharedLightReplacerSystem
         }
 
         // insert it into fixture
-        var wasReplaced = _poweredLight.ReplaceBulb(fixtureUid, bulb, fixture);
+        var wasReplaced = _poweredLight.ReplaceBulb(
+            fixtureUid,
+            bulb,
+            fixture,
+            userUid);
         if (wasReplaced)
         {
             _audio.PlayPvs(replacer.Sound, replacerUid);

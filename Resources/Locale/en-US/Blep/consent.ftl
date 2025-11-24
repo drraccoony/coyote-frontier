@@ -35,8 +35,17 @@ consent-NoClone-desc = Turn this on to disallow Paradox clones of yourself.
 consent-NSFWDescriptions-name = See NSFW Descriptions
 consent-NSFWDescriptions-desc = Turn this on to see any temporary descriptions that are flagged as NSFW.
 
+consent-GenitalMarkings-name = See Genital Markings
+consent-GenitalMarkings-desc = Turn this on to allow showing/hiding genital markings in-game.
+
 consent-Aphrodisiacs-name = Be affected by aphrodisiacs
 consent-Aphrodisiacs-desc = Turn this on to be affected by pomelustine, philterex, and libidozenithine.
+
+consent-SizeManipulation-name = Allow size manipulation
+consent-SizeManipulation-desc = Turn this on to allow yourself to be grown or shrunk by size manipulation.
+
+consent-Transformation-name = Allow transformation
+consent-Transformation-desc = Turn this on to allow yourself to be transformed into other entities with transformation tools.
 
 consent-Cum-name = Interact with cum
 consent-Cum-desc = Turn this on for cum to have any meaningful interaction with you.

@@ -52,7 +52,7 @@ public abstract class SharedNeedsSystem : EntitySystem
         SubscribeLocalEvent<NeedsComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<NeedsComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed);
         SubscribeLocalEvent<NeedsComponent, RejuvenateEvent>(OnRejuvenate);
-        SubscribeLocalEvent<NeedsComponent, GetRoleplayIncentiveModifier>(OnGetRoleplayIncentive);
+        SubscribeLocalEvent<NeedsComponent, GetRpiModifier>(OnGetRoleplayIncentive);
         SubscribeLocalEvent<NeedsComponent, GetVerbsEvent<ExamineVerb>>(OnGetExamineVerbs);
     }
 
@@ -89,7 +89,7 @@ public abstract class SharedNeedsSystem : EntitySystem
         UpdateAlerts(uid, component, true);
     }
 
-    private void OnGetRoleplayIncentive(EntityUid uid, NeedsComponent component, ref GetRoleplayIncentiveModifier args)
+    private void OnGetRoleplayIncentive(EntityUid uid, NeedsComponent component, ref GetRpiModifier args)
     {
         foreach (var need in component.Needs.Values)
         {
@@ -189,15 +189,9 @@ public abstract class SharedNeedsSystem : EntitySystem
         if (TryComp<SSDIndicatorComponent>(uid, out var ssd)
            && ssd.IsSSD)
             return true;
-        if (_players.TryGetSessionByEntity(uid, out var sesh))
-        {
-            if (sesh.Status == SessionStatus.Disconnected)
-                return true;
-        }
-        else
-        {
+
+        if (!_players.TryGetSessionByEntity(uid, out var sesh))
             return true;
-        }
         return false;
     }
 

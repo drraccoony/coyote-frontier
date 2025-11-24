@@ -1,11 +1,14 @@
 ﻿shuttle-records-console-window-title = Shuttle Records Computer
 shuttle-records-copy-deed-button = Copy Deed to ID Card
+shuttle-records-store-shuttle-button = Store Shuttle in Bluespace
+shuttle-records-retrieve-shuttle-button = Retrieve Shuttle from Bluespace
 shuttle-records-shuttle-name-label = Shuttle Name: {$name}
 shuttle-records-shuttle-owner-label = Purchased by: {$owner}
 shuttle-records-shuttle-price-label = Purchase price: {$price}
 shuttle-records-shuttle-status = Shuttle Status: {$status}
 shuttle-records-shuttle-status-active = Active in sector
 shuttle-records-shuttle-status-inactive = Sold or deleted
+shuttle-records-shuttle-status-stored = In Storage
 shuttle-records-transactions = List of Transactions
 shuttle-records-detail-title = Selected Shuttle Details
 shuttle-records-no-idcard = No ID card present.

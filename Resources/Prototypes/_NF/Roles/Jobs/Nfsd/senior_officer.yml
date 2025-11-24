@@ -3,14 +3,11 @@
   name: job-name-senior-officer
   description: job-description-senior-officer
   playTimeTracker: JobSeniorOfficer
-  requirements:
+  requirements: # Coyote editted the playtime required for Sergeant
     - !type:OverallPlaytimeRequirement
       time: 108000 # 30 hours
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 18000 # 5 hours
-    - !type:RoleTimeRequirement
-      role: JobSecurityOfficer
       time: 43200 # 12 hours
   alternateRequirementSets:
     longerPlaytimeLessSec:
@@ -35,9 +32,6 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
-  - !type:AddComponentSpecial
-    components:
-    - type: CoolNfsd
 
 - type: startingGear
   id: SeniorOfficerGear
@@ -49,4 +43,19 @@
     - NFMagazineHighCapacityPistol35Overpressure
     - NFMagazineHighCapacityPistol35Rubber
     - BaseSecurityUplinkRadioOfficer
+    - FrontierUplinkCoin5 # Coyote added 5 FUCs to Sergeants
     - ShipVoucherNfsdSergeant
+
+- type: chameleonOutfit
+  id: SeniorOfficerChameleonOutfit
+  job: SeniorOfficer
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatNfsdBeretBrown
+    mask: ClothingMaskGasNfsd
+    eyes: ClothingEyesGlassesNfsd
+    outerClothing: ClothingOuterArmorNfsd
+    neck: ClothingNeckNfsdBadgeSeniorOfficer
+    belt: ClothingBeltNfsdFilled
+    gloves: ClothingHandsGlovesCombatNfsdBrown
+    shoes: ClothingShoesBootsNfsdBrownFilled

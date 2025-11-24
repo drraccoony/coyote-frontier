@@ -1,0 +1,12 @@
+
+- type: entity #  Only to be sold at nash
+  parent: PortableGeneratorJrPacmanFlatpack
+  id: GeneratorCoolRTGFlatpack
+  name: B-RTG generator flatpack
+  description: A flatpack used for constructing a Bluespace-Radioisotope Thermoelectric Generator.
+  components:
+  - type: Flatpack
+    entity: GeneratorCoolRTG
+  - type: StaticPrice
+    price: 100000
+    vendPrice: 200000 # about the cost of running a pacman for 3 days. cost of convenience.

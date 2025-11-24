@@ -6,6 +6,9 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 72000 # Frontier - 20 hrs (the real condition here is the whitelist)
+    - !type:RoleTimeRequirement
+      role: JobPlantManager
+      time: 3600 # CS: 1 hour
   whitelisted: true
   startingGear: PlantManagerGear
   alwaysUseSpawner: true
@@ -33,3 +36,15 @@
     back:
     - RubberStampPlantManager
     - HandheldSecurityMonitor
+
+- type: chameleonOutfit
+  id: PlantManagerChameleonOutfit
+  job: PlantManager
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatBeretEngineering
+    mask: ClothingMaskBreath
+    neck: ClothingNeckCloakCe
+    outerClothing: ClothingOuterWinterCE
+    gloves: ClothingHandsGlovesColorYellow
+    shoes: ClothingShoesBootsMagAdv

@@ -3,6 +3,7 @@
   abstract: true
   id: BaseSMES
   parent: [ BaseMachine, ConstructibleMachine ]
+  suffix: Basic, 8kWh
   name: SMES
   description: A high-capacity superconducting magnetic energy storage (SMES) unit.
   placement:
@@ -58,7 +59,7 @@
       voltage: High
       node: input
     - type: PowerNetworkBattery
-      maxSupply: 150000
+      maxSupply: 200000
       maxChargeRate: 5000
       supplyRampTolerance: 5000
       supplyRampRate: 1000
@@ -98,8 +99,8 @@
       - Power
     # Frontier: upgradable SMES
     - type: UpgradeBattery
-      maxChargeMultiplier: 2
-      baseMaxCharge: 8000000
+      maxChargeMultiplier: 1.5875 # works out at a 300% increase
+      baseMaxCharge: 28800000
     - type: UpgradePowerSupplyRamping
       scaling: Linear
       supplyRampingMultiplier: 1
@@ -108,9 +109,9 @@
     # Interface
     - type: BatteryInterface
       minChargeRate: 5000
-      maxChargeRate: 150000
+      maxChargeRate: 200000
       minSupply: 5000
-      maxSupply: 150000
+      maxSupply: 200000
     - type: UserInterface
       interfaces:
         enum.BatteryUiKey.Key:
@@ -123,11 +124,11 @@
 - type: entity
   parent: BaseSMES
   id: SMESBasic
-  suffix: Basic, 8MJ
+  suffix: Basic, 8kWh
   components:
   - type: Battery
-    maxCharge: 8000000
-    startingCharge: 8000000
+    maxCharge: 28800000
+    startingCharge: 28800000
 
 - type: entity
   parent: SMESBasic
@@ -140,7 +141,7 @@
 - type: entity
   parent: BaseSMES
   id: SMESAdvanced
-  suffix: Advanced, 16MJ
+  suffix: Advanced, 20kWh
   name: advanced SMES
   description: An even-higher-capacity superconducting magnetic energy storage (SMES) unit.
   components:
@@ -164,8 +165,8 @@
   - type: Machine
     board: SMESAdvancedMachineCircuitboard
   - type: Battery
-    maxCharge: 16000000
-    startingCharge: 16000000
+    maxCharge: 72000000
+    startingCharge: 72000000
   - type: PowerMonitoringDevice
     group: SMES
     sourceNode: input
@@ -175,7 +176,8 @@
     state: advancedsmes-static
   # Frontier: upgradable SMES
   - type: UpgradeBattery
-    baseMaxCharge: 16000000
+    baseMaxCharge: 72000000
+    maxChargeMultiplier: 2
   # End Frontier: upgradable SMES
 
 - type: entity

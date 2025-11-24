@@ -13,6 +13,9 @@
     longerPlaytimeLessSec:
     - !type:OverallPlaytimeRequirement
       time: 360000 # 100 hours
+    - !type:DepartmentTimeRequirement # CS - require at least some security time so the whitelist intent functions
+      department: Security
+      time: 3600 # 1 hour
   startingGear: NFDetectiveGear
   icon: JobIconNFDetective
   supervisors: job-supervisors-bailiff
@@ -29,9 +32,6 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
-  - !type:AddComponentSpecial
-    components:
-    - type: CoolNfsd
 
 - type: startingGear
   id: NFDetectiveGear
@@ -45,7 +45,21 @@
     - NFSpeedLoaderPistol45Rubber
     - ForensicPad
     - ForensicScanner
-    - FrontierUplinkCoin10
+    - BaseSecurityUplinkRadioOfficer # Coyote added uplink to detectives and removed starting FUCs
     - LogProbeCartridge
     - RubberStampDetective
     - ContrabandForensicsModule
+
+- type: chameleonOutfit
+  id: NFDetectiveChameleonOutfit
+  job: NFDetective
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatFedoraBrown
+    mask: ClothingMaskGasSecurity
+    eyes: ClothingEyesGlassesNfsd
+    neck: ClothingNeckNfsdBadgeDetective
+    gloves: ClothingHandsGlovesForensic
+    shoes: ClothingShoesBootsNfsdBrownFilled
+    belt: ClothingBeltNfsdFilled
+    outerClothing: ClothingOuterCoatTrench

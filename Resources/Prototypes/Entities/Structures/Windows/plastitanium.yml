@@ -9,8 +9,11 @@
     snap:
     - Window
   components:
-  - type: RCDDeconstructable
-    deconstructable: false
+  - type: RCDDeconstructable #Coyote
+    deconstructable: true
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8
   - type: MeleeSound
     soundGroups:
       Brute:
@@ -31,9 +34,20 @@
     interactSuccessSound:
       path: /Audio/Effects/glass_knock.ogg
   - type: Appearance
-  # - type: StaticPrice # Frontier
-  #   price: 100 # Frontier
+  - type: StaticPrice # Coyote
+    price: 70
   - type: BlockWeather
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 120 # Coyote 4000->120
 
 - type: entity
   id: PlastitaniumWindowSquareBase
@@ -69,7 +83,7 @@
   # Frontier: colored indestructible windows
   description: Skub knows this window is too hard to destroy.
   components:
-  - type: Sprite 
+  - type: Sprite
     color: "#cdf3cd"
   # End Frontier
 
@@ -115,8 +129,8 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: RGlass
-  - type: StaticPrice # Frontier
-    price: 100 # Frontier
+  - type: StaticPrice # Coyote
+    price: 70
   - type: Construction # Frontier - Harder to break into
     graph: Plastitanium # Frontier - Harder to break into
     node: plastitaniumWindow # Frontier - Harder to break into
@@ -155,6 +169,7 @@
         - FullTileMask
         layer:
         - GlassLayer
+        density: 120 # Coyote
   - type: Airtight
     noAirWhenFullyAirBlocked: false
     airBlockedDirection:
@@ -169,7 +184,7 @@
   # Frontier: colored indestructible windows
   description: Skub knows this window is too hard to destroy.
   components:
-  - type: Sprite 
+  - type: Sprite
     color: "#cdf3cd"
   # End Frontier
 

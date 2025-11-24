@@ -67,7 +67,7 @@ If you [italic]do[/italic] get set on fire, remember to [bold]click the [color=#
   <Box>
   <GuideEntityEmbed Entity="ClothingOuterWinterMiner"/>
   <GuideEntityEmbed Entity="ClothingOuterHardsuitEVA"/>
-  <GuideEntityEmbed Entity="ClothingOuterHardsuitBasic"/>
+  <GuideEntityEmbed Entity="ClothingOuterHardsuitSpatio"/>
   </Box>
   [bold][color=#a4885c]Temperature modifiers:[/color][/bold]
   - [bold]None:[/bold] the temperature on the planet is warm, no special equipment is needed.

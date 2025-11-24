@@ -13,6 +13,9 @@
     longerPlaytimeLessSec:
     - !type:OverallPlaytimeRequirement
       time: 360000 # 100 hours
+    - !type:DepartmentTimeRequirement # CS - require at least some security time so the whitelist intent functions
+      department: Security
+      time: 3600 # 1 hour
   startingGear: BrigmedicGear
   icon: JobIconBrigmedicNF
   supervisors: job-supervisors-bailiff
@@ -29,9 +32,9 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
-  - !type:AddComponentSpecial
-    components:
-    - type: CoolNfsd
+  - !type:AddRpiJobModifierSpecial
+    modifiersToAdd:
+    - rpiJobModifierBrigMedic
 
 - type: startingGear
   id: BrigmedicGear
@@ -43,4 +46,18 @@
     - Flash
     - NFMagazineHighCapacityPistol35Overpressure
     - NFMagazineHighCapacityPistol35Rubber
-    - FrontierUplinkCoin10
+    - BaseSecurityUplinkRadioOfficer # Coyote added uplink to brigmedics and removed starting FUCs
+
+- type: chameleonOutfit
+  id: BrigmedicChameleonOutfit
+  job: Brigmedic
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatNfsdBeretCream
+    mask: ClothingMaskBreathMedicalSecurity
+    eyes: ClothingEyesHudNfsdMed
+    outerClothing: ClothingOuterCoatNfsdBomberBrigmed
+    neck: ClothingNeckNfsdBadgeSecurityBrigmedic
+    belt: ClothingBeltNfsdWebbingFilledBrigmedic
+    gloves: ClothingHandsGlovesNitrile
+    shoes: ClothingShoesBootsNfsdCreamFilled

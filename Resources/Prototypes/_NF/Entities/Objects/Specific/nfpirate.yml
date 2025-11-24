@@ -1,7 +1,7 @@
 # region Doubloons
 - type: entity
   name: doubloon
-  parent: BaseItem
+  parent: [BaseItem, BaseC3MetaPirate] # + BaseC3MetaPirate
   id: Doubloon
   suffix: 20 DB
   description: A dirty gold coin used for nefarious pirate exchanges.
@@ -49,7 +49,7 @@
 
 # region Uplinks
 - type: entity
-  parent: [ BaseItem, StorePresetPirateUplink ]
+  parent: [ BaseItem, StorePresetPirateUplink, BaseC3MetaPirate] # COYOTE: + BaseC3MetaPirate
   id: BasePirateUplink
   name: pirate uplink
   description: A coconut with an antenna?
@@ -152,7 +152,7 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ToggleVisuals.Toggled:
+      enum.ToggleableVisuals.Enabled:
         on:
           True: { visible: true }
           False: { visible: false }
@@ -167,9 +167,8 @@
     minRange: 3
   - type: ProximityDetector
     range: 10
-    criteria:
-      components:
-      - PinpointerTarget
+    components:
+    - type: PinpointerTarget
   - type: Beeper
     isMuted: true
     minBeepInterval: 0.25

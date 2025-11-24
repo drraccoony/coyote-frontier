@@ -27,9 +27,9 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
-  - !type:AddComponentSpecial
-    components:
-    - type: CoolNfsd
+  - !type:AddRpiJobModifierSpecial
+    modifiersToAdd:
+    - rpiJobModifierDeputy
 
 - type: startingGear
   id: DeputyGear
@@ -40,4 +40,18 @@
     - Flash
     - NFMagazineHighCapacityPistol35Overpressure
     - NFMagazineHighCapacityPistol35Rubber
-    - FrontierUplinkCoin10
+    - BaseSecurityUplinkRadioOfficer # Coyote added uplink for deputies, removed their starting uplink coins
+
+- type: chameleonOutfit
+  id: DeputyChameleonOutfit
+  job: Deputy
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatNfsdBeretBrown
+    mask: ClothingMaskGasNfsd
+    eyes: ClothingEyesGlassesNfsd
+    outerClothing: ClothingOuterArmorNfsd
+    neck: ClothingNeckNfsdBadgeSecurity
+    belt: ClothingBeltNfsdFilled
+    gloves: ClothingHandsGlovesCombatNfsdBrown
+    shoes: ClothingShoesBootsNfsdBrownFilled

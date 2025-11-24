@@ -27,9 +27,9 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
-  - !type:AddComponentSpecial
-    components:
-    - type: CoolNfsd
+  - !type:AddRpiJobModifierSpecial
+    modifiersToAdd:
+    - rpiJobModifierCadet
 
 - type: startingGear
   id: CadetGear
@@ -42,3 +42,18 @@
     - NFMagazineHighCapacityPistol35
     - NFMagazineHighCapacityPistol35Rubber
     - FrontierUplinkCoin10
+
+- type: chameleonOutfit
+  id: CadetChameleonOutfit
+  job: Cadet
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatNfsdBeretBrown
+    mask: ClothingMaskGasNfsd
+    eyes: ClothingEyesGlassesNfsd
+    outerClothing: ClothingOuterArmorNfsd
+    neck: ClothingNeckNfsdBadgeSecurityCadet
+    belt: ClothingBeltNfsdFilled
+    gloves: ClothingHandsGlovesCombatNfsdBrown
+    shoes: ClothingShoesBootsNfsdBrownFilled
+

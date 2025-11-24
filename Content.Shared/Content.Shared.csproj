@@ -23,6 +23,28 @@
       <Private>false</Private>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Atmos\Visuals\AtmosPlaqueVisuals.cs" />
+    <Compile Remove="Procedural\DungeonData.cs" />
+    <Compile Remove="Actions\ActionContainerComponent.cs" />
+    <Compile Remove="Actions\Events\ValidateActionWorldTargetEvent.cs" />
+    <Compile Remove="Actions\EntityTargetActionComponent.cs" />
+    <Compile Remove="SprayPainter\Components\PaintableAirlockComponent.cs" />
+    <Compile Remove="CCVar\CCVars.Status.cs" />
+    <Compile Remove="Actions\ConfirmableActionComponent.cs" />
+    <Compile Remove="Actions\InstantActionComponent.cs" />
+    <Compile Remove="SprayPainter\Prototypes\AirlockGroupPrototype.cs" />
+    <Compile Remove="Actions\ActionUpgradeComponent.cs" />
+    <Compile Remove="SprayPainter\Prototypes\AirlockDepartmentsPrototype.cs" />
+    <Compile Remove="Toggleable\ToggleableLightVisuals.cs" />
+    <Compile Remove="Actions\WorldTargetActionComponent.cs" />
+    <Compile Remove="Actions\EntityWorldTargetActionComponent.cs" />
+    <Compile Remove="Actions\Events\ValidateActionEntityTargetEvent.cs" />
+    <Compile Remove="Actions\ActionsComponent.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Chemistry\Dispenser\" />
+  </ItemGroup>
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
   <Import Project="..\RobustToolbox\MSBuild\Robust.CompNetworkGenerator.targets" />
 </Project>

@@ -37,6 +37,8 @@
   - ContractorClothingUniformJumpskirtColorOrange
   - ContractorClothingUniformJumpsuitColorRed
   - ContractorClothingUniformJumpskirtColorRed
+  - ContractorClothingUniformJumpsuitColorMaroon
+  - ContractorClothingUniformJumpskirtColorMaroon
   - ContractorClothingUniformJumpsuitColorPurple
   - ContractorClothingUniformJumpskirtColorPurple
   - ContractorClothingUniformJumpsuitColorLightBrown
@@ -51,6 +53,8 @@
   - ContractorClothingUniformJumpskirtColorDarkGreen
   - ContractorClothingUniformJumpsuitColorTeal
   - ContractorClothingUniformJumpskirtColorTeal
+  - ContractorClothingUniformColorRainbow
+  - ContractorClothingUniformJumpskirtColorRainbow
   - ContractorClothingUniformJumpsuitHawaiBlack
   - ContractorClothingUniformJumpsuitHawaiBlue
   - ContractorClothingUniformJumpsuitHawaiRed
@@ -309,7 +313,6 @@
   name: loadout-group-contractor-outerclothing
   minLimit: 0
   loadouts:
-  - ContractorClothingOuterHardsuitBasic
   - ContractorClothingOuterHardsuitVoidParamed
   - ContractorClothingOuterHoodieGrey
   - ContractorClothingOuterVestHazard
@@ -653,6 +656,7 @@
   - ContractorClothingNeckCloakPan
   - ContractorClothingNeckCloakGay
   - ContractorClothingNeckCloakLesbian
+  - ContractorClothingNeckCloakPoly
   - ContractorBedsheetRainbow
   - ClothingNeckLGBTPin
   - ClothingNeckAllyPin
@@ -672,6 +676,7 @@
   - ClothingNeckTransPin
   - ClothingNeckAutismPin
   - ClothingNeckGoldAutismPin
+  - ClothingNeckPolyamoryPin
   - ContractorClothingNeckIFFNeutral
   - ContractorClothingNeckIFFGreen
   - ContractorClothingNeckIFFRed
@@ -799,10 +804,12 @@
   - ContractorWristwatchGold
   - ContractorSilverRing
   - ContractorGoldRing
+  - ContractorAACTablet
   - ContractorBasketball
   - ContractorFootball
   - ContractorBeachBall
   - ContractorCrayonBox
+  - ContractorClicker
   - ContractorSoapNT
   - PlushieLizard
   - ContractorPlushieSharkGrey

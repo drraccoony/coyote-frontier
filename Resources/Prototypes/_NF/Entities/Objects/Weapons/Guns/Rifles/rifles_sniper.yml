@@ -9,3 +9,14 @@
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
+
+- type: entity # Coyote added NFSD version of the Hristov.
+  id: NFWeaponRifleSniperHristovNFSD
+  parent: [ NFBaseWeaponRifleChamber60, NFBaseWeaponFrameRifleSniperNFSD ]
+  name: NFSD Anti-Materiel Rifle
+  description: A portable anti-materiel rifle. On the handle is a label that says 'for authorized use only.'.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi

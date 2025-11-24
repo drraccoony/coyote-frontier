@@ -27,10 +27,12 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
+  - !type:AddRpiJobModifierSpecial
+    modifiersToAdd:
+    - rpiJobModifierStationTrafficController
   - !type:AddComponentSpecial
     components:
     - type: CommandStaff
-    - type: CoolStationTrafficController
 - type: startingGear
   id: StcGear
   equipment:
@@ -43,3 +45,10 @@
     - ShipVoucherFrontierStc
   encryptionKeys:
   - BoxFolderStc
+
+- type: chameleonOutfit
+  id: StationTrafficControllerChameleonOutfit
+  job: StationTrafficController
+  equipment:
+    head: ClothingHeadHatStcCap
+

@@ -79,7 +79,8 @@
         - ReagentId: Fiber
           Quantity: 5 # Frontier: 10<5
   - type: MothFood # Frontier
-
+  - type: PirateBountyItem
+    id: Plushie
 
 - type: entity
   parent: BasePlushie
@@ -719,7 +720,7 @@
     sound:
       path: /Audio/Items/Toys/rawr.ogg
   - type: MeleeWeapon
-    wideAnimationRotation: 180
+    wideAnimationRotation: 90
     soundHit:
       path: /Audio/Items/Toys/rawr.ogg
   - type: Item
@@ -791,13 +792,25 @@
   name: nar'sie plushie
   description: A small stuffed doll of the elder goddess Nar'Sie.
   components:
-  - type: Item
-    size: Normal
   - type: Sprite
     state: narplush
   - type: FoodSequenceElement
     entries:
       CottonBurger: NarPlushie
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Misc/narsie_rises.ogg
+      params:
+        volume: -13
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: narplush-inhand-left
+        shader: unshaded
+      right:
+      - state: narplush-inhand-right
+        shader: unshaded
+
 
 - type: entity
   parent: BasePlushie
@@ -830,7 +843,7 @@
     useSound:
       path: /Audio/Effects/bite.ogg
   - type: MeleeWeapon
-    wideAnimationRotation: -90
+    wideAnimationRotation: 90
     soundHit:
       path: /Audio/Effects/bite.ogg
     angle: 0
@@ -948,7 +961,7 @@
     useSound:
       path: /Audio/Items/Toys/rattle.ogg
   - type: MeleeWeapon
-    wideAnimationRotation: 180
+    wideAnimationRotation: 90
     soundHit:
       path: /Audio/Items/Toys/rattle.ogg
   - type: Clothing
@@ -1743,7 +1756,7 @@
       color: white
       netsync: false
     - type: Appearance
-    - type: ToggleableLightVisuals
+    - type: ToggleableVisuals
       spriteLayer: blade
       inhandVisuals:
         left:
@@ -2043,8 +2056,8 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
           True: { state: icon }
           False: { state: icon-off }
   - type: ItemToggle

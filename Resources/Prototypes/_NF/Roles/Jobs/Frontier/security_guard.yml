@@ -28,9 +28,6 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
-  - !type:AddComponentSpecial
-    components:
-    - type: CoolNfsd
 
 - type: startingGear
   id: SecurityGuardGear
@@ -46,3 +43,12 @@
     - NFMagazineHighCapacityPistol35
     - NFMagazineHighCapacityPistol35Rubber
     - ShipVoucherFrontierGuard
+
+- type: chameleonOutfit
+  id: SecurityGuardChameleonOutfit
+  job: SecurityGuard
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatBeretSecurity
+    mask: ClothingMaskGasSecurity
+    gloves: ClothingHandsGlovesColorBlack

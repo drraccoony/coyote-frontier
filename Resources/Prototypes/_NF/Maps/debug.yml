@@ -16,6 +16,11 @@
             Pilot: [ -1, -1 ]
             Mercenary: [ -1, -1 ]
             FoodService: [ -1, -1]
+            MassageTherapist: [ -1, -1]
+            Journalist: [ -1, -1]
+            MedicalNurse: [ -1, -1]
+            Curator: [ -1, -1]
+            Therapist: [ -1, -1]
             Borg: [ -1, -1]
             StationRepresentative: [ -1, -1 ]
             StationTrafficController: [ -1, -1 ]
@@ -34,6 +39,8 @@
             NFPirateCaptain: [ -1, -1]
             NFPirateFirstMate: [ -1, -1]
             NFPirate: [ -1, -1]
-            Prisoner: [ -1, -1]
+            Smuggler: [-1, -1] #Coyote
+            Escort: [-1, -1] #Coyote
+            Prisoner: [ -1, -1] #Coyote
         - type: StationDeadDrop
           maxDeadDrops: 20 # Testing

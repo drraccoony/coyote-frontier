@@ -116,6 +116,7 @@
   - type: StaticPrice
     price: 50 # Frontier: 75<50 - TODO: material value rework
   - type: SpaceJanitor # delete me after a while if im just in space
+  - type: NFForkLiftable # Frontier
 
 # steel closet base (that can be constructed/deconstructed)
 - type: entity
@@ -127,8 +128,8 @@
     node: done
     containers:
     - entity_storage
-  - type: Paintable # Upstream#37341
-    group: Closet # Upstream#37341
+  - type: Paintable
+    group: Closet
 
 #Wall Closet
 - type: entity
@@ -205,8 +206,8 @@
     node: done
     containers:
     - entity_storage
-  - type: Paintable # Upstream#37341
-    group: WallCloset # Upstream#37341
+  - type: Paintable
+    group: WallCloset
 
 #Wall locker
 - type: entity
@@ -230,8 +231,8 @@
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
-  # - type: Paintable # Upstream#37341 # Frontier: return when there are more than one locked wall lockers
-  #   group: WallLocker # Upstream#37341
+  # - type: Paintable # Frontier: return when there are more than one locked wall lockers
+  #   group: WallLocker
 
 #Base suit storage unit
 #I am terribly sorry for duplicating the closet almost-wholesale, but the game malds at me if I don't so here we are.

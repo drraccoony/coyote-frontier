@@ -135,6 +135,8 @@ public sealed class NeedDatum
 
     public bool MovementUpdated = false;
 
+    public float StopDigestingAtThisPoint = -1f;
+
     #region Constructor
     /// <summary>
     /// Constructor for the NeedDatum
@@ -170,6 +172,7 @@ public sealed class NeedDatum
         FillOutRpiModifiers(proto);
         FillOutDebuffSlows(proto);
         UpdateCurrentThreshold();
+        UpdateStopDigestingPoint();
     }
 
     /// <summary>
@@ -311,6 +314,17 @@ public sealed class NeedDatum
         }
     }
 
+    /// <summary>
+    /// Sets the point at which digestion should stop if tyhey are asleeped
+    /// this will be 80% of the way between Satisfied and Low
+    /// </summary>
+    private void UpdateStopDigestingPoint()
+    {
+        var satisfiedValue = GetValueForThreshold(NeedThreshold.Satisfied);
+        var lowValue = GetValueForThreshold(NeedThreshold.Low);
+        StopDigestingAtThisPoint = satisfiedValue - ((satisfiedValue - lowValue) * 0.8f);
+    }
+
     #endregion
 
     #region Need Value Manipulation
@@ -323,7 +337,7 @@ public sealed class NeedDatum
     {
         if (sleeping)
         {
-            if (CurrentValue < Thresholds[NeedThreshold.Low])
+            if (CurrentValue < StopDigestingAtThisPoint)
             {
                 return; // dont decay if we're already low or worse
             }
@@ -444,7 +458,7 @@ public sealed class NeedDatum
     /// <summary>
     /// Modifies the RPI event multiplier based on the current threshold
     /// </summary>
-    public void ModifyRpiEvent(ref GetRoleplayIncentiveModifier ev)
+    public void ModifyRpiEvent(ref GetRpiModifier ev)
     {
         if (RpiModifiers.TryGetValue(GetCurrentThreshold(), out var modifier))
         {

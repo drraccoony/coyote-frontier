@@ -157,6 +157,7 @@
   - NFPouchMime
   - NFPouchCaptain
   - NFPouchCargo
+  - MedicalPouch
   technologyPrerequisites:
   - NFAdvancedBeltTechnology
   position: 2, 3
@@ -358,12 +359,13 @@
 - type: technology
   id: NFHardsuitsBasic
   name: nf-research-technology-hardsuits-basic
-  entityIcon: ClothingOuterHardsuitBasic
+  entityIcon: ClothingOuterHardsuitSpatio
   discipline: NFEngineering
   tier: 1
   cost: 2500
   recipeUnlocks:
-  - ClothingOuterHardsuitBasic
+  - ClothingOuterHardsuitSpatio
+  - ClothingOuterHardsuitPilot
   position: 0, 8
 
 - type: technology
@@ -375,8 +377,6 @@
   cost: 5000
   recipeUnlocks:
   - ClothingOuterHardsuitSalvage
-  - ClothingOuterHardsuitSpatio
-  - ClothingOuterHardsuitPilot
   technologyPrerequisites:
   - NFHardsuitsBasic
   position: 1, 8
@@ -1063,6 +1063,7 @@
   - ElectricGrillMachineCircuitboard
   - BoozeDispenserMachineCircuitboard
   - SodaDispenserMachineCircuitboard
+  - ImpCoffeeMachineCircuitboard
   technologyPrerequisites:
   - NFAdvancedHydroponicsEquipment
   position: 1, 24

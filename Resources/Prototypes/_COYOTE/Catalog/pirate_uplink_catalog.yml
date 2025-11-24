@@ -1,0 +1,129 @@
+- type: listing #Coyote
+  id: UplinkT1RandomLoot
+  name:  uplink-t1loot
+  description: uplink-t1loot-desc
+  productEntity: SpawnUplinkLootT1
+  icon: { sprite: _NF/Objects/Storage/Cases/guncaseshort.rsi, state: icon }
+  cost:
+    Doubloon: 5
+  categories:
+  - UplinkPirateUtility
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - PirateUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Smuggler
+
+- type: listing #Coyote
+  id: UplinkT2RandomLoot
+  name:  uplink-t2loot
+  description: uplink-t2loot-desc
+  productEntity: SpawnUplinkLootT2
+  icon: { sprite: _NF/Objects/Storage/Cases/guncaseshort.rsi, state: icon }
+  cost:
+    Doubloon: 15
+  categories:
+  - UplinkPirateUtility
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - PirateUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Smuggler
+
+- type: listing #Coyote
+  id: UplinkT3RandomLoot
+  name:  uplink-t3loot
+  description: uplink-t3loot-desc
+  productEntity: SpawnUplinkLootT3
+  icon: { sprite: _NF/Objects/Storage/Cases/guncaselong.rsi, state: icon }
+  cost:
+    Doubloon: 30
+  categories:
+  - UplinkPirateUtility
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - PirateUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Smuggler
+
+- type: listing #Coyote
+  id: UplinkT4RandomLoot
+  name:  uplink-t4loot
+  description: uplink-t4loot-desc
+  productEntity: SpawnUplinkLootT4
+  icon: { sprite: _NF/Objects/Storage/Cases/guncaselong.rsi, state: icon }
+  cost:
+    Doubloon: 60
+  categories:
+  - UplinkPirateUtility
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - PirateUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Smuggler
+
+- type: listing #Coyote
+  id: UplinkT5RandomLoot
+  name:  uplink-t5loot
+  description: uplink-t5loot-desc
+  productEntity: SpawnUplinkLootT5
+  icon: { sprite: _NF/Objects/Storage/Cases/guncaseheavy.rsi, state: icon }
+  cost:
+    Doubloon: 90
+  categories:
+  - UplinkPirateUtility
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - PirateUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Smuggler
+
+- type: listing #Coyote
+  id: UplinkContraCrate
+  name:  uplink-contracrate
+  description: uplink-contracrate-desc
+  productEntity: SpawnUplinkContrabandCrate
+  icon: { sprite: Structures/Storage/Crates/generic.rsi, state: icon }
+  cost:
+    Doubloon: 6
+  categories:
+  - UplinkPirateUtility
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - PirateUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Smuggler
+
+- type: listing #Coyote
+  id: UplinkPirateRCD
+  name:  uplink-pirate-rcd-name
+  description: uplink-pirate-rcd-desc
+  productEntity: PirateRCD
+  icon: { sprite: _NF/Objects/Tools/rcd.rsi, state: icon }
+  cost:
+    Doubloon: 10
+  categories:
+  - UplinkPirateUtility
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - PirateUplink

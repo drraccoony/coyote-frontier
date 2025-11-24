@@ -35,7 +35,6 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using System.Linq;
-using Content.Server._Coyote.CoolIncentives;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Stacks;
@@ -568,10 +567,10 @@ namespace Content.Server.Kitchen.EntitySystems
             if (!HasContents(component) || HasComp<ActiveMicrowaveComponent>(uid) || !(TryComp<ApcPowerReceiverComponent>(uid, out var apc) && apc.Powered))
                 return;
 
-            if (HasComp<CoolChefComponent>(uid))
-            {
-                component.OperatedByTrueChef = true;
-            }
+            // if (HasComp<CoolChefComponent>(uid))
+            // {
+            //     component.OperatedByTrueChef = true;
+            // }
 
             var solidsDict = new Dictionary<string, int>();
             var reagentDict = new Dictionary<string, FixedPoint2>();
@@ -582,6 +581,10 @@ namespace Content.Server.Kitchen.EntitySystems
                 // special behavior when being microwaved ;)
                 var ev = new BeingMicrowavedEvent(uid, user, component.CanHeat, component.CanIrradiate); // Frontier: add CanHeat, CanIrradiate
                 RaiseLocalEvent(item, ev);
+
+                // TODO MICROWAVE SPARKS & EFFECTS
+                // Various microwaveable entities should probably spawn a spark, play a sound, and generate a pop=up.
+                // This should probably be handled by the microwave system, with fields in BeingMicrowavedEvent.
 
                 if (ev.Handled)
                 {

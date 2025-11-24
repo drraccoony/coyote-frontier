@@ -1,0 +1,96 @@
+# The job itself
+# Curator - ERP RPI boost, aura, free nerd ships
+- type: job
+  id: Curator
+  name: job-name-curator
+  description: job-description-curator
+  playTimeTracker: JobCurator
+  startingGear: CuratorGear
+  icon: "JobIconLibrarian"
+  supervisors: job-supervisors-curator
+  weight: 40 # Prioritize station & department jobs
+  displayWeight: 3 # idk
+  access:
+  - Service
+  - Janitor
+  - Maintenance
+  - External
+  - Frontier
+  accessGroups:
+  - GeneralAccess
+  special:
+  - !type:AddImplantSpecial
+    implants: [ TrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+  - !type:AddRpiAuraSpecial
+    aurasToAdd:
+    - rpiAuraCurator
+  - !type:RpiChatJudgementModifierSpecial
+    modsToAdd:
+    - rpiChatJudgementModifierCurator
+
+# play time tracker
+- type: playTimeTracker
+  id: JobCurator
+
+- type: entity
+  id: SpawnPointCurator
+  parent: SpawnPointPassenger
+  name: curator spawn point
+  components:
+  - type: SpawnPoint
+    job_id: Curator
+
+
+# starting gear
+- type: startingGear
+  id: CuratorGear
+  equipment:
+    pocket1: d20Dice
+    pocket2: HandLabeler # for making named bestsellers
+  storage:
+    back:
+    - BookRandom
+    - EncryptionKeyService # TODO: make unique encryption key loadout group and remove this
+    - EncryptionKeyScience # TODO: make unique encryption key loadout group and remove this
+    - ShipVoucherCoyoteCurator
+
+# Curator Role Loadout
+- type: roleLoadout
+  id: JobCurator
+  groups:
+  - ContractorHead
+  - ContractorNeck
+  - PilotJumpsuit
+  - ContractorGloves
+  - ContractorBackpack
+  - ContractorOuterClothing
+  - ContractorForcedOuterClothing
+  - ContractorShoes
+  - ContractorFace
+  - ContractorGlasses
+  - ContractorBelt
+  - ContractorEars # TODO: should maybe make a unique loadout group to give librarian and science headets for free
+  - ContractorEncryptionKey
+  - ContractorBoxSurvival
+  - ContractorPDA # TODO: make a unique loadout group that gives them librarian (and maybe science?) PDA for free
+  - ContractorWallet
+  - ContractorCartridge
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
+  - NFSpeciesSpecific
+
+- type: chameleonOutfit
+  id: CuratorChameleonOutfit
+  job: Curator
+  equipment:
+    head: ClothingHeadHatCanadaBeanie
+    eyes: ClothingEyesGlassesJamjar
+    mask: ClothingMaskGas
+    neck: ClothingNeckScarfStripedGreen
+    outerClothing: ClothingOuterWinterColorGreen
+    gloves: ClothingHandsGlovesColorBlack
+

@@ -24,4 +24,7 @@ public sealed partial class OrePrototype : IPrototype
 
     [DataField]
     public SpriteSpecifier? OreSprite;
+
+    [DataField]
+    public int Payout = 0;
 }

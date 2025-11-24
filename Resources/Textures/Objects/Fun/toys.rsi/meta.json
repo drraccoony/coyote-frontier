@@ -91,6 +91,14 @@
       "name": "narplush"
     },
     {
+      "name": "narplush-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "narplush-inhand-left",
+      "directions": 4
+    },
+    {
       "name": "plushie_h"
     },
     {

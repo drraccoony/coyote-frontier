@@ -6,11 +6,13 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Events;
 using Content.Shared.Body.Components;
-using Content.Shared.Buckle.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Ghost;
+using Content.Shared.Implants;
+using Content.Shared.Implants.Components;
 using Content.Shared.Maps;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Parallax;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
@@ -86,11 +88,8 @@ public sealed partial class ShuttleSystem
     private readonly HashSet<Entity<NoFTLComponent>> _noFtls = new();
 
     private EntityQuery<BodyComponent> _bodyQuery;
-    private EntityQuery<BuckleComponent> _buckleQuery;
     private EntityQuery<FTLSmashImmuneComponent> _immuneQuery;
-    private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<StatusEffectsComponent> _statusQuery;
-    private EntityQuery<TransformComponent> _xformQuery;
 
     private void InitializeFTL()
     {
@@ -98,11 +97,8 @@ public sealed partial class ShuttleSystem
         SubscribeLocalEvent<FTLComponent, ComponentShutdown>(OnFtlShutdown);
 
         _bodyQuery = GetEntityQuery<BodyComponent>();
-        _buckleQuery = GetEntityQuery<BuckleComponent>();
         _immuneQuery = GetEntityQuery<FTLSmashImmuneComponent>();
-        _physicsQuery = GetEntityQuery<PhysicsComponent>();
         _statusQuery = GetEntityQuery<StatusEffectsComponent>();
-        _xformQuery = GetEntityQuery<TransformComponent>();
 
         _cfg.OnValueChanged(CCVars.FTLStartupTime, time => DefaultStartupTime = time, true);
         _cfg.OnValueChanged(CCVars.FTLTravelTime, time => DefaultTravelTime = time, true);
@@ -569,11 +565,28 @@ public sealed partial class ShuttleSystem
         comp.State = FTLState.Cooldown;
         comp.StateTime = StartEndTime.FromCurTime(_gameTiming, FTLCooldown);
         _console.RefreshShuttleConsoles(uid);
-        _mapManager.SetMapPaused(mapId, false);
+        _mapSystem.SetPaused(mapId, false);
         Smimsh(uid, xform: xform);
 
         var ftlEvent = new FTLCompletedEvent(uid, _mapSystem.GetMap(mapId));
         RaiseLocalEvent(uid, ref ftlEvent, true);
+
+        // COYOTE: when the shuttle arrives, go through all the mobs on the grid
+        // and attempt to set off their deathrattle implants
+        var shuttleGridId = xform.GridUid;
+        var implantedQuery = EntityQueryEnumerator<ImplantedComponent, MobStateComponent, TransformComponent>();
+        while (implantedQuery.MoveNext(
+           out var mobUid,
+           out var implanted,
+           out var mobState,
+           out var mobXform))
+        {
+            if (mobXform.GridUid != shuttleGridId)
+                continue;
+
+            var deathrattleEvent = new ReTriggerRattleImplantEvent(mobUid, mobState.CurrentState);
+            RaiseLocalEvent(mobUid, deathrattleEvent);
+        }
     }
 
     private void UpdateFTLCooldown(Entity<FTLComponent, ShuttleComponent> entity)

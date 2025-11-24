@@ -50,12 +50,15 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         // TODO: make this thing a more versatulate proc
         var speciesPrototype = _prototypeManager.Index(component.Species);
 
-        var height = Math.Clamp(component.Height, speciesPrototype.MinHeight, speciesPrototype.MaxHeight);
-        var width = Math.Clamp(component.Width, speciesPrototype.MinWidth, speciesPrototype.MaxWidth);
-        component.Height = height;
-        component.Width = width;
+        // Don't clamp height/width on client - the server already handles limits
+        // Clamping here prevents temporary size effects (size gun, clothing, buffs) from displaying properly
+        var height = component.Height;
+        var width = component.Width;
 
+        // Directly set sprite scale - this is the original approach that worked
+        // Using SpriteSystem.SetScale() was causing issues with outline shader rendering
         sprite.Scale = new Vector2(width, height);
+
         UpdateLayersAgain(component, sprite); // cool
 
         sprite[sprite.LayerMapReserveBlank(HumanoidVisualLayers.Eyes)].Color = component.EyeColor;
