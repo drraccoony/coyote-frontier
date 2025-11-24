@@ -1,5 +1,5 @@
 - type: entity
-  id: WeaponProtoKineticAcceleratorBase
+  id: [ WeaponProtoKineticAcceleratorBase, RecyclableItemSteelMedium ] # Coyote
   abstract: true
   parent: BaseItem
   components:
@@ -49,3 +49,5 @@
     - Belt
   - type: UseDelay
     delay: 1
+  - type: StaticPrice # Coyote
+    price: 35

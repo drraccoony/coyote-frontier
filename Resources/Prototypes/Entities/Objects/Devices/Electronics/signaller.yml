@@ -24,6 +24,14 @@
     receiveFrequencyId: BasicDevice
   - type: WirelessNetworkConnection
     range: 15
+  # Coyote
+  - type: StaticPrice
+    price: 20
+  - type: PhysicalComposition 
+    materialComposition:
+      Steel: 250
+    chemicalComposition:
+      Silicon: 20
 
 - type: entity
   parent: RemoteSignaller
