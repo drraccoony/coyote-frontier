@@ -121,7 +121,7 @@
     chance: 0.95
     offset: 0.0
     rarePrototypes:
-    - NFWeaponShotgunHandmade
+    - NFWeaponShotgunSawn # Coyote
     rareChance: 0.05
 
 - type: entity
@@ -181,7 +181,7 @@
     offset: 0.0
     rarePrototypes:
     - SawAdvanced
-    rareChance: 0.15
+    rareChance: 0.10 # Coyote
 
 - type: entity
   name: random surgery kit
@@ -230,13 +230,18 @@
     - BaseChemistryEmptyVial
     - Beaker
     - LargeBeaker
-    - CryostasisBeaker
     - Jug
     - Dropper
+    # Coyote
+    - Beaker
+    - LargeBeaker
+    - Jug
     chance: 1
     offset: 0.0
     rarePrototypes:
     - BluespaceBeaker
+    # Coyote
+    - CryostasisBeaker
     rareChance: 0.05
 
 - type: entity
@@ -350,8 +355,11 @@
     chance: 1
     offset: 0.0
     rarePrototypes:
-    - Stunprod
-    rareChance: 0.01
+    # Coyote (stunprod -> stim syringes)
+    - SyringeEphedrine
+    - SyringeEphedrine
+    - SyringeStimulants
+    rareChance: 0.06
 
 - type: entity
   name: random implanter
@@ -383,9 +391,9 @@
     offset: 0.0
     rarePrototypes:
     - DnaScramblerImplanter
-    - DeathAcidifierImplanter
+    #- DeathAcidifierImplanter # Coyote: it gibs you
     - FreedomImplanter
-    - MicroBombImplanter
+    #- MicroBombImplanter # Coyote: it gibs you
     - StorageImplanter
     rareChance: 0.01
 
@@ -493,10 +501,12 @@
     - ClothingUniformJumpsuitMedicalDoctor
     - ClothingBackpackMessengerMedical
     - ClothingBackpackDuffelMedical
+    - MedicalPouch # Coyote
     chance: 1
     offset: 0.0
     rarePrototypes:
     - ClothingOuterHardsuitVoidParamed
+    - CorpsmanMedicalPouch # Coyote
     rareChance: 0.01
 
 # Furniture/Lockers
