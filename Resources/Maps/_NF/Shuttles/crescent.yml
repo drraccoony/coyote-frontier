@@ -20164,7 +20164,7 @@ entities:
     - type: Transform
       pos: -16.5,13.5
       parent: 1
-- proto: VendingMachineChemicals
+- proto: ChemDispenserEmpty
   entities:
   - uid: 2791
     components:
