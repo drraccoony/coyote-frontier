@@ -767,10 +767,10 @@
 
 #Pirate Captain Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseC3PirateContraband, ContrabandClothing] # Frontier: BaseMajorContraband<BaseC3PirateContraband, added ContrabandClothing as parent
+  parent: [ClothingOuterHardsuitBase, BaseC3MetaPirate, ContrabandClothing] # Frontier: BaseMajorContraband<BaseC3PirateContraband, added ContrabandClothing as parent # COYOTE: BaseC3PirateContraband -> BaseC3MetaPirate
   id: ClothingOuterHardsuitPirateCap
-  name: pirate captain's hardsuit
-  description: An ancient armored hardsuit, perfect for defending against space scurvy and toolbox-wielding scallywags.
+  name: pirate hardsuit
+  description: An armored hardsuit, perfect for defending against space scurvy and toolbox-wielding scallywags.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/piratecaptain.rsi
@@ -792,8 +792,8 @@
         Heat: 0.4
         Caustic: 0.75
   - type: ClothingSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.8
+    walkModifier: 1.0 # COYOTE: 0.8 -> 1.0
+    sprintModifier: 1.0 # COYOTE: 0.8 -> 1.0
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPirateCap
