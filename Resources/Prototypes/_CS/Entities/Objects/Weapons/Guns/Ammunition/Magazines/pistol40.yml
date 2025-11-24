@@ -22,7 +22,6 @@
       color: "#b0b0b0"
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
-      color: "#b0b0b0"
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/pistol_high_capacity_mag.rsi

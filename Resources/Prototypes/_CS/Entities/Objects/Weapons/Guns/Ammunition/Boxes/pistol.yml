@@ -21,7 +21,7 @@
   name: ammunition box (.40 pistol)
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgePistol40
+    proto: CSCartridgePistol40
   - type: Sprite
     layers:
     - state: base
@@ -37,7 +37,7 @@
   name: ammunition box (.40 pistol, overpressure)
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgePistol40Overpressure
+    proto: CSCartridgePistol40Overpressure
   - type: Sprite
     layers:
     - state: base
@@ -55,7 +55,7 @@
   name: ammunition box (.40 pistol, practice)
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgePistol40Practice
+    proto: CSCartridgePistol40Practice
   - type: Sprite
     layers:
     - state: base
@@ -72,7 +72,7 @@
   name: ammunition box (.40 pistol, incendiary)
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgePistol40 Incendiary
+    proto: CSCartridgePistol40Incendiary
   - type: Sprite
     layers:
     - state: base
@@ -90,7 +90,7 @@
   name: ammunition box (.40 pistol, uranium)
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgePistol40Uranium
+    proto: CSCartridgePistol40Uranium
   - type: Sprite
     layers:
     - state: base
@@ -110,7 +110,7 @@
   name: ammunition box (.40 pistol, rubber)
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgePistol40Rubber
+    proto: CSCartridgePistol40Rubber
   - type: Sprite
     layers:
     - state: base
@@ -128,7 +128,7 @@
   name: ammunition box (.40 pistol, EMP)
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgePistol40Emp
+    proto: CSCartridgePistol40Emp
   - type: Sprite
     layers:
     - state: base
