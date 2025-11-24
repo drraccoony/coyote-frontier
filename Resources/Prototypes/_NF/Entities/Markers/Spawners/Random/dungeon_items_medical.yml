@@ -86,7 +86,7 @@
     - MedkitBurnFilled
     - MedkitToxinFilled
     - MedkitRadiationFilled
-    chance: 0.6 # Coyote
+    chance: 0.4 # Coyote
     offset: 0.0
     rarePrototypes:
     - MedkitAdvancedFilled
