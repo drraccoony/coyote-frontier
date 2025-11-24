@@ -9,6 +9,9 @@
     layers:
     - state: icon
   - type: HandTeleporter
+  - type: Tag
+    tags:
+    - HighRiskItem
   - type: StealTarget
     stealGroup: HandTeleporter
 
