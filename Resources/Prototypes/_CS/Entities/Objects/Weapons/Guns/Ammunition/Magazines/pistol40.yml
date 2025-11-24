@@ -1,0 +1,423 @@
+# WizDen
+#region base mags .40
+- type: entity
+  id: CSBaseMagazinePistol40
+  name: pistol magazine (.40 pistol)
+  parent: [ BaseC1Contraband, BaseMagazinePistol, RecyclableItemSteelTiny ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - CSMagazinePistol40
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CSCartridgePistol40
+    capacity: 16
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/pistol_high_capacity_mag.rsi
+    layers:
+    - state: base
+      color: "#b0b0b0"
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      color: "#b0b0b0"
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/pistol_high_capacity_mag.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  id: CSBaseMagazinePistolSubMachineGun40
+  name: smg magazine (.40 pistol)
+  parent: [ BaseC1Contraband, BaseMagazinePistolSubMachineGun, RecyclableItemSteelTiny ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - CSMagazineSubMachineGunPistol40
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CSCartridgePistol40
+    capacity: 30
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol45/smg_mag.rsi #TODO: Make custom mag sprites
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol45/smg_mag.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+# WizDen
+#region pistol mags .40
+- type: entity
+  id: NFMagazineHighCapacityPistol40Empty
+  name: high capacity pistol magazine (.40 pistol, any)
+  parent: CSBaseMagazineHighCapacityPistol40
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+
+- type: entity
+  id: NFMagazineHighCapacityPistol40
+  name: high capacity pistol magazine (.40 pistol)
+  parent: CSBaseMagazineHighCapacityPistol40
+  components:
+  - type: BallisticAmmoProvider
+    proto: CSCartridgePistol40
+
+- type: entity
+  id: NFMagazineHighCapacityPistol40Overpressure
+  name: high capacity pistol magazine (.40 pistol, overpressure)
+  parent: CSBaseMagazineHighCapacityPistol40
+  components:
+  - type: BallisticAmmoProvider
+    proto: CSCartridgePistol40Overpressure
+  - type: Sprite
+    layers:
+    - state: base
+      color: "#b0b0b0"
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff8d00"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+        color: "#b0b0b0"
+      - state: inhand-left-stripe
+        color: "#ff8d00"
+      right:
+      - state: inhand-right-mag
+        color: "#b0b0b0"
+      - state: inhand-right-stripe
+        color: "#ff8d00"
+
+- type: entity
+  id: NFMagazineHighCapacityPistol40Incendiary
+  name: high capacity pistol magazine (.40 pistol, incendiary)
+  parent: CSBaseMagazineHighCapacityPistol40
+  components:
+  - type: BallisticAmmoProvider
+    proto: CSCartridgePistol40Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      color: "#b0b0b0"
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff0000"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+        color: "#b0b0b0"
+      - state: inhand-left-stripe
+        color: "#ff0000"
+      right:
+      - state: inhand-right-mag
+        color: "#b0b0b0"
+      - state: inhand-right-stripe
+        color: "#ff0000"
+
+- type: entity
+  id: NFMagazineHighCapacityPistol40Uranium
+  name: high capacity pistol magazine (.40 pistol, uranium)
+  parent: CSBaseMagazineHighCapacityPistol40
+  components:
+  - type: BallisticAmmoProvider
+    proto: CSCartridgePistol40Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      color: "#b0b0b0"
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00ff00"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+        color: "#b0b0b0"
+      - state: inhand-left-stripe
+        color: "#00ff00"
+      right:
+      - state: inhand-right-mag
+        color: "#b0b0b0"
+      - state: inhand-right-stripe
+        color: "#00ff00"
+
+- type: entity
+  id: NFMagazineHighCapacityPistol40Practice
+  name: high capacity pistol magazine (.40 pistol, practice)
+  parent: CSBaseMagazineHighCapacityPistol40
+  components:
+  - type: BallisticAmmoProvider
+    proto: CSCartridgePistol40Practice
+  - type: Sprite
+    layers:
+    - state: base
+      color: "#b0b0b0"
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+        color: "#b0b0b0"
+      - state: inhand-left-stripe
+      right:
+      - state: inhand-right-mag
+        color: "#b0b0b0"
+      - state: inhand-right-stripe
+
+- type: entity
+  id: NFMagazineHighCapacityPistol40Emp
+  name: high capacity pistol magazine (.40 pistol, EMP)
+  parent: CSBaseMagazineHighCapacityPistol40
+  components:
+  - type: BallisticAmmoProvider
+    proto: CSCartridgePistol40Emp
+  - type: Sprite
+    layers:
+    - state: base
+      color: "#b0b0b0"
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00ffff"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+        color: "#b0b0b0"
+      - state: inhand-left-stripe
+        color: "#00ffff"
+      right:
+      - state: inhand-right-mag
+        color: "#b0b0b0"
+      - state: inhand-right-stripe
+        color: "#00ffff"
+
+- type: entity
+  id: NFMagazineHighCapacityPistol40Rubber
+  name: high capacity pistol magazine (.40 pistol, rubber)
+  parent: CSBaseMagazineHighCapacityPistol40
+  components:
+  - type: BallisticAmmoProvider
+    proto: CSCartridgePistol40Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      color: "#b0b0b0"
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00b0ff"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+        color: "#b0b0b0"
+      - state: inhand-left-stripe
+        color: "#00b0ff"
+      right:
+      - state: inhand-right-mag
+        color: "#b0b0b0"
+      - state: inhand-right-stripe
+        color: "#00b0ff"
+
+# WizDen
+#region smg mags .40
+- type: entity
+  id: CSMagazineSubMachineGun40Empty
+  name: smg magazine (.40 pistol, any)
+  parent: CSBaseMagazinePistolSubMachineGun40
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+
+- type: entity
+  id: CSMagazineSubMachineGun40
+  name: smg magazine (.40 pistol)
+  parent: CSBaseMagazinePistolSubMachineGun40
+  components:
+  - type: BallisticAmmoProvider
+    proto: CSCartridgePistol40
+
+- type: entity
+  id: CSMagazineSubMachineGun40Overpressure
+  name: smg magazine (.40 pistol, overpressure)
+  parent: CSBaseMagazinePistolSubMachineGun40
+  components:
+  - type: BallisticAmmoProvider
+    proto: CSCartridgePistol40Overpressure
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff8d00"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff8d00"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff8d00"
+
+- type: entity
+  id: CSMagazineSubMachineGun40Incendiary
+  name: smg magazine (.40 pistol, incendiary)
+  parent: CSBaseMagazinePistolSubMachineGun40
+  components:
+  - type: BallisticAmmoProvider
+    proto: CSCartridgePistol40Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#ff0000"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff0000"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff0000"
+
+- type: entity
+  id: CSMagazineSubMachineGun40Uranium
+  name: smg magazine (.40 pistol, uranium)
+  parent: CSBaseMagazinePistolSubMachineGun40
+  components:
+  - type: BallisticAmmoProvider
+    proto: CSCartridgePistol40Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00ff00"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00ff00"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00ff00"
+
+- type: entity
+  id: CSMagazineSubMachineGun40Practice
+  name: smg magazine (.40 pistol, practice)
+  parent: CSBaseMagazinePistolSubMachineGun40
+  components:
+  - type: BallisticAmmoProvider
+    proto: CSCartridgePistol40Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+
+- type: entity
+  id: CSMagazineSubMachineGun40Rubber
+  name: smg magazine (.40 pistol, rubber)
+  parent: CSBaseMagazinePistolSubMachineGun40
+  components:
+  - type: BallisticAmmoProvider
+    proto: CSCartridgePistol40Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00b0ff"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00b0ff"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00b0ff"
+
+- type: entity
+  id: CSMagazineSubMachineGun40Emp
+  name: smg magazine (.40 pistol, EMP)
+  parent: CSBaseMagazinePistolSubMachineGun40
+  components:
+  - type: BallisticAmmoProvider
+    proto: CSCartridgePistol40Emp
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: decal-01
+      color: "#00ffff"
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00ffff"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00ffff"
