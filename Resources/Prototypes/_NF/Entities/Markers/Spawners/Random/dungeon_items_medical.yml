@@ -65,7 +65,7 @@
       - sprite: _NF/Markers/general.rsi
         state: questionmark
         color: red
-  - type: RandomSpawner # Coyote
+  - type: RandomSpawner
     prototypes:
     - MedkitFilled
     - MedkitFilled
