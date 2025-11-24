@@ -1,6 +1,6 @@
 #region base
 - type: entity
-  id: NFBaseAmmunitionBoxPistol40
+  id: CSBaseAmmunitionBoxPistol40
   parent: NFBaseAmmunitionBox
   name: ammunition box (.40 pistol)
   abstract: true
@@ -16,8 +16,8 @@
 
 #region .40 pistol
 - type: entity
-  id: NFAmmunitionBoxPistol40
-  parent: NFBaseAmmunitionBoxPistol40
+  id: CSAmmunitionBoxPistol40
+  parent: CSBaseAmmunitionBoxPistol40
   name: ammunition box (.40 pistol)
   components:
   - type: BallisticAmmoProvider
@@ -32,8 +32,8 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: NFAmmunitionBoxPistol40Overpressure
-  parent: NFBaseAmmunitionBoxPistol40
+  id: CSAmmunitionBoxPistol40Overpressure
+  parent: CSBaseAmmunitionBoxPistol40
   name: ammunition box (.40 pistol, overpressure)
   components:
   - type: BallisticAmmoProvider
@@ -50,8 +50,8 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: NFAmmunitionBoxPistol40Practice
-  parent: NFBaseAmmunitionBoxPistol40
+  id: CSAmmunitionBoxPistol40Practice
+  parent: CSBaseAmmunitionBoxPistol40
   name: ammunition box (.40 pistol, practice)
   components:
   - type: BallisticAmmoProvider
@@ -67,8 +67,8 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: NFAmmunitionBoxPistol40Incendiary
-  parent: NFBaseAmmunitionBoxPistol40
+  id: CSAmmunitionBoxPistol40Incendiary
+  parent: CSBaseAmmunitionBoxPistol40
   name: ammunition box (.40 pistol, incendiary)
   components:
   - type: BallisticAmmoProvider
@@ -85,8 +85,8 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: NFAmmunitionBoxPistol40Uranium
-  parent: NFBaseAmmunitionBoxPistol40
+  id: CSAmmunitionBoxPistol40Uranium
+  parent: CSBaseAmmunitionBoxPistol40
   name: ammunition box (.40 pistol, uranium)
   components:
   - type: BallisticAmmoProvider
@@ -105,8 +105,8 @@
 # Frontier
 # .40 pistol
 - type: entity
-  id: NFAmmunitionBoxPistol40Rubber # MagazineBoxPistolRubber
-  parent: NFBaseAmmunitionBoxPistol40
+  id: CSAmmunitionBoxPistol40Rubber # MagazineBoxPistolRubber
+  parent: CSBaseAmmunitionBoxPistol40
   name: ammunition box (.40 pistol, rubber)
   components:
   - type: BallisticAmmoProvider
@@ -123,8 +123,8 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: NFAmmunitionBoxPistol40Emp # MagazineBoxPistolEmp
-  parent: NFBaseAmmunitionBoxPistol40
+  id: CSAmmunitionBoxPistol40Emp # MagazineBoxPistolEmp
+  parent: CSBaseAmmunitionBoxPistol40
   name: ammunition box (.40 pistol, EMP)
   components:
   - type: BallisticAmmoProvider

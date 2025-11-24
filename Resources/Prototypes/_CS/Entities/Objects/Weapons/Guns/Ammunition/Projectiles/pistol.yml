@@ -2,7 +2,7 @@
 - type: entity
   id: CSBulletPistol40
   name: bullet (.40 pistol)
-  parent: CSBaseBullet
+  parent: NFBaseBullet
   categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
