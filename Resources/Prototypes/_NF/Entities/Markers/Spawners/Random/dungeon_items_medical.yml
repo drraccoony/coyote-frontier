@@ -65,25 +65,33 @@
       - sprite: _NF/Markers/general.rsi
         state: questionmark
         color: red
-  - type: RandomSpawner
+  - type: RandomSpawner # Coyote
     prototypes:
     - MedkitFilled
     - MedkitFilled
     - MedkitFilled
+    - MedkitFilled
     - Medkit
+    - Medkit
+    - MedkitBruteFilled
     - MedkitBruteFilled
     - MedkitBrute
     - MedkitBurnFilled
+    - MedkitBurnFilled
     - MedkitBurn
+    - MedkitToxinFilled
     - MedkitToxinFilled
     - MedkitToxin
     - MedkitRadiationFilled
+    - MedkitRadiationFilled
     - MedkitRadiation
-    chance: 0.75
+    chance: 0.6
     offset: 0.0
     rarePrototypes:
     - MedkitAdvancedFilled
+    - MedkitAdvancedFilled
     - MedkitAdvanced
+    - MedkitCombatFilled
     - MedkitCombatFilled
     - MedkitCombat
     rareChance: 0.01
