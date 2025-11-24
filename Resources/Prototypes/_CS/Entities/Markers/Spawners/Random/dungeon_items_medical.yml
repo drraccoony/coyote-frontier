@@ -7,8 +7,8 @@
   - type: Sprite
     layers:
     - state: red
-    - sprite: Structures/Machines/VendingMachines/random.rsi
-      state: any
+    - sprite: Structures/Machines/VendingMachines/chemvend.rsi
+      state: normal
   - type: RandomSpawner
     prototypes:
     - VendingMachineBooze
