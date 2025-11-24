@@ -542,11 +542,25 @@
     - LockerParamedicFilled
     - LockerPsychologistFilled
     - ClosetL3VirologyFilled
+    # Coyote
+    - LockerMedical
+    - LockerMedical
+    - LockerMedicine
+    - LockerMedicine
+    - LockerParamedic
+    - LockerParamedic
+    - LockerMedical
+    - LockerMedical
+    - ClosetL3Virology
+    - ClosetL3Virology
     chance: 1
     offset: 0.0
     rarePrototypes:
     - LockerChiefMedicalOfficer
     - LockerChiefMedicalOfficerFilled
+    # Coyote
+    - LockerChiefMedicalOfficer
+    - LockerChiefMedicalOfficer
     rareChance: 0.05
 
 - type: entity
