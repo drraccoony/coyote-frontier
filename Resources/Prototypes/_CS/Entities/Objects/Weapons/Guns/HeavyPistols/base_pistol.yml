@@ -6,12 +6,12 @@
   abstract: true
   components:
   - type: Gun
-    projectileSpeed: 30
+    projectileSpeed: 33
     minAngle: 3.1
     maxAngle: 15.5
     angleIncrease: 0.8
     angleDecay: 4
-    fireRate: 4
+    fireRate: 3.4
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -28,25 +28,13 @@
   abstract: true
   components:
   - type: Gun
-    minAngle: 3.6
-    maxAngle: 18
-    angleIncrease: 1.1
-    angleDecay: 3.7
+    minAngle: 0.8
+    maxAngle: 26
+    angleIncrease: 2.4
+    angleDecay: 6.0
     fireRate: 3.4
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-nanotrasen-munitions
-
-- type: entity
-  id: CSBaseWeaponFrameHeavyPistolCybersun
-  parent: [ BaseC3SyndicateContraband, CSBaseWeaponFrameHeavyPistol ]
-  abstract: true
-  components:
-  - type: Gun
-    angleIncrease: 0.9
-    angleDecay: 6.3
-    fireRate: 3.2
-  - type: NFWeaponDetails
-    manufacturer: weapon-details-manufacturer-cybersun-industries
 
 #region chamber
 - type: entity
