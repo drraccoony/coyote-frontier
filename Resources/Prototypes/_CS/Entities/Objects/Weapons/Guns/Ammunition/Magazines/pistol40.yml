@@ -16,15 +16,14 @@
         - CSCartridgePistol40
     capacity: 16
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/pistol_high_capacity_mag.rsi
+    sprite: _CS/Objects/Weapons/Guns/Ammunition/Magazine/Pistol40/pistol_mag.rsi
     layers:
     - state: base
-      color: "#b0b0b0"
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/pistol_high_capacity_mag.rsi
+    sprite: _CS/Objects/Weapons/Guns/Ammunition/Magazine/Pistol40/pistol_mag.rsi
     inhandVisuals:
       left:
       - state: inhand-left-mag
@@ -47,14 +46,14 @@
         - CSCartridgePistol40
     capacity: 30
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol45/smg_mag.rsi #TODO: Make custom mag sprites
+    sprite: _CS/Objects/Weapons/Guns/Ammunition/Magazine/Pistol40/smg_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol45/smg_mag.rsi
+    sprite: _CS/Objects/Weapons/Guns/Ammunition/Magazine/Pistol40/smg_mag.rsi
     inhandVisuals:
       left:
       - state: inhand-left-mag
@@ -89,7 +88,6 @@
   - type: Sprite
     layers:
     - state: base
-      color: "#b0b0b0"
       map: ["enum.GunVisualLayers.Base"]
     - state: decal-01
       color: "#ff8d00"
@@ -99,12 +97,10 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-        color: "#b0b0b0"
       - state: inhand-left-stripe
         color: "#ff8d00"
       right:
       - state: inhand-right-mag
-        color: "#b0b0b0"
       - state: inhand-right-stripe
         color: "#ff8d00"
 
@@ -118,7 +114,6 @@
   - type: Sprite
     layers:
     - state: base
-      color: "#b0b0b0"
       map: ["enum.GunVisualLayers.Base"]
     - state: decal-01
       color: "#ff0000"
@@ -128,12 +123,10 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-        color: "#b0b0b0"
       - state: inhand-left-stripe
         color: "#ff0000"
       right:
       - state: inhand-right-mag
-        color: "#b0b0b0"
       - state: inhand-right-stripe
         color: "#ff0000"
 
@@ -147,7 +140,6 @@
   - type: Sprite
     layers:
     - state: base
-      color: "#b0b0b0"
       map: ["enum.GunVisualLayers.Base"]
     - state: decal-01
       color: "#00ff00"
@@ -157,12 +149,10 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-        color: "#b0b0b0"
       - state: inhand-left-stripe
         color: "#00ff00"
       right:
       - state: inhand-right-mag
-        color: "#b0b0b0"
       - state: inhand-right-stripe
         color: "#00ff00"
 
@@ -176,7 +166,6 @@
   - type: Sprite
     layers:
     - state: base
-      color: "#b0b0b0"
       map: ["enum.GunVisualLayers.Base"]
     - state: decal-01
     - state: mag-1
@@ -185,11 +174,9 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-        color: "#b0b0b0"
       - state: inhand-left-stripe
       right:
       - state: inhand-right-mag
-        color: "#b0b0b0"
       - state: inhand-right-stripe
 
 - type: entity
@@ -202,7 +189,6 @@
   - type: Sprite
     layers:
     - state: base
-      color: "#b0b0b0"
       map: ["enum.GunVisualLayers.Base"]
     - state: decal-01
       color: "#00ffff"
@@ -212,12 +198,10 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-        color: "#b0b0b0"
       - state: inhand-left-stripe
         color: "#00ffff"
       right:
       - state: inhand-right-mag
-        color: "#b0b0b0"
       - state: inhand-right-stripe
         color: "#00ffff"
 
@@ -231,7 +215,6 @@
   - type: Sprite
     layers:
     - state: base
-      color: "#b0b0b0"
       map: ["enum.GunVisualLayers.Base"]
     - state: decal-01
       color: "#00b0ff"
@@ -241,12 +224,10 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-        color: "#b0b0b0"
       - state: inhand-left-stripe
         color: "#00b0ff"
       right:
       - state: inhand-right-mag
-        color: "#b0b0b0"
       - state: inhand-right-stripe
         color: "#00b0ff"
 
