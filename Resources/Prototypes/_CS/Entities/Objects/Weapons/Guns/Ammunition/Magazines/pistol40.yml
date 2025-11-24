@@ -64,8 +64,8 @@
 # WizDen
 #region pistol mags .40
 - type: entity
-  id: NFMagazineHighCapacityPistol40Empty
-  name: high capacity pistol magazine (.40 pistol, any)
+  id: CSMagazinePistol40Empty
+  name: pistol magazine (.40 pistol, any)
   parent: CSBaseMagazinePistol40
   components:
   - type: BallisticAmmoProvider
@@ -73,7 +73,7 @@
 
 - type: entity
   id: CSMagazinePistol40
-  name: high capacity pistol magazine (.40 pistol)
+  name: pistol magazine (.40 pistol)
   parent: CSBaseMagazinePistol40
   components:
   - type: BallisticAmmoProvider
@@ -81,7 +81,7 @@
 
 - type: entity
   id: CSMagazinePistol40Overpressure
-  name: high capacity pistol magazine (.40 pistol, overpressure)
+  name: pistol magazine (.40 pistol, overpressure)
   parent: CSBaseMagazinePistol40
   components:
   - type: BallisticAmmoProvider
@@ -110,7 +110,7 @@
 
 - type: entity
   id: CSMagazinePistol40Incendiary
-  name: high capacity pistol magazine (.40 pistol, incendiary)
+  name: pistol magazine (.40 pistol, incendiary)
   parent: CSBaseMagazinePistol40
   components:
   - type: BallisticAmmoProvider
@@ -139,7 +139,7 @@
 
 - type: entity
   id: CSMagazinePistol40Uranium
-  name: high capacity pistol magazine (.40 pistol, uranium)
+  name: pistol magazine (.40 pistol, uranium)
   parent: CSBaseMagazinePistol40
   components:
   - type: BallisticAmmoProvider
@@ -168,7 +168,7 @@
 
 - type: entity
   id: CSMagazinePistol40Practice
-  name: high capacity pistol magazine (.40 pistol, practice)
+  name: pistol magazine (.40 pistol, practice)
   parent: CSBaseMagazinePistol40
   components:
   - type: BallisticAmmoProvider
@@ -194,7 +194,7 @@
 
 - type: entity
   id: CSMagazinePistol40Emp
-  name: high capacity pistol magazine (.40 pistol, EMP)
+  name: pistol magazine (.40 pistol, EMP)
   parent: CSBaseMagazinePistol40
   components:
   - type: BallisticAmmoProvider
@@ -223,7 +223,7 @@
 
 - type: entity
   id: CSMagazinePistol40Rubber
-  name: high capacity pistol magazine (.40 pistol, rubber)
+  name: pistol magazine (.40 pistol, rubber)
   parent: CSBaseMagazinePistol40
   components:
   - type: BallisticAmmoProvider

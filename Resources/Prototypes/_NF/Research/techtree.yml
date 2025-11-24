@@ -1663,6 +1663,7 @@
   - NFAmmunitionBoxRifle20
   - NFAmmunitionBoxRifle30
   - NFAmmunitionBoxPistol35
+  - CSAmmunitionBoxPistol40
   - NFAmmunitionBoxPistol45
   - NFSpeedLoaderPistol35Empty
   - NFSpeedLoaderPistol45Empty
@@ -1701,10 +1702,13 @@
   cost: 2500
   recipeUnlocks:
   - NFAmmunitionBoxPistol35Overpressure
+  - CSAmmunitionBoxPistol40Overpressure
   - NFAmmunitionBoxPistol45Overpressure
   - NFMagazineHighCapacityPistol35Empty
   - NFMagazineSubMachineGun35Empty
   - NFMagazineSubMachineGunTopMounted35Empty
+  - CSMagazinePistol40Empty
+  - CSMagazineSubMachineGun40Empty
   - NFMagazinePistol45Empty
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
@@ -1723,6 +1727,7 @@
   - NFAmmunitionBoxRifle20Rubber
   - NFAmmunitionBoxRifle30Rubber
   - NFAmmunitionBoxPistol35Rubber
+  - CSAmmunitionBoxPistol40Rubber
   - NFAmmunitionBoxPistol45Rubber
   - NFAmmunitionBoxShellShotgunTranquilizer
   technologyPrerequisites:
