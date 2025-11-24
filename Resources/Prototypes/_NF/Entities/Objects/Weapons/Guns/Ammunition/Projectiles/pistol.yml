@@ -9,10 +9,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 11
-        Blunt: 11
-  - type: StaminaDamageOnCollide
-    damage: 15 # 4 hits to slowdown | 5 shots to kill
+        Piercing: 22
 
 - type: entity
   id: NFBulletPistol35Overpressure
@@ -23,10 +20,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 11
-        Blunt: 14
-  - type: StaminaDamageOnCollide
-    damage: 16 # 5 hits to slowdown | 4 shots to kill
+        Piercing: 25
 
 - type: entity
   id: NFBulletPistol35Incendiary
@@ -39,8 +33,6 @@
       types:
         Blunt: 13 # 0.6 * base total dmg
         Heat: 9 # 0.4 * base total dmg
-  - type: StaminaDamageOnCollide
-    damage: 7.5 # 8 hits to slowdown | ~ 10 shots to kill
 
 - type: entity
   id: NFBulletPistol35Uranium
@@ -53,8 +45,6 @@
       types:
         Blunt: 18 # 0.6 * (1.4 * base total dmg)
         Radiation: 12 # 0.4 * (1.4 * base total dmg)
-  - type: StaminaDamageOnCollide
-    damage: 20 # 3 shots to slow | 4 shots to kill
 
 - type: entity
   id: NFBulletPistol35Practice
@@ -80,8 +70,6 @@
       types:
         Shock: 11
         Blunt: 11
-  - type: StaminaDamageOnCollide
-    damage: 15 # 4 hits to slowdown | 5 shots to kill
 
 - type: entity
   id: NFBulletPistol35Rubber
@@ -94,7 +82,7 @@
       types:
         Blunt: 0
   - type: StaminaDamageOnCollide
-    damage: 22 # ~5 shots to stun, ~3 to slow
+    damage: 22
 
 #region .45 pistol
 - type: entity
@@ -106,11 +94,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 16
-        Blunt: 16
-  - type: StaminaDamageOnCollide
-    damage: 16 # ~4 hits to slowdown
-
+        Piercing: 32
 - type: entity
   id: NFBulletPistol45Overpressure
   name: bullet (.45 pistol, overpressure)
@@ -120,10 +104,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 16
-        Blunt: 19
-  - type: StaminaDamageOnCollide
-    damage: 19 # ~4 hits to slowdown
+        Piercing: 35
 
 - type: entity
   id: NFBulletPistol45Incendiary
@@ -134,10 +115,8 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 10 # 0.6 * base total dmg
-        Heat: 6 # 0.4 * base total dmg
-  - type: StaminaDamageOnCollide
-    damage: 18 # ~4 hits to slowdown
+        Blunt: 20 # 0.6 * base total dmg
+        Heat: 12 # 0.4 * base total dmg
 
 - type: entity
   id: NFBulletPistol45Uranium
@@ -148,10 +127,8 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 13 # 0.6 * (1.4 * base total dmg)
-        Radiation: 13 # 0.6 * (1.4 * base total dmg)
-  - type: StaminaDamageOnCollide
-    damage: 18 # ~4 hits to slowdown
+        Blunt: 26 # 0.6 * (1.4 * base total dmg)
+        Radiation: 26 # 0.6 * (1.4 * base total dmg)
 
 - type: entity
   id: NFBulletPistol45Practice
@@ -177,8 +154,6 @@
       types:
         Shock: 16
         Blunt: 16
-  - type: StaminaDamageOnCollide
-    damage: 18 # ~4 hits to slowdown
 
 - type: entity
   id: NFBulletPistol45Rubber
@@ -191,4 +166,4 @@
       types:
         Blunt: 0
   - type: StaminaDamageOnCollide
-    damage: 32 # ~6 hits to stun sounds reasonable
+    damage: 32
