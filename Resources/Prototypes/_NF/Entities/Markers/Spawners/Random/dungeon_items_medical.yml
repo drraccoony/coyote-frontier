@@ -599,6 +599,10 @@
     #- CrateServiceKitChemLab
     #- CrateServiceKitMedbayCryo
     - CrateEvaKitCmo
+    # Coyote
+    - MedicalTechFabFlatpack
+    - VendingMachineMedicalFlatpack
+    - VendingMachineChemicalsFlatpack
     rareChance: 0.01
 
 - type: entity
@@ -673,7 +677,9 @@
     - VendingMachineSyndieContraband
     # - VendingMachineSyndieDrobe # A bit less Syndicate loot
     - VendingMachineRobotics
-    rareChance: 0.01
+    # Coyote
+    - VendingMachineChemicals
+    rareChance: 0.015 # Coyote
 
 # Other
 - type: entity
