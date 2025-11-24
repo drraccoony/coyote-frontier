@@ -134,7 +134,7 @@
   id: SpaceBladeSec
   parent:
   - SpaceBlade
-  - BaseC2ContrabandUnredeemable
+  - BaseC3MetaSec # COYOTE: BaseC2ContrabandUnredeemable -> BaseC3MetaSec
   components:
   - type: Sprite
     state: secblade

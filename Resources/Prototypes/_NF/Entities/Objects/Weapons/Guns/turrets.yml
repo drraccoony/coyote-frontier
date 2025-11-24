@@ -6,7 +6,7 @@
   description: |-
    A Contraband Denying Energy Turret (CDET). A disabler turret with built-in microreactor. Use screwdriver to disassemble.
   parent:
-  - BaseC2ContrabandUnredeemable
+  - BaseC3MetaSec # COYOTE: BaseC2ContrabandUnredeemable -> BaseC3MetaSec
   - BaseWeaponTurretEnergyNF
   components:
   - type: HTN
