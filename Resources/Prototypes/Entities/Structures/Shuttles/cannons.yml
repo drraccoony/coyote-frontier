@@ -330,7 +330,7 @@
 
 - type: entity # Coyote: Transferred to ShuttleGunPirateCannonEmpty so that there is an empty variant
   id: ShuttleGunPirateCannon
-  parent: ShuttleGunPirateCannonEmpty 
+  parent: ShuttleGunPirateCannonEmpty
   suffix: loaded
   components:
   - type: BallisticAmmoProvider
