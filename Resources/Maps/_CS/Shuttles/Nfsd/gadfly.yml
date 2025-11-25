@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/25/2025 02:16:16
-  entityCount: 589
+  time: 11/25/2025 02:42:24
+  entityCount: 590
 maps: []
 grids:
 - 1
@@ -471,6 +471,8 @@ entities:
       - 384
       - 383
       - 381
+      - 20
+      - 590
       - 296
       - 318
       - 308
@@ -485,6 +487,7 @@ entities:
       - 313
       - 317
       - 294
+      - 36
       - 390
       - 378
       - 377
@@ -1962,6 +1965,14 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 376
+  - uid: 590
+    components:
+    - type: Transform
+      pos: 0.5,7.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 376
 - proto: FirelockEdge
   entities:
   - uid: 377
@@ -2647,6 +2658,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,8.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 376
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 206
@@ -2741,6 +2755,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,8.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 376
     - type: AtmosPipeLayers
       pipeLayer: Tertiary
     - type: AtmosPipeColor
