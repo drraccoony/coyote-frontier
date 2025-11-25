@@ -44,6 +44,7 @@
     - NFServiceTechfabDeprecatedStatic
     - NFPaperAndPaperAccessories
     - ReportingStatic # DeltaV
+    - CSPlumbingStatic # CS - showers, sinks, drains
   - type: EmagLatheRecipes
     emagStaticPacks:
     - NFServiceTechfabDeprecatedEmagStatic
@@ -109,6 +110,7 @@
     staticPacks:
     - NFEngineeringTechfabDeprecatedStatic
     - NFInflatablesStatic
+    - CSPlumbingStatic # CS - showers, sinks, drains
   - type: BlueprintReceiver
     whitelist:
       tags:
