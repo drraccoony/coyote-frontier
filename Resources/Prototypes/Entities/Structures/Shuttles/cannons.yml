@@ -278,7 +278,7 @@
   id: ShuttleGunPirateCannonEmpty
   parent: [ ShuttleGunBase, BaseC3MetaPirate ] #Coyote: Removed BaseC3PirateContrabandNoValue && BaseStructureDisableToolUse, Added BaseC3MetaPirate
   name: pirate ship cannon
-  suffix: loaded
+  suffix: empty
   description: Kaboom!
   components:
   - type: ContainerContainer
@@ -331,6 +331,7 @@
 - type: entity # Coyote: Transferred to ShuttleGunPirateCannonEmpty so that there is an empty variant
   id: ShuttleGunPirateCannon
   parent: ShuttleGunPirateCannonEmpty 
+  suffix: loaded
   components:
   - type: BallisticAmmoProvider
     whitelist:
