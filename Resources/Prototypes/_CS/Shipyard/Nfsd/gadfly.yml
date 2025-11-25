@@ -8,13 +8,13 @@
 - type: vessel
   id: Gadfly
   parent: BaseVessel
-  name: TSF Gadfly
-  description: An NFSD medical ship meant for triage and long-form usage, including a chemistry sidecar with all the bells and whistles.
-  price: 52000 # 26180 apppraised, with an upcharge of *2 due to the facilities and space included (and the alchemist's own upcharge)
+  name: (LL2) TSF Gadfly
+  description: An NFSD medical ship meant for triage and limited patrol work. It comes with a full chemistry lab with a small botany setup, and a special cell for treating/storing injured prisoners. Not suitable for long-term prisoner holding.
+  price: 39000 # 26180 apppraised, LL2 50% markup
   category: Medium
   group: Security
   access: Brigmedic
-  shuttlePath: /Maps/_NF/Shuttles/Nfsd/gadfly.yml
+  shuttlePath: /Maps/_CS/Shuttles/Nfsd/gadfly.yml
   guidebookPage: Null
   class:
   - Medical
@@ -24,7 +24,7 @@
 - type: gameMap
   id: Gadfly
   mapName: 'TSF Gadfly'
-  mapPath: /Maps/_NF/Shuttles/Nfsd/gadfly.yml
+  mapPath: /Maps/_CS/Shuttles/Nfsd/gadfly.yml
   minPlayers: 0
   stations:
     Gadfly:
