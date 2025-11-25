@@ -274,10 +274,11 @@
 
 # ---- Other weapon ----
 
-- type: entity
-  id: ShuttleGunPirateCannon
-  parent: [BaseStructureDisableToolUse, ShuttleGunBase, BaseC3PirateContrabandNoValue] # Frontier: Added BaseStructureDisableToolUse, BaseC3PirateContrabandNoValue
+- type: entity # Coyote
+  id: ShuttleGunPirateCannonEmpty
+  parent: [ ShuttleGunBase, BaseC3MetaPirate ] #Coyote: Removed BaseC3PirateContrabandNoValue && BaseStructureDisableToolUse, Added BaseC3MetaPirate
   name: pirate ship cannon
+  suffix: loaded
   description: Kaboom!
   components:
   - type: ContainerContainer
@@ -307,14 +308,38 @@
       tags:
         - CannonBall
     capacity: 1
-    proto: NFCannonBall # Frontier: use NF variant
     soundInsert:
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
   - type: NpcFactionMember # Frontier
     factions: # Frontier
     - NFPirate # Frontier
   - type: Rotatable # Frontier
-    rotateWhileAnchored: true # Frontier
+    rotateWhileAnchored: false # Coyote
+  # Coyote DRM'd Cannons
+  - type: ApcPowerReceiver
+    powerLoad: 50
+  - type: ExtensionCableReceiver
+  - type: BindToStation
+  - type: AccessReader
+    access: [["BlackMarket"]]
+  - type: LockedAnchorable
+  - type: Lock
+    locked: true
+    lockOnClick: false
+    unlockOnClick: false
+
+- type: entity # Coyote: Transferred to ShuttleGunPirateCannonEmpty so that there is an empty variant
+  id: ShuttleGunPirateCannon
+  parent: ShuttleGunPirateCannonEmpty 
+  components:
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - CannonBall
+    capacity: 1
+    proto: NFCannonBall # Frontier: use NF variant
+    soundInsert:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
 
 - type: entity
   id: ShuttleGunKinetic
