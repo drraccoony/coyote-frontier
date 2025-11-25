@@ -3,13 +3,10 @@
   name: job-name-chaplain
   description: job-description-chaplain
   playTimeTracker: JobChaplain
-  #requirements:
-  #  - !type:OverallPlaytimeRequirement
-  #    time: 10800
   startingGear: CSChaplainGear
   alwaysUseSpawner: false
   icon: "JobIconChaplain"
-  supervisors: job-supervisors-hire
+  supervisors: job-supervisors-chaplain
   weight: 40
   displayWeight: 3
   canBeAntag: false

@@ -2,60 +2,60 @@
 # Copyright (c) 2024 Coyote Contributors
 # See AGPLv3.txt for details.
 
-#region Nash Jobs
+#region Generic
 - type: entity
   parent: BaseShipVoucher
-  id: ShipVoucherCoyoteChaplain
-  name: chaplain ship voucher
-  description: Allows for one (1) free rental of a stage you can totally pretend is a chapel!
+  id: BaseShipVoucherCoyoteGeneric
+  abstract: true
   components:
   - type: Sprite
     layers:
-    - state: blue
+    - state: generic
     - state: vouchervalet
   - type: Item
-    heldPrefix: blue
-  - type: ShipyardVoucher
-    destroyOnEmpty: true
-    consoleType: Sr
-    useAnywhere: true
-    vessels:
-    - Stellaris
+    heldPrefix: generic
 
 - type: entity
-  parent: BaseShipVoucher
-  id: ShipVoucherCoyoteCurator
-  name: curator ship voucher
-  description: Allows for one (1) free rental of some cute geek ships!
+  parent: BaseShipVoucherCoyoteGeneric
+  id: ShipVoucherCoyoteChaplain
+  name: chaplain ship voucher
+  description: Allows for one (1) free rental from a selection of shuttles.
   components:
-  - type: Sprite
-    layers:
-    - state: blue
-    - state: vouchervalet
-  - type: Item
-    heldPrefix: blue
   - type: ShipyardVoucher
     destroyOnEmpty: true
     consoleType: Sr
     useAnywhere: true
     vessels:
     - Bookworm
+    - Checker
+    - Stellaris
     - Nook
+    - Legman
+    - Oculus
+
+- type: entity
+  parent: BaseShipVoucherCoyoteGeneric
+  id: ShipVoucherCoyoteCurator
+  name: curator ship voucher
+  description: Allows for one (1) free rental from a selection of shuttles.
+  components:
+  - type: ShipyardVoucher
+    destroyOnEmpty: true
+    consoleType: Sr
+    useAnywhere: true
+    vessels:
+    - Bookworm
+    - Checker
     - Investigator
+    - Nook
     - Pulsar
 
 - type: entity
-  parent: BaseShipVoucher
+  parent: BaseShipVoucherCoyoteGeneric
   id: ShipVoucherCoyoteFoodService
   name: food service ship voucher
-  description: Allows for one (1) free rental of a service-related ship!
+  description: Allows for one (1) free rental from a selection of shuttles.
   components:
-  - type: Sprite
-    layers:
-    - state: blue
-    - state: vouchervalet
-  - type: Item
-    heldPrefix: blue
   - type: ShipyardVoucher
     destroyOnEmpty: true
     consoleType: Sr
@@ -67,40 +67,28 @@
     - Piecrust
     - Nightlight
     - Honker
-    - McDelivery
     - Garden
 
 - type: entity
-  parent: BaseShipVoucher
+  parent: BaseShipVoucherCoyoteGeneric
   id: ShipVoucherCoyoteJournalist
   name: journalist ship voucher
-  description: Allows for one (1) free rental of the illustrious Legman Interview Cruiser!
+  description: Allows for one (1) free rental from a selection of shuttles.
   components:
-  - type: Sprite
-    layers:
-    - state: blue
-    - state: vouchervalet
-  - type: Item
-    heldPrefix: blue
   - type: ShipyardVoucher
     destroyOnEmpty: true
     consoleType: Sr
     useAnywhere: true
     vessels:
     - Legman
+    - Oculus
 
 - type: entity
-  parent: BaseShipVoucher
+  parent: BaseShipVoucherCoyoteGeneric
   id: ShipVoucherCoyoteMassageTherapist
   name: massage therapist ship voucher
-  description: Allows for one (1) free rental of the cute and therapeutic Placebo!
+  description: Allows for one (1) free rental from a selection of shuttles.
   components:
-  - type: Sprite
-    layers:
-    - state: blue
-    - state: vouchervalet
-  - type: Item
-    heldPrefix: blue
   - type: ShipyardVoucher
     destroyOnEmpty: true
     consoleType: Sr
@@ -111,17 +99,11 @@
     - Nook
 
 - type: entity
-  parent: BaseShipVoucher
+  parent: BaseShipVoucherCoyoteGeneric
   id: ShipVoucherCoyoteNurse
   name: nurse ship voucher
-  description: Allows for one (1) free rental of some entry level medical ships!
+  description: Allows for one (1) free rental from a selection of shuttles.
   components:
-  - type: Sprite
-    layers:
-    - state: blue
-    - state: vouchervalet
-  - type: Item
-    heldPrefix: blue
   - type: ShipyardVoucher
     destroyOnEmpty: true
     consoleType: Sr
@@ -134,20 +116,28 @@
 #region Freelancer
 - type: entity
   parent: BaseShipVoucher
-  id: ShipVoucherCoyoteEscort
-  name: Escort ship voucher
-  description: Allows for one (1) free rental of the Hitchhiker!
+  id: BaseShipVoucherCoyoteFreelancer
+  abstract: true
   components:
   - type: Sprite
     layers:
-    - state: blue
+    - state: freelancer
     - state: vouchervalet
   - type: Item
-    heldPrefix: blue
+    heldPrefix: freelancer
+
+- type: entity
+  parent: BaseShipVoucherCoyoteFreelancer
+  id: ShipVoucherCoyoteEscort
+  name: escort ship voucher
+  description: Allows for one (1) free rental from a selection of shuttles.
+  components:
   - type: ShipyardVoucher
     destroyOnEmpty: true
-    consoleType: BlackMarket
+    consoleType: Sr # It just works, if set to BlackMarket it offers all non BlackMarket Access shuttles for free.
     useAnywhere: true
     vessels:
+    - Glizzy
     - Hitchhiker
+    - Peeper
     - Speakeasy
