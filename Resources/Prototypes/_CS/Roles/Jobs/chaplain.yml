@@ -3,7 +3,7 @@
   name: job-name-chaplain
   description: job-description-chaplain
   playTimeTracker: JobChaplain
-  startingGear: CSChaplainGear
+  startingGear: ChaplainGear
   alwaysUseSpawner: false
   icon: "JobIconChaplain"
   supervisors: job-supervisors-chaplain
@@ -27,7 +27,7 @@
     - type: BibleUser
 
 - type: startingGear
-  id: CSChaplainGear
+  id: ChaplainGear
   equipment:
     shoes: ClothingShoesColorBlack
     id: ChaplainPDA
