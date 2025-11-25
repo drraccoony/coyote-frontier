@@ -861,12 +861,12 @@ public sealed partial class ChatUIController : UIController
         {
             var isOwnMessage = _player.LocalEntity != null && _ent.GetEntity(msg.SenderEntity) == _player.LocalEntity;
             // var isInteractEmote = msg.Channel == ChatChannel.Emotes && msg.Message.Contains(" at ", StringComparison.OrdinalIgnoreCase);
-            var isAllowedChannel = msg.Channel is ChatChannel.Local 
-                or ChatChannel.Whisper 
-                or ChatChannel.OOC 
-                or ChatChannel.LOOC 
+            var isAllowedChannel = msg.Channel is ChatChannel.Local
+                or ChatChannel.Whisper
+                or ChatChannel.OOC
+                or ChatChannel.LOOC
                 or ChatChannel.Radio;
-            
+
             if (!isOwnMessage && isAllowedChannel)
             {
                 _audio.PlayGlobal("/Audio/_COYOTE/UserInterface/mention.ogg", Filter.Local(), false);
