@@ -1,0 +1,275 @@
+- type: entity
+  name: paper lantern
+  parent: [BaseItem, RecyclableItemOrganicTiny] # Frontier: added RecyclableItemOrganicTiny
+  id: PaperLantern
+  description: A small paper hot air balloon.
+  components:
+  - type: Tag
+    tags:
+    - PaperLantern
+  - type: Sprite
+    noRot: true
+    sprite: Objects/Misc/paperlantern.rsi
+    layers:
+    - state: paper-lantern #lantern-big
+      color: "#decb8e"
+  - type: Item
+    size: Small
+  - type: Appearance
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      #Extinguish: [ Touch ] ##Commented til I can learn how to have it only extinquishable when held in hand/context menu. Dont want it able to be put out mid-flight.
+  - type: ExtinguishOnInteract
+    extinguishAttemptSound:
+      path: /Audio/Items/lantern_blowing.ogg
+      params:
+        variation: 0.05
+        volume: 10
+  - type: UseDelay
+  - type: ExtinguishableSetCollisionWake
+  - type: Flammable
+    fireSpread: false
+    canResistFire: false
+    alwaysCombustible: true
+    canExtinguish: true
+    firestacksOnIgnite: 3.0
+    firestackFade: -0.001 # Frontier -0.01<-0.001
+    damage:
+      types:
+        Heat: 0.1
+  - type: FireVisuals
+    sprite: Objects/Misc/lanterns.rsi
+    normalState: lit #fire-big
+  - type: ToggleableVisuals
+    spriteLayer: null
+    inhandVisuals:
+      left:
+      - state: inhand-left-lit #flame
+        shader: unshaded
+      right:
+      - state: inhand-right-lit #flame
+        shader: unshaded
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000 # Frontier 100<1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ] ##Need to see how I can make this just burn to ash pile.
+        ##New Component needed to drift on it's own after lit.
+
+- type: entity
+  name: red paper lantern
+  parent: PaperLantern
+  id: PaperLanternRed
+  components:
+  - type: Sprite
+    layers:
+    - state: paper-lantern
+      color: "#a12349"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#a12349"
+      right:
+      - state: inhand-right
+        color: "#a12349"
+
+- type: entity
+  name: blue paper lantern
+  parent: Paperlantern
+  id: PaperLanternBlue
+  components:
+  - type: Sprite
+    layers:
+    - state: paper-lantern
+      color: "#425d7d"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#425d7d"
+      right:
+      - state: inhand-right
+        color: "#425d7d"
+
+- type: entity
+  name: black paper lantern
+  parent: PaperLantern
+  id: PaperLanternBlack
+  components:
+  - type: Sprite
+    layers:
+    - state: paper-lantern
+      color: "#1b1724"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#1b1724"
+      right:
+      - state: inhand-right
+        color: "#1b1724"
+
+- type: entity
+  name: green paper lantern
+  parent: PaperLantern
+  id: PaperLanternGreen
+  components:
+  - type: Sprite
+    layers:
+    - state: paper-lantern
+      color: "#5d997e"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#5d997e"
+      right:
+      - state: inhand-right
+        color: "#5d997e"
+
+- type: entity
+  name: purple paper lantern
+  parent: PaperLantern
+  id: PaperLanternPurple
+  components:
+  - type: Sprite
+    layers:
+    - state: paper-lantern
+      color: "#984aa1"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#984aa1"
+      right:
+      - state: inhand-right
+        color: "#984aa1"
+
+#Infinite Health Paper Lantern, will not burn to ash.
+
+- type: entity
+  name: magic paper lantern
+  description: It's either magic or high tech, but this paper lantern never goes out and seems to drift forever.
+  parent: BaseItem
+  suffix: Decorative
+  id: PaperLanternInfinite
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Objects/Misc/paperlanterns.rsi
+    layers:
+    - state: paper-lantern
+      color: "#decb8e"
+    - state: lit
+      shader: unshaded
+  - type: PointLight
+    color: "#e39c40"
+    radius: 2.5
+    power: 10
+
+- type: entity
+  name: magic red paper lantern
+  parent: PaperLanternInfinite
+  id: PaperLanternRedInfinite
+  components:
+  - type: Sprite
+    layers:
+    - state: paper-lantern
+      color: "#a12349"
+    - state: lit
+      shader: unshaded
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#a12349"
+      right:
+      - state: inhand-right
+        color: "#a12349"
+
+- type: entity
+  name: magic blue paper lantern
+  parent: PaperLanternInfinite
+  id: PaperLanternBlueInfinite
+  components:
+  - type: Sprite
+    layers:
+    - state: paper-lantern
+      color: "#425d7d"
+    - state: lit
+      shader: unshaded
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#425d7d"
+      right:
+      - state: inhand-right
+        color: "#425d7d"
+
+- type: entity
+  name: magic black paper lantern
+  parent: PaperLanternInfinite
+  id: PaperLanternBlackInfinite
+  components:
+  - type: Sprite
+    layers:
+    - state: paper-lantern
+      color: "#1b1724"
+    - state: lit
+      shader: unshaded
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#1b1724"
+      right:
+      - state: inhand-right
+        color: "#1b1724"
+
+- type: entity
+  name: magic green paper lantern
+  parent: PaperLanternInfinite
+  id: PaperLanternGreenInfinite
+  components:
+  - type: Sprite
+    layers:
+    - state: paper-lantern
+      color: "#5d997e"
+    - state: lit
+      shader: unshaded
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#5d997e"
+      right:
+      - state: inhand-right
+        color: "#5d997e"
+
+- type: entity
+  name: magic purple paper lantern
+  parent: PaperLanternInfinite
+  id: PaperLanternPurpleInfinite
+  components:
+  - type: Sprite
+    layers:
+    - state: paper-lantern
+      color: "#984aa1"
+    - state: lit
+      shader: unshaded
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#984aa1"
+      right:
+      - state: inhand-right
+        color: "#984aa1"

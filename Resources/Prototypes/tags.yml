@@ -1017,6 +1017,9 @@
   id: Paper
 
 - type: Tag
+  id: PaperLantern
+
+- type: Tag
   id: Pancake
 
 - type: Tag
