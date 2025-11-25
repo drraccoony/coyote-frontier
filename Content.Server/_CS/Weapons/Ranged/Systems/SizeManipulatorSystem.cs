@@ -1,6 +1,7 @@
 using Content.Server.Body.Systems;
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Log;
 
 namespace Content.Server.Weapons.Ranged.Systems;
@@ -13,7 +14,21 @@ public sealed class SizeManipulatorSystem : EntitySystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<SizeManipulatorComponent, AmmoShotEvent>(OnAmmoShot);
         SubscribeLocalEvent<BulletSizeManipulatorComponent, ProjectileHitEvent>(OnProjectileHit);
+    }
+
+    private void OnAmmoShot(EntityUid uid, SizeManipulatorComponent component, AmmoShotEvent args)
+    {
+        // Update all fired projectiles with the safety state from the gun
+        foreach (var projectile in args.FiredProjectiles)
+        {
+            if (TryComp<BulletSizeManipulatorComponent>(projectile, out var bullet))
+            {
+                bullet.SafetyDisabled = component.SafetyDisabled;
+                Dirty(projectile, bullet);
+            }
+        }
     }
 
     private void OnProjectileHit(EntityUid uid, BulletSizeManipulatorComponent component, ref ProjectileHitEvent args)
@@ -26,9 +41,9 @@ public sealed class SizeManipulatorSystem : EntitySystem
             return;
         }
 
-        Logger.Debug($"SizeManipulator: Projectile {ToPrettyString(uid)} hit entity {ToPrettyString(hitEntity)}, applying size change mode: {component.Mode}");
+        Logger.Debug($"SizeManipulator: Projectile {ToPrettyString(uid)} hit entity {ToPrettyString(hitEntity)}, applying size change mode: {component.Mode}, safety disabled: {component.SafetyDisabled}");
 
-        // Apply size change to the hit entity
-        _sizeManipulation.TryChangeSize(hitEntity, component.Mode, args.Shooter);
+        // Apply size change to the hit entity, passing the safety state
+        _sizeManipulation.TryChangeSize(hitEntity, component.Mode, args.Shooter, component.SafetyDisabled);
     }
 }

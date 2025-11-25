@@ -39,3 +39,11 @@
     price: 500
   - type: UseDelay
     delay: 1.0
+  - type: UserInterface
+    interfaces:
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: WiresPanel
+  - type: Wires
+    boardName: wires-board-name-sizemanipulator
+    layoutId: SizeManipulator
