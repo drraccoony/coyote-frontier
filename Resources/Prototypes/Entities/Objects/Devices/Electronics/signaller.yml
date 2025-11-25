@@ -26,7 +26,7 @@
     range: 15
   - type: PhysicalComposition # Coyote
     materialComposition:
-      Steel: 250
+      Steel: 50
     chemicalComposition:
       Silicon: 20
 
