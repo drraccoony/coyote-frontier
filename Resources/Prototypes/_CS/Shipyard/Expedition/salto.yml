@@ -18,7 +18,7 @@
 #
 - type: gameMap
   id: Salto
-  mapName: 'HGH Salto'
+  mapName: 'Salto'
   mapPath: /Maps/_CS/Shuttles/Expedition/salto.yml
   minPlayers: 0
   stations:

@@ -27,7 +27,7 @@
 
 - type: gameMap
   id: Yegorov
-  mapName: 'KAZ Yegorov'
+  mapName: 'Yegorov'
   mapPath: /Maps/_CS/Shuttles/Expedition/yegorov.yml
   minPlayers: 0
   stations:

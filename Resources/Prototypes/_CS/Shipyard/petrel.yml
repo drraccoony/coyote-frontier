@@ -10,7 +10,7 @@
 - type: vessel
   id: Petrel
   parent: BaseVessel
-  name: KAZ Petrel
+  name: LL1 Petrel
   description: A medium sized space forklift from the USSP-based Kesha Aerospace Plant, with a massive vacuum-exposed cargo rack ready to shove station-constructing loads of material wherever you need it to go!
   price: 64000 # ~52500 0.20 10500
   category: Medium
@@ -25,7 +25,7 @@
 
 - type: gameMap
   id: Petrel
-  mapName: 'KAZ Petrel'
+  mapName: 'Petrel'
   mapPath: /Maps/_CS/Shuttles/petrel.yml
   minPlayers: 0
   stations:
