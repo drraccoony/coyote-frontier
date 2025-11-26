@@ -8,9 +8,9 @@
 - type: vessel
   id: Schloorp
   parent: BaseVessel
-  name: FCS Schloorp
+  name: LL0 Schloorp
   description: A slow solar sailboat for cruising the stars.
-  price: 5000
+  price: 8250 #8128 LL0 +5% = 8534
   category: Small
   group: Shipyard
   shuttlePath: /Maps/_CS/Shuttles/schloorp.yml
@@ -18,7 +18,8 @@
   class:
   - Civilian
   engine:
-  - Plasma
+  - Solar
+  - Welding
 
 - type: gameMap
   id: Schloorp

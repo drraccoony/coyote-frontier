@@ -6,17 +6,18 @@
 # GitHub: SmolGreenBuggo https://github.com/SmolGreenBuggo
 # Discord: kazako
 
-# Shuttle Notes: This is a temp NT-licensed solution to the current issues with making new grids in space.
+# Shuttle Notes: This is a temp solution to the current issues with making new grids in space.
 #
+
 - type: vessel
   id: Chunk
   parent: BaseVessel
-  name: NT Chunk
-  description: Nanotrasen has heard about the issue with regards to station licensing in your sector, and has provided this... wonderful vessel as a temporary solution.Runs off welding fuel. Handle with care.
+  name: LL0 Chunk
+  description: Created to solve the issue regarding station licensing in the sector, thus this... wonderful vessel is a temporary solution. Handle with care.
   price: 1000 # ~1015
   category: Small
   group: Scrap
-  shuttlePath: /Maps/_NF/Shuttles/Scrap/chunk.yml
+  shuttlePath: /Maps/_CS/Shuttles/Scrap/chunk.yml
   guidebookPage: Null
   class:
   - Scrapyard
@@ -26,15 +27,15 @@
 
 - type: gameMap
   id: Chunk
-  mapName: 'NT Chunk'
-  mapPath: /Maps/_NF/Shuttles/Scrap/chunk.yml
+  mapName: 'Chunk'
+  mapPath: /Maps/_CS/Shuttles/Scrap/chunk.yml
   minPlayers: 0
   stations:
     Chunk:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Disciple {1}'
+          mapNameTemplate: 'Chunk {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

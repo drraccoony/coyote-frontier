@@ -7,13 +7,15 @@
 # Discord: Tibels52
 
 # Shuttle Notes:
-#
+# Archetypes = Engineering/Salvage
+# Halftypes = None
+# Domestic Areas = Full
 - type: vessel
   id: Ambition
   parent: BaseVessel
-  name: LL2 Ambition # COYOTE: Made name reflect License Level.
+  name: LL3 Ambition
   description: Declassified gas production and distribution platform seized in a hostile takeover of an Atmosian conglomerate. For the ultimate insurgent.
-  price: 340000 # 117788 * .70 = 82451.6 | 117788 + 82452 = 200240 # COYOTE: 152,829 * (1.7+0.5) ^= 340,000 (336,223)
+  price: 507000 #152819, +50k(exped) LL3 x2.5 = 507047
   category: Large
   group: Expedition
   shuttlePath: /Maps/_NF/Shuttles/Expedition/ambition.yml
@@ -26,7 +28,7 @@
 
 - type: gameMap
   id: Ambition
-  mapName: 'UAC Ambition'
+  mapName: 'Ambition'
   mapPath: /Maps/_NF/Shuttles/Expedition/ambition.yml
   minPlayers: 0
   stations:

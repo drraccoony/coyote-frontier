@@ -7,7 +7,7 @@
 - type: vessel
   id: Hotdog
   parent: BaseVessel
-  name: FCY Hotdog
+  name: LL0 Hotdog
   description: A tiny and remarkably miserable to use cargo skiff.  Small loads, small profits.
   price: 20500 #5% markup, cheap as dirt (literally)
   category: Small
@@ -22,7 +22,7 @@
 
 - type: gameMap
   id: Hotdog
-  mapName: 'FCY Hotdog'
+  mapName: 'Hotdog'
   mapPath: /Maps/_CS/Shuttles/Scrap/hotdog.yml
   minPlayers: 0
   stations:
