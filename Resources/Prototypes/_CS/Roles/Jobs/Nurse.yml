@@ -1,26 +1,18 @@
-# The job itself
-# Medical Nurse - ERP RPI boost, aura
 - type: job
   id: MedicalNurse
   name: job-name-medical-nurse
   description: job-description-medical-nurse
   playTimeTracker: JobMedicalNurse
   startingGear: MedicalNurseGear
+  alwaysUseSpawner: false
   icon: "JobIconMedicalIntern"
   supervisors: job-supervisors-medical-nurse
-  weight: 40 # Prioritize station & department jobs
-  displayWeight: 3 # idk
-  access:
-  - Service
-  - Janitor
-  - Maintenance
-  - External
-  - Frontier
+  weight: 40
+  displayWeight: 3
+  canBeAntag: false
   accessGroups:
   - GeneralAccess
   special:
-  - !type:AddImplantSpecial
-    implants: [ TrackingImplant ]
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
@@ -31,7 +23,6 @@
     modsToAdd:
     - rpiChatJudgementModifierNurse
 
-# play time tracker
 - type: playTimeTracker
   id: JobMedicalNurse
 
@@ -43,8 +34,6 @@
   - type: SpawnPoint
     job_id: MedicalNurse
 
-
-# starting gear
 - type: startingGear
   id: MedicalNurseGear
   storage:
@@ -52,7 +41,6 @@
     - EncryptionKeyMedical
     - ShipVoucherCoyoteNurse
 
-# Food Service Role Loadout
 - type: roleLoadout
   id: JobMedicalNurse
   groups:
@@ -88,4 +76,3 @@
     neck: ClothingNeckStethoscope
     outerClothing: ClothingOuterCoatLab
     gloves: ClothingHandsGlovesLatex
-

@@ -1,21 +1,15 @@
-# The job itself
-# Medical Nurse - ERP RPI boost, aura
 - type: job
   id: Therapist
   name: job-name-therapist
   description: job-description-therapist
   playTimeTracker: JobTherapist
-  startingGear: TherapistGear
+  startingGear: CSTherapistGear
+  alwaysUseSpawner: false
   icon: "JobIconPsychologist"
   supervisors: job-supervisors-therapist
-  weight: 40 # Prioritize station & department jobs
-  displayWeight: 3 # idk
-  access:
-  - Service
-  - Janitor
-  - Maintenance
-  - External
-  - Frontier
+  weight: 40
+  displayWeight: 3
+  canBeAntag: false
   accessGroups:
   - GeneralAccess
   special:
@@ -31,7 +25,6 @@
     modsToAdd:
     - rpiChatJudgementModifierTherapist
 
-# play time tracker
 - type: playTimeTracker
   id: JobTherapist
 
@@ -43,16 +36,13 @@
   - type: SpawnPoint
     job_id: Therapist
 
-
-# starting gear
 - type: startingGear
-  id: TherapistGear
+  id: CSTherapistGear
   storage:
     back:
     - EncryptionKeyService
     - ShipVoucherCoyoteMassageTherapist
 
-# Food Service Role Loadout
 - type: roleLoadout
   id: JobTherapist
   groups:
@@ -88,4 +78,3 @@
     neck: ClothingNeckStethoscope
     outerClothing: ClothingOuterCoatLab
     gloves: ClothingHandsGlovesLatex
-

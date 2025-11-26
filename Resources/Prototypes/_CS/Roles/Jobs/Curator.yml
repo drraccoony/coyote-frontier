@@ -1,26 +1,17 @@
-# The job itself
-# Curator - ERP RPI boost, aura, free nerd ships
 - type: job
   id: Curator
   name: job-name-curator
   description: job-description-curator
   playTimeTracker: JobCurator
-  startingGear: CuratorGear
+  startingGear: CSCuratorGear
+  alwaysUseSpawner: false
   icon: "JobIconLibrarian"
   supervisors: job-supervisors-curator
-  weight: 40 # Prioritize station & department jobs
-  displayWeight: 3 # idk
-  access:
-  - Service
-  - Janitor
-  - Maintenance
-  - External
-  - Frontier
+  weight: 40
+  displayWeight: 3
   accessGroups:
   - GeneralAccess
   special:
-  - !type:AddImplantSpecial
-    implants: [ TrackingImplant ]
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
@@ -31,7 +22,6 @@
     modsToAdd:
     - rpiChatJudgementModifierCurator
 
-# play time tracker
 - type: playTimeTracker
   id: JobCurator
 
@@ -43,21 +33,17 @@
   - type: SpawnPoint
     job_id: Curator
 
-
-# starting gear
 - type: startingGear
-  id: CuratorGear
+  id: CSCuratorGear
   equipment:
     pocket1: d20Dice
-    pocket2: HandLabeler # for making named bestsellers
+    pocket2: HandLabeler
   storage:
     back:
     - BookRandom
-    - EncryptionKeyService # TODO: make unique encryption key loadout group and remove this
-    - EncryptionKeyScience # TODO: make unique encryption key loadout group and remove this
+    - EncryptionKeyService
     - ShipVoucherCoyoteCurator
 
-# Curator Role Loadout
 - type: roleLoadout
   id: JobCurator
   groups:
@@ -72,10 +58,10 @@
   - ContractorFace
   - ContractorGlasses
   - ContractorBelt
-  - ContractorEars # TODO: should maybe make a unique loadout group to give librarian and science headets for free
+  - ContractorEars
   - ContractorEncryptionKey
   - ContractorBoxSurvival
-  - ContractorPDA # TODO: make a unique loadout group that gives them librarian (and maybe science?) PDA for free
+  - ContractorPDA
   - ContractorWallet
   - ContractorCartridge
   - ContractorImplanter

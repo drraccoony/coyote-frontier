@@ -1,9 +1,10 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "blue-inhand-left, blue-inhand-right, voucherstationguard taken from tgstation at commit https://github.com/tgstation/tgstation/commit/d917f4c2a088419d5c3aec7656b7ff8cebd1822e.",
+    "copyright": "generic-inhand-left, generic-inhand-right, voucherstationguard taken from tgstation at commit https://github.com/tgstation/tgstation/commit/d917f4c2a088419d5c3aec7656b7ff8cebd1822e.",
     "extra_copyright": [
-        "blue, nfsd, voucher* by Whatstone (Discord)"
+        "blue, nfsd, voucher* by Whatstone (Discord)",
+        "freelancer, and tweaks to all base cards by archee1(github)"
     ],
     "size": {
         "x": 32,
@@ -11,14 +12,14 @@
     },
     "states": [
         {
-            "name": "blue"
+            "name": "generic"
         },
         {
-            "name": "blue-inhand-left",
+            "name": "generic-inhand-left",
             "directions": 4
         },
         {
-            "name": "blue-inhand-right",
+            "name": "generic-inhand-right",
             "directions": 4
         },
         {
@@ -30,6 +31,17 @@
         },
         {
             "name": "nfsd-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "freelancer"
+        },
+        {
+            "name": "freelancer-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "freelancer-inhand-right",
             "directions": 4
         },
         {

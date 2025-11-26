@@ -14,6 +14,8 @@ job-name-medical-nurse  = Medical Nurse
 job-description-medical-nurse = Assist in providing medical care and support to patients. Your responsibilities include monitoring vital signs, administering medications, and ensuring the overall well-being of those under your care. As a medical nurse, you play a vital role in the healthcare team, contributing to the recovery and health of the crew and passengers. You also receive a bonus to your Payward Incentive for being in such an important role!
 job-supervisors-medical-nurse = the Frontier Wellness Council, and horny people everywhere
 
+job-supervisors-chaplain = your chosen God. 
+
 job-name-curator = Curator
 job-description-curator = Explore, preserve, and showcase the rich cool history and artifacts of the frontier. Your role is to manage collections, organize exhibitions, and educate the public about the cultural heritage of the region. As a curator, you have access to exclusive historical information and artifacts, and you receive a bonus to your Payward Incentive for your dedication to preserving history!
 job-supervisors-curator = the Frontier Historical Society, and horny people everywhere
