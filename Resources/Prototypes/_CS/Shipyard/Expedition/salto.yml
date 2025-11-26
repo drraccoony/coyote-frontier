@@ -5,7 +5,7 @@
 # Shuttle Notes:
 # Archetypes = None
 # Halftypes = None
-# Domestic Areas = none
+# Domestic Areas = None
 - type: vessel
   id: Salto
   parent: BaseVessel
