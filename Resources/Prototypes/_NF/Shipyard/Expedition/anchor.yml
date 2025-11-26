@@ -7,13 +7,15 @@
 # Discord: ???
 
 # Shuttle Notes:
-#
+# Archetypes = Service/Medical
+# Halftypes = Engineering
+# Domestic Areas = Full
 - type: vessel
   id: Anchor
   parent: BaseVessel
-  name: LL2 Anchor # COYOTE: Added intended license Level to name.
-  description: A large luxury cruiser capable of long ranged travel across the sector, expedition capable. # COYOTE: This thing is TRYING to be a LL2, but it's not. Will be priced as an LL2.
-  price: 165000 # $109804 0.2 131764.8 # COYOTE: 116,794 * (1.35+0.5) ^= 165,000 (163,511)
+  name: LL3 Anchor
+  description: A large luxury cruiser capable of long ranged travel across the sector, expedition capable.
+  price: 384600 #117250, +50k(exped) LL3 x2.3 = 384675
   category: Large
   group: Expedition
   shuttlePath: /Maps/_NF/Shuttles/Expedition/anchor.yml
@@ -26,7 +28,7 @@
 
 - type: gameMap
   id: Anchor
-  mapName: 'KC Anchor'
+  mapName: 'Anchor'
   mapPath: /Maps/_NF/Shuttles/Expedition/anchor.yml
   minPlayers: 0
   stations:
