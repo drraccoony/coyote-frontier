@@ -12818,7 +12818,7 @@ entities:
     - type: Transform
       pos: 6.5,16.5
       parent: 1653
-- proto: VendingMachineChemicals
+- proto: SpawnDungeonLootChemistryVend
   entities:
   - uid: 389
     components:
