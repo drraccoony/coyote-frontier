@@ -1,21 +1,15 @@
-# The job itself
-# Journalist - ERP RPI boost, aura, free legman
 - type: job
   id: Journalist
   name: job-name-journalist
   description: job-description-journalist
   playTimeTracker: JobJournalist
-  startingGear: JournalistGear
+  startingGear: CSJournalistGear
+  alwaysUseSpawner: false
   icon: "JobIconReporter"
   supervisors: job-supervisors-journalist
-  weight: 40 # Prioritize station & department jobs
-  displayWeight: 3 # idk
-  access:
-  - Service
-  - Janitor
-  - Maintenance
-  - External
-  - Frontier
+  weight: 40
+  displayWeight: 3
+  canBeAntag: false
   accessGroups:
   - GeneralAccess
   special:
@@ -32,10 +26,8 @@
     - rpiChatJudgementModifierJournalist
   - !type:AddComponentSpecial
     components:
-    - type: PaywardActionNewsArticleCreation # basically this
-      # they have a ship, thats their office
+    - type: PaywardActionNewsArticleCreation
 
-# play time tracker
 - type: playTimeTracker
   id: JobJournalist
 
@@ -47,16 +39,13 @@
   - type: SpawnPoint
     job_id: Journalist
 
-
-# starting gear
 - type: startingGear
-  id: JournalistGear
+  id: CSJournalistGear
   storage:
     back:
     - EncryptionKeyService
     - ShipVoucherCoyoteJournalist
 
-# Food Service Role Loadout
 - type: roleLoadout
   id: JobJournalist
   groups:
@@ -92,4 +81,3 @@
     outerClothing: ClothingOuterCoatTrench
     neck: ClothingNeckTieRed
     gloves: ClothingHandsGlovesFingerless
-

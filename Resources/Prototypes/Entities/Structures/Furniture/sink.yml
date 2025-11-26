@@ -23,7 +23,7 @@
   - type: SolutionContainerManager
     solutions:
       drainBuffer:
-        maxVol: 100
+        maxVol: 200 # HardLight: Parity with Sink
       tank:
         maxVol: 500
   - type: SolutionRegeneration
@@ -59,16 +59,15 @@
           - !type:PlaySoundBehavior
             sound:
               collection: MetalBreak
-  - type: Construction
-    graph: GasUnary
-    node: tinygaysink
   - type: AmbientSound
     enabled: false
     volume: -8
     range: 8
     sound:
       path: /Audio/Ambience/Objects/drain.ogg
-
+  - type: Construction # Hardlight
+    graph: Sink
+    node: sink
 
 - type: entity
   name: sink
@@ -97,13 +96,13 @@
         - map: [ "enum.SolutionContainerLayers.Fill" ]
           state: sink_wide-fill-1
           visible: false
-    - type: Construction
-      graph: GasUnary
-      node: tinygaysinkwide
     - type: SolutionContainerVisuals
       maxFillLevels: 1
       fillBaseName: sink_wide-fill-
       solutionName: drainBuffer
+    - type: Construction # Hardlight
+      graph: SinkWide
+      node: sinkWide
 
 #Stemless Sink
 
@@ -119,6 +118,9 @@
       - map: [ "enum.SolutionContainerLayers.Fill" ]
         state: sink-fill-1
         visible: false
+  - type: Construction # Hardlight
+    graph: SinkStemless
+    node: sinkStemless
 
 - type: entity
   name: sink
@@ -129,11 +131,8 @@
   - type: SolutionContainerManager
     solutions:
       drainBuffer:
-        maxVol: 100
+        maxVol: 200 # HardLight: Parity with Sink
       tank:
         reagents:
         - ReagentId: Water
           Quantity: 500
-  - type: Construction
-    graph: GasUnary
-    node: tinygaysinkstemless

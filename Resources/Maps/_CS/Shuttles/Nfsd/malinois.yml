@@ -42,6 +42,8 @@ entities:
     components:
     - type: MetaData
       name: Malinois
+    - type: BecomesStation
+      id: Malinois
     - type: Transform
       pos: -0.4375,-0.5
       parent: invalid
@@ -434,8 +436,6 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-    - type: BecomesStation
-      id: Nightlight
     - type: ImplicitRoof
 - proto: AirAlarm
   entities:

@@ -79,13 +79,23 @@
     - MedkitToxin
     - MedkitRadiationFilled
     - MedkitRadiation
-    chance: 0.75
+    # Coyote
+    - MedkitFilled
+    - Medkit
+    - MedkitBruteFilled
+    - MedkitBurnFilled
+    - MedkitToxinFilled
+    - MedkitRadiationFilled
+    chance: 0.4 # Coyote
     offset: 0.0
     rarePrototypes:
     - MedkitAdvancedFilled
     - MedkitAdvanced
     - MedkitCombatFilled
     - MedkitCombat
+    # Coyote
+    - MedkitAdvancedFilled
+    - MedkitCombatFilled
     rareChance: 0.01
 
 - type: entity
@@ -111,7 +121,7 @@
     chance: 0.95
     offset: 0.0
     rarePrototypes:
-    - NFWeaponShotgunHandmade
+    - NFWeaponShotgunSawn # Coyote
     rareChance: 0.05
 
 - type: entity
@@ -171,7 +181,7 @@
     offset: 0.0
     rarePrototypes:
     - SawAdvanced
-    rareChance: 0.15
+    rareChance: 0.10 # Coyote
 
 - type: entity
   name: random surgery kit
@@ -220,13 +230,18 @@
     - BaseChemistryEmptyVial
     - Beaker
     - LargeBeaker
-    - CryostasisBeaker
     - Jug
     - Dropper
+    # Coyote
+    - Beaker
+    - LargeBeaker
+    - Jug
     chance: 1
     offset: 0.0
     rarePrototypes:
     - BluespaceBeaker
+    # Coyote
+    - CryostasisBeaker
     rareChance: 0.05
 
 - type: entity
@@ -284,6 +299,10 @@
     - Ointment
     - Gauze
     - Bloodpack
+    # Coyote
+    - SpawnDungeonClutterMedsSingle
+    - SpawnDungeonClutterMedsSingle
+    - SpawnDungeonClutterMedsSingle
     chance: 0.7
     offset: 0.0
     rarePrototypes:
@@ -340,8 +359,11 @@
     chance: 1
     offset: 0.0
     rarePrototypes:
-    - Stunprod
-    rareChance: 0.01
+    # Coyote (stunprod -> stim syringes)
+    - SyringeEphedrine
+    - SyringeEphedrine
+    - SyringeStimulants
+    rareChance: 0.06
 
 - type: entity
   name: random implanter
@@ -373,9 +395,9 @@
     offset: 0.0
     rarePrototypes:
     - DnaScramblerImplanter
-    - DeathAcidifierImplanter
+    #- DeathAcidifierImplanter # Coyote: it gibs you
     - FreedomImplanter
-    - MicroBombImplanter
+    #- MicroBombImplanter # Coyote: it gibs you
     - StorageImplanter
     rareChance: 0.01
 
@@ -483,10 +505,12 @@
     - ClothingUniformJumpsuitMedicalDoctor
     - ClothingBackpackMessengerMedical
     - ClothingBackpackDuffelMedical
+    - MedicalPouch # Coyote
     chance: 1
     offset: 0.0
     rarePrototypes:
     - ClothingOuterHardsuitVoidParamed
+    - CorpsmanMedicalPouch # Coyote
     rareChance: 0.01
 
 # Furniture/Lockers
@@ -518,11 +542,25 @@
     - LockerParamedicFilled
     - LockerPsychologistFilled
     - ClosetL3VirologyFilled
+    # Coyote
+    - LockerMedical
+    - LockerMedical
+    - LockerMedicine
+    - LockerMedicine
+    - LockerParamedic
+    - LockerParamedic
+    - LockerMedical
+    - LockerMedical
+    - ClosetL3Virology
+    - ClosetL3Virology
     chance: 1
     offset: 0.0
     rarePrototypes:
     - LockerChiefMedicalOfficer
     - LockerChiefMedicalOfficerFilled
+    # Coyote
+    - LockerChiefMedicalOfficer
+    - LockerChiefMedicalOfficer
     rareChance: 0.05
 
 - type: entity
@@ -579,6 +617,10 @@
     #- CrateServiceKitChemLab
     #- CrateServiceKitMedbayCryo
     - CrateEvaKitCmo
+    # Coyote
+    - MedicalTechFabFlatpack
+    - VendingMachineMedicalFlatpack
+    - VendingMachineChemicalsFlatpack
     rareChance: 0.01
 
 - type: entity
@@ -653,7 +695,9 @@
     - VendingMachineSyndieContraband
     # - VendingMachineSyndieDrobe # A bit less Syndicate loot
     - VendingMachineRobotics
-    rareChance: 0.01
+    # Coyote
+    - VendingMachineChemicals
+    rareChance: 0.015 # Coyote
 
 # Other
 - type: entity
@@ -696,6 +740,14 @@
     - JugMercury
     - JugSilver
     - JugWeldingFuel
+    # Coyote: Doubled entries of 'useful' chemicals
+    - JugCarbon
+    - JugSilicon
+    - JugOxygen
+    - JugNitrogen
+    - JugHydrogen
+    - JugSugar
+    - JugEthanol
     chance: 1
     offset: 0.0
     rarePrototypes:

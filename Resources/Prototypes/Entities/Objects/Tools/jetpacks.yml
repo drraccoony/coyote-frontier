@@ -174,9 +174,6 @@
   - type: Item
     sprite: Objects/Tanks/Jetpacks/captain.rsi
     size: Normal
-  - type: Tag
-    tags:
-    - HighRiskItem
   - type: StealTarget
     stealGroup: JetpackCaptainFilled
 

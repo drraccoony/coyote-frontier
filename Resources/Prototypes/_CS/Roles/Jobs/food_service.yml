@@ -1,15 +1,14 @@
-# The job itself
-# chef + botany + clownmime
 - type: job
   id: FoodService
   name: job-name-food-service
   description: job-description-food-service
   playTimeTracker: JobFoodService
-  startingGear: FoodServiceGear
+  startingGear: CSFoodServiceGear
+  alwaysUseSpawner: false
   icon: "JobIconChef"
   supervisors: job-supervisors-food-service
-  weight: 40 # Prioritize station & department jobs
-  displayWeight: 3 # idk
+  weight: 40
+  displayWeight: 3
   access:
   - Service
   - Janitor
@@ -31,17 +30,6 @@
     modifiersToAdd:
     - rpiJobModifierFoodService
 
-# starting gear
-- type: startingGear
-  id: FoodServiceGear
-  equipment:
-    belt: ClothingBeltPlantFilled
-  storage:
-    back:
-    - EncryptionKeyService
-    - ShipVoucherCoyoteFoodService
-
-# play time tracker
 - type: playTimeTracker
   id: JobFoodService
 
@@ -53,7 +41,15 @@
   - type: SpawnPoint
     job_id: FoodService
 
-# Food Service Role Loadout
+- type: startingGear
+  id: CSFoodServiceGear
+  equipment:
+    belt: ClothingBeltPlantFilled
+  storage:
+    back:
+    - EncryptionKeyService
+    - ShipVoucherCoyoteFoodService
+
 - type: roleLoadout
   id: JobFoodService
   groups:
@@ -79,29 +75,6 @@
   - ContractorHandItems
   - NFSpeciesSpecific
 
-- type: loadoutGroup
-  id: FoodServiceJumpsuit
-  name: loadout-group-contractor-jumpsuit
-  loadouts: #First Section: Role specific freebies/discounts/rewards
-  - FoodServiceClothingUniformJumpsuitChef
-  - FoodServiceClothingUniformJumpskirtChef
-  subgroups:
-  - PilotJumpsuit
-  - ContractorJumpsuit
-  - CoyoteJumpsuit
-  fallbacks:
-  - FoodServiceClothingUniformJumpsuitChef
-  - FoodServiceClothingUniformJumpskirtChef
-
-- type: loadoutGroup
-  id: FoodServiceHead
-  name: loadout-group-contractor-head
-  minLimit: 0
-  loadouts: #First Section: Role specific freebies/discounts/rewards
-  - FoodServiceClothingHeadHatChef
-  subgroups:
-  - ContractorHead
-
 - type: chameleonOutfit
   id: FoodServiceChameleonOutfit
   job: FoodService
@@ -113,4 +86,3 @@
     outerClothing: ClothingOuterJacketChef
     gloves: ClothingHandsGlovesColorWhite
     shoes: ClothingShoesChef
-

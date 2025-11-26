@@ -59,7 +59,7 @@ public sealed class SizeManipulationSystem : EntitySystem
     /// <summary>
     /// Applies a size change to the target entity
     /// </summary>
-    public bool TryChangeSize(EntityUid target, SizeManipulatorMode mode, EntityUid? user = null)
+    public bool TryChangeSize(EntityUid target, SizeManipulatorMode mode, EntityUid? user = null, bool safetyDisabled = false)
     {
         // Only allow size manipulation on mobs (living entities)
         if (!HasComp<MobStateComponent>(target))
@@ -80,13 +80,16 @@ public sealed class SizeManipulationSystem : EntitySystem
 
         var sizeComp = EnsureComp<SizeAffectedComponent>(target);
 
-        Logger.Debug($"SizeManipulation: TryChangeSize called on {ToPrettyString(target)}, mode: {mode}, current scale: {sizeComp.ScaleMultiplier}");
+        Logger.Debug($"SizeManipulation: TryChangeSize called on {ToPrettyString(target)}, mode: {mode}, current scale: {sizeComp.ScaleMultiplier}, safety disabled: {safetyDisabled}");
+
+        // If safety is disabled, double the max limit
+        var maxScale = safetyDisabled ? sizeComp.MaxScale * 2.0f : sizeComp.MaxScale;
 
         float newScale;
         if (mode == SizeManipulatorMode.Grow)
         {
             newScale = sizeComp.ScaleMultiplier + sizeComp.ScaleChangeAmount;
-            if (newScale > sizeComp.MaxScale)
+            if (newScale > maxScale)
             {
                 if (user != null)
                     _popup.PopupEntity(Loc.GetString("size-manipulator-max-size"), target, user.Value);

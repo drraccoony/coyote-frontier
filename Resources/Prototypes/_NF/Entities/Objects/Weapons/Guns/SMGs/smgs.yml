@@ -14,9 +14,9 @@
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/SMGs/atreides.rsi
 
-- type: entity
+- type: entity # Coyote: Converted to .40 caliber
   id: NFWeaponSubMachineGunC20r
-  parent: [ NFBaseWeaponSubMachineGunChamber35, NFBaseWeaponFrameSubMachineGunCybersun ]
+  parent: [ CSBaseWeaponHeavySubMachineGunChamber40, CSBaseWeaponFrameHeavySubMachineGunCybersun ]
   name: C-20r
   description: |-
     An illegal firearm that is often used by the infamous nuclear operatives.
@@ -35,9 +35,9 @@
     steps: 6
     zeroVisible: true
 
-- type: entity
+- type: entity # Coyote: Converted to .40 caliber
   id: NFWeaponSubMachineGunDrozd
-  parent: [ NFBaseWeaponSubMachineGunChamber35, NFBaseWeaponFrameSubMachineGunNanotrasen ]
+  parent: [ CSBaseWeaponHeavySubMachineGunChamber40, CSBaseWeaponFrameHeavySubMachineGunNanotrasen ]
   name: Drozd
   description: A fully automatic SMG.
   components: &drozdComponents
@@ -49,9 +49,9 @@
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/SMGs/drozd.rsi
 
-- type: entity
+- type: entity # Coyote: Converted to .40 caliber
   id: NFWeaponSubMachineGunDrozdLessLethal # Frontier-specific rubber variant
-  parent: [ NFBaseWeaponSubMachineGunChamber35Rubber, NFBaseWeaponFrameSubMachineGunNanotrasen ]
+  parent: [ CSBaseWeaponHeavySubMachineGunChamber40Rubber, CSBaseWeaponFrameHeavySubMachineGunNanotrasen ]
   name: Drozd
   description: A fully automatic SMG.
   suffix: Frontier, Less-Lethal
@@ -87,9 +87,9 @@
     boltClosed: null
 
 #region DeltaV
-- type: entity
+- type: entity # Coyote: Converted to .40 caliber
   id: NFWeaponSubMachineGunTypewriter
-  parent: [ NFBaseWeaponSubMachineGunChamber35, NFBaseWeaponFrameSubMachineGunFrontierGunsmith ]
+  parent: [ CSBaseWeaponHeavySubMachineGunChamber40, CSBaseWeaponFrameHeavySubMachineGunFrontierGunsmith ]
   name: Typewriter
   description: |-
     A modern take on the classic design used by mobsters throughout space and time.
