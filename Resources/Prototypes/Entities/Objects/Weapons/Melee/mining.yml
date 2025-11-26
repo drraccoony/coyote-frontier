@@ -42,7 +42,7 @@
 
 - type: entity
   name: mining drill
-  parent: BaseItem
+  parent: [ BaseItem, RecyclableItemSteelMedium ] # Coyote
   id: MiningDrill
   description: Powerful tool used to quickly drill through rocks.
   components:
@@ -66,6 +66,8 @@
         Brute: 3
       types:
         Structural: 15
+  - type: StaticPrice # Coyote
+    price: 25
 
 - type: entity
   name: diamond tipped mining drill
@@ -106,6 +108,10 @@
     color: "#ffeead"
     enabled: false
     radius: 4
+  - type: PhysicalComposition # Coyote
+    materialComposition:
+      Steel: 300
+      RawScrap: 100
 
 - type: entity
   parent: [BaseWeaponCrusher, BaseC1Contraband] # Frontier: BaseSecurityCargoContraband<BaseC1Contraband
