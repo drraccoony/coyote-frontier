@@ -52,54 +52,54 @@
   id: hornyIndifferent
   textToShow: "horny-examine-indifferent"
 
-- type: hornyAnxious
+- type: hornyExamine
   id: hornyAnxious
   textToShow: "horny-examine-anxious"
 
-- type: hornyBratty
+- type: hornyExamine
   id: hornyBratty
   textToShow: "horny-examine-bratty"
 
-- type: hornyGregarious
+- type: hornyExamine
   id: hornyGregarious
   textToShow: "horny-examine-gregarious"
 
-- type: hornyFlirty
+- type: hornyExamine
   id: hornyFlirty
   textToShow: "horny-examine-flirty"
 
-- type: hornyDistracted
+- type: hornyExamine
   id: hornyDistracted
   textToShow: "horny-examine-distracted"
 
-- type: hornyTrustworthy
+- type: hornyExamine
   id: hornyTrustworthy
   textToShow: "horny-examine-trustworthy"
 
-- type: hornyWarm
+- type: hornyExamine
   id: hornyWarm
   textToShow: "horny-examine-warm"
 
-- type: hornyConfident
+- type: hornyExamine
   id: hornyConfident
   textToShow: "horny-examine-confident"
 
-- type: hornyForward
+- type: hornyExamine
   id: hornyForward
   textToShow: "horny-examine-forward"
 
-- type: hornyDorky
+- type: hornyExamine
   id: hornyDorky
   textToShow: "horny-examine-dorky"
 
-- type: hornyDopey
+- type: hornyExamine
   id: hornyDopey
   textToShow: "horny-examine-dopey"
 
-- type: hornyEasygoing
+- type: hornyExamine
   id: hornyEasygoing
   textToShow: "horny-examine-easygoing"
 
-- type: hornyInnocent
+- type: hornyExamine
   id: hornyInnocent
   textToShow: "horny-examine-innocent"
