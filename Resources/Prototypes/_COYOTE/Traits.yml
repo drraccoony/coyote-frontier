@@ -63,14 +63,14 @@
   id: HornyLonely
   name: trait-horny-lonely-name
   description: trait-horny-lonely-desc
-  category: Examine
-  cost: 0
+  category: Temperment
+  cost: 1
   hornyExamineProto: hornyLonely
 
 - type: trait
   id: HornyFriendly
   name: trait-horny-friendly-name
   description: trait-horny-friendly-desc
-  category: Examine
-  cost: 0
+  category: Temperment
+  cost: 1
   hornyExamineProto: hornyFriendly
