@@ -625,6 +625,22 @@ entities:
     - type: Transform
       pos: 12.5,-9.5
       parent: 1
+    - type: AmeController
+      injecting: True
+    - type: ContainerContainer
+      containers:
+        fuelSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 483
+- proto: AmeJar
+  entities:
+  - uid: 483
+    components:
+    - type: Transform
+      parent: 123
+    - type: Physics
+      canCollide: False
 - proto: AmeShielding
   entities:
   - uid: 106
