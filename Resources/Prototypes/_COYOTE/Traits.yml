@@ -74,3 +74,147 @@
   category: Temperament
   cost: 1
   hornyExamineProto: hornyFriendly
+
+- type: trait
+  id: HornyCuddly
+  name: trait-horny-cuddly-name
+  description: trait-horny-cuddly-desc
+  category: Examine
+  cost: 1
+  hornyExamineProto: hornycuddly
+
+- type: trait
+  id: HornyMelancholic
+  name: trait-horny-melancholic-name
+  description: trait-horny-melancholic-desc
+  category: Examine
+  cost: 1
+  hornyExamineProto: hornymelancholic
+
+- type: trait
+  id: HornyRuffled
+  name: trait-horny-ruffled-name
+  description: trait-horny-ruffled-desc
+  category: Examine
+  cost: 1
+  hornyExamineProto: hornyruffled
+
+- type: trait
+  id: HornyTired
+  name: trait-horny-tired-name
+  description: trait-horny-tired-desc
+  category: Examine
+  cost: 1
+  hornyExamineProto: hornytired
+
+- type: trait
+  id: HornyIndifferent
+  name: trait-horny-indifferent-name
+  description: trait-horny-indifferent-desc
+  category: Examine
+  cost: 1
+  hornyExamineProto: hornyindifferent
+
+- type: trait
+  id: HornyAnxious
+  name: trait-horny-anxious-name
+  description: trait-horny-anxious-desc
+  category: Examine
+  cost: 1
+  hornyExamineProto: hornyanxious
+
+- type: trait
+  id: HornyBratty
+  name: trait-horny-bratty-name
+  description: trait-horny-bratty-desc
+  category: Examine
+  cost: 1
+  hornyExamineProto: hornybratty
+
+- type: trait
+  id: HornyGregarious
+  name: trait-horny-gregarious-name
+  description: trait-horny-gregarious-desc
+  category: Examine
+  cost: 1
+  hornyExamineProto: hornygregarious
+
+- type: trait
+  id: HornyFlirty
+  name: trait-horny-flirty-name
+  description: trait-horny-flirty-desc
+  category: Examine
+  cost: 1
+  hornyExamineProto: hornyflirty
+
+- type: trait
+  id: HornyDistracted
+  name: trait-horny-distracted-name
+  description: trait-horny-distracted-desc
+  category: Examine
+  cost: 1
+  hornyExamineProto: hornydistracted
+
+- type: trait
+  id: HornyTrustworthy
+  name: trait-horny-trustworthy-name
+  description: trait-horny-trustworthy-desc
+  category: Examine
+  cost: 1
+  hornyExamineProto: hornytrustworthy
+
+- type: trait
+  id: HornyWarm
+  name: trait-horny-warm-name
+  description: trait-horny-warm-desc
+  category: Examine
+  cost: 1
+  hornyExamineProto: hornywarm
+
+- type: trait
+  id: HornyConfident
+  name: trait-horny-confident-name
+  description: trait-horny-confident-desc
+  category: Examine
+  cost: 1
+  hornyExamineProto: hornyconfident
+
+- type: trait
+  id: HornyForward
+  name: trait-horny-forward-name
+  description: trait-horny-forward-desc
+  category: Examine
+  cost: 1
+  hornyExamineProto: hornyforward
+
+- type: trait
+  id: HornyDorky
+  name: trait-horny-dorky-name
+  description: trait-horny-dorky-desc
+  category: Examine
+  cost: 1
+  hornyExamineProto: hornydorky
+
+- type: trait
+  id: HornyDopey
+  name: trait-horny-dopey-name
+  description: trait-horny-dopey-desc
+  category: Examine
+  cost: 1
+  hornyExamineProto: hornydopey
+
+- type: trait
+  id: Hornyeasygoing
+  name: trait-horny-easygoing-name
+  description: trait-horny-easygoing-desc
+  category: Examine
+  cost: 1
+  hornyExamineProto: hornyeasygoing
+
+- type: trait
+  id: Hornyinnocent
+  name: trait-horny-innocent-name
+  description: trait-horny-innocent-desc
+  category: Examine
+  cost: 1
+  hornyExamineProto: hornyinnocent

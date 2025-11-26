@@ -32,7 +32,74 @@
   id: hornyFriendly
   textToShow: "horny-examine-friendly"
 
+- type: hornyExamine
+  id: hornyCuddly
+  textToShow: "horny-examine-cuddly"
 
+- type: hornyExamine
+  id: hornyMelancholic
+  textToShow: "horny-examine-melancholic"
 
+- type: hornyExamine
+  id: hornyRuffled
+  textToShow: "horny-examine-ruffled"
 
+- type: hornyExamine
+  id: hornyTired
+  textToShow: "horny-examine-tired"
 
+- type: hornyExamine
+  id: hornyIndifferent
+  textToShow: "horny-examine-indifferent"
+
+- type: hornyAnxious
+  id: hornyAnxious
+  textToShow: "horny-examine-anxious"
+
+- type: hornyBratty
+  id: hornyBratty
+  textToShow: "horny-examine-bratty"
+
+- type: hornyGregarious
+  id: hornyGregarious
+  textToShow: "horny-examine-gregarious"
+
+- type: hornyFlirty
+  id: hornyFlirty
+  textToShow: "horny-examine-flirty"
+
+- type: hornyDistracted
+  id: hornyDistracted
+  textToShow: "horny-examine-distracted"
+
+- type: hornyTrustworthy
+  id: hornyTrustworthy
+  textToShow: "horny-examine-trustworthy"
+
+- type: hornyWarm
+  id: hornyWarm
+  textToShow: "horny-examine-warm"
+
+- type: hornyConfident
+  id: hornyConfident
+  textToShow: "horny-examine-confident"
+
+- type: hornyForward
+  id: hornyForward
+  textToShow: "horny-examine-forward"
+
+- type: hornyDorky
+  id: hornyDorky
+  textToShow: "horny-examine-dorky"
+
+- type: hornyDopey
+  id: hornyDopey
+  textToShow: "horny-examine-dopey"
+
+- type: hornyEasygoing
+  id: hornyEasygoing
+  textToShow: "horny-examine-easygoing"
+
+- type: hornyInnocent
+  id: hornyInnocent
+  textToShow: "horny-examine-innocent"
