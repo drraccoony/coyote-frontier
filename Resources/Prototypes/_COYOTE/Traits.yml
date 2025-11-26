@@ -22,7 +22,7 @@
   description: trait-fat-fox-desc
   category: Disabilities
   cost: 1
-  hornyExamineProto: hornyExamineOverweight
+  hornyExamineProto: hornyOverweight
   components:
   - type: OverweightTrait
 
@@ -329,7 +329,7 @@
   description: trait-horny-timid-desc
   category: Temperament
   cost: 1
-  hornyExamineProto: HornyTimid
+  hornyExamineProto: hornyTimid
 
 - type: trait
   id: HornyCalm
@@ -337,7 +337,7 @@
   description: trait-horny-calm-desc
   category: Temperament
   cost: 1
-  hornyExamineProto: HornyCalm
+  hornyExamineProto: hornyCalm
 
 - type: trait
   id: HornyModest

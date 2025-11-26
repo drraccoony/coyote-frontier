@@ -35,7 +35,7 @@ trait-horny-in-rut-desc =
     Your character, for whatever reason, is particularly on the look out for sexual partners.
     It's assumed for this trait that you are the dominant partner, or at least generally looking for more submissive partners.
 
-trait-horny-icy-name = Icy - No Seeking ERP
+trait-horny-icy-name = Icy - Not Seeking ERP
 trait-horny-icy-desc =
     Your character, for whatever reason, is not looking for new erotic partners.
     Be it because you are in a committed relationship or just aren't interested in sexual advances.
