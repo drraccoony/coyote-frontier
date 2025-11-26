@@ -64,7 +64,7 @@
   name: trait-horny-lonely-name
   description: trait-horny-lonely-desc
   category: Examine
-  cost: 0
+  cost: 1
   hornyExamineProto: hornyLonely
 
 - type: trait
