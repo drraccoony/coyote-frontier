@@ -274,3 +274,75 @@
   category: Temperament
   cost: 1
   hornyExamineProto: hornyAggressive
+
+- type: trait
+  id: HornyRebellious
+  name: trait-horny-rebellious-name
+  description: trait-horny-rebellious-desc
+  category: Temperament
+  cost: 1
+  hornyExamineProto: hornyRebellious
+
+- type: trait
+  id: HornyRelaxed
+  name: trait-horny-relaxed-name
+  description: trait-horny-relaxed-desc
+  category: Temperament
+  cost: 1
+  hornyExamineProto: hornyRelaxed
+
+- type: trait
+  id: HornyLazy
+  name: trait-horny-lazy-name
+  description: trait-horny-lazy-desc
+  category: Temperament
+  cost: 1
+  hornyExamineProto: hornyLazy
+
+- type: trait
+  id: HornyNaive
+  name: trait-horny-naive-name
+  description: trait-horny-naive-desc
+  category: Temperament
+  cost: 1
+  hornyExamineProto: hornyNaive
+
+- type: trait
+  id: HornySilly
+  name: trait-horny-silly-name
+  description: trait-horny-silly-desc
+  category: Temperament
+  cost: 1
+  hornyExamineProto: hornySilly
+
+- type: trait
+  id: HornyGentle
+  name: trait-horny-gentle-name
+  description: trait-horny-gentle-desc
+  category: Temperament
+  cost: 1
+  hornyExamineProto: hornyGentle
+
+- type: trait
+  id: HornyTimid
+  name: trait-horny-timid-name
+  description: trait-horny-timid-desc
+  category: Temperament
+  cost: 1
+  hornyExamineProto: HornyTimid
+
+- type: trait
+  id: HornyCalm
+  name: trait-horny-calm-name
+  description: trait-horny-calm-desc
+  category: Temperament
+  cost: 1
+  hornyExamineProto: HornyCalm
+
+- type: trait
+  id: HornyModest
+  name: trait-horny-modest-name
+  description: trait-horny-modest-desc
+  category: Temperament
+  cost: 1
+  hornyExamineProto: hornyModest

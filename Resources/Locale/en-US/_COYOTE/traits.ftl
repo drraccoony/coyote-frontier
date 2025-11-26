@@ -175,3 +175,48 @@ trait-horny-aggressive-name = Aggressive
 trait-horny-aggressive-desc =
     Your character (or you yourself) is kind of aggressive. Verbally or physically - though.  Maybe it's a front.
     You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-rebellious-name = Rebellious
+trait-horny-rebellious-desc =
+    Your character (or you yourself) is kind of rebellious. Tending to distrust authority.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-relaxed-name = Relaxed
+trait-horny-relaxed-desc =
+    Your character (or you yourself) is visibly relaxed.  Internally?  Who knows.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-lazy-name = Lazy
+trait-horny-lazy-desc =
+    Your character (or you yourself) is seen as lazy by others.  Are they... actually?
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-naive-name = Naive
+trait-horny-naive-desc =
+    Your character (or you yourself) is seen as naive by others.  Are they... actually?
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-silly-name = Silly
+trait-horny-silly-desc =
+    Your character (or you yourself) is kind of silly. At least, on the outside.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-gentle-name = Gentle
+trait-horny-gentle-desc =
+    Your character (or you yourself) is kind of gentle. At least, on the outside.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-timid-name = Timid
+trait-horny-timid-desc =
+    Your character (or you yourself) is kind of timid, at least at first.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-calm-name = Calm
+trait-horny-calm-desc =
+    Your character (or you yourself) is kind of calm and collected.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-modest-name = Modest
+trait-horny-modest-desc =
+    Your character (or you yourself) is kind of modest, or at least likes to present as so.
+    You tend to be more approachable and welcoming when it comes to such matters.

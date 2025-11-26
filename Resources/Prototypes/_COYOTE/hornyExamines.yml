@@ -131,3 +131,39 @@
 - type: hornyExamine
   id: hornyAggressive
   textToShow: "horny-examine-aggressive"
+
+- type: hornyExamine
+  id: hornyRebellious
+  textToShow: "horny-examine-rebellious"
+
+- type: hornyExamine
+  id: hornyRelaxed
+  textToShow: "horny-examine-relaxed"
+
+- type: hornyExamine
+  id: hornyLazy
+  textToShow: "horny-examine-lazy"
+
+- type: hornyExamine
+  id: hornyNaive
+  textToShow: "horny-examine-naive"
+
+- type: hornyExamine
+  id: hornySilly
+  textToShow: "horny-examine-silly"
+
+- type: hornyExamine
+  id: hornyGentle
+  textToShow: "horny-examine-gentle"
+
+- type: hornyExamine
+  id: hornyTimid
+  textToShow: "horny-examine-timid"
+
+- type: hornyExamine
+  id: hornyCalm
+  textToShow: "horny-examine-calm"
+
+- type: hornyExamine
+  id: hornyModest
+  textToShow: "horny-examine-modest"
