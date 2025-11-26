@@ -16,7 +16,7 @@ public sealed partial class HornyExaminePrototype : IPrototype
     /// The tag required to see this examine text, if any
     /// </summary>
     [DataField("neededTag")]
-    public ProtoId<HornyExaminePrototype>? NeededTag = string.Empty;
+    public string? NeededTag = string.Empty;
 
     /// <summary>
     /// The text to show if the examiner has the required tag
