@@ -59,8 +59,7 @@ public sealed class TraitSystem : EntitySystem
             {
                 if (_prototypeManager.TryIndex(traitPrototype.HornyExamineProto, out var hormy))
                 {
-                    EnsureComp<HornyExamineQuirksComponent>(args.Mob)
-                        .AddHornyExamineTrait(hormy, _prototypeManager);
+                    EnsureComp<HornyExamineQuirksComponent>(args.Mob).AddHornyExamineTrait(hormy, _prototypeManager);
                 }
             }
 

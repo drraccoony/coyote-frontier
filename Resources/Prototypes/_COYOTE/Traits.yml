@@ -63,7 +63,7 @@
   id: HornyLonely
   name: trait-horny-lonely-name
   description: trait-horny-lonely-desc
-  category: Temperment
+  category: Temperament
   cost: 1
   hornyExamineProto: hornyLonely
 
@@ -71,6 +71,6 @@
   id: HornyFriendly
   name: trait-horny-friendly-name
   description: trait-horny-friendly-desc
-  category: Temperment
+  category: Temperament
   cost: 1
   hornyExamineProto: hornyFriendly

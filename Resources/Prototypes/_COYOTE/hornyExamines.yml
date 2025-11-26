@@ -2,11 +2,13 @@
   id: hornyExamineInHeat
   neededTag: hornyExamineInRut
   textToShow: "horny-examine-in-heat"
+  selfExamine: false
 
 - type: hornyExamine
   id: hornyExamineInRut
   neededTag: hornyExamineInHeat
   textToShow: "horny-examine-in-rut"
+  selfExamine: false
 
 - type: hornyExamine
   id: hornyExamineNoErp
@@ -14,11 +16,13 @@
   suppressTags:
     - hornyExamineInRut
     - hornyExamineInHeat
+  selfExamine: false
 
 - type: hornyExamine
   id: hornyOverweight
   neededTag: hornyOverweight
   textToShow: "horny-examine-overweight"
+  selfExamine: false
 
 - type: hornyExamine
   id: hornyLonely

@@ -30,4 +30,10 @@ public sealed partial class HornyExaminePrototype : IPrototype
     /// </summary>
     [DataField("suppressTags")]
     public List<string> SuppressTags = new();
+
+    /// <summary>
+    /// Can the entity see this on themselves?
+    /// </summary>
+    [DataField("selfExamine")]
+    public bool SelfExamine = true;
 }
