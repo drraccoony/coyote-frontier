@@ -68,6 +68,14 @@
   hornyExamineProto: hornyLonely
 
 - type: trait
+  id: HornyShy
+  name: trait-horny-shy-name
+  description: trait-horny-shy-desc
+  category: Temperament
+  cost: 1
+  hornyExamineProto: hornyShy
+
+- type: trait
   id: HornyFriendly
   name: trait-horny-friendly-name
   description: trait-horny-friendly-desc
@@ -218,3 +226,51 @@
   category: Temperament
   cost: 1
   hornyExamineProto: hornyInnocent
+
+- type: trait
+  id: Hornyflighty
+  name: trait-horny-flighty-name
+  description: trait-horny-flighty-desc
+  category: Temperament
+  cost: 1
+  hornyExamineProto: hornyFlighty
+
+- type: trait
+  id: Hornymature
+  name: trait-horny-mature-name
+  description: trait-horny-mature-desc
+  category: Temperament
+  cost: 1
+  hornyExamineProto: hornyMature
+
+- type: trait
+  id: Hornysmart
+  name: trait-horny-smart-name
+  description: trait-horny-smart-desc
+  category: Temperament
+  cost: 1
+  hornyExamineProto: hornySmart
+
+- type: trait
+  id: Hornycurious
+  name: trait-horny-curious-name
+  description: trait-horny-curious-desc
+  category: Temperament
+  cost: 1
+  hornyExamineProto: hornyCurious
+
+- type: trait
+  id: Hornyeager
+  name: trait-horny-eager-name
+  description: trait-horny-eager-desc
+  category: Temperament
+  cost: 1
+  hornyExamineProto: hornyEager
+
+- type: trait
+  id: Hornyaggressive
+  name: trait-horny-aggressive-name
+  description: trait-horny-aggressive-desc
+  category: Temperament
+  cost: 1
+  hornyExamineProto: hornyAggressive

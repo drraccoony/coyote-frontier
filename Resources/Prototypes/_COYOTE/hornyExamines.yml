@@ -29,6 +29,10 @@
   textToShow: "horny-examine-lonely"
 
 - type: hornyExamine
+  id: hornyShy
+  textToShow: "horny-examine-shy"
+
+- type: hornyExamine
   id: hornyFriendly
   textToShow: "horny-examine-friendly"
 
@@ -103,3 +107,27 @@
 - type: hornyExamine
   id: hornyInnocent
   textToShow: "horny-examine-innocent"
+
+- type: hornyExamine
+  id: hornyFlighty
+  textToShow: "horny-examine-flighty"
+
+- type: hornyExamine
+  id: hornyMature
+  textToShow: "horny-examine-mature"
+
+- type: hornyExamine
+  id: hornySmart
+  textToShow: "horny-examine-smart"
+
+- type: hornyExamine
+  id: hornyCurious
+  textToShow: "horny-examine-curious"
+
+- type: hornyExamine
+  id: hornyEager
+  textToShow: "horny-examine-eager"
+
+- type: hornyExamine
+  id: hornyAggressive
+  textToShow: "horny-examine-aggressive"

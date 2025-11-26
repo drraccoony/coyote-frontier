@@ -41,8 +41,13 @@ trait-horny-icy-desc =
     Be it because you are in a committed relationship or just aren't interested in sexual advances.
     It overrides In Heat and In Rut traits if you have them, effectively removing them from your character.
 
-trait-horny-lonely-name = Shy & Lonely
+trait-horny-lonely-name = Lonely
 trait-horny-lonely-desc =
+    Your character (or you yourself) is a bit lonely, and likes being approached.
+    While not opposed to erotic advances, you may need a bit of encouragement to get going.
+
+trait-horny-shy-name = Shy
+trait-horny-shy-desc =
     Your character (or you yourself) is a bit shy when it comes to approaching others.
     While not opposed to erotic advances, you may need a bit of encouragement to get going.
 
@@ -139,4 +144,34 @@ trait-horny-easygoing-desc =
 trait-horny-innocent-name = Innocent
 trait-horny-innocent-desc =
     Your character (or you yourself) is a bit innocent - but are they really?  Like, reaaallllly?
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-flighty-name = Flighty
+trait-horny-flighty-desc =
+    Your character (or you yourself) is flighty.  Prone to wanting to escape from social situations - but also enjoying being chased.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-mature-name = Mature
+trait-horny-mature-desc =
+    Your character (or you yourself) is emotionally mature in a comforting sort of way to others.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-smart-name = Smart
+trait-horny-smart-desc =
+    Your character (or you yourself) is technically smart, or at least likes to seem so.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-curious-name = Curious
+trait-horny-curious-desc =
+    Your character (or you yourself) is very curious about the world around them.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-eager-name = Eager
+trait-horny-eager-desc =
+    Your character (or you yourself) is very eager to do anything!  Like a puppy let loose!
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-aggressive-name = Aggressive
+trait-horny-aggressive-desc =
+    Your character (or you yourself) is kind of aggressive. Verbally or physically - though.  Maybe it's a front.
     You tend to be more approachable and welcoming when it comes to such matters.
