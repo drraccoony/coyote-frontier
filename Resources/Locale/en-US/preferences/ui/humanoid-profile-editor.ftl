@@ -69,3 +69,5 @@ trait-category-disabilities = Disabilities
 trait-category-speech = Speech traits
 trait-category-quirks = Quirks
 trait-category-rpi = Roleplay Interaction
+trait-category-examine = Examine Modifiers
+trait-category-temperament = Temperament

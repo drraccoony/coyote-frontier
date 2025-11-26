@@ -1,3 +1,4 @@
+using Content.Shared._Coyote.HornyQuirks;
 using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
 
@@ -41,7 +42,7 @@ public sealed partial class TraitPrototype : IPrototype
     /// The components that get added to the player, when they pick this trait.
     /// </summary>
     [DataField]
-    public ComponentRegistry Components { get; private set; } = default!;
+    public ComponentRegistry? Components { get; private set; } = default!;
 
     /// <summary>
     /// Gear that is given to the player, when they pick this trait.
@@ -60,4 +61,10 @@ public sealed partial class TraitPrototype : IPrototype
     /// </summary>
     [DataField]
     public ProtoId<TraitCategoryPrototype>? Category;
+
+    /// <summary>
+    /// Horny examine prototype associated with this trait.
+    /// </summary>
+    [DataField]
+    public ProtoId<HornyExaminePrototype>? HornyExamineProto;
 }
