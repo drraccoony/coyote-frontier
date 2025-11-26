@@ -3936,10 +3936,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,-16.5
       parent: 1
-    - type: Thruster
-      enabled: False
-    - type: ApcPowerReceiver
-      powerLoad: 1
   - uid: 116
     components:
     - type: Transform
