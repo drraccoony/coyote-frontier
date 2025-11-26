@@ -51,4 +51,92 @@ trait-horny-friendly-desc =
     Your character (or you yourself) is quite friendly and open to erotic advances from others.
     You tend to be more approachable and welcoming when it comes to such matters.
 
+trait-horny-cuddly-name = Cuddly
+trait-horny-cuddly-desc =
+    Your character (or you yourself) is quite cuddly.  You're soft and squishable and like being in those situations.
+    You tend to be more approachable and welcoming when it comes to such matters.
 
+trait-horny-cuddly-name = Melancholic
+trait-horny-cuddly-desc =
+    Your character (or you yourself) is a bit on the sad side, if still very lovable.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-cuddly-name = Ruffled
+trait-horny-cuddly-desc =
+    Your character (or you yourself) is a frazzled, maybe their easily confused or just kind of upset.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-cuddly-name = Tired
+trait-horny-cuddly-desc =
+    Your character (or you yourself) is tired. Or, at least appears so to others.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-cuddly-name = Indifferent
+trait-horny-cuddly-desc =
+    Your character (or you yourself) is indifferent to the world around them, or at least pretends to be so.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-cuddly-name = Anxious
+trait-horny-cuddly-desc =
+    Your character (or you yourself) is a bit anxious and on edge.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-cuddly-name = Bratty
+trait-horny-cuddly-desc =
+    Your character (or you yourself) is a bit of a brat, be you soft hearted or just downright mean.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-cuddly-name = Gregarious
+trait-horny-cuddly-desc =
+    Your character (or you yourself) is a outgoing and prone to laughter.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-cuddly-name = Flirty
+trait-horny-cuddly-desc =
+    Your character (or you yourself) is a flirty and prone to teasing others.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-cuddly-name = Distracted
+trait-horny-cuddly-desc =
+    Your character (or you yourself) is easily distracted by their tasks.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-cuddly-name = Trustworthy
+trait-horny-cuddly-desc =
+    Your character (or you yourself) is trustworthy. Or so they like to appear, maybe.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-cuddly-name = Warm
+trait-horny-cuddly-desc =
+    Your character (or you yourself) is warm. Emotionally or physically.  Just kind of loving.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-cuddly-name = Confident
+trait-horny-cuddly-desc =
+    Your character (or you yourself) is confident, or appears so. Faking it till they make it maybe?
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-cuddly-name = Forward
+trait-horny-cuddly-desc =
+    Your character (or you yourself) is forward. You say what's on your mind and deal with it after.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-cuddly-name = Dorky
+trait-horny-cuddly-desc =
+    Your character (or you yourself) is dorky. You tend to put your foot in your mouth socially pretty often.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-cuddly-name = Dopey
+trait-horny-cuddly-desc =
+    Your character (or you yourself) is dopey. Maybe you just don't care to think too hard about stuff.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-cuddly-name = Easy Going
+trait-horny-cuddly-desc =
+    Your character (or you yourself) is easy going.  Generally?  Life just doesn't get you down.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+trait-horny-cuddly-name = Innocent
+trait-horny-cuddly-desc =
+    Your character (or you yourself) is a bit innocent - but are they really?  Like, reaaallllly?
+    You tend to be more approachable and welcoming when it comes to such matters.
