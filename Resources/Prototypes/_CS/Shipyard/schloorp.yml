@@ -19,6 +19,7 @@
   - Civilian
   engine:
   - Solar
+  - Welding
 
 - type: gameMap
   id: Schloorp
