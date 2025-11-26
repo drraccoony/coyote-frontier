@@ -27,6 +27,10 @@ public sealed partial class HornyExamineQuirksComponent : Component
         {
             if (!prototypeManager.TryIndex(showable, out var existingProto))
                 continue;
+            if (hornyProto.NeededTag is null)
+            {
+                continue;
+            }
             if (existingProto.SuppressTags.Contains(hornyProto.NeededTag))
             {
                 // don't add this proto, it's suppressed
@@ -38,6 +42,12 @@ public sealed partial class HornyExamineQuirksComponent : Component
         {
             if (!prototypeManager.TryIndex(showable, out var existingProto))
                 continue;
+            if (existingProto.NeededTag is null
+                || string.IsNullOrEmpty(existingProto.NeededTag)
+                || hornyProto.NeededTag is null)
+            {
+                continue;
+            }
             if (hornyProto.SuppressTags.Contains(existingProto.NeededTag))
             {
                 HornyShowables.Remove(showable);
@@ -47,11 +57,11 @@ public sealed partial class HornyExamineQuirksComponent : Component
         HornyShowables.Add(hornyProto.ID);
     }
 
-    public bool HasTagToShow(ProtoId<HornyExaminePrototype> tagToShow)
+    public bool HasTagToShow(ProtoId<HornyExaminePrototype>? tagToShow)
     {
         if (string.IsNullOrEmpty(tagToShow))
             return true;
-        return HornyShowables.Contains(tagToShow);
+        return HornyShowables.Contains(tagToShow.Value);
     }
 }
 
