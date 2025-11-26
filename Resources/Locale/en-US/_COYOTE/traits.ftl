@@ -24,3 +24,31 @@ trait-capture-bait-desc =
     Pirates will also know that you're open for being captured by examining you!
     This does nothing if you happen to *be* a pirate yourself!
 capture-bait-examine-text = They look like they'd be a great person to capture!
+
+trait-horny-in-heat-name = In Heat - ERP Receptive
+trait-horny-in-heat-desc =
+    Your character, for whatever reason, is particularly receptive to advances for sexual actions.
+    It's assumed for this trait that you are the submissive partner, or at least more receptive to dominant partners.
+
+trait-horny-in-rut-name = In Rut - ERP Seeking
+trait-horny-in-rut-desc =
+    Your character, for whatever reason, is particularly on the look out for sexual partners.
+    It's assumed for this trait that you are the dominant partner, or at least generally looking for more submissive partners.
+
+trait-horny-icy-name = Icy - No Seeking ERP
+trait-horny-icy-desc =
+    Your character, for whatever reason, is not looking for new erotic partners.
+    Be it because you are in a committed relationship or just aren't interested in sexual advances.
+    It overrides In Heat and In Rut traits if you have them, effectively removing them from your character.
+
+trait-horny-lonely-name = Shy & Lonely
+trait-horny-lonely-desc =
+    Your character (or you yourself) is a bit shy when it comes to approaching others.
+    While not opposed to erotic advances, you may need a bit of encouragement to get going.
+
+trait-horny-friendly-name = Friendly
+trait-horny-friendly-desc =
+    Your character (or you yourself) is quite friendly and open to erotic advances from others.
+    You tend to be more approachable and welcoming when it comes to such matters.
+
+

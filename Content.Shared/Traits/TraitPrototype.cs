@@ -1,3 +1,4 @@
+using Content.Shared._Coyote.HornyQuirks;
 using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
 
@@ -60,4 +61,10 @@ public sealed partial class TraitPrototype : IPrototype
     /// </summary>
     [DataField]
     public ProtoId<TraitCategoryPrototype>? Category;
+
+    /// <summary>
+    /// Horny examine prototype associated with this trait.
+    /// </summary>
+    [DataField]
+    public ProtoId<HornyExaminePrototype>? HornyExamineProto;
 }

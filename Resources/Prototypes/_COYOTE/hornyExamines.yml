@@ -1,0 +1,34 @@
+- type: hornyExamine
+  id: hornyExamineInHeat
+  neededTag: hornyExamineInRut
+  textToShow: "horny-examine-in-heat"
+
+- type: hornyExamine
+  id: hornyExamineInRut
+  neededTag: hornyExamineInHeat
+  textToShow: "horny-examine-in-rut"
+
+- type: hornyExamine
+  id: hornyExamineNoErp
+  textToShow: "horny-examine-no-erp"
+  suppressTags:
+    - hornyExamineInRut
+    - hornyExamineInHeat
+
+- type: hornyExamine
+  id: hornyOverweight
+  neededTag: hornyOverweight
+  textToShow: "horny-examine-overweight"
+
+- type: hornyExamine
+  id: hornyLonely
+  textToShow: "horny-examine-lonely"
+
+- type: hornyExamine
+  id: hornyFriendly
+  textToShow: "horny-examine-friendly"
+
+
+
+
+

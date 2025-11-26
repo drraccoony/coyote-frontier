@@ -1,0 +1,6 @@
+horny-examine-in-heat = [color=Pink]Something about them makes you want to approach![/color]
+horny-examine-in-rut = [color=Pink]Something about them seems very charming![/color]
+horny-examine-no-erp = [color=LightBlue]Something tells you they aren't accepting advances.[/color]
+horny-examine-overweight = [color=Orange]They look pretty hefty![/color]
+horny-examine-lonely = [color=Cyan]They seem to be kinda shy, but approachable![/color]
+horny-examine-friendly = [color=Cyan]They seem friendly![/color]
