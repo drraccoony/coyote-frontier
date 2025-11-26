@@ -25,6 +25,7 @@
   newPlayerMessage: false
   access:
   - Pirate
+  - BlackMarket
   accessGroups:
   - GeneralAccess
   special:

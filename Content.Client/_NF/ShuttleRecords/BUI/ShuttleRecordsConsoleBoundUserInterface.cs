@@ -22,6 +22,8 @@ public sealed class ShuttleRecordsConsoleBoundUserInterface(
         {
             _window = this.CreateWindow<ShuttleRecordsWindow>();
             _window.OnCopyDeed += CopyDeed;
+            _window.OnStoreShuttle += StoreShuttle;
+            _window.OnRetrieveShuttle += RetrieveShuttle;
             _window.TargetIdButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent(ShuttleRecordsConsoleComponent.TargetIdCardSlotId));
         }
     }
@@ -44,4 +46,19 @@ public sealed class ShuttleRecordsConsoleBoundUserInterface(
         SendMessage(new CopyDeedMessage(shuttleRecord.EntityUid));
     }
 
+    private void StoreShuttle(ShuttleRecord shuttleRecord)
+    {
+        // For storing, the entity must exist
+        if (!EntMan.GetEntity(shuttleRecord.EntityUid).Valid)
+            return;
+
+        SendMessage(new StoreShuttleMessage(shuttleRecord.EntityUid));
+    }
+
+    private void RetrieveShuttle(ShuttleRecord shuttleRecord)
+    {
+        // For retrieving, we use the NetEntity ID to look up the record
+        // The entity itself won't exist because it was deleted when stored
+        SendMessage(new RetrieveShuttleMessage(shuttleRecord.EntityUid));
+    }
 }

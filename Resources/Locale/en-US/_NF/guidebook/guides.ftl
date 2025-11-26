@@ -42,6 +42,7 @@ guide-entry-expedition-xenos = Xenos
 # Shipyard entries
 guide-entry-shipyard-adder = Adder
 guide-entry-shipyard-akupara = Akupara
+guide-entry-shipyard-albatross = Albatross
 guide-entry-shipyard-ambition = Ambition
 guide-entry-shipyard-apothecary = Apothecary
 guide-entry-shipyard-barge = Barge
@@ -85,6 +86,7 @@ guide-entry-shipyard-mcdelivery = McDelivery
 guide-entry-shipyard-nightlight = Nightlight
 guide-entry-shipyard-nook = Nook
 guide-entry-shipyard-pathfinder = Pathfinder
+guide-entry-shipyard-petrel = Petrel
 guide-entry-shipyard-phoenix = Phoenix
 guide-entry-shipyard-pioneer = Pioneer
 guide-entry-shipyard-placebo = Placebo
@@ -100,6 +102,7 @@ guide-entry-shipyard-surveyor = Surveyor
 guide-entry-shipyard-tide = Tide
 guide-entry-shipyard-vagabond = Vagabond
 guide-entry-shipyard-vitalis = Vitalis
+guide-entry-shipyard-yegorov = Yegorov
 
 # Rules entries
 guide-entry-frontier-rule-zero-tolerance = Zero Tolerance

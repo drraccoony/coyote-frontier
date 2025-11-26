@@ -54,4 +54,16 @@ public class ShuttleRecord(
 
     [ViewVariables]
     public bool PurchasedWithVoucher { get; set; } = purchasedWithVoucher;
+
+    /// <summary>
+    /// Serialized YAML data of the shuttle when stored in bluespace.
+    /// </summary>
+    [ViewVariables]
+    public string? StoredGridData { get; set; }
+
+    /// <summary>
+    /// The full name of the shuttle when it was stored.
+    /// </summary>
+    [ViewVariables]
+    public string? StoredShipFullName { get; set; }
 }

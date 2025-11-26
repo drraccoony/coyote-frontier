@@ -138,8 +138,8 @@
   - type: StaticPrice # Frontier
     price: 20 # Frontier: The card need to cost less then the PDA that comes with a card and a pen in it.
   - type: CargoSellBlacklist # Frontier: Liltenhead moment
-  - type: PirateBountyItem
-    id: Pda
+#  - type: PirateBountyItem
+#    id: Pda # quit stealing PDAs!!!
   - type: ToggleableGhostRole # Frontier: Literally only for the wipe verb and nothing else.
     wipeVerbText: pda-wipe-device-verb-text # Frontier
     wipeVerbPopup: pda-wiped-device # Frontier
@@ -1519,12 +1519,14 @@
     state: pda-seniorofficer
 
 - type: entity
-  parent: [ BaseC3PirateContrabandNoValue, SyndiPDA ] # Frontier: BaseMajorContraband<BaseC3PirateContrabandNoValue
+  parent: [ SyndiPDA, BaseC3MetaPirate ] # Frontier: BaseMajorContraband<BaseC3PirateContrabandNoValue # COYOTE: BaseC3PirateContrabandNoValue -> BaseC3MetaPirate
   id: PiratePDA
   name: pirate PDA
   description: Yargh!
   categories: [ HideSpawnMenu ] # Frontier
   components:
+  - type: Contraband
+    hideValues: true
   - type: Pda
     id: PirateIDCard
   - type: Appearance

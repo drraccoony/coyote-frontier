@@ -78,7 +78,7 @@
   productEntity: ClothingOuterHardsuitNfsdCombat
   icon: { sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_combat.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 10
+    FrontierUplinkCoin: 15 # COYOTE: Just a little cheaper and better than the pirates' to outfit NFSD better.
   categories:
     - UplinkSecurityHardsuits
   conditions:
@@ -134,7 +134,7 @@
   productEntity: ClothingOuterHardsuitNfsdExperimental
   icon: { sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_experimental.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 20
+    FrontierUplinkCoin: 30 # Coyote: It's juiced now.
   categories:
     - UplinkSecurityHardsuits
   conditions:
@@ -736,6 +736,22 @@
   description: uplink-security-captainsword-desc
   productEntity: ClothingBeltSheathFilled
   icon: { sprite: Objects/Weapons/Melee/captain_sabre.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5 #Coyote changed 5>8
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing # Coyote added NFSD esword. for some reason this was here and didnt work...
+  id: UplinkSecurityEnergySword
+  name:  uplink-security-energysword-name
+  description: uplink-security-energysword-desc
+  productEntity: EnergySwordNfsd
+  icon: { sprite: Objects/Weapons/Melee/e_sword.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 8
   categories:

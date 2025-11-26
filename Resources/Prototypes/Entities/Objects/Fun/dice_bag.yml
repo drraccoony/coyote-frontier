@@ -25,9 +25,6 @@
     whitelist:
       tags:
       - Dice
-      - Paper
-      - Figurine
-      - Pen
 
 - type: entity
   parent: DiceBag

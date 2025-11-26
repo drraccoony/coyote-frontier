@@ -1,0 +1,4 @@
+# Specific severity for items we do not want looted, ever.
+- type: contrabandSeverity
+  id: Class3Meta
+  examineText: contraband-examine-text-Class3Meta

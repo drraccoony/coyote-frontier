@@ -33,5 +33,11 @@ pirate-bounty-item-hydrotray = Hydroponics Tray
 pirate-bounty-item-hypo = Hypospray
 pirate-bounty-item-akms = AKMS
 pirate-bounty-item-enforcer = Enforcer
+pirate-bounty-item-plushies = Plushies =3
+pirate-bounty-item-plushies-lots = LOTS OF PLUSHIES =+D PLZPLZPLZ
+pirate-bounty-item-plushies-lots-er = EVEN MOAR PLUSHIES XD YAYAYA
 
 pirate-bounty-description-generic = Go now, ye goon! Plunder me this!
+pirate-bounty-description-plushies = Ahoy, dickweasel! Go swipe me some plushies uwu~ <3
+pirate-bounty-description-plushies-lots = Yarr liek OMG we be needin sum *holds up spork* PLUSHIEZZZ for teh land lubbar scallywaggin XD rawr >=3c bounty ur b00ty 4 me and u getz MAD MUNZ <3<3<3 KILLZ U
+pirate-bounty-description-plushies-lots-er = Yarr liek OMG we be needin teh MOAR *holds up spork* PLUSHIEZZZ for teh schmexiest keel hawl EVARRR OF D000000000MMMM!!1 GIMME ALL TEH PLUSHIEZ XD rawr >=3c bounty ur b00ty 4 me and u getz MAD MUNZ <3<3<3 KILLZ U PWNT

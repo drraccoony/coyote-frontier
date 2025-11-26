@@ -16,6 +16,7 @@
   price: 35000 #17018 1.25 38290.5
   category: Small
   group: BlackMarket
+  access: BlackMarket
   shuttlePath: /Maps/_NF/Shuttles/BlackMarket/bocakillo.yml
   guidebookPage: Null
   class:
@@ -40,3 +41,4 @@
         - type: StationJobs
           availableJobs:
             NFPirate: [ 0, 0 ]
+            Escort: [ 0, 0 ]

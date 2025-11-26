@@ -66,6 +66,7 @@
   - WeaponCaseLong
   - WeaponCaseHeavy
   - WeaponCaseShortAmmo
+  - WeaponCaseHeavyAmmo # Coyote
   - WeaponCaseShortExplosives
 ## Weapons
   #- WeaponLaserSvalinn # After the changes made to windows shouldn't be that much of an issue now if it's widely available
@@ -76,6 +77,7 @@
   - BaseBallBatNF
 ## Ammo boxes
   - NFAmmunitionBoxPistol35
+  - CSAmmunitionBoxPistol40
   - NFAmmunitionBoxPistol45
   - NFAmmunitionBoxShellShotgunBuckshot
   - NFAmmunitionBoxRifle20

@@ -43,9 +43,6 @@
     - type: Damageable
       damageContainer: StructuralInorganic
       damageModifierSet: StructuralMetallic
-    - type: Construction
-      graph: GasUnary
-      node: gayfloordrain
     - type: Destructible
       thresholds:
         - trigger:
@@ -63,3 +60,6 @@
             - !type:PlaySoundBehavior
               sound:
                 collection: MetalBreak
+    - type: Construction
+      graph: FloorDrain
+      node: floorDrain

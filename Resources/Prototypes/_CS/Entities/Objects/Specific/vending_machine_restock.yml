@@ -6,7 +6,7 @@
   components:
   - type: VendingMachineRestock
     canRestock:
-    - HornyHawkerInventory
+    - HornyHawkerInventoryInfinite
   - type: Sprite
     layers:
     - state: base

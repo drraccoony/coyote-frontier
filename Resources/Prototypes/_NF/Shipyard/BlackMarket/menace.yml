@@ -16,6 +16,7 @@
   price: 21000 #16476 1.25 37071
   category: Small
   group: BlackMarket
+  access: BlackMarket
   shuttlePath: /Maps/_NF/Shuttles/BlackMarket/menace.yml
   guidebookPage: Null
   class:
@@ -40,3 +41,4 @@
         - type: StationJobs
           availableJobs:
             NFPirate: [ 0, 0 ]
+            Escort: [ 0, 0 ]

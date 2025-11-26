@@ -43,7 +43,7 @@
 
 - type: entity # Coyote added NFSD version of the Hristov
   id: NFBaseWeaponFrameRifleSniperNFSD
-  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponFrameRifleSniper ]
+  parent: [ BaseC3MetaSec, NFBaseWeaponFrameRifleSniper ] # COYOTE: BaseC2ContrabandUnredeemable -> BaseC3MetaSec
   abstract: true
   components:
   - type: Gun

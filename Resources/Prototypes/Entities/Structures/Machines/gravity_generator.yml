@@ -90,6 +90,12 @@
   description: It's what keeps you to the floor, now in fun size.
   components:
   - type: StationAiWhitelist
+  - type: AmbientSound # Coyote Added
+    enabled: false
+    volume: -7
+    range: 3.5
+    sound:
+      path: /Audio/Ambience/Objects/gravity_gen_hum.ogg
   - type: Sprite
     sprite: Structures/Machines/gravity_generator_mini.rsi
     snapCardinals: true
@@ -108,11 +114,11 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.4,-0.4,0.4,0.4"
-        density: 3125
+        density: 250 # Coyote 3125>250
         mask:
-        - LargeMobMask
+        - MachineMask # Coyote LargeMobMask>MachineMask
         layer:
-        - WallLayer
+        - MachineLayer #Coyote WallLayer>MachineLayer
   - type: Destructible
     thresholds:
     - trigger:
