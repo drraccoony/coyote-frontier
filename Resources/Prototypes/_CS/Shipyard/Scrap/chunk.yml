@@ -17,7 +17,7 @@
   price: 1000 # ~1015
   category: Small
   group: Scrap
-  shuttlePath: /Maps/_NF/Shuttles/Scrap/chunk.yml
+  shuttlePath: /Maps/_CS/Shuttles/Scrap/chunk.yml
   guidebookPage: Null
   class:
   - Scrapyard
@@ -28,7 +28,7 @@
 - type: gameMap
   id: Chunk
   mapName: 'Chunk'
-  mapPath: /Maps/_NF/Shuttles/Scrap/chunk.yml
+  mapPath: /Maps/_CS/Shuttles/Scrap/chunk.yml
   minPlayers: 0
   stations:
     Chunk:
