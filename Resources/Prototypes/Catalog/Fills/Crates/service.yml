@@ -60,6 +60,11 @@
   parent: CrateServiceHolidayLights
   name: replacement navigation lights crate
   description: Green and red light tubes for replacing the port and starboard navigation lights on your shuttle exteriors! Includes two boxes of twelve.
+  components:
+  - type: StorageFill
+    contents:
+    - id: BoxLighttubeNavRed
+    - id: BoxLighttubeNavGreen
 
 - type: entity
   id: CrateMousetrapBoxes
