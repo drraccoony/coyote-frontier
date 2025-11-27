@@ -100,7 +100,7 @@ namespace Content.Client.Lobby.UI
         private List<(string, RequirementsSelector)> _jobPriorities = new();
 
         private readonly Dictionary<string, BoxContainer> _jobCategories;
-        
+
         private readonly Dictionary<string, TraitCategoryWindow> _openTraitWindows = new();
 
         private Direction _previewRotation = Direction.North;
@@ -745,16 +745,16 @@ namespace Content.Client.Lobby.UI
                 existingWindow.MoveToFront();
                 return;
             }
-            
+
             var window = new TraitCategoryWindow(_prototypeManager, categoryId, categoryTraits, Profile);
-            
+
             window.OnSave += updatedProfile =>
             {
                 Profile = updatedProfile;
                 SetDirty();
                 RefreshTraits(); // Refresh to update the button text with new count
             };
-            
+
             window.OnClose += () =>
             {
                 _openTraitWindows.Remove(categoryId);

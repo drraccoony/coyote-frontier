@@ -20,7 +20,7 @@ public sealed partial class TraitCategoryWindow : DefaultWindow
     private readonly List<TraitPreferenceSelector> _selectors = new();
     private HumanoidCharacterProfile? _workingProfile;
     private bool _isInitializing = false;
-    
+
     public event Action<HumanoidCharacterProfile?>? OnSave;
 
     public TraitCategoryWindow(
@@ -30,12 +30,12 @@ public sealed partial class TraitCategoryWindow : DefaultWindow
         HumanoidCharacterProfile? currentProfile)
     {
         RobustXamlLoader.Load(this);
-        
+
         _prototypeManager = prototypeManager;
         _categoryId = categoryId;
         _categoryTraits = categoryTraits;
         _workingProfile = currentProfile;
-        
+
         // Get category prototype if not default
         if (categoryId != TraitCategoryPrototype.Default)
         {
@@ -46,10 +46,10 @@ public sealed partial class TraitCategoryWindow : DefaultWindow
         {
             CategoryTitle.Text = Loc.GetString("trait-window-default-category");
         }
-        
+
         SaveButton.OnPressed += _ => OnSavePressed();
         CancelButton.OnPressed += _ => Close();
-        
+
         PopulateTraits();
         UpdateSelectionCounter();
         UpdateSelectorColors();
@@ -60,23 +60,23 @@ public sealed partial class TraitCategoryWindow : DefaultWindow
         TraitsContainer.DisposeAllChildren();
         _selectors.Clear();
         _isInitializing = true;
-        
+
         foreach (var traitId in _categoryTraits)
         {
             var trait = _prototypeManager.Index<TraitPrototype>(traitId);
             var selector = new TraitPreferenceSelector(trait);
-            
+
             _selectors.Add(selector);
-            
+
             // Set initial preference state
             selector.Preference = _workingProfile?.TraitPreferences.Contains(trait.ID) == true;
-            
+
             // Connect the event handler
             selector.PreferenceChanged += newValue => OnPreferenceChanged(selector, newValue);
-            
+
             TraitsContainer.AddChild(selector);
         }
-        
+
         _isInitializing = false;
     }
 
@@ -85,7 +85,7 @@ public sealed partial class TraitCategoryWindow : DefaultWindow
         // Skip validation during initial population
         if (_isInitializing)
             return;
-            
+
         // If trying to enable and it would exceed max points, prevent it
         if (newValue && _category is { MaxTraitPoints: >= 0 })
         {
@@ -95,7 +95,7 @@ public sealed partial class TraitCategoryWindow : DefaultWindow
                 if (selector.Preference && selector != changedSelector)
                     currentCost += selector.Cost;
             }
-            
+
             if (currentCost + changedSelector.Cost > _category.MaxTraitPoints)
             {
                 // Revert the change - need to suppress event to avoid infinite loop
@@ -103,7 +103,7 @@ public sealed partial class TraitCategoryWindow : DefaultWindow
                 return;
             }
         }
-        
+
         UpdateSelectionCounter();
         UpdateSelectorColors();
     }
@@ -118,15 +118,15 @@ public sealed partial class TraitCategoryWindow : DefaultWindow
 
         SelectionCounter.Visible = true;
         var currentCost = 0;
-        
+
         foreach (var selector in _selectors)
         {
             if (selector.Preference)
                 currentCost += selector.Cost;
         }
-        
-        SelectionCounter.Text = Loc.GetString("humanoid-profile-editor-trait-count-hint", 
-            ("current", currentCost), 
+
+        SelectionCounter.Text = Loc.GetString("humanoid-profile-editor-trait-count-hint",
+            ("current", currentCost),
             ("max", _category.MaxTraitPoints));
     }
 
@@ -159,11 +159,11 @@ public sealed partial class TraitCategoryWindow : DefaultWindow
     {
         // Build the updated profile with selected traits
         var updatedProfile = _workingProfile;
-        
+
         foreach (var selector in _selectors)
         {
             var trait = _prototypeManager.Index<TraitPrototype>(_categoryTraits[_selectors.IndexOf(selector)]);
-            
+
             if (selector.Preference && updatedProfile?.TraitPreferences.Contains(trait.ID) != true)
             {
                 updatedProfile = updatedProfile?.WithTraitPreference(trait.ID, _prototypeManager);
@@ -173,7 +173,7 @@ public sealed partial class TraitCategoryWindow : DefaultWindow
                 updatedProfile = updatedProfile?.WithoutTraitPreference(trait.ID, _prototypeManager);
             }
         }
-        
+
         OnSave?.Invoke(updatedProfile);
         Close();
     }
