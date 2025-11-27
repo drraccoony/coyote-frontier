@@ -100,6 +100,8 @@ namespace Content.Client.Lobby.UI
         private List<(string, RequirementsSelector)> _jobPriorities = new();
 
         private readonly Dictionary<string, BoxContainer> _jobCategories;
+        
+        private readonly Dictionary<string, TraitCategoryWindow> _openTraitWindows = new();
 
         private Direction _previewRotation = Direction.North;
 
@@ -622,6 +624,9 @@ namespace Content.Client.Lobby.UI
                 group.Add(trait.ID);
             }
 
+            // Categories that should be shown in a nested window instead of inline
+            var nestedCategories = new HashSet<string> { "Temperament", "SpeechTraits", "Disabilities" };
+
             // Create UI view from model
             foreach (var (categoryId, categoryTraits) in traitGroups)
             {
@@ -637,6 +642,13 @@ namespace Content.Client.Lobby.UI
                         Margin = new Thickness(0, 10, 0, 0),
                         StyleClasses = { StyleBase.StyleClassLabelHeading },
                     });
+                }
+
+                // Check if this category should be nested in a window
+                if (nestedCategories.Contains(categoryId))
+                {
+                    CreateNestedCategoryButton(categoryId, categoryTraits);
+                    continue;
                 }
 
                 List<TraitPreferenceSelector?> selectors = new();
@@ -692,6 +704,64 @@ namespace Content.Client.Lobby.UI
                     TraitsList.AddChild(selector);
                 }
             }
+        }
+
+        /// <summary>
+        /// Creates a button that opens a nested window for a trait category.
+        /// </summary>
+        private void CreateNestedCategoryButton(string categoryId, List<string> categoryTraits)
+        {
+            // Count selected traits in this category
+            var selectedCount = 0;
+            foreach (var traitId in categoryTraits)
+            {
+                if (Profile?.TraitPreferences.Contains(traitId) == true)
+                    selectedCount++;
+            }
+
+            var buttonText = selectedCount > 0
+                ? Loc.GetString("trait-window-button-with-count", ("count", selectedCount))
+                : Loc.GetString("trait-window-button");
+
+            var button = new Button
+            {
+                Text = buttonText,
+                HorizontalAlignment = Control.HAlignment.Left,
+                MinWidth = 200,
+            };
+
+            button.OnPressed += _ => OpenTraitCategoryWindow(categoryId, categoryTraits);
+            TraitsList.AddChild(button);
+        }
+
+        /// <summary>
+        /// Opens a nested window for editing traits in a specific category.
+        /// </summary>
+        private void OpenTraitCategoryWindow(string categoryId, List<string> categoryTraits)
+        {
+            // If a window for this category is already open, bring it to front instead
+            if (_openTraitWindows.TryGetValue(categoryId, out var existingWindow))
+            {
+                existingWindow.MoveToFront();
+                return;
+            }
+            
+            var window = new TraitCategoryWindow(_prototypeManager, categoryId, categoryTraits, Profile);
+            
+            window.OnSave += updatedProfile =>
+            {
+                Profile = updatedProfile;
+                SetDirty();
+                RefreshTraits(); // Refresh to update the button text with new count
+            };
+            
+            window.OnClose += () =>
+            {
+                _openTraitWindows.Remove(categoryId);
+            };
+
+            _openTraitWindows[categoryId] = window;
+            window.OpenCentered();
         }
 
         /// <summary>
