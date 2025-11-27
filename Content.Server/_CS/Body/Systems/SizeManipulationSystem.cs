@@ -3,16 +3,10 @@ using Content.Server.Consent;
 using Content.Shared.Body.Components;
 using Content.Shared.Consent;
 using Content.Shared.HeightAdjust;
-using Content.Shared.Humanoid;
-using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Log;
-using Robust.Shared.Physics;
-using Robust.Shared.Physics.Collision.Shapes;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Body.Systems;
@@ -65,7 +59,7 @@ public sealed class SizeManipulationSystem : EntitySystem
     /// <summary>
     /// Applies a size change to the target entity
     /// </summary>
-    public bool TryChangeSize(EntityUid target, SizeManipulatorMode mode, EntityUid? user = null)
+    public bool TryChangeSize(EntityUid target, SizeManipulatorMode mode, EntityUid? user = null, bool safetyDisabled = false)
     {
         // Only allow size manipulation on mobs (living entities)
         if (!HasComp<MobStateComponent>(target))
@@ -79,20 +73,23 @@ public sealed class SizeManipulationSystem : EntitySystem
         {
             if (user != null)
                 _popup.PopupEntity(Loc.GetString("size-manipulator-consent-denied"), target, user.Value);
-            
+
             Logger.Debug($"SizeManipulation: Consent denied for {ToPrettyString(target)}");
             return false;
         }
 
         var sizeComp = EnsureComp<SizeAffectedComponent>(target);
 
-        Logger.Debug($"SizeManipulation: TryChangeSize called on {ToPrettyString(target)}, mode: {mode}, current scale: {sizeComp.ScaleMultiplier}");
+        Logger.Debug($"SizeManipulation: TryChangeSize called on {ToPrettyString(target)}, mode: {mode}, current scale: {sizeComp.ScaleMultiplier}, safety disabled: {safetyDisabled}");
+
+        // If safety is disabled, double the max limit
+        var maxScale = safetyDisabled ? sizeComp.MaxScale * 2.0f : sizeComp.MaxScale;
 
         float newScale;
         if (mode == SizeManipulatorMode.Grow)
         {
             newScale = sizeComp.ScaleMultiplier + sizeComp.ScaleChangeAmount;
-            if (newScale > sizeComp.MaxScale)
+            if (newScale > maxScale)
             {
                 if (user != null)
                     _popup.PopupEntity(Loc.GetString("size-manipulator-max-size"), target, user.Value);
@@ -113,7 +110,7 @@ public sealed class SizeManipulationSystem : EntitySystem
         // Update the component's scale multiplier
         sizeComp.ScaleMultiplier = newScale;
         Dirty(target, sizeComp);
-        
+
         Logger.Debug($"SizeManipulation: Set scale multiplier to {newScale} for {ToPrettyString(target)}");
 
         // Request a size recalculation - this will collect all modifiers and apply the final scale

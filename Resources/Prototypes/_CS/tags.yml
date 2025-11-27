@@ -1,0 +1,9 @@
+#region .40 pistol
+- type: Tag
+  id: CSCartridgePistol40
+
+- type: Tag
+  id: CSMagazinePistol40
+
+- type: Tag
+  id: CSMagazineSubMachineGunPistol40

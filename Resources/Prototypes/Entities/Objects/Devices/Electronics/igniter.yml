@@ -23,3 +23,12 @@
   - type: Tag
     tags:
     - Igniter
+  # Coyote
+  - type: StaticPrice
+    price: 20
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 50
+    chemicalComposition:
+      Sulfur: 5
+      Carbon: 15

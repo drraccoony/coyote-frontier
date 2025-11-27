@@ -8,5 +8,24 @@
   - type: Flatpack
     entity: GeneratorCoolRTG
   - type: StaticPrice
-    price: 30000
-    vendPrice: 90000
+    price: 100000
+    vendPrice: 200000 # about the cost of running a pacman for 3 days. cost of convenience.
+
+- type: entity
+  parent: [ BaseFlatpack, BaseC3MetaPirate ]
+  id: ShuttleGunPirateCannonFlatpack
+  name: pirate ship cannon flatpack
+  description: A flatpack used for deploying a pirate ship cannon.
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay
+      color: "#A46106"
+      map: ["enum.FlatpackVisualLayers.Overlay"]
+    - state: icon-default
+  - type: Flatpack
+    entity: ShuttleGunPirateCannonEmpty
+  - type: StaticPrice
+    price: 1500
+    vendPrice: 15000

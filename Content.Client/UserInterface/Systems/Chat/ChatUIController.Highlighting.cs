@@ -27,6 +27,7 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
     private string? _highlightsColor;
 
     private bool _autoFillHighlightsEnabled;
+    private bool _mentionSoundEnabled;
 
     /// <summary>
     ///     The boolean that keeps track of the 'OnCharacterUpdated' event, whenever it's a player attaching or opening the character info panel.
@@ -40,6 +41,8 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
         _config.OnValueChanged(CCVars.ChatAutoFillHighlights, (value) => { _autoFillHighlightsEnabled = value; }, true);
 
         _config.OnValueChanged(CCVars.ChatHighlightsColor, (value) => { _highlightsColor = value; }, true);
+
+        _config.OnValueChanged(CCVars.MentionSoundEnabled, (value) => { _mentionSoundEnabled = value; }, true);
 
         // Load highlights if any were saved.
         string highlights = _config.GetCVar(CCVars.ChatHighlights);

@@ -1,6 +1,8 @@
 using System.Linq;
 using Content.Server.Worldgen.Components.Debris;
+using Content.Shared.CCVar;
 using Content.Shared.Maps;
+using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
@@ -16,24 +18,54 @@ public sealed class BlobFloorPlanBuilderSystem : BaseWorldSystem
     [Dependency] private readonly ITileDefinitionManager _tileDefinition = default!;
     [Dependency] private readonly TileSystem _tiles = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+
+    private readonly Queue<(EntityUid, BlobFloorPlanBuilderComponent, MapGridComponent)> _pendingGridBuilds = new();
+    private int _maxGridBuildsPerTick = 2;
 
     /// <inheritdoc />
     public override void Initialize()
     {
         SubscribeLocalEvent<BlobFloorPlanBuilderComponent, ComponentStartup>(OnBlobFloorPlanBuilderStartup);
+        _cfg.OnValueChanged(CCVars.DebrisMaxGridBuildsPerTick, v => _maxGridBuildsPerTick = v, true);
+    }
+
+    /// <inheritdoc />
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        // Process pending grid builds gradually to avoid lag spikes
+        var buildsThisTick = 0;
+        while (_pendingGridBuilds.TryDequeue(out var pending) && buildsThisTick < _maxGridBuildsPerTick)
+        {
+            var (uid, comp, grid) = pending;
+
+            // Skip if entity was deleted while queued
+            if (Deleted(uid))
+            {
+                buildsThisTick++;
+                continue;
+            }
+
+            PlaceFloorplanTiles(uid, comp, grid);
+            buildsThisTick++;
+        }
     }
 
     private void OnBlobFloorPlanBuilderStartup(EntityUid uid, BlobFloorPlanBuilderComponent component,
         ComponentStartup args)
     {
-        PlaceFloorplanTiles(uid, component, Comp<MapGridComponent>(uid));
+        // Queue for deferred processing instead of building immediately
+        if (!TryComp<MapGridComponent>(uid, out var grid))
+            return;
+
+        _pendingGridBuilds.Enqueue((uid, component, grid));
     }
 
     private void PlaceFloorplanTiles(EntityUid gridUid, BlobFloorPlanBuilderComponent comp, MapGridComponent grid)
     {
-        // NO MORE THAN TWO ALLOCATIONS THANK YOU VERY MUCH.
-        // TODO: Just put these on a field instead then?
-        // Also the end of the method has a big LINQ which is gonna blow this out the water.
+        // Pre-allocate with reasonable capacity estimates to reduce reallocations
         var spawnPoints = new HashSet<Vector2i>(comp.FloorPlacements * 6);
         var taken = new Dictionary<Vector2i, Tile>(comp.FloorPlacements * 5);
 
@@ -83,7 +115,14 @@ public sealed class BlobFloorPlanBuilderSystem : BaseWorldSystem
             }
         }
 
-        _map.SetTiles(gridUid, grid, taken.Select(x => (x.Key, x.Value)).ToList());
+        // Convert dictionary to list directly without LINQ to reduce allocations
+        var tiles = new List<(Vector2i, Tile)>(taken.Count);
+        foreach (var kvp in taken)
+        {
+            tiles.Add((kvp.Key, kvp.Value));
+        }
+
+        _map.SetTiles(gridUid, grid, tiles);
     }
 }
 

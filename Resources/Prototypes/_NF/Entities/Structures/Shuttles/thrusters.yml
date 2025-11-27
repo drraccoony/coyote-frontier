@@ -217,9 +217,16 @@
 #region NFSD
 - type: entity
   id: ThrusterNfsd
-  parent: ThrusterSecurity
+  parent: [BaseStructureDisableAnchoring, BaseStructureDisableToolUse, ThrusterSecurity]
   suffix: NFSD
   components:
+  - type: Thruster #upgraded NFSD thrusters
+    baseThrust: 100
+    thrust: 190
+    thrustPerPartLevel: [ 247, 304, 361, 418 ]
+    damage:
+      types:
+        Heat: 40
   - type: Sprite
     sprite: _NF/Structures/Shuttles/thruster.rsi
     layers: &nfsdThrusterLayers

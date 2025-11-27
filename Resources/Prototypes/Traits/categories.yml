@@ -14,3 +14,12 @@
 - type: traitCategory
   id: RPI
   name: trait-category-rpi
+
+- type: traitCategory
+  id: Examine
+  name: trait-category-examine
+
+- type: traitCategory
+  id: Temperament
+  name: trait-category-temperament
+  maxTraitPoints: 2

@@ -1,3 +1,4 @@
+using Content.Shared._Coyote.HornyQuirks;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -40,12 +41,27 @@ public sealed class TraitSystem : EntitySystem
                 return;
             }
 
-            if (_whitelistSystem.IsWhitelistFail(traitPrototype.Whitelist, args.Mob) ||
-                _whitelistSystem.IsBlacklistPass(traitPrototype.Blacklist, args.Mob))
+            if (_whitelistSystem.IsWhitelistFail(traitPrototype.Whitelist, args.Mob)
+                || _whitelistSystem.IsBlacklistPass(traitPrototype.Blacklist, args.Mob))
                 continue;
 
             // Add all components required by the prototype
-            EntityManager.AddComponents(args.Mob, traitPrototype.Components, false);
+            if (traitPrototype.Components is {Count: > 0 })
+            {
+                EntityManager.AddComponents(
+                    args.Mob,
+                    traitPrototype.Components,
+                    false);
+            }
+
+            // Add the horny examine stuff, if applicable
+            if (traitPrototype.HornyExamineProto is not null)
+            {
+                if (_prototypeManager.TryIndex(traitPrototype.HornyExamineProto, out var hormy))
+                {
+                    EnsureComp<HornyExamineQuirksComponent>(args.Mob).AddHornyExamineTrait(hormy, _prototypeManager);
+                }
+            }
 
             // Add item required by the trait
             if (traitPrototype.TraitGear == null)

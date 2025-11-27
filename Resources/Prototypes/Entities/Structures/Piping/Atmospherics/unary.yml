@@ -67,8 +67,8 @@
     - type: VentCritterSpawnLocation
     - type: AmbientSound
       enabled: true
-      volume: -12
-      range: 5
+      volume: -15
+      range: 2.5
       sound:
         path: /Audio/Ambience/Objects/gas_vent.ogg
     - type: Weldable
@@ -159,8 +159,8 @@
       node: ventscrubber
     - type: AmbientSound
       enabled: true
-      volume: -12
-      range: 5
+      volume: -15
+      range: 2.5
       sound:
         path: /Audio/Ambience/Objects/gas_vent.ogg
     - type: Weldable

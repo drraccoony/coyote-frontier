@@ -4803,7 +4803,7 @@ entities:
     - type: Transform
       pos: -3.9562142,7.6691084
       parent: 1
-- proto: VendingMachineChemicals
+- proto: ChemDispenserEmpty
   entities:
   - uid: 557
     components:

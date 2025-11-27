@@ -134,13 +134,29 @@ public sealed partial class HumanoidAppearanceComponent : Component
     public HumanoidCharacterProfile? LastProfileLoaded;
 
     /// <summary>
-    ///     The height of this humanoid.
+    ///     The base height of this humanoid from character customization.
+    ///     This is the value set in the lobby before any modifiers are applied.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float BaseHeight = 1f;
+
+    /// <summary>
+    ///     The base width of this humanoid from character customization.
+    ///     This is the value set in the lobby before any modifiers are applied.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float BaseWidth = 1f;
+
+    /// <summary>
+    ///     The current height of this humanoid (base height * modifiers).
+    ///     This is the actual visual height after all size modifications.
     /// </summary>
     [DataField, AutoNetworkedField]
     public float Height = 1f;
 
     /// <summary>
-    ///     The width of this humanoid.
+    ///     The current width of this humanoid (base width * modifiers).
+    ///     This is the actual visual width after all size modifications.
     /// </summary>
     [DataField, AutoNetworkedField]
     public float Width = 1f;

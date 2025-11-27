@@ -37,7 +37,7 @@
   id: CrateServiceReplacementLights
   parent: CrateGenericSteel
   name: replacement lights crate
-  description: May the light of Aether shine upon this station! Or at least, the light of forty two light tubes and twenty one light bulbs.
+  description: May the light of Aether shine upon this station! Includes two boxes of twelve lights in both bulbs and tubes.
   components:
   - type: StorageFill
     contents:
@@ -54,6 +54,12 @@
     contents:
       - id: BoxLighttubeHoliday
       - id: BoxLighttubeHoliday
+
+- type: entity
+  id: CrateServiceNavigationLights
+  parent: CrateServiceHolidayLights
+  name: replacement navigation lights crate
+  description: Green and red light tubes for replacing the port and starboard navigation lights on your shuttle exteriors! Includes two boxes of twelve.
 
 - type: entity
   id: CrateMousetrapBoxes

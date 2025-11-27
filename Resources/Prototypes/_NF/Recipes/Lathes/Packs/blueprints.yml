@@ -498,6 +498,12 @@
   - NFMagazineGrenadeEmpty
   # NFPortableMicrofusionWeaponry
   - NFPortableRecharger
+  # Coyote
+  - CSAmmunitionBoxPistol40
+  - CSAmmunitionBoxPistol40Rubber
+  - CSAmmunitionBoxPistol40Overpressure
+  - CSMagazinePistol40Empty
+  - CSMagazineSubMachineGun40Empty
 
 # region Engineering & Science
 - type: latheRecipePack

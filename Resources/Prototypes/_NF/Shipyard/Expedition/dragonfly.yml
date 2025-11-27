@@ -7,13 +7,15 @@
 # Discord: ???
 
 # Shuttle Notes:
-# 
+# Archetypes = Salvage
+# Halftypes = Medical
+# Domestic Areas = minimal
 - type: vessel
   id: Dragonfly
   parent: BaseVessel
-  name: DYS Dragonfly
+  name: LL1 Dragonfly
   description: Highly modular salvaging vessel welded together from smaller re-purposed hulls.
-  price: 84000 # 69747 0.2 83696.4
+  price: 146750 #72423, +50k(exped) LL1 x1.2 = 146907
   category: Medium
   group: Expedition
   shuttlePath: /Maps/_NF/Shuttles/Expedition/dragonfly.yml
@@ -25,7 +27,7 @@
 
 - type: gameMap
   id: Dragonfly
-  mapName: 'DYS Dragonfly'
+  mapName: 'Dragonfly'
   mapPath: /Maps/_NF/Shuttles/Expedition/dragonfly.yml
   minPlayers: 0
   stations:

@@ -82,6 +82,59 @@
     Plasma: 800 # box - free, 80 [bullets] * 10 [Plasma per bullet]
     Silver: 400 # box - free, 80 [bullets] * 5 [Silver per bullet]
 
+#region .40 Ammo Box (Coyote)
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: CSAmmunitionBoxPistol40
+  result: CSAmmunitionBoxPistol40
+  materials:
+    Steel: 1200 # box - free, 80 [bullets] * 15 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: CSAmmunitionBoxPistol40Overpressure
+  result: CSAmmunitionBoxPistol40Overpressure
+  materials:
+    Steel: 1800 # box - free, 80 [bullets] * 22.5 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: CSAmmunitionBoxPistol40Practice
+  result: CSAmmunitionBoxPistol40Practice
+  materials:
+    Steel: 640 # box - free, 80 [bullets] * 8 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: CSAmmunitionBoxPistol40Incendiary
+  result: CSAmmunitionBoxPistol40Incendiary
+  materials:
+    Plastic: 1200 # box - free, 80 [bullets] * 15 [Plastic per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: CSAmmunitionBoxPistol40Uranium
+  result: CSAmmunitionBoxPistol40Uranium
+  materials:
+    Plastic: 600 # box - free, 80 [bullets] * 7.5 [Plastic per bullet]
+    Uranium: 600 # box - free, 80 [bullets] * 7.5 [Uranium per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: CSAmmunitionBoxPistol40Rubber
+  result: CSAmmunitionBoxPistol40Rubber
+  materials:
+    Plastic: 600 # box - free, 80 [bullets] * 7.5 [Plastic per bullet]
+    Steel: 600 # box - free, 80 [bullets] * 7.5 [Steel per bullet]
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: CSAmmunitionBoxPistol40Emp
+  result: CSAmmunitionBoxPistol40Emp
+  materials:
+    Plasma: 800 # box - free, 80 [bullets] * 10 [Plasma per bullet]
+    Silver: 400 # box - free, 80 [bullets] * 5 [Silver per bullet]
+
 #region .45 Ammo Box
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -440,6 +493,20 @@
   result: NFMagazineSubMachineGunTopMounted35Empty
   materials:
     Steel: 30
+
+- type: latheRecipe
+  parent: BaseEmptyMagazineRecipe
+  id: CSMagazinePistol40Empty
+  result: CSMagazinePistol40Empty
+  materials:
+    Steel: 20
+
+- type: latheRecipe
+  parent: BaseEmptyMagazineRecipe
+  id: CSMagazineSubMachineGun40Empty
+  result: CSMagazineSubMachineGun40Empty
+  materials:
+    Steel: 20
 
 - type: latheRecipe
   parent: BaseEmptyMagazineRecipe

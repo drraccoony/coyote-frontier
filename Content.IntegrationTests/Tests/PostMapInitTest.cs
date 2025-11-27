@@ -67,6 +67,9 @@ namespace Content.IntegrationTests.Tests
             "/Maps/_NF/Shuttles/Nfsd/paladin.yml", // Contains EXP-2100g "Duster"
             "/Maps/_NF/Shuttles/Nfsd/rogue.yml", // Contains EXP-320g "Friendship"
             // End Frontier
+            // Coyote
+            "/Maps/_NF/Shuttles/Nfsd/malinois.yml", // Contains EXP-2100g "Duster"
+            // End Coyote
         };
 
         private static readonly string[] GameMaps = FrontierConstants.GameMapPrototypes; // Frontier: not inline constants
