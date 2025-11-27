@@ -14,7 +14,7 @@
   price: 98500 #35540, +50k(exped) LL1 x1.15 = 98371
   category: Medium
   group: Expedition
-  shuttlePath: /Maps/_CS/Shuttles/Expedition/Jeronimo.yml
+  shuttlePath: /Maps/_CS/Shuttles/Expedition/jeronimo.yml
   guidebookPage: null
   class:
   - Expedition
