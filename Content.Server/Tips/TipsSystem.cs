@@ -147,9 +147,17 @@ public sealed class TipsSystem : EntitySystem
             ev.WaddleInterval = float.Parse(args[5]);
 
         if (actor != null)
+        {
             RaiseNetworkEvent(ev, actor.PlayerSession);
+        }
         else
+        {
+            // Coyote: Send to chat so people can see it in the chat feed
+            _chat.ChatMessageToManyFiltered(Filter.Broadcast(), ChatChannel.OOC, args[1], args[1],
+                EntityUid.Invalid, false, false, Color.MediumPurple);
+            // End Coyote
             RaiseNetworkEvent(ev);
+        }
     }
 
 

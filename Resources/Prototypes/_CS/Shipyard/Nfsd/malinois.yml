@@ -25,7 +25,7 @@
 
 - type: gameMap
   id: Malinois
-  mapName: 'TSF Malinois'
+  mapName: 'Malinois'
   mapPath: /Maps/_CS/Shuttles/Nfsd/malinois.yml
   minPlayers: 0
   stations:

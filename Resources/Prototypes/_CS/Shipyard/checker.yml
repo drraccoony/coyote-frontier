@@ -12,7 +12,7 @@
 - type: vessel
   id: Checker
   parent: BaseVessel
-  name: LVHI Checker
+  name: LL1 Checker
   description: The pinnacle of entertainment, sporting the universes oldest game with class. Who needs money when you got board games?
   price: 51500 # 39276 LL1 130% = 51058
   category: Medium

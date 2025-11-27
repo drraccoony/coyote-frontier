@@ -127,3 +127,19 @@
     whitelist:
       tags:
       - PirateUplink
+
+- type: listing #Coyote
+  id: UplinkPirateShipCannon
+  name:  uplink-pirate-ship-cannon-name
+  description: uplink-pirate-ship-cannon-desc
+  productEntity: ShuttleGunPirateCannonFlatpack
+  icon: { sprite: Objects/Weapons/Guns/Shuttles/pirate_cannon.rsi, state: base }
+  cost:
+    Doubloon: 15
+  categories:
+  - UplinkPirateWeapons
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - PirateUplink

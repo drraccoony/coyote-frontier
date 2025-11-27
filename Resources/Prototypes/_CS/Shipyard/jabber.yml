@@ -23,7 +23,7 @@
 
 - type: gameMap
   id: Jabber
-  mapName: 'LL1 Jabber'
+  mapName: 'Jabber'
   mapPath: /Maps/_CS/Shuttles/jabber.yml
   minPlayers: 0
   stations:

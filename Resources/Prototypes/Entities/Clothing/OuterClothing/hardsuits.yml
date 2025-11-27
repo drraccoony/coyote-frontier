@@ -421,7 +421,6 @@
   - type: Tag
     tags:
     - WhitelistChameleon
-    - HighRiskItem
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitRd
   - type: StaticPrice

@@ -32,6 +32,7 @@
             MedicalNurse: [ -1, -1]
             Curator: [ -1, -1]
             Therapist: [ -1, -1]
+            Chaplain: [ -1, -1]
             Borg: [ -1, -1 ]
             StationRepresentative: [ 1, 2 ]
             StationTrafficController: [ 1, 2 ]

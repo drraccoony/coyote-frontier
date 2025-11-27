@@ -7,13 +7,15 @@
 # Discord: ???
 
 # Shuttle Notes:
-# 
+# Archetypes = Cargo/Salvage
+# Halftypes = Engineering
+# Domestic Areas = Moderate
 - type: vessel
   id: DecadeDove
   parent: BaseVessel
-  name: DYS Dove
+  name: LL2 Dove
   description: Versatile expedition-capable multi-purpose light freighter.
-  price: 77000 # 64078 0.2 76893.6
+  price: 163000 #66485, +50k(exped) LL2 x1.4 = 163079
   category: Medium
   group: Expedition
   shuttlePath: /Maps/_NF/Shuttles/Expedition/decadedove.yml
@@ -25,7 +27,7 @@
 
 - type: gameMap
   id: DecadeDove
-  mapName: 'DYS Dove'
+  mapName: 'Dove'
   mapPath: /Maps/_NF/Shuttles/Expedition/decadedove.yml
   minPlayers: 0
   stations:

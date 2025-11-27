@@ -26,6 +26,13 @@ public sealed partial class SizeManipulatorComponent : Component
     /// </summary>
     [DataField(required: true)]
     public string ShrinkPrototype = string.Empty;
+
+    /// <summary>
+    /// Whether the safety limiter has been disabled via hacking.
+    /// When disabled, doubles the max size limit.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool SafetyDisabled = false;
 }
 
 /// <summary>
@@ -37,6 +44,13 @@ public sealed partial class BulletSizeManipulatorComponent : Component
 {
     [DataField, AutoNetworkedField]
     public SizeManipulatorMode Mode = SizeManipulatorMode.Grow;
+
+    /// <summary>
+    /// Whether this projectile was fired from a gun with disabled safety.
+    /// If true, allows double the normal max size limit.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool SafetyDisabled = false;
 }
 
 [Serializable, NetSerializable]
@@ -44,4 +58,13 @@ public enum SizeManipulatorMode : byte
 {
     Grow,
     Shrink
+}
+
+/// <summary>
+/// Status light keys for the size manipulator wires
+/// </summary>
+[Serializable, NetSerializable]
+public enum SizeManipulatorWireStatus
+{
+    Safety
 }

@@ -10462,7 +10462,7 @@ entities:
     - type: Transform
       pos: -4.5,7.5
       parent: 1
-- proto: VendingMachineChemicals
+- proto: ChemDispenserEmpty
   entities:
   - uid: 1548
     components:

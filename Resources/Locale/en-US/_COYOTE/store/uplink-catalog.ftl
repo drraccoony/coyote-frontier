@@ -21,3 +21,6 @@ uplink-pirate-rcd-desc = A blackmarket construction device which can place/remov
 
 uplink-nfsd-rcd-name = NFSD RCD
 uplink-nfsd-rcd-desc = A security construction device which can place/remove walls, floors, and airlocks quickly. It has a slot to swipe ID cards.
+
+uplink-pirate-ship-cannon-name = Pirate Ship Cannon
+uplink-pirate-ship-cannon-desc = A spare pirate cannon fresh out the steel works, great for custom shuttles or if you somehow lost the one on your ship, comes flat packed.
