@@ -17,6 +17,6 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: NFCargoOrderConsole
-    allowedGroups: [ "eddison" ]
+    allowedGroups: [ "edison" ]
   - type: AccessReader
     access: [["ChiefEngineer"]]
