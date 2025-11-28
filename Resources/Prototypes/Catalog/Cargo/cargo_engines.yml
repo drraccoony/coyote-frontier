@@ -106,7 +106,7 @@
   category: cargoproduct-category-name-engineering
   group: market
 
-- type: cargoProduct # Coyote TODO: re-abstract this and add a new cargo market for eddison
+- type: cargoProduct
   id: EngineTeslaCoil
   #abstract: true # Frontier - Coyote edit
   icon:
@@ -115,9 +115,9 @@
   product: CrateEngineeringTeslaCoil
   cost: 1200
   category: cargoproduct-category-name-engineering
-  group: market
+  group: eddison # Coyote
 
-- type: cargoProduct # Coyote TODO: abstract this and add a new cargo market for eddison
+- type: cargoProduct
   id: EngineTeslaGroundingRod
   icon:
     sprite: Structures/Power/Generation/Tesla/coil.rsi
@@ -125,4 +125,4 @@
   product: CrateEngineeringTeslaGroundingRod
   cost: 1000 # Frontier - set to 1000, original price 400
   category: cargoproduct-category-name-engineering
-  group: market
+  group: eddison # Coyote
