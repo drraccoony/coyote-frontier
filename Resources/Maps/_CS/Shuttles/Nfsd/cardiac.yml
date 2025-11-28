@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/25/2025 19:19:20
-  entityCount: 601
+  time: 11/28/2025 10:36:59
+  entityCount: 602
 maps: []
 grids:
 - 1
@@ -1107,12 +1107,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,-11.5
       parent: 1
-  - uid: 452
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 0.5,-10.5
-      parent: 1
 - proto: BedsheetOrange
   entities:
   - uid: 459
@@ -2080,6 +2074,9 @@ entities:
     - type: Transform
       pos: -3.5,-3.5
       parent: 1
+    - type: GasMixer
+      inletTwoConcentration: 0.75
+      inletOneConcentration: 0.25
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasPassiveVent
@@ -2761,6 +2758,7 @@ entities:
       parent: 1
     - type: GasPressurePump
       targetPressure: 151.3
+      enabled: True
     - type: AtmosPipeColor
       color: '#03FCD3FF'
 - proto: GasThermoMachineFreezer
@@ -3233,11 +3231,6 @@ entities:
     - type: Transform
       pos: 0.5,-11.5
       parent: 1
-  - uid: 253
-    components:
-    - type: Transform
-      pos: 0.5,-10.5
-      parent: 1
 - proto: MedicalTechFab
   entities:
   - uid: 214
@@ -3540,6 +3533,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,2.5
       parent: 1
+- proto: RollerBed
+  entities:
+  - uid: 452
+    components:
+    - type: Transform
+      pos: -3.5,-11.5
+      parent: 1
 - proto: SeedExtractor
   entities:
   - uid: 115
@@ -3797,6 +3797,14 @@ entities:
     - type: Transform
       pos: 2.5,-5.5
       parent: 1
+- proto: Sink
+  entities:
+  - uid: 602
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,-13.5
+      parent: 1
 - proto: SinkStemless
   entities:
   - uid: 210
@@ -3846,6 +3854,13 @@ entities:
     components:
     - type: Transform
       pos: -2.5,-1.5
+      parent: 1
+- proto: StasisBed
+  entities:
+  - uid: 253
+    components:
+    - type: Transform
+      pos: 0.5,-10.5
       parent: 1
 - proto: StructureGunRackWallmountedNfsd
   entities:
