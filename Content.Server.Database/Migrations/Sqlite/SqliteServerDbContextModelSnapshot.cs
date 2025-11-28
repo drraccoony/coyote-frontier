@@ -846,6 +846,11 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("char_name");
 
+                    b.Property<string>("CharacterConsentFreetext")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("character_consent_freetext");
+
                     b.Property<string>("Customspeciesname")
                         .IsRequired()
                         .HasColumnType("TEXT")

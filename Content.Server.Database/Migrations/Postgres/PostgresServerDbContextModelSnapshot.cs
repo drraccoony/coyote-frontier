@@ -898,6 +898,11 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("text")
                         .HasColumnName("char_name");
 
+                    b.Property<string>("CharacterConsentFreetext")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("character_consent_freetext");
+
                     b.Property<string>("Customspeciesname")
                         .IsRequired()
                         .HasColumnType("text")

@@ -28,6 +28,13 @@ public abstract partial class SharedConsentSystem : EntitySystem
             return;
         }
 
+        // Check if there's any consent info to show
+        var consentMessage = GetConsentText(userId);
+        if (consentMessage.IsEmpty)
+        {
+            return; // Don't show the verb if there's no consent info
+        }
+
         var user = args.User;
 
         args.Verbs.Add(new()
