@@ -100,7 +100,7 @@ public sealed partial class NFCargoConsoleMenu : FancyWindow
                     Product = prototype,
                     ProductName = { Text = prototype.Name },
                     MainButton = { ToolTip = prototype.Description },
-                    PointCost = { Text = BankSystemExtensions.ToSpesoString(prototype.Cost) }, // Frontier: 
+                    PointCost = { Text = BankSystemExtensions.ToSpesoString(prototype.Cost) }, // Frontier:
                     Icon = { Texture = _spriteSystem.Frame0(prototype.Icon) },
                 };
                 button.MainButton.OnPressed += args =>

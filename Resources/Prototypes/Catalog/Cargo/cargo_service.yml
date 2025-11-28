@@ -209,7 +209,7 @@
 
 - type: cargoProduct
   id: ServiceAnimalCarrier
-  abstract: true # Frontier 
+  abstract: true # Frontier
   icon:
     sprite: Objects/Storage/petcarrier.rsi
     state: icon
