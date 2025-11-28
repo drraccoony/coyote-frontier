@@ -4,7 +4,7 @@
     sprite: Objects/Specific/Janitorial/janitorial.rsi
     state: cleaner
   product: CrateServiceJanitorialSupplies
-  cost: 2500 # Frontier: 560<2500
+  cost: 4000 # Frontier: 560<2500 Coyote: 2500<4000
   category: cargoproduct-category-name-service
   group: market
 
@@ -14,7 +14,7 @@
     sprite: Objects/Weapons/Grenades/janitor.rsi
     state: icon
   product: CrateServiceCleanerGrenades
-  cost: 400
+  cost: 8000 # Coyote: 400<8000
   category: cargoproduct-category-name-service
   group: market
 
@@ -24,7 +24,7 @@
     sprite: Objects/Power/light_bulb.rsi
     state: normal
   product: CrateServiceReplacementLights
-  cost: 600
+  cost: 1200 # Coyote: 600<1200
   category: cargoproduct-category-name-service
   group: market
 
@@ -35,16 +35,6 @@
     sprite: Objects/Power/light_bulb.rsi
     state: normal
   product: CrateServiceHolidayLights
-  cost: 800
-  category: cargoproduct-category-name-service
-  group: market
-
-- type: cargoProduct
-  id: ServiceLightsNavigation
-  icon:
-    sprite: Objects/Power/light_bulb.rsi
-    state: normal
-  product: CrateServiceNavigationLights
   cost: 800
   category: cargoproduct-category-name-service
   group: market
@@ -66,7 +56,7 @@
     sprite: Objects/Devices/mousetrap.rsi
     state: mousetrap
   product: CrateMousetrapBoxes
-  cost: 500
+  cost: 2000 # Coyote: 500<2000
   category: cargoproduct-category-name-service
   group: market
 
@@ -98,7 +88,7 @@
     sprite: Objects/Consumable/Smokeables/Cigarettes/Cartons/green.rsi
     state: icon
   product: CrateServiceCustomSmokable
-  cost: 1000
+  cost: 2500 # Coyote: 1000<2500
   category: cargoproduct-category-name-service
   group: market
 
@@ -108,7 +98,7 @@
     sprite: Objects/Misc/pens.rsi
     state: pen
   product: CrateServiceBureaucracy
-  cost: 1000
+  cost: 2500 # Coyote: 1000<2500
   category: cargoproduct-category-name-service
   group: market
 
@@ -118,7 +108,7 @@
     sprite: Structures/Machines/fax_machine.rsi
     state: icon
   product: CrateServiceFaxMachine
-  cost: 2000
+  cost: 2500 # Coyote: 2000<2500
   category: cargoproduct-category-name-service
   group: market
 
@@ -139,7 +129,7 @@
     sprite: Objects/Misc/books.rsi
     state: book_icon
   product: CrateServiceBooks
-  cost: 1000
+  cost: 3600 # Coyote: 1000<3600
   category: cargoproduct-category-name-service
   group: market
 
@@ -177,6 +167,7 @@
 
 - type: cargoProduct
   id: ServiceBoxes
+  abstract: true # Coyote
   icon:
     sprite: Objects/Storage/boxes.rsi
     state: box
@@ -202,7 +193,7 @@
     sprite: Objects/Specific/Kitchen/food_carts.rsi
     state: icon-hot
   product: FoodCartHot
-  cost: 2000
+  cost: 5000 # Coyote: 2000<5000
   category: cargoproduct-category-name-service
   group: market
 
@@ -212,12 +203,13 @@
     sprite: Objects/Specific/Kitchen/food_carts.rsi
     state: icon-cold
   product: FoodCartCold
-  cost: 2000
+  cost: 5000 # Coyote: 2000<5000
   category: cargoproduct-category-name-service
   group: market
 
 - type: cargoProduct
   id: ServiceAnimalCarrier
+  abstract: true # Frontier 
   icon:
     sprite: Objects/Storage/petcarrier.rsi
     state: icon
@@ -243,7 +235,7 @@
     sprite: Objects/Specific/Janitorial/janitorial_cart.rsi
     state: icon-cart
   product: JanitorialTrolley
-  cost: 1000
+  cost: 2500 # Coyote: 1000<2500
   category: cargoproduct-category-name-service
   group: market
 
@@ -253,6 +245,6 @@
     sprite: Objects/Misc/candles.rsi
     state: candle-big
   product: CrateCandles
-  cost: 500
+  cost: 8000 # Coyote: 500<8000
   category: cargoproduct-category-name-service
   group: market

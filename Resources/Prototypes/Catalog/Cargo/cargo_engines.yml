@@ -64,12 +64,12 @@
 
 - type: cargoProduct
   id: EngineSingularityCollector
-  #abstract: true # Frontier - Coyote edit
+  abstract: true # Frontier
   icon:
     sprite: Structures/Power/Generation/Singularity/collector.rsi
     state: ca_on
   product: CrateEngineeringSingularityCollector
-  cost: 24000 # Coyote Edit - smallish money sink as those essentially require a setup to generate power from various radiation sources - Requires more setup and occassional refill with plasma
+  cost: 24000
   category: cargoproduct-category-name-engineering
   group: market
 
@@ -86,6 +86,7 @@
 
 - type: cargoProduct
   id: EngineSolar
+  abstract: true # Coyote
   icon:
     sprite: Objects/Devices/flatpack.rsi
     state: solar-assembly-part
@@ -105,7 +106,7 @@
   category: cargoproduct-category-name-engineering
   group: market
 
-- type: cargoProduct
+- type: cargoProduct # Coyote TODO: re-abstract this and add a new cargo market for eddison
   id: EngineTeslaCoil
   #abstract: true # Frontier - Coyote edit
   icon:
@@ -116,7 +117,7 @@
   category: cargoproduct-category-name-engineering
   group: market
 
-- type: cargoProduct
+- type: cargoProduct # Coyote TODO: abstract this and add a new cargo market for eddison
   id: EngineTeslaGroundingRod
   icon:
     sprite: Structures/Power/Generation/Tesla/coil.rsi
@@ -125,5 +126,3 @@
   cost: 1000 # Frontier - set to 1000, original price 400
   category: cargoproduct-category-name-engineering
   group: market
-
-
