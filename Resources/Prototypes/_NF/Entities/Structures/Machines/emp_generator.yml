@@ -69,7 +69,6 @@
   - type: PointLight
     radius: 2.5
     energy: 0.7
-    # Gravity generator is a large machine, not casting shadows is fine within the radius set above.
     castShadows: false
     color: "#85c6ff"
   - type: Sprite
@@ -90,16 +89,16 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.4,-0.4,0.4,0.4"
-        density: 3125
+        density: 350
         mask:
-        - LargeMobMask
+        - MachineMask
         layer:
-        - WallLayer
+        - MachineLayer
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 500
+        damage: 300
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
