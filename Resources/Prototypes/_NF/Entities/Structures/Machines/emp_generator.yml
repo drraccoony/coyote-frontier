@@ -27,15 +27,18 @@
     windowTitle: emp-generator-window-title
     idlePower: 50
     activePower: 2500
-    activeChargingPower: 15000
+    activeChargingPower: 40000 # Coyote: 15000<40000
     actionUI: true
   - type: EmpGenerator
     lightRadiusMin: 0.75
     lightRadiusMax: 2.5
+    range: 48 # Coyote
+    energyConsumption: 3600000 # Coyote
+    disableDuration: 30 # Coyote
   - type: EmpDescription
-    range: 100
-    energyConsumption: 1000000
-    disableDuration: 60
+    range: 48 # Coyote: 100<48
+    energyConsumption: 3600000 # Coyote: 1MJ<1kWh
+    disableDuration: 30 # Coyote: 60<30
   - type: EmpGeneratorVisuals
     spriteMap:
       broken: "broken"
@@ -69,7 +72,6 @@
   - type: PointLight
     radius: 2.5
     energy: 0.7
-    # Gravity generator is a large machine, not casting shadows is fine within the radius set above.
     castShadows: false
     color: "#85c6ff"
   - type: Sprite
@@ -90,16 +92,16 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.4,-0.4,0.4,0.4"
-        density: 3125
+        density: 350
         mask:
-        - LargeMobMask
+        - MachineMask
         layer:
-        - WallLayer
+        - MachineLayer
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 500
+        damage: 300
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
