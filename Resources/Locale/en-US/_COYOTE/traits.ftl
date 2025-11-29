@@ -53,7 +53,7 @@ trait-horny-shy-desc =
 
 trait-horny-friendly-name = Friendly
 trait-horny-friendly-desc =
-    Your character (or you yourself) is quite friendly and open to erotic advances from others.
+    Your character (or you yourself) is quite friendly. Or at least, they appear to be so.
     You tend to be more approachable and welcoming when it comes to such matters.
 
 trait-horny-cuddly-name = Cuddly
