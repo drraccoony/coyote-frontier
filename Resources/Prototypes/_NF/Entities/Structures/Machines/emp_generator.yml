@@ -32,6 +32,9 @@
   - type: EmpGenerator
     lightRadiusMin: 0.75
     lightRadiusMax: 2.5
+    range: 48 # Coyote
+    energyConsumption: 3600000 # Coyote
+    disableDuration: 30 # Coyote
   - type: EmpDescription
     range: 48 # Coyote: 100<48
     energyConsumption: 3600000 # Coyote: 1MJ<1kWh
