@@ -26,6 +26,12 @@ namespace Content.Server.Tools;
 // Love ya Cuffle <3
 // Rico of CoyoteSector - November 2025
 // *********
+
+// *********
+// Fuck you Rico
+// Cuffle (Robyn) of CoyoteSector - December 2025
+// *********
+
 public sealed class TransformationToolSystem : EntitySystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -287,7 +293,7 @@ public sealed class TransformationToolSystem : EntitySystem
 
     private void OnSetDuration(EntityUid uid, TransformationToolComponent component, TransformationToolSetDurationMessage args)
     {
-        component.DefaultDurationMinutes = Math.Clamp(args.DurationMinutes, 0, 60); // Max 60 minutes (1 hour)
+        component.DefaultDurationMinutes = Math.Clamp(args.DurationMinutes, 0, 4320); // Max 60 minutes (1 hour)
         Dirty(uid, component);
         UpdateUI(uid, component);
     }
