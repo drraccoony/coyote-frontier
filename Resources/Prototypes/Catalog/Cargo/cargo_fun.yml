@@ -129,7 +129,7 @@
   cost: 500
   category: cargoproduct-category-name-fun
   group: market
-  
+
 - type: cargoProduct
   id: FunSharkPlushies
   abstract: true # Frontier
@@ -246,7 +246,7 @@
     sprite: Objects/Vehicles/atv.rsi
     state: vehicle
   product: CrateFunATV
-  cost: 5000 # Frontier: 1500<5000
+  cost: 25000 # Frontier: 1500<5000 Coyote: 5000<25000
   category: cargoproduct-category-name-fun
   group: market
 

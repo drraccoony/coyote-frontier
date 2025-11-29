@@ -4,7 +4,7 @@
     sprite: _NF/Structures/Storage/canister.rsi # Frontier: _NF
     state: air # Frontier grey<air
   product: AirCanister
-  cost: 2200 # Frontier: 600<1100 Coyote: 1100<2200
+  cost: 3000 # Frontier: 600<1100 Coyote: 1100<3000
   category: cargoproduct-category-name-atmospherics
   group: market
 
@@ -14,7 +14,7 @@
     sprite: _NF/Structures/Storage/canister.rsi # Frontier: _NF
     state: oxygen # Frontier blue<oxygen
   product: OxygenCanister
-  cost: 2200 # Frontier: 600<1100 Coyote: 1100<2200
+  cost: 3000 # Frontier: 600<1100 Coyote: 1100<3000
   category: cargoproduct-category-name-atmospherics
   group: market
 
@@ -25,7 +25,7 @@
     sprite: _NF/Structures/Storage/canister.rsi # Frontier: _NF
     state: oxygen_liquid # Frontier blue<oxygen_liquid
   product: LiquidOxygenCanister
-  cost: 2000 #Coyote: 1000<2000
+  cost: 1000
   category: cargoproduct-category-name-atmospherics
   group: market
 
@@ -35,7 +35,7 @@
     sprite: _NF/Structures/Storage/canister.rsi # Frontier: _NF
     state: nitrogen # Frontier red<nitrogen
   product: NitrogenCanister
-  cost: 2200 # Frontier: 500<1100 Coyote: 1100<2200
+  cost: 3000 # Frontier: 500<1100 Coyote: 1100<3000
   category: cargoproduct-category-name-atmospherics
   group: market
 
@@ -46,7 +46,7 @@
     sprite: _NF/Structures/Storage/canister.rsi # Frontier: _NF
     state: nitrogen_liquid # Frontier red<nitrogen_liquid
   product: LiquidNitrogenCanister
-  cost: 2000 #coyote: 1000<2000
+  cost: 1000
   category: cargoproduct-category-name-atmospherics
   group: market
 
@@ -68,7 +68,7 @@
     sprite: _NF/Structures/Storage/canister.rsi # Frontier: _NF
     state: carbon_liquid # Frontier black<carbon_liquid
   product: LiquidCarbonDioxideCanister
-  cost: 2800 #coyote: 1000<2000 # much less deadly than the plasma can (this has been tested) even though this is cold+poison
+  cost: 1000 # much less deadly than the plasma can (this has been tested) even though this is cold+poison
   category: cargoproduct-category-name-atmospherics
   group: market
 
@@ -78,7 +78,7 @@
     sprite: _NF/Structures/Storage/canister.rsi # Frontier: _NF
     state: storage # Frontier yellow<storage
   product: StorageCanister
-  cost: 2000 #coyote: 1000<2000 # No gases in it so it's cheaper # Frontier: 210<1000
+  cost: 1000 # No gases in it so it's cheaper # Frontier: 210<1000
   category: cargoproduct-category-name-atmospherics
   group: market
 

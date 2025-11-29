@@ -907,6 +907,7 @@
     taxAccounts: # Frontier
       Frontier: 0.25 # Frontier
       Nfsd: 0.15 # Frontier
+    allowedGroups: [ "market" ]
     # removeLimitAccess: [ "Quartermaster" ] # Frontier
   # - type: ActiveRadio # Frontier
   #   channels: # Frontier
