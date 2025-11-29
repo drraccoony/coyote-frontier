@@ -297,7 +297,7 @@
   suffix: 8kW
   components:
   - type: PowerSupplier
-    supplyRate: 8000
+    supplyRate: 5000
   - type: Sprite
     sprite: Structures/Power/Generation/rtg.rsi
     layers:
