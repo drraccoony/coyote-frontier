@@ -29,7 +29,7 @@ namespace Content.Server.Tools;
 
 // *********
 // Fuck you Rico
-// Cuffle (Robyn) of CoyoteSector - December 2025
+// Cuffle (Robyn) of CoyoteSector - November 2025
 // *********
 
 public sealed class TransformationToolSystem : EntitySystem
@@ -293,7 +293,7 @@ public sealed class TransformationToolSystem : EntitySystem
 
     private void OnSetDuration(EntityUid uid, TransformationToolComponent component, TransformationToolSetDurationMessage args)
     {
-        component.DefaultDurationMinutes = Math.Clamp(args.DurationMinutes, 0, 4320); // Max 60 minutes (1 hour)
+        component.DefaultDurationMinutes = Math.Clamp(args.DurationMinutes, 0, 4320); // Max 4320 minutes (72 hours)
         Dirty(uid, component);
         UpdateUI(uid, component);
     }
