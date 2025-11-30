@@ -36,6 +36,7 @@ public sealed class CharacterExamineSystem : EntitySystem
             Text = Loc.GetString("character-examine-verb"),
             Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/sentient.svg.192dpi.png")), // TODO: Create custom character icon
             Act = () => OpenCharacterWindow(uid),
+            Category = VerbCategory.Examine,
             ClientExclusive = true,
             ShowOnExamineTooltip = true,
             CloseMenu = false
