@@ -335,7 +335,7 @@
   parent: NFBaseCartridgeRifle30
   components:
   - type: CartridgeAmmo
-    proto: NFBulletRifle20Uranium
+    proto: NFBulletRifle30Uranium
   - type: Sprite
     layers:
       - state: base

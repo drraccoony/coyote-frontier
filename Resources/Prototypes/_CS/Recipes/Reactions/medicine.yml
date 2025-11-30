@@ -14,3 +14,49 @@
       amount: 1
   products:
     Omnizine: 5
+
+- type: reaction
+  id: Oxidant
+  reactants:
+    Iron:
+      amount: 1
+    OilOlive:
+      amount: 1
+  products:
+    Oxidant: 1
+
+- type: reaction
+  id: Sylexalin
+  reactants:
+    Cryoxadone:
+      amount: 1
+    OilOlive:
+      amount: 1
+    Dexalin:
+      amount: 1
+  products:
+    Sylexalin: 1
+
+- type: reaction
+  id: Sylashizine
+  reactants:
+    Leporazine:
+      amount: 1
+    OilOlive:
+      amount: 1
+  products:
+    Sylashizine: 1
+
+- type: reaction
+  id: Autosolder
+  reactants:
+    Lead:
+      amount: 1
+    OilOlive:
+      amount: 1
+    Leporazine:
+      amount: 1
+    Silicon:
+      amount: 1
+  products:
+    Autosolder: 1

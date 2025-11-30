@@ -31,7 +31,10 @@
   id: Robotics
   recipes:
   - ProximitySensor
-
+  # START COYOTE
+  - RepairPatch
+  - RepairSpray
+  # END COYOTE
 - type: latheRecipePack
   id: BorgModules
   recipes:
