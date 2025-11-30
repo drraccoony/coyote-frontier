@@ -103,7 +103,9 @@ public sealed partial class ConsentWindow : FancyWindow
         // Show character-specific text first if it exists
         if (!string.IsNullOrWhiteSpace(characterText))
         {
-            previewMessage.AddText(characterText);
+            // Parse markup in character text
+            var characterMessage = FormattedMessage.FromMarkupPermissive(characterText);
+            previewMessage.AddMessage(characterMessage);
         }
 
         // Show account text after if it exists
@@ -113,7 +115,9 @@ public sealed partial class ConsentWindow : FancyWindow
             {
                 previewMessage.AddText("\n\n");
             }
-            previewMessage.AddText(accountText);
+            // Parse markup in account text
+            var accountMessage = FormattedMessage.FromMarkupPermissive(accountText);
+            previewMessage.AddMessage(accountMessage);
         }
 
         // If neither exists, show default message

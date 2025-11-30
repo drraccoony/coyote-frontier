@@ -77,26 +77,28 @@ public sealed class CharacterExamineSystem : EntitySystem
         // Set character info
         window.SetCharacterInfo(message.CharacterName, message.JobTitle);
 
-        // Set description
-        var descriptionMessage = new FormattedMessage();
+        // Set description with markup parsing
+        FormattedMessage descriptionMessage;
         if (!string.IsNullOrWhiteSpace(message.Description))
         {
-            descriptionMessage.AddText(message.Description);
+            descriptionMessage = FormattedMessage.FromMarkupPermissive(message.Description);
         }
         else
         {
+            descriptionMessage = new FormattedMessage();
             descriptionMessage.AddText(Loc.GetString("character-window-no-description"));
         }
         window.SetDescription(descriptionMessage);
 
-        // Set consent text
-        var consentMessage = new FormattedMessage();
+        // Set consent text with markup parsing
+        FormattedMessage consentMessage;
         if (!string.IsNullOrWhiteSpace(message.ConsentText))
         {
-            consentMessage.AddText(message.ConsentText);
+            consentMessage = FormattedMessage.FromMarkupPermissive(message.ConsentText);
         }
         else
         {
+            consentMessage = new FormattedMessage();
             consentMessage.AddText(Loc.GetString("character-window-no-consent"));
         }
         window.SetConsent(consentMessage);
