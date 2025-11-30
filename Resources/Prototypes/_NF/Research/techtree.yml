@@ -707,6 +707,10 @@
   cost: 1000
   recipeUnlocks:
   - ProximitySensor
+  # COYOTE START
+  - RepairPatch
+  - RepairSpray
+  # COYOTE END
   position: 0, 16
 
 - type: technology

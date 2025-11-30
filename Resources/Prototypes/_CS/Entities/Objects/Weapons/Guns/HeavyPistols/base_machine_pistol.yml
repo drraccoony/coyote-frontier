@@ -33,7 +33,7 @@
     maxAngle: 28
     angleIncrease: 2.8
     angleDecay: 6.6
-    fireRate: 4.8
+    fireRate: 4
     burstFireRate: 7
     shotsPerBurst: 3
     burstCooldown: 0.8

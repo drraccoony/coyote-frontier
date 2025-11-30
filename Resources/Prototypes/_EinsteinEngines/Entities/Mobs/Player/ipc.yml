@@ -180,11 +180,6 @@
     cosmeticOnly: false
   - type: TallWhitelist
     scale: 1.2
-#  - type: Barotrauma
-#    damage:
-#      types:
-#        Blunt: 0.05
-#        Heat: 0.025
   - type: ThermalRegulator
     metabolismHeat: 0
     radiatedHeat: 100

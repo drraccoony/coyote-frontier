@@ -30,9 +30,9 @@
     - Brute
     - Burn
   supportedTypes:
-    - Heat
-    - Shock
-    - Cold
+    - Structural
+    - Radiation
+    - Bloodloss
 
 - type: damageContainer
   id: Shield
