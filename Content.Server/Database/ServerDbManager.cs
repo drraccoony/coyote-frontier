@@ -259,7 +259,9 @@ namespace Content.Server.Database
         #region Consent Settings
 
         Task SavePlayerConsentSettingsAsync(NetUserId userId, PlayerConsentSettings consentSettings);
+        Task SavePlayerConsentSettingsAsync(NetUserId userId, PlayerConsentSettings consentSettings, int characterSlot);
         Task<PlayerConsentSettings> GetPlayerConsentSettingsAsync(NetUserId userId);
+        Task<PlayerConsentSettings> GetPlayerConsentSettingsAsync(NetUserId userId, int characterSlot);
 
         #endregion
 
@@ -1028,10 +1030,22 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.SavePlayerConsentSettingsAsync(userId, consentSettings));
         }
 
+        public Task SavePlayerConsentSettingsAsync(NetUserId userId, PlayerConsentSettings consentSettings, int characterSlot) // Floofstation
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.SavePlayerConsentSettingsAsync(userId, consentSettings, characterSlot));
+        }
+
         public Task<PlayerConsentSettings> GetPlayerConsentSettingsAsync(NetUserId userId) // Floofstation
         {
             DbReadOpsMetric.Inc();
             return RunDbCommand(() => _db.GetPlayerConsentSettingsAsync(userId));
+        }
+
+        public Task<PlayerConsentSettings> GetPlayerConsentSettingsAsync(NetUserId userId, int characterSlot) // Floofstation
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetPlayerConsentSettingsAsync(userId, characterSlot));
         }
 
         public Task AddJobWhitelist(Guid player, ProtoId<JobPrototype> job)
