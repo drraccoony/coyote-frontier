@@ -67,4 +67,16 @@ public sealed partial class SalvageExpeditionComponent : SharedSalvageExpedition
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField]
     public TimeSpan NextAutoAbortCheck = TimeSpan.Zero;
+
+    /// <summary>
+    /// The goobers on this exped who were SSD on arrival
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public HashSet<EntityUid> InitialSsdGoobers = new();
+
+    /// <summary>
+    /// Is it aborted?
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public bool Aborted = false;
 }

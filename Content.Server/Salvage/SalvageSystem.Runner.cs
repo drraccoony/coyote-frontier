@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Numerics;
 using Content.Server.Salvage.Expeditions;
 using Content.Server.Shuttles.Components;
@@ -137,6 +138,9 @@ public sealed partial class SalvageSystem
         // End Frontier: early finish
 
         Announce(args.MapUid, Loc.GetString("salvage-expedition-announcement-countdown-minutes", ("duration", (component.EndTime - _timing.CurTime).Minutes)));
+
+        // list all the ssd goobers on the expedition
+        UpdateSsdGoobers(args.MapUid, component);
 
         var directionLocalization = ContentLocalizationManager.FormatDirection(component.DungeonLocation.GetDir()).ToLower();
 
@@ -654,6 +658,8 @@ public sealed partial class SalvageSystem
     /// </summary>
     private void AbortIfWiped(EntityUid mapUid, SalvageExpeditionComponent component)
     {
+        if (component.Aborted)
+            return;
         // give it a 30 second grade after first check to avoid instant aborts
         if (component.NextAutoAbortCheck == TimeSpan.Zero)
         {
@@ -669,7 +675,7 @@ public sealed partial class SalvageSystem
         var aghostQuery =
             EntityQueryEnumerator<AdminGhostComponent, TransformComponent>();
         while (aghostQuery.MoveNext(
-                   out var _,
+                   out _,
                    out _,
                    out var xform))
         {
@@ -681,36 +687,51 @@ public sealed partial class SalvageSystem
             EntityQueryEnumerator<
                 HumanoidAppearanceComponent,
                 MindContainerComponent,
-                MobStateComponent,
                 TransformComponent>();
-        // prevent abort if:
-        // - aghosts are present
-        // - anyone is alive AND connected
+        HashSet<EntityUid> pplOnThisExped = new();
         while (query.MoveNext(
                    out var uid,
                    out _,
                    out var mindC,
-                   out var mobState,
                    out var xform))
         {
+            if (component.InitialSsdGoobers.Contains(uid))
+                continue; // they are an initial ssd goober, ignore them
             if (xform.MapUid != mapUid)
                 continue;
             // unidentified humans (loot) dont count
             if (!mindC.HasHadMind)
                 continue;
-            // if anyone is alive and not in crit, we are good
-            if (_mobState.IsAlive(uid, mobState))
-            {
-                // okay weve got something alive, is their session?
-                _players.TryGetSessionByEntity(uid, out var session);
-                // if no session, check if they are SSD
-                if (session == null)
-                    continue;
-                if (session.Status == SessionStatus.Disconnected)
-                    continue;
-                return; // alive and connected player found, expedition is salvageable
-            }
+            pplOnThisExped.Add(uid);
         }
+
+        /* We habe the people on this exped, now lets check if the exped is unsalvageable
+         * The criteria for unsalvageable is that everyone who 'counts' is dead
+         * So who counts?
+         * - Aghosts dont count (handled above)
+         * - People who have never had a mind dont count (handled above)
+         * - People who were SSD on arrival dont count (handled above)
+         */
+        foreach (var uid in pplOnThisExped.ToList())
+        {
+            if (!TryComp<MobStateComponent>(uid, out var mobState))
+                continue;
+            // if they are dead, remove them from the list and keep checking
+            if (_mobState.IsDead(uid, mobState))
+                pplOnThisExped.Remove(uid);
+        }
+        // if anyone is left, abort is not necessary
+        if (pplOnThisExped.Count > 0)
+            return;
+        // everyone who matters is dead, abort the expedition
+        AbortNow(mapUid, component);
+    }
+
+    private void AbortNow(EntityUid mapUid, SalvageExpeditionComponent component)
+    {
+        if (component.Aborted)
+            return;
+        component.Aborted = true;
         // everyone is dead or ssd, abort the expedition
         const int departTime = 20;
         Announce(mapUid, Loc.GetString("salvage-expedition-abort-wipe", ("departTime", departTime)));
@@ -723,5 +744,31 @@ public sealed partial class SalvageSystem
         component.Stage = ExpeditionStage.FinalCountdown;
         component.EndTime = newEndTime;
 
+    }
+
+    private void UpdateSsdGoobers(EntityUid mapUid, SalvageExpeditionComponent component)
+    {
+        var query =
+            EntityQueryEnumerator<
+                MindContainerComponent,
+                TransformComponent>();
+        while (query.MoveNext(
+                   out var uid,
+                   out var mindC,
+                   out var xform))
+        {
+            if (xform.MapUid != mapUid)
+                continue;
+            // unidentified humans (loot) dont count
+            if (!mindC.HasHadMind)
+                continue;
+            // if they are not ssd, dont count
+            _players.TryGetSessionByEntity(uid, out var session);
+            if (session != null
+                && session.Status != SessionStatus.Disconnected)
+                continue;
+            // they are ssd, add them to the list
+            component.InitialSsdGoobers.Add(uid);
+        }
     }
 }
