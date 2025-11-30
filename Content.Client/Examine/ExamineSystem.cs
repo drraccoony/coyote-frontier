@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Numerics;
 using System.Threading;
@@ -203,6 +204,7 @@ namespace Content.Client.Examine
             // Actually open the tooltip.
             _examineTooltipOpen = new Popup { MaxWidth = 700 };
             _userInterfaceManager.ModalRoot.AddChild(_examineTooltipOpen);
+            
             var panel = new PanelContainer() { Name = "ExaminePopupPanel" };
             panel.AddStyleClass(StyleClassEntityTooltip);
             panel.ModulateSelfOverride = Color.LightGray.WithAlpha(0.90f);
@@ -262,6 +264,7 @@ namespace Content.Client.Examine
         /// </summary>
         public void UpdateTooltipInfo(EntityUid player, EntityUid target, FormattedMessage message, List<Verb>? verbs=null, bool getVerbs = true)
         {
+            // Navigate: Popup -> Panel -> VBox
             var vBox = _examineTooltipOpen?.GetChild(0).GetChild(0);
             if (vBox == null)
             {

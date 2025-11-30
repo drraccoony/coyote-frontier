@@ -1,3 +1,5 @@
+using System;
+using Content.Client.Guidebook.RichText;
 using Content.Client.UserInterface.Systems.Chat.Controls;
 using Content.Shared._EE.CCVars; // EE - chat stacking
 using Content.Shared.Chat;
@@ -10,6 +12,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
 using Robust.Shared.Input;
+using Robust.Shared.Log;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using static Robust.Client.UserInterface.Controls.LineEdit;
@@ -18,7 +21,7 @@ namespace Content.Client.UserInterface.Systems.Chat.Widgets;
 
 [GenerateTypedNameReferences]
 [Virtual]
-public partial class ChatBox : UIWidget
+public partial class ChatBox : UIWidget, ILinkClickHandler
 {
     private readonly ChatUIController _controller;
     private readonly IEntityManager _entManager;
@@ -313,4 +316,21 @@ public partial class ChatBox : UIWidget
         }
     }
     // End EE - Chat stacking
+
+    public void HandleClick(string link)
+    {
+        Logger.Debug($"ChatBox.HandleClick called with link: {link}");
+        
+        // Simple validation - only open links starting with http:// or https://
+        if (link.StartsWith("http://", StringComparison.OrdinalIgnoreCase) ||
+            link.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+        {
+            Logger.Info($"Opening URL: {link}");
+            IoCManager.Resolve<IUriOpener>().OpenUri(new Uri(link));
+        }
+        else
+        {
+            Logger.Warning($"Rejected link with invalid scheme: {link}");
+        }
+    }
 }

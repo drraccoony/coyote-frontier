@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Text.RegularExpressions;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Ghost;
 using Content.Shared.Interaction;
@@ -44,6 +45,11 @@ namespace Content.Shared.Examine
         protected const float ExamineBlurrinessMult = 2.5f;
 
         private EntityQuery<GhostComponent> _ghostQuery;
+
+        // Regex pattern to match URLs (http, https)
+        private static readonly Regex UrlRegex = new Regex(
+            @"\b(https?://[^\s<>""{}|\\^`\[\]]+)",
+            RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         /// <summary>
         ///     Creates a new examine tooltip with arbitrary info.
@@ -268,7 +274,9 @@ namespace Content.Shared.Examine
             //Add an entity description if one is declared
             if (!string.IsNullOrEmpty(metadata.EntityDescription))
             {
-                message.AddText(metadata.EntityDescription);
+                // Convert URLs in the description to clickable links
+                var descriptionWithLinks = ConvertUrlsToMarkup(metadata.EntityDescription);
+                message.AddMarkupOrThrow(descriptionWithLinks);
                 hasDescription = true;
             }
 
@@ -288,6 +296,24 @@ namespace Content.Shared.Examine
             newMessage.Pop();
 
             return newMessage;
+        }
+
+        /// <summary>
+        ///     Converts URLs in text to clickable markup using textlink tags.
+        /// </summary>
+        private static string ConvertUrlsToMarkup(string text)
+        {
+            // Escape the text first to prevent markup injection, but preserve our URL markers
+            var escaped = FormattedMessage.EscapeText(text);
+            
+            // Find all URLs and replace them with textlink markup
+            return UrlRegex.Replace(escaped, match =>
+            {
+                var url = match.Groups[1].Value;
+                // Re-escape the URL value to be safe in the link attribute
+                var escapedUrl = FormattedMessage.EscapeText(url);
+                return $"[textlink link=\"{escapedUrl}\"]{escapedUrl}[/textlink]";
+            });
         }
     }
 

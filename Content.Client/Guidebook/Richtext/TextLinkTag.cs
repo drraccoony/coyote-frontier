@@ -51,12 +51,20 @@ public sealed class TextLinkTag : IMarkupTag
             return;
 
         if (Control == null)
+        {
+            Logger.Warning("TextLinkTag: Control is null");
             return;
+        }
 
+        Logger.Debug($"TextLinkTag: Attempting to find ILinkClickHandler for link: {link}");
+        
         if (Control.TryGetParentHandler<ILinkClickHandler>(out var handler))
+        {
+            Logger.Info($"TextLinkTag: Found handler, calling HandleClick");
             handler.HandleClick(link);
+        }
         else
-            Logger.Warning("Warning! No valid ILinkClickHandler found.");
+            Logger.Warning($"TextLinkTag: No valid ILinkClickHandler found for link: {link}");
     }
 }
 

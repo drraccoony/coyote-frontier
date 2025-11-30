@@ -12,7 +12,9 @@ using Content.Shared.Inventory;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using System.Globalization;
+using System.Text.RegularExpressions;
 using Content.Shared.CCVar;
+using Robust.Shared.Utility;
 
 namespace Content.Server._White.Examine
 {
@@ -21,9 +23,24 @@ namespace Content.Server._White.Examine
         [Dependency] private readonly IChatManager _chatManager = default!;
         [Dependency] private readonly INetConfigurationManager _netConfigManager = default!;
 
+        // Regex pattern to match URLs (http, https)
+        private static readonly Regex UrlRegex = new Regex(
+            @"\b(https?://[^\s<>""{}|\\^`\[\]]+)",
+            RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
         public override void Initialize()
         {
             SubscribeLocalEvent<MetaDataComponent, ExamineCompletedEvent>(HandleExamine);
+        }
+
+        private string ConvertUrlsToMarkup(string text)
+        {
+            // Find URLs and wrap them in textlink markup
+            return UrlRegex.Replace(text, match =>
+            {
+                var url = match.Groups[1].Value;
+                return $"[color=#6495ed][bold][textlink link=\"{url}\"]{url}[/textlink][/bold][/color]";
+            });
         }
 
         private void HandleExamine(EntityUid uid, MetaDataComponent metaData, ExamineCompletedEvent args)
@@ -45,7 +62,11 @@ namespace Content.Server._White.Examine
                         $"[color=DarkGray][font size=11]{entTextName}[/font][/color]");
                 }
 
-                logLines.Add($"[color=DarkGray][font size=10]{args.Message}[/font][/color]");
+                // Convert the FormattedMessage to markup string and process URLs
+                var messageMarkup = args.Message.ToMarkup();
+                var messageWithLinks = ConvertUrlsToMarkup(messageMarkup);
+                
+                logLines.Add($"[color=DarkGray][font size=10]{messageWithLinks}[/font][/color]");
                 var combinedLog = string.Join("\n", logLines);
                 _chatManager.ChatMessageToOne(
                     ChatChannel.Emotes,

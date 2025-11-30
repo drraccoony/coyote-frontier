@@ -1,5 +1,7 @@
+using System;
 using Content.Shared.Verbs;
 using Robust.Client.GameObjects;
+using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.Utility;
@@ -45,8 +47,22 @@ public sealed class ExamineButton : ContainerButton
             label.SetMessage(FormattedMessage.FromMarkupOrThrow(verb.Message ?? verb.Text));
 
             var tooltip = new Tooltip();
+            
+            // Wrap the tooltip content with ExamineTooltip for ILinkClickHandler support
+            var wrapper = new ExamineTooltip();
+            wrapper.OnLinkClicked += link =>
+            {
+                // Simple validation - only open links starting with http:// or https://
+                if (link.StartsWith("http://", StringComparison.OrdinalIgnoreCase) ||
+                    link.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+                {
+                    IoCManager.Resolve<IUriOpener>().OpenUri(new Uri(link));
+                }
+            };
+            
             tooltip.GetChild(0).Children.Clear();
-            tooltip.GetChild(0).Children.Add(label);
+            tooltip.GetChild(0).Children.Add(wrapper);
+            wrapper.AddChild(label);
 
             return tooltip;
         };
