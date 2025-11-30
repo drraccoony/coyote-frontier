@@ -46,7 +46,7 @@
 - type: trait
   id: HornyInRut
   name: trait-horny-in-rut-name
-  description: trait-horny-in-heat-desc
+  description: trait-horny-in-rut-desc
   category: Examine
   cost: 0
   hornyExamineProto: hornyExamineInRut
