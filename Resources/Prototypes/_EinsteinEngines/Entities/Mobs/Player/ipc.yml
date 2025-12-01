@@ -190,7 +190,7 @@
     thermalRegulationTemperatureThreshold: 25
   - type: Damageable # COYOTE Add
     damageContainer: Silicon # COYOTE Add
-    damagemageModifierSet: IPC # COYOTE Add
+    damageModifierSet: IPC # COYOTE Add
   - type: Fixtures
     fixtures:
       fix1:
