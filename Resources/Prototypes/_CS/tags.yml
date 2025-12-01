@@ -7,3 +7,9 @@
 
 - type: Tag
   id: CSMagazineSubMachineGunPistol40
+#endregion
+
+#region IPC topicals
+- type: Tag
+  id: RepairPatch
+#endregion

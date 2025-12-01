@@ -3,20 +3,16 @@
   description: A sealed, single-use adhesive patch containing a coagulation agent to patch up damaged areas. For synthetic use only.
   parent: BaseHealingItem
   id: RepairPatch
-#  suffix: Full
+  suffix: Full
   components:
-#  - type: Tag
-#    tags:
-#    - RepairPatch
+  - type: Tag
+    tags:
+    - RepairPatch
   - type: Sprite
     sprite: _CS/Objects/Specific/Medical/robotopicals.rsi
     state: synth_patch
-  - type: Item
-#    heldPrefix: RepairPatch
-    shape:
-    - 0,0,0,0 # baseitem is small to prevent medical pouch storage
   - type: StaticPrice
-    vendPrice: 2500
+    vendPrice: 3000
   - type: Healing
     delay: 2
     damageContainers:
@@ -37,20 +33,29 @@
       params:
         volume: 1.0
         variation: 0.125
-#  - type: Stack
-#    stackType: RepairPatch
-#    count: 8
-#  - type: StackPrice
-#    price: 5
+  - type: Stack
+    stackType: RepairPatch
+    count: 8
+  - type: StackPrice
+    price: 5
 
-#- type: entity
-#  id: RepairPatch1
-#  parent: RepairPatch
-#  suffix: Single
-#  components:
-#  - type: Stack
-#    stackType: RepairPatch
-#    count: 1
+- type: entity
+  id: RepairPatch1
+  parent: RepairPatch
+  suffix: Single
+  components:
+  - type: Stack
+    stackType: RepairPatch
+    count: 1
+
+- type: entity
+  id: RepairPatch8Lingering
+  parent: RepairPatch
+  suffix: 8, Lingering
+  components:
+  - type: Stack
+    lingering: true
+    count: 8
 
 - type: entity
   name: Repair Spray
