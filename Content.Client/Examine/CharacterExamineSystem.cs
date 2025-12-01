@@ -28,8 +28,6 @@ public sealed class CharacterExamineSystem : EntitySystem
 
     private void OnGetExamineVerbs(EntityUid uid, HumanoidAppearanceComponent component, GetVerbsEvent<ExamineVerb> args)
     {
-        if (!args.CanAccess)
-            return;
 
         args.Verbs.Add(new ExamineVerb
         {
@@ -39,7 +37,6 @@ public sealed class CharacterExamineSystem : EntitySystem
             Category = VerbCategory.Examine,
             ClientExclusive = true,
             ShowOnExamineTooltip = true,
-            CloseMenu = false
         });
     }
 
