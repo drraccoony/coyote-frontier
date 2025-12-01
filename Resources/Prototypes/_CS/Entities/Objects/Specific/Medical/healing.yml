@@ -21,7 +21,8 @@
       types:
         Piercing: -25
         Slash: -25
-        Structural: -2.5 # please use Autosolder.
+        Blunt: -25
+        # Structural: -2.5 # please use Autosolder.
     bloodlossModifier: -8 # doesn't stop open hemorrhaging
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
@@ -83,7 +84,7 @@
       types:
         Piercing: -60
         Slash: -60
-        Structural: -10 # good, but please use autosolder.
+        # Structural: -10 # good, but please use autosolder.
         Cold: -40
         Heat: -40 # not useless, but please use autosolder.
         Shock: -40
