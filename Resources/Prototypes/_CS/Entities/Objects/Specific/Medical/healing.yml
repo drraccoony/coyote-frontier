@@ -88,6 +88,7 @@
         Cold: -40
         Heat: -40 # not useless, but please use autosolder.
         Shock: -40
+        Bloodloss: -40
     bloodlossModifier: -10 # stops bleeding
     ModifyBloodLevel: 50 # restores a lot of internal fluid
     healingBeginSound:
@@ -121,7 +122,7 @@
         Blunt: -20
         Piercing: -30
         Slash: -30
-        Structural: -10 # very. good.
+        # Structural: -10 # very. good.
         Cold: -35
         Heat: -35
         Shock: -35
