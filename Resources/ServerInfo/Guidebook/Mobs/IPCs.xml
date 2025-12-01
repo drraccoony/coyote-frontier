@@ -1,8 +1,8 @@
 <Document>
   # I.P.C.
 
-   ### Homeworld
-  Cadraenov Epsilon
+  ### Homeworld
+  Earth, technically.
 
   ### Temperment
   IPC tend to be Analytical in nature, enjoying jobs and tasks that allow them to flex their curiosity and experiment with the world around them.
@@ -25,24 +25,22 @@
 
   ### Perks
   IPCs have the following perks:
-  - They are immune to [color=yellow]toxins[/color], [color=yellow]drugs[/color], and [color=yellow]alcohol[/color].
-  - They are also immune to the effects of [color=yellow]space[/color], [color=yellow]low pressure[/color], and [color=yellow]radiation[/color].
+  - They are immune to [color=lime]toxins[/color], [color=yellow]drugs[/color], and [color=yellow]alcohol[/color].
+  - They are also immune to the effects of [color=yellow]space[/color], [color=yellow]low pressure[/color], and [color=cyan]the cold[/color].
   - They do not need to eat, drink, or breathe.
   - They are easy to revive, just repair the damage and hit the "Restart" button in the right-click menu.
   - Their power cell can be swapped out with a self-charging one, to never need to recharge again!
-  - They can use [color=yellow]welding tools[/color] to repair brute damage, [color=yellow]cables[/color] to repair burn damage, and [color=yellow]glass sheets[/color] to repair blindness.
   - They have a built-in [color=yellow]headset[/color] and do not need to carry one.
+  - IPC specific chems work regardless of if they're alive or not.
 
   ### Drawbacks
   IPCs have the following drawbacks:
   - They are vulnerable to [color=yellow]EMP[/color] damage, which will drain your battery.
   - They are slowed by low battery, by up to 90% at 0 charge.
-  - They are severely affected by the [color=blue]cold[/color], which will damage them rapidly.
-  - They take [color=yellow]double damage from fire, heat, and cold[/color] and can be set on fire more easily.
-  - They cannot use chemicals or medicine of any kind to be healed. Welding tools, cables, and glass sheets are their only means of healing!
-  - They take [color=yellow]Structural[/color] damage, such as that from pickaxes, drills, and PKAs. However, they resist [color=yellow]50%[/color] of it.
-
-  This means you can survive space wearing nothing but a winter coat, though you'll probably want a suit for the protection.
+  - They take [color=orange]double damage from heat,[/color] and can be set on fire more easily.
+  - Their topicals are specialized, storage inefficient, and relatively expensive.
+  - They need IPC specific chems to be healed.
+  - They take [color=yellow]Structural[/color] damage, such as that from pickaxes, drills, and PKAs. However, they resist 50% of it after a flat reduction of 10.
 
   ## Recharging an IPC
    <Box>
@@ -63,21 +61,29 @@
     <GuideEntityEmbed Entity="EncryptionKeyScience" Caption="Encryption key"/>
   </Box>
 
-  IPCs do [bold]not[/bold] use external radios because they already have one built in. They only need to get an encryption key from a radio. By clicking on an IPC with a [color=yellow]wire cutter[/color], you can remove their keys.
+  IPCs can choose not to use external radios because they already have one built in. They only need to get an encryption key from a radio. By clicking on an IPC with a [color=yellow]wire cutter[/color], you can remove their keys.
   You can find new keys around the station or remove one from a sector radio using a [color=yellow]screwdriver[/color].
 
   ## Repairing
   <Box HorizontalAlignment="Stretch">
+    <GuideEntityEmbed Entity="RepairSpray" Caption="Repair Spray"/>
+    Repair sprays are used to cure huge [color=pink]Slashing, Piercing[/color] damage, and [color=yellow]Structural[/color] damage too.
+  </Box>
+  <Box HorizontalAlignment="Stretch">
+    <GuideEntityEmbed Entity="RepairPatch" Caption="Repair Patch"/>
+    Repair sprays are used to cure moderate [color=pink]Slashing, Piercing[/color] damage in a pinch, and light[color=yellow]Structural[/color] damage.
+  </Box>
+  <Box HorizontalAlignment="Stretch">
     <GuideEntityEmbed Entity="WelderIndustrialAdvanced" Caption="Welder"/>
-    Welders can be used to repair [color=yellow]Brute[/color] and [color=yellow]Structural[/color] damage.
+    Welders can be used to repair [color=pink]Blunt[/color] damage, and low [color=yellow]structural[/color] damage too.
   </Box>
   <Box HorizontalAlignment="Stretch">
     <GuideEntityEmbed Entity="CableApcStack" Caption="Cables (any type)"/>
-    Cables can be used to repair [color=yellow]Burns[/color] and [color=yellow]Structural[/color] damage too.
+    Cables can be used to repair light [color=orange]Burns[/color] in an emergency, low [color=yellow]Structural[/color] damage too.
   </Box>
   <Box HorizontalAlignment="Stretch">
-    <GuideEntityEmbed Entity="SheetGlass" Caption="Glass Sheets (any type)"/>
-    Glass Sheets can be used to repair [color=yellow]Blindness[/color].
+    <GuideEntityEmbed Entity="RepairAutoinjector" Caption="Emergency Repair autoinjector: contains 20u of Autosolder!"/>
+    Autosolder is used to repair [color=yellow]Blindness and Structural[/color], [color=lime]Radiation[/color], major [color=orange]Burns.[/color].
   </Box>
     In the event an IPC dies, after being fully repaired, it should be restarted using the [color=yellow]"Restart"[/color] button (located by right-clicking).
 

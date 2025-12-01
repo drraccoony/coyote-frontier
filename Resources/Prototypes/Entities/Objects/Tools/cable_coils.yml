@@ -33,6 +33,19 @@
     guides:
     - VoltageNetworks
     - Power
+# START COYOTE
+  - type: Healing
+    delay: 4
+    damageContainers:
+    - Silicon
+    damage:
+      types: # these are all split across multiple types
+        Heat: -4
+        Shock: -4
+        Cold: -4
+        Caustic: -2.5 # Corrosion is far more difficult to fix if its not just an oxide layer from burning hence -3
+        Structural: -2.5
+# END COYOTE
 
 - type: entity
   id: CableHVStack

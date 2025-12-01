@@ -20,7 +20,7 @@
   reactants:
     Iron:
       amount: 1
-    OilOlive:
+    Oil:
       amount: 1
   products:
     Oxidant: 1
@@ -30,7 +30,7 @@
   reactants:
     Cryoxadone:
       amount: 1
-    OilOlive:
+    Oil:
       amount: 1
     Dexalin:
       amount: 1
@@ -42,7 +42,7 @@
   reactants:
     Leporazine:
       amount: 1
-    OilOlive:
+    Oil:
       amount: 1
   products:
     Sylashizine: 1
@@ -50,9 +50,9 @@
 - type: reaction
   id: Autosolder
   reactants:
-    Lead:
+    Aluminium:
       amount: 1
-    OilOlive:
+    Oil:
       amount: 1
     Fersilicite:
       amount: 1

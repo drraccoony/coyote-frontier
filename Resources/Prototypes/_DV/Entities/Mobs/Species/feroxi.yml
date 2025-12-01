@@ -117,7 +117,7 @@
     pseudoItem: true
     cosmeticOnly: false
   - type: TallWhitelist
-    scale: 1.2
+    scale: 2.0
 
 - type: entity
   parent: MobHumanDummy
