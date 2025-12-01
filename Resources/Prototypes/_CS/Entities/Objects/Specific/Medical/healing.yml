@@ -19,9 +19,9 @@
     - Silicon
     damage:
       types:
-        Piercing: -25
-        Slash: -25
-        Blunt: -25
+        Piercing: -20
+        Slash: -20
+        Blunt: -20
         # Structural: -2.5 # please use Autosolder.
     bloodlossModifier: -8 # doesn't stop open hemorrhaging
     healingBeginSound:
@@ -183,19 +183,19 @@
     Sylexalin: 10
   recipeType: MedicalAssembler
 
-- type: microwaveMealRecipe
-  id: RecipeRepairPatch
-  name: Repair Patch
-  result: RepairPatch
-  time: 5
-  group: Medicinal
-  solids:
-    MaterialCloth: 1
-  reagents:
-    Autosolder: 1
-    Sylashizine: 1
-    Sylexalin: 1
-  recipeType: MedicalAssembler
+# - type: microwaveMealRecipe
+#   id: RecipeRepairPatch
+#   name: Repair Patch
+#   result: RepairPatch
+#   time: 5
+#   group: Medicinal
+#   solids:
+#     MaterialCloth: 1
+#   reagents:
+#     Autosolder: 1
+#     Sylashizine: 1
+#     Sylexalin: 1
+#   recipeType: MedicalAssembler
 
 - type: latheRecipe
   parent: BaseToolRecipe
