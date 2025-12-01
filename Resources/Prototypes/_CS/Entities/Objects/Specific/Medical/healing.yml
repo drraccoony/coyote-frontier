@@ -183,19 +183,20 @@
     Sylexalin: 10
   recipeType: MedicalAssembler
 
-# - type: microwaveMealRecipe
-#   id: RecipeRepairPatch
-#   name: Repair Patch
-#   result: RepairPatch
-#   time: 5
-#   group: Medicinal
-#   solids:
-#     MaterialCloth: 1
-#   reagents:
-#     Autosolder: 1
-#     Sylashizine: 1
-#     Sylexalin: 1
-#   recipeType: MedicalAssembler
+- type: microwaveMealRecipe
+  id: RecipeRepairSpray
+  name: repair spray
+  result: RepairSpray
+  time: 5
+  group: Medicinal
+  solids:
+    BlankMediPen: 1
+    MaterialCloth: 5
+  reagents:
+    Autosolder: 10
+    Sylashizine: 10
+    Sylexalin: 10
+  recipeType: MedicalAssembler
 
 - type: latheRecipe
   parent: BaseToolRecipe
