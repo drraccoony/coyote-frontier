@@ -35,7 +35,7 @@
         variation: 0.125
   - type: Stack
     stackType: RepairPatch
-    count: 8
+    count: 10
   - type: StackPrice
     price: 5
 
