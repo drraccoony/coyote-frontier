@@ -10,7 +10,7 @@
   parent: BaseVessel
   name: LL3 Xiphos # extra markup due to high-end thrusters combined with usable cargo space
   description: A luxury single seat racing vessel with lounge. Its titan boosters require careful management.
-  price: 28000 # 8985 * 211.6% = 28000
+  price: 40000 # 13635 + 193.4% = 40000
   category: Small
   group: Shipyard
   shuttlePath: /Maps/_CS/Shuttles/xiphos.yml
