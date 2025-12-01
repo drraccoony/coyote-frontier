@@ -11,6 +11,9 @@
   - type: Sprite
     sprite: _CS/Objects/Specific/Medical/robotopicals.rsi
     state: synth_patch
+  - type: Construction
+    graph: RepairPatch
+    node: repairpatch
   - type: StaticPrice
     vendPrice: 3000
   - type: Healing
