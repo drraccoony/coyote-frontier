@@ -18,14 +18,14 @@
   - type: StaticPrice
     vendPrice: 2500
   - type: Healing
+    delay: 2
     damageContainers:
     - Silicon
     damage:
       types:
-        Blunt: -5 # not so good for blunt force trauma, which is 'coincidentally' the most common damage type.
-        Piercing: -10
-        Slash: -10
-        Structural: -1 # haha. use Autosolder.
+        Piercing: -25
+        Slash: -25
+        Structural: -2.5 # please use Autosolder.
     bloodlossModifier: -8 # doesn't stop open hemorrhaging
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
@@ -71,17 +71,17 @@
   - type: StaticPrice
     vendPrice: 5000
   - type: Healing
+    delay: 1
     damageContainers:
     - Silicon
     damage:
       types:
-        Blunt: -15
-        Piercing: -25
-        Slash: -25
-        Structural: -5 # very respectable
-        Cold: -20
-        Heat: -20
-        Shock: -20
+        Piercing: -60
+        Slash: -60
+        Structural: -10 # good, but please use autosolder.
+        Cold: -40
+        Heat: -40 # not useless, but please use autosolder.
+        Shock: -40
     bloodlossModifier: -10 # stops bleeding
     healingBeginSound:
       path: "/Audio/Items/canopen.ogg"
@@ -145,7 +145,7 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
-    emptySpriteName: dexpen_empty
+    emptySpriteName: robo0
   - type: Hypospray
     solutionName: pen
     transferAmount: 15
@@ -159,9 +159,9 @@
         maxVol: 15
         reagents:
         - ReagentId: Autosolder
-          Quantity: 10
+          Quantity: 20
         - ReagentId: Sylexalin
-          Quantity: 5
+          Quantity: 10
 
 - type: microwaveMealRecipe
   id: RecipeRepairAutoinjector
@@ -173,7 +173,7 @@
     BlankMediPen: 1
   reagents:
     Autosolder: 20
-    Sylexalin: 5
+    Sylexalin: 10
   recipeType: MedicalAssembler
 
 - type: microwaveMealRecipe
@@ -183,7 +183,7 @@
   time: 5
   group: Medicinal
   solids:
-    Gauze: 1
+    MaterialCloth: 1
   reagents:
     Autosolder: 1
     Sylashizine: 1
