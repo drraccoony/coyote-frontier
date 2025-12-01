@@ -35,7 +35,7 @@
         variation: 0.125
   - type: Stack
     stackType: RepairPatch
-    count: 8
+    count: 10
   - type: StackPrice
     price: 5
 
@@ -49,13 +49,13 @@
     count: 1
 
 - type: entity
-  id: RepairPatch8Lingering
+  id: RepairPatch10Lingering
   parent: RepairPatch
-  suffix: 8, Lingering
+  suffix: 10, Lingering
   components:
   - type: Stack
     lingering: true
-    count: 8
+    count: 10
 
 - type: entity
   name: Repair Spray
