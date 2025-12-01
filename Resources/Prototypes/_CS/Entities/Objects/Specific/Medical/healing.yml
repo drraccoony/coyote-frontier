@@ -1,6 +1,6 @@
 - type: entity
-  name: Repair Patch
-  description: A sealed, single-use adhesive patch containing a coagulation agent to patch up damaged areas. For synthetic use only.
+  name: repair patch
+  description: A sealed, single-use adhesive patch to patch up damaged areas. For synthetic use only.
   parent: BaseHealingItem
   id: RepairPatch
   suffix: Full
@@ -11,6 +11,9 @@
   - type: Sprite
     sprite: _CS/Objects/Specific/Medical/robotopicals.rsi
     state: synth_patch
+  - type: Construction
+    graph: RepairPatch
+    node: repairpatch
   - type: StaticPrice
     vendPrice: 3000
   - type: Healing
@@ -19,9 +22,10 @@
     - Silicon
     damage:
       types:
-        Piercing: -25
-        Slash: -25
-        Structural: -2.5 # please use Autosolder.
+        Piercing: -20
+        Slash: -20
+        Blunt: -20
+        # Structural: -2.5 # please use Autosolder.
     bloodlossModifier: -8 # doesn't stop open hemorrhaging
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
@@ -58,7 +62,7 @@
     count: 10
 
 - type: entity
-  name: Repair Spray
+  name: repair spray
   description: A single-use spray gun to fill damaged areas with polyurethane-based expanding foam. For synthetic use only.
   parent: BaseHealingItem
   id: RepairSpray
@@ -81,13 +85,15 @@
     - Silicon
     damage:
       types:
-        Piercing: -60
-        Slash: -60
-        Structural: -10 # good, but please use autosolder.
+        # Piercing: -60 # Better if brutes are handled by the repair patch imo
+        # Slash: -60 # Ditto
+        # Structural: -10 # good, but please use autosolder.
         Cold: -40
         Heat: -40 # not useless, but please use autosolder.
         Shock: -40
+        Bloodloss: -40
     bloodlossModifier: -10 # stops bleeding
+    ModifyBloodLevel: 50 # restores a lot of internal fluid
     healingBeginSound:
       path: "/Audio/Items/canopen.ogg"
       params:
@@ -100,7 +106,7 @@
         variation: 0.125
 
 - type: entity
-  name: Repair Spray+ # unobtainable. for now.
+  name: repair spray+ # unobtainable. for now.
   description: A single-use spray gun to fill damaged areas with polyurethane-based expanding foam. For synthetic use only.
   parent: [BaseHealingItem,RepairSpray]
   id: RepairSprayPlus
@@ -119,13 +125,13 @@
         Blunt: -20
         Piercing: -30
         Slash: -30
-        Structural: -10 # very. good.
+        # Structural: -10 # very. good.
         Cold: -35
         Heat: -35
         Shock: -35
 
 - type: entity
-  name: Synthetic Emergency Autoinjector
+  name: synthetic emergency autoinjector
   parent: ChemicalMedipen
   id: RepairAutoinjector
   description: Prevents system failure and instantly restores the system partially. Always seek medical attention after averted system failure.
@@ -182,17 +188,18 @@
   recipeType: MedicalAssembler
 
 - type: microwaveMealRecipe
-  id: RecipeRepairPatch
-  name: Repair Patch
-  result: RepairPatch
+  id: RecipeRepairSpray
+  name: repair spray
+  result: RepairSpray
   time: 5
   group: Medicinal
   solids:
-    MaterialCloth: 1
+    BlankMediPen: 1
+    MaterialCloth: 5
   reagents:
-    Autosolder: 1
-    Sylashizine: 1
-    Sylexalin: 1
+    Autosolder: 10
+    Sylashizine: 10
+    Sylexalin: 10
   recipeType: MedicalAssembler
 
 - type: latheRecipe
@@ -200,9 +207,7 @@
   id: RepairPatch
   materials:
     Steel: 250
-    Plastic: 1000
-    Gold: 400
-    Silver: 400
+    Plastic: 100
   result: RepairPatch
   categories:
   - Engineering
@@ -213,7 +218,7 @@
   id: RepairSpray
   materials:
     Steel: 500
-    Plastic: 1500
+    Plastic: 500
     Gold: 500
     Silver: 500
   result: RepairSpray

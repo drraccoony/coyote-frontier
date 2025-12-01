@@ -188,6 +188,9 @@
     shiveringHeatRegulation: 2000
     normalBodyTemperature: 310.15
     thermalRegulationTemperatureThreshold: 25
+  - type: Damageable # COYOTE Add
+    damageContainer: Silicon # COYOTE Add
+    damageModifierSet: IPC # COYOTE Add
   - type: Fixtures
     fixtures:
       fix1:
