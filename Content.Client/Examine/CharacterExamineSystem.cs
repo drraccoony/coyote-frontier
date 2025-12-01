@@ -28,7 +28,7 @@ public sealed class CharacterExamineSystem : EntitySystem
 
     private void OnGetExamineVerbs(EntityUid uid, HumanoidAppearanceComponent component, GetVerbsEvent<ExamineVerb> args)
     {
-        if (!args.CanInteract || !args.CanAccess)
+        if (!args.CanAccess)
             return;
 
         args.Verbs.Add(new ExamineVerb
