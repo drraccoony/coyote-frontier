@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/27/2025 06:28:52
+  time: 12/02/2025 20:11:54
   entityCount: 11498
 maps:
 - 1
@@ -8498,7 +8498,7 @@ entities:
       pos: -4.5,2.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -118982.74
+      secondsUntilStateChange: -119024.66
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -32076,7 +32076,7 @@ entities:
       pos: 41.5,-8.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -29275.219
+      secondsUntilStateChange: -29317.13
       state: Opening
   - uid: 4408
     components:
@@ -37069,7 +37069,7 @@ entities:
       pos: 48.5,1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -22388.332
+      secondsUntilStateChange: -22430.244
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -59843,11 +59843,6 @@ entities:
       parent: 2
 - proto: RandomVendingSnacks
   entities:
-  - uid: 7680
-    components:
-    - type: Transform
-      pos: -15.5,5.5
-      parent: 2
   - uid: 11380
     components:
     - type: Transform
@@ -67617,6 +67612,13 @@ entities:
     components:
     - type: Transform
       pos: 3.5,9.5
+      parent: 2
+- proto: VendingMachineSustenance
+  entities:
+  - uid: 7680
+    components:
+    - type: Transform
+      pos: -15.5,5.5
       parent: 2
 - proto: VendingMachineTankDispenserEVA
   entities:
