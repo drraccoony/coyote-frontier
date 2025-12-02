@@ -2,9 +2,9 @@
   id: SustenanceInventory
   startingInventory:
    # DrinkMREFlask: 3 #Coyote: Replaced with standard water bottle.
-    DrinkWaterBottleFull: 4294967295 #Infinite
-    FoodSnackNutribrick: 4294967295 #Infinite
-    FoodSnackMREBrownie: 4294967295 #Infinite
+    DrinkWaterBottleFull: 4294967295 #Coyote: Made stock infinite, was 5.
+    FoodSnackNutribrick: 4294967295 #Coyote: Made stock infinite, was 5.
+    FoodSnackMREBrownie: 4294967295 #Coyote: Made stock infinite, was 5.
    # FoodCondimentPacketKetchup: 5 #Coyote: Pared down inventory to bare minimum.
   contrabandInventory:
     FoodTinMRE: 3

@@ -1071,6 +1071,7 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
+    initialStockQuality: 1.0 #Coyote: Made their stock always full at roundstart.
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/sustenance.rsi
     layers:
