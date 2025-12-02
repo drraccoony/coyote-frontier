@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/29/2025 01:05:12
-  entityCount: 167
+  time: 12/02/2025 18:32:50
+  entityCount: 176
 maps: []
 grids:
 - 1
@@ -310,6 +310,46 @@ entities:
     - type: Transform
       pos: 0.5,5.5
       parent: 1
+  - uid: 114
+    components:
+    - type: Transform
+      pos: 1.5,-1.5
+      parent: 1
+  - uid: 117
+    components:
+    - type: Transform
+      pos: 1.5,-2.5
+      parent: 1
+  - uid: 138
+    components:
+    - type: Transform
+      pos: 0.5,-2.5
+      parent: 1
+  - uid: 142
+    components:
+    - type: Transform
+      pos: -0.5,-2.5
+      parent: 1
+  - uid: 156
+    components:
+    - type: Transform
+      pos: -0.5,-3.5
+      parent: 1
+  - uid: 162
+    components:
+    - type: Transform
+      pos: 2.5,-2.5
+      parent: 1
+  - uid: 163
+    components:
+    - type: Transform
+      pos: 3.5,-2.5
+      parent: 1
+  - uid: 165
+    components:
+    - type: Transform
+      pos: 3.5,-3.5
+      parent: 1
 - proto: CableHV
   entities:
   - uid: 18
@@ -613,6 +653,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,2.5
+      parent: 1
+- proto: CrowbarGreen
+  entities:
+  - uid: 167
+    components:
+    - type: Transform
+      pos: 0.43535233,2.4599094
       parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
