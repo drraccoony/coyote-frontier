@@ -436,6 +436,7 @@
       path: /Audio/Effects/unwrap.ogg
   - type: StaticPrice
     price: 50
+    vendPrice: 500 #Coyote: Makes these cost 500 in all vendors.
 
 - type: entity
   id: FoodSnackNutribrickOpen
