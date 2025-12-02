@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 12/02/2025 19:57:38
-  entityCount: 1239
+  time: 12/02/2025 20:08:38
+  entityCount: 1246
 maps: []
 grids:
 - 1
@@ -4099,6 +4099,13 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
+- proto: FoodBoxDonkpocketBerry
+  entities:
+  - uid: 1245
+    components:
+    - type: Transform
+      pos: 0.27343345,8.463608
+      parent: 1
 - proto: Gaslock
   entities:
   - uid: 747
@@ -6469,6 +6476,13 @@ entities:
     - type: Transform
       pos: 0.49223852,11.573317
       parent: 1
+- proto: KitchenMicrowavePOI
+  entities:
+  - uid: 1242
+    components:
+    - type: Transform
+      pos: 1.5,8.5
+      parent: 1
 - proto: Mirror
   entities:
   - uid: 1233
@@ -7500,6 +7514,13 @@ entities:
     - type: Transform
       pos: -2.3515115,10.651442
       parent: 1
+- proto: SpoonPlastic
+  entities:
+  - uid: 1246
+    components:
+    - type: Transform
+      pos: 0.7838501,8.640814
+      parent: 1
 - proto: SubstationBasic
   entities:
   - uid: 1013
@@ -7582,6 +7603,16 @@ entities:
     components:
     - type: Transform
       pos: -3.5,12.5
+      parent: 1
+  - uid: 1240
+    components:
+    - type: Transform
+      pos: 1.5,8.5
+      parent: 1
+  - uid: 1241
+    components:
+    - type: Transform
+      pos: 0.5,8.5
       parent: 1
 - proto: ToiletEmpty
   entities:
@@ -7768,6 +7799,13 @@ entities:
           - Reverse
         - - Middle
           - Off
+- proto: VendingMachineSustenance
+  entities:
+  - uid: 1243
+    components:
+    - type: Transform
+      pos: -1.5,8.5
+      parent: 1
 - proto: WallReinforced
   entities:
   - uid: 722
@@ -8301,6 +8339,13 @@ entities:
     components:
     - type: Transform
       pos: 0.5,0.5
+      parent: 1
+- proto: WaterCooler
+  entities:
+  - uid: 1244
+    components:
+    - type: Transform
+      pos: -0.5,8.5
       parent: 1
 - proto: WeaponCapacitorRecharger
   entities:
