@@ -8,19 +8,18 @@
   },
   "states": [
     {
-      "name": "stand-small"
+      "name": "paper-lantern"
     },
     {
-      "name": "loadout"
-    },
-    {
-      "name": "stand-big"
-    },
-    {
-      "name": "candle-small"
-    },
-    {
-      "name": "candle-big"
+      "name": "lit",
+      "delays": [
+        [
+          0.15,
+          0.15,
+          0.15,
+          0.15
+        ]
+      ]
     },
     {
       "name": "inhand-left",
@@ -29,28 +28,6 @@
     {
       "name": "inhand-right",
       "directions": 4
-    },
-    {
-      "name": "fire-small",
-      "delays": [
-        [
-          0.15,
-          0.15,
-          0.15,
-          0.15
-        ]
-      ]
-    },
-    {
-      "name": "fire-big",
-      "delays": [
-        [
-          0.15,
-          0.15,
-          0.15,
-          0.15
-        ]
-      ]
     },
     {
       "name": "inhand-left-flame",

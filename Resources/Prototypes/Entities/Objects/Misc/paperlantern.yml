@@ -22,7 +22,7 @@
       #Extinguish: [ Touch ] ##Commented til I can learn how to have it only extinquishable when held in hand/context menu. Dont want it able to be put out mid-flight.
   - type: ExtinguishOnInteract
     extinguishAttemptSound:
-      path: /Audio/Items/lantern_blowing.ogg
+      path: /Audio/Items/candle_blowing.ogg
       params:
         variation: 0.05
         volume: 10
@@ -39,16 +39,16 @@
       types:
         Heat: 0.1
   - type: FireVisuals
-    sprite: Objects/Misc/lanterns.rsi
-    normalState: lit #fire-big
+    sprite: Objects/Misc/paperlantern.rsi
+    normalState: lit
   - type: ToggleableVisuals
     spriteLayer: null
     inhandVisuals:
       left:
-      - state: inhand-left-lit #flame
+      - state: inhand-left-flame
         shader: unshaded
       right:
-      - state: inhand-right-lit #flame
+      - state: inhand-right-flame
         shader: unshaded
   - type: Damageable
     damageModifierSet: Wood
@@ -82,7 +82,7 @@
 
 - type: entity
   name: blue paper lantern
-  parent: Paperlantern
+  parent: PaperLantern
   id: PaperLanternBlue
   components:
   - type: Sprite
@@ -163,7 +163,7 @@
   components:
   - type: Sprite
     noRot: true
-    sprite: Objects/Misc/paperlanterns.rsi
+    sprite: Objects/Misc/paperlantern.rsi
     layers:
     - state: paper-lantern
       color: "#decb8e"
