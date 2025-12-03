@@ -48,7 +48,7 @@ public sealed class NanoChatAdminEui : BaseEui
             string ownerName = "Unknown";
             string? jobTitle = null;
             string? username = null;
-            
+
             if (_entityManager.TryGetComponent<IdCardComponent>(uid, out var idCard))
             {
                 ownerName = idCard.FullName ?? "Unknown";
@@ -70,7 +70,7 @@ public sealed class NanoChatAdminEui : BaseEui
                     }
                 }
             }
-            
+
             // If still no username, try to find if the card itself has a player attached somehow
             if (username == null && _entityManager.TryGetComponent(uid, out TransformComponent? cardTransform))
             {

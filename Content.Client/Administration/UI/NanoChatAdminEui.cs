@@ -13,7 +13,7 @@ public sealed class NanoChatAdminEui : BaseEui
     public override void Opened()
     {
         base.Opened();
-        
+
         _window = new NanoChatAdminWindow();
         _window.OnRefreshPressed += OnRefreshPressed;
         _window.OnCardSelected += OnCardSelected;

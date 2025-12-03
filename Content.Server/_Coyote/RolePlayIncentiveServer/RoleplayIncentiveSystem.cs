@@ -1978,6 +1978,7 @@ public sealed class RoleplayIncentiveSystem : EntitySystem
         float listenerMult = GetListenerMultiplier(chatRecord.Action, chatRecord.PeoplePresent);
         judgement += lengthMult;
         judgement += listenerMult;
+
         details = new RpiJudgementDetails(
             longth,
             lengthMult,

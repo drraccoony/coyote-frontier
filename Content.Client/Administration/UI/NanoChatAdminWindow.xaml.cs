@@ -60,7 +60,7 @@ public sealed class NanoChatAdminWindow : DefaultWindow
     public void UpdateState(NanoChatAdminEuiState state)
     {
         _state = state;
-        
+
         // Store the currently selected card entity and recipient for re-selection
         var previousCardEntity = _selectedCard?.CardEntity;
         var previousRecipientNumber = _selectedRecipient;
@@ -115,7 +115,7 @@ public sealed class NanoChatAdminWindow : DefaultWindow
 
             button.OnPressed += _ => SelectCard(card);
             CardList.AddChild(button);
-            
+
             // Add spacing between buttons
             CardList.AddChild(new Control { MinHeight = 4 });
         }
@@ -150,7 +150,7 @@ public sealed class NanoChatAdminWindow : DefaultWindow
             RecipientSelectorPanel.Visible = false;
             RecipientSeparator.Visible = false;
             MessagesPanel.Visible = false;
-            
+
             var noChatsLabel = new Label
             {
                 Text = Loc.GetString("nanochat-admin-no-conversations"),
@@ -158,7 +158,7 @@ public sealed class NanoChatAdminWindow : DefaultWindow
             };
             RecipientList.AddChild(noChatsLabel);
             RecipientSelectorPanel.Visible = true;
-            
+
             // Debug: Show message count
             var debugLabel = new Label
             {
@@ -180,7 +180,7 @@ public sealed class NanoChatAdminWindow : DefaultWindow
         foreach (var (number, recipient) in sortedRecipients)
         {
             var messageCount = card.Messages.TryGetValue(number, out var messages) ? messages.Count : 0;
-            
+
             var button = new Button
             {
                 Text = $"{recipient.Name} ({recipient.JobTitle ?? "No Job"}) - #{number:D4} - {messageCount} messages",
@@ -194,7 +194,7 @@ public sealed class NanoChatAdminWindow : DefaultWindow
 
             button.OnPressed += _ => SelectRecipient(number, recipient);
             RecipientList.AddChild(button);
-            
+
             // Add spacing between buttons
             RecipientList.AddChild(new Control { MinHeight = 4 });
         }
@@ -203,7 +203,7 @@ public sealed class NanoChatAdminWindow : DefaultWindow
     private void SelectRecipient(uint recipientNumber, NanoChatRecipient recipient)
     {
         _selectedRecipient = recipientNumber;
-        
+
         ConversationLabel.Text = Loc.GetString("nanochat-admin-conversation-with", 
             ("name", recipient.Name), 
             ("job", recipient.JobTitle ?? "No Job"));
@@ -270,7 +270,7 @@ public sealed class NanoChatAdminWindow : DefaultWindow
 
             headerContainer.AddChild(senderLabel);
             headerContainer.AddChild(timestampLabel);
-            
+
             // Add username label if available from the message
             if (!string.IsNullOrEmpty(message.SenderUsername))
             {
@@ -316,7 +316,7 @@ public sealed class NanoChatAdminWindow : DefaultWindow
         var hours = totalSeconds / 3600;
         var minutes = (totalSeconds % 3600) / 60;
         var seconds = totalSeconds % 60;
-        
+
         return $"{hours:D2}:{minutes:D2}:{seconds:D2}";
     }
 }
