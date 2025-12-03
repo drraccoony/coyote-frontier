@@ -13,6 +13,9 @@
     layers:
     - state: paper-lantern #lantern-big
       color: "#decb8e"
+    - state: paper-lantern-writing
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false
   - type: Item
     size: Small
   - type: Appearance
@@ -22,7 +25,7 @@
       #Extinguish: [ Touch ] ##Commented til I can learn how to have it only extinquishable when held in hand/context menu. Dont want it able to be put out mid-flight.
   - type: ExtinguishOnInteract
     extinguishAttemptSound:
-      path: /Audio/Items/lantern_blowing.ogg
+      path: /Audio/Items/candle_blowing.ogg
       params:
         variation: 0.05
         volume: 10
@@ -38,17 +41,46 @@
     damage:
       types:
         Heat: 0.1
+  - type: Paper
+  - type: PaperLabelType
+  - type: ActivatableUI
+    key: enum.PaperUiKey.Key
+    requiresComplex: false
+  - type: UserInterface
+    interfaces:
+      enum.PaperUiKey.Key:
+        type: PaperBoundUserInterface
+  - type: PaperVisuals
   - type: FireVisuals
-    sprite: Objects/Misc/lanterns.rsi
-    normalState: lit #fire-big
+    sprite: Objects/Misc/paperlantern.rsi
+    normalState: lit
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 20
+        mask:
+          - ItemMask
+        restitution: 0.98
+        friction: 0.01
+  - type: RandomWalkOnIgnited
+  - type: Physics
+    angularDamping: 0.02
+    linearDamping: 0.02
+    fixedRotation: true
+    bodyType: Dynamic
+  - type: TileFrictionModifier
+    modifier: 0.1
   - type: ToggleableVisuals
     spriteLayer: null
     inhandVisuals:
       left:
-      - state: inhand-left-lit #flame
+      - state: inhand-left-flame
         shader: unshaded
       right:
-      - state: inhand-right-lit #flame
+      - state: inhand-right-flame
         shader: unshaded
   - type: Damageable
     damageModifierSet: Wood
@@ -82,7 +114,7 @@
 
 - type: entity
   name: blue paper lantern
-  parent: Paperlantern
+  parent: PaperLantern
   id: PaperLanternBlue
   components:
   - type: Sprite
@@ -163,7 +195,7 @@
   components:
   - type: Sprite
     noRot: true
-    sprite: Objects/Misc/paperlanterns.rsi
+    sprite: Objects/Misc/paperlantern.rsi
     layers:
     - state: paper-lantern
       color: "#decb8e"
