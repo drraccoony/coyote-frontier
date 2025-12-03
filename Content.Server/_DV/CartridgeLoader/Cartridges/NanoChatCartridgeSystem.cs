@@ -14,6 +14,7 @@ using Content.Shared._DeltaV.NanoChat;
 using Content.Shared.Access.Systems;
 using Content.Shared.PDA;
 using Content.Shared.Radio.Components;
+using Robust.Server.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -24,6 +25,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
     [Dependency] private readonly CartridgeLoaderSystem _cartridge = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SharedNanoChatSystem _nanoChat = default!;
     [Dependency] private readonly StationSystem _station = default!;
@@ -272,11 +274,23 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
                 content = content[..NanoChatMessage.MaxContentLength];
         }
 
+        // Try to get the username of the player sending the message
+        string? senderUsername = null;
+        if (card.Comp.PdaUid != null && TryComp<TransformComponent>(card.Comp.PdaUid.Value, out var pdaTransform))
+        {
+            var parent = pdaTransform.ParentUid;
+            if (EntityManager.EntityExists(parent) && _playerManager.TryGetSessionByEntity(parent, out var session))
+            {
+                senderUsername = session.Name;
+            }
+        }
+
         // Create and store message for sender
         var message = new NanoChatMessage(
             _timing.CurTime,
             content,
-            (uint)card.Comp.Number
+            (uint)card.Comp.Number,
+            senderUsername
         );
 
         // Attempt delivery
