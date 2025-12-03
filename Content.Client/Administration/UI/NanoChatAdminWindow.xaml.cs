@@ -64,9 +64,9 @@ public sealed class NanoChatAdminWindow : DefaultWindow
         // Store the currently selected card entity and recipient for re-selection
         var previousCardEntity = _selectedCard?.CardEntity;
         var previousRecipientNumber = _selectedRecipient;
-        
+
         FilterCardList();
-        
+
         // Re-select the previously selected card and conversation if they still exist
         if (previousCardEntity != null)
         {
@@ -74,7 +74,7 @@ public sealed class NanoChatAdminWindow : DefaultWindow
             if (card != null)
             {
                 SelectCard(card);
-                
+
                 // Re-select the conversation if it was previously selected
                 if (previousRecipientNumber != null && card.Recipients.ContainsKey(previousRecipientNumber.Value))
                 {
@@ -133,7 +133,7 @@ public sealed class NanoChatAdminWindow : DefaultWindow
         CardUsernameLabel.Text = card.Username != null ? $"Player: {card.Username}" : "";
         CardUsernameLabel.Visible = !string.IsNullOrEmpty(card.Username);
         CardNumberLabel.Text = $"NanoChat Number: #{card.Number?.ToString("D4") ?? "Not Assigned"}";
-        
+
         CardInfoPanel.Visible = true;
         NoSelectionPanel.Visible = false;
 
@@ -204,8 +204,8 @@ public sealed class NanoChatAdminWindow : DefaultWindow
     {
         _selectedRecipient = recipientNumber;
 
-        ConversationLabel.Text = Loc.GetString("nanochat-admin-conversation-with", 
-            ("name", recipient.Name), 
+        ConversationLabel.Text = Loc.GetString("nanochat-admin-conversation-with",
+            ("name", recipient.Name),
             ("job", recipient.JobTitle ?? "No Job"));
 
         DisplayMessages();
@@ -240,7 +240,7 @@ public sealed class NanoChatAdminWindow : DefaultWindow
         foreach (var message in sortedMessages)
         {
             var isFromOwner = message.SenderId == _selectedCard.Number;
-            var senderName = isFromOwner ? _selectedCard.OwnerName : 
+            var senderName = isFromOwner ? _selectedCard.OwnerName :
                 (_selectedCard.Recipients.TryGetValue(message.SenderId, out var sender) ? sender.Name : "Unknown");
 
             var messageContainer = new BoxContainer
