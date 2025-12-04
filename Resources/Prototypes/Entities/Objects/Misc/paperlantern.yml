@@ -94,6 +94,9 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ] ##Need to see how I can make this just burn to ash pile.
         ##New Component needed to drift on it's own after lit.
+  - type: Construction
+    graph: toys
+    node:
 
 - type: entity
   name: red paper lantern
