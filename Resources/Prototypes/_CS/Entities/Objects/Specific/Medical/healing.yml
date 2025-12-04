@@ -20,6 +20,7 @@
     delay: 2
     damageContainers:
     - Silicon
+    - IPC
     damage:
       types:
         Piercing: -20
@@ -83,6 +84,7 @@
     delay: 1
     damageContainers:
     - Silicon
+    - IPC
     damage:
       types:
         # Piercing: -60 # Better if brutes are handled by the repair patch imo
@@ -120,6 +122,7 @@
   - type: Healing
     damageContainers:
     - Silicon
+    - IPC
     damage:
       types:
         Blunt: -20

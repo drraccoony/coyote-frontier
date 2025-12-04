@@ -209,6 +209,7 @@
   parent: MobHumanDummy
   id: MobIPCDummy
   description: A dummy IPC meant to be used in character setup.
+  categories: [ HideSpawnMenu ] # CS - Not to be spawned
   components:
   - type: HumanoidAppearance
     species: IPC
