@@ -96,7 +96,7 @@
         ##New Component needed to drift on it's own after lit.
   - type: Construction
     graph: toys
-    node:
+    node: lantern
 
 - type: entity
   name: red paper lantern
@@ -118,6 +118,9 @@
       right:
       - state: inhand-right
         color: "#a12349"
+  - type: Construction
+    graph: toys
+    node: lantern-red
 
 - type: entity
   name: blue paper lantern
@@ -139,6 +142,9 @@
       right:
       - state: inhand-right
         color: "#425d7d"
+  - type: Construction
+    graph: toys
+    node: lantern-blue
 
 # - type: entity
 #   name: black paper lantern
@@ -181,6 +187,9 @@
       right:
       - state: inhand-right
         color: "#5d997e"
+  - type: Construction
+    graph: toys
+    node: lantern-green
 
 - type: entity
   name: purple paper lantern
@@ -202,6 +211,9 @@
       right:
       - state: inhand-right
         color: "#984aa1"
+  - type: Construction
+    graph: toys
+    node: lantern-purple
 
 #Infinite Health Paper Lantern, will not burn to ash.
 
