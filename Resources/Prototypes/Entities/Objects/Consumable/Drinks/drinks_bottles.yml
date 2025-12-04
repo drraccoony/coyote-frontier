@@ -716,6 +716,9 @@
   name: water bottle
   description: Simple clean water of unknown origin. You think that maybe you dont want to know it.
   components:
+  - type: StaticPrice
+    vendPrice: 500 #Coyote: Makes these cost 500 in all vendors.
+    price: 50 #Coyote: Price specified so vendor price doesn't force the server into an endless restart loop.
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -730,6 +733,7 @@
   - type: Label
     currentLabel: reagent-name-water
   - type: Sealable
+
 
 - type: entity
   parent: [DrinkBottleVisualsAll, DrinkBottlePlasticSmallBaseFull]

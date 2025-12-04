@@ -1060,7 +1060,7 @@
   parent: VendingMachineSnack
   id: VendingMachineSustenance
   name: Sustenance Vendor
-  description: A vending machine which vends food, as required by section 47-C of the NT's Prisoner Ethical Treatment Agreement.
+  description: A vending machine which vends food, the bare minimum required to survive. #Coyote: Reflavours to be less "Evil NT-y"
   components:
   - type: VendingMachine
     pack: SustenanceInventory
@@ -1071,6 +1071,7 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
+    initialStockQuality: 1.0 #Coyote: Made their stock always full at roundstart.
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/sustenance.rsi
     layers:
