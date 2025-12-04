@@ -31,6 +31,7 @@
         volume: 10
   - type: UseDelay
   - type: ExtinguishableSetCollisionWake
+  - type: AirlessFlammable
   - type: Flammable
     fireSpread: false
     canResistFire: false
@@ -103,6 +104,9 @@
     layers:
     - state: paper-lantern
       color: "#a12349"
+    - state: paper-lantern-writing
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false
   - type: Item
     inhandVisuals:
       left:
@@ -121,6 +125,9 @@
     layers:
     - state: paper-lantern
       color: "#425d7d"
+    - state: paper-lantern-writing
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false
   - type: Item
     inhandVisuals:
       left:
@@ -130,23 +137,26 @@
       - state: inhand-right
         color: "#425d7d"
 
-- type: entity
-  name: black paper lantern
-  parent: PaperLantern
-  id: PaperLanternBlack
-  components:
-  - type: Sprite
-    layers:
-    - state: paper-lantern
-      color: "#1b1724"
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-        color: "#1b1724"
-      right:
-      - state: inhand-right
-        color: "#1b1724"
+# - type: entity
+#   name: black paper lantern
+#   parent: PaperLantern
+#   id: PaperLanternBlack
+#   components:
+#   - type: Sprite
+#     layers:
+#     - state: paper-lantern
+#       color: "#1b1724"
+#     - state: paper-lantern-writing
+#       map: ["enum.PaperVisualLayers.Writing"]
+#       visible: false
+#   - type: Item
+#     inhandVisuals:
+#       left:
+#       - state: inhand-left
+#         color: "#1b1724"
+#       right:
+#       - state: inhand-right
+#         color: "#1b1724"
 
 - type: entity
   name: green paper lantern
@@ -157,6 +167,9 @@
     layers:
     - state: paper-lantern
       color: "#5d997e"
+    - state: paper-lantern-writing
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false
   - type: Item
     inhandVisuals:
       left:
@@ -175,6 +188,9 @@
     layers:
     - state: paper-lantern
       color: "#984aa1"
+    - state: paper-lantern-writing
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false
   - type: Item
     inhandVisuals:
       left:
@@ -186,122 +202,122 @@
 
 #Infinite Health Paper Lantern, will not burn to ash.
 
-- type: entity
-  name: magic paper lantern
-  description: It's either magic or high tech, but this paper lantern never goes out and seems to drift forever.
-  parent: BaseItem
-  suffix: Decorative
-  id: PaperLanternInfinite
-  components:
-  - type: Sprite
-    noRot: true
-    sprite: Objects/Misc/paperlantern.rsi
-    layers:
-    - state: paper-lantern
-      color: "#decb8e"
-    - state: lit
-      shader: unshaded
-  - type: PointLight
-    color: "#e39c40"
-    radius: 2.5
-    power: 10
+# - type: entity
+#   name: magic paper lantern
+#   description: It's either magic or high tech, but this paper lantern never goes out and seems to drift forever.
+#   parent: BaseItem
+#   suffix: Decorative
+#   id: PaperLanternInfinite
+#   components:
+#   - type: Sprite
+#     noRot: true
+#     sprite: Objects/Misc/paperlantern.rsi
+#     layers:
+#     - state: paper-lantern
+#       color: "#decb8e"
+#     - state: lit
+#       shader: unshaded
+#   - type: PointLight
+#     color: "#e39c40"
+#     radius: 2.5
+#     power: 10
 
-- type: entity
-  name: magic red paper lantern
-  parent: PaperLanternInfinite
-  id: PaperLanternRedInfinite
-  components:
-  - type: Sprite
-    layers:
-    - state: paper-lantern
-      color: "#a12349"
-    - state: lit
-      shader: unshaded
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-        color: "#a12349"
-      right:
-      - state: inhand-right
-        color: "#a12349"
+# - type: entity
+#   name: magic red paper lantern
+#   parent: PaperLanternInfinite
+#   id: PaperLanternRedInfinite
+#   components:
+#   - type: Sprite
+#     layers:
+#     - state: paper-lantern
+#       color: "#a12349"
+#     - state: lit
+#       shader: unshaded
+#   - type: Item
+#     inhandVisuals:
+#       left:
+#       - state: inhand-left
+#         color: "#a12349"
+#       right:
+#       - state: inhand-right
+#         color: "#a12349"
 
-- type: entity
-  name: magic blue paper lantern
-  parent: PaperLanternInfinite
-  id: PaperLanternBlueInfinite
-  components:
-  - type: Sprite
-    layers:
-    - state: paper-lantern
-      color: "#425d7d"
-    - state: lit
-      shader: unshaded
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-        color: "#425d7d"
-      right:
-      - state: inhand-right
-        color: "#425d7d"
+# - type: entity
+#   name: magic blue paper lantern
+#   parent: PaperLanternInfinite
+#   id: PaperLanternBlueInfinite
+#   components:
+#   - type: Sprite
+#     layers:
+#     - state: paper-lantern
+#       color: "#425d7d"
+#     - state: lit
+#       shader: unshaded
+#   - type: Item
+#     inhandVisuals:
+#       left:
+#       - state: inhand-left
+#         color: "#425d7d"
+#       right:
+#       - state: inhand-right
+#         color: "#425d7d"
 
-- type: entity
-  name: magic black paper lantern
-  parent: PaperLanternInfinite
-  id: PaperLanternBlackInfinite
-  components:
-  - type: Sprite
-    layers:
-    - state: paper-lantern
-      color: "#1b1724"
-    - state: lit
-      shader: unshaded
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-        color: "#1b1724"
-      right:
-      - state: inhand-right
-        color: "#1b1724"
+# - type: entity
+#   name: magic black paper lantern
+#   parent: PaperLanternInfinite
+#   id: PaperLanternBlackInfinite
+#   components:
+#   - type: Sprite
+#     layers:
+#     - state: paper-lantern
+#       color: "#1b1724"
+#     - state: lit
+#       shader: unshaded
+#   - type: Item
+#     inhandVisuals:
+#       left:
+#       - state: inhand-left
+#         color: "#1b1724"
+#       right:
+#       - state: inhand-right
+#         color: "#1b1724"
 
-- type: entity
-  name: magic green paper lantern
-  parent: PaperLanternInfinite
-  id: PaperLanternGreenInfinite
-  components:
-  - type: Sprite
-    layers:
-    - state: paper-lantern
-      color: "#5d997e"
-    - state: lit
-      shader: unshaded
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-        color: "#5d997e"
-      right:
-      - state: inhand-right
-        color: "#5d997e"
+# - type: entity
+#   name: magic green paper lantern
+#   parent: PaperLanternInfinite
+#   id: PaperLanternGreenInfinite
+#   components:
+#   - type: Sprite
+#     layers:
+#     - state: paper-lantern
+#       color: "#5d997e"
+#     - state: lit
+#       shader: unshaded
+#   - type: Item
+#     inhandVisuals:
+#       left:
+#       - state: inhand-left
+#         color: "#5d997e"
+#       right:
+#       - state: inhand-right
+#         color: "#5d997e"
 
-- type: entity
-  name: magic purple paper lantern
-  parent: PaperLanternInfinite
-  id: PaperLanternPurpleInfinite
-  components:
-  - type: Sprite
-    layers:
-    - state: paper-lantern
-      color: "#984aa1"
-    - state: lit
-      shader: unshaded
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-        color: "#984aa1"
-      right:
-      - state: inhand-right
-        color: "#984aa1"
+# - type: entity
+#   name: magic purple paper lantern
+#   parent: PaperLanternInfinite
+#   id: PaperLanternPurpleInfinite
+#   components:
+#   - type: Sprite
+#     layers:
+#     - state: paper-lantern
+#       color: "#984aa1"
+#     - state: lit
+#       shader: unshaded
+#   - type: Item
+#     inhandVisuals:
+#       left:
+#       - state: inhand-left
+#         color: "#984aa1"
+#       right:
+#       - state: inhand-right
+#         color: "#984aa1"
