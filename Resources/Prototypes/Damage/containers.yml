@@ -29,10 +29,6 @@
   supportedGroups:
     - Brute
     - Burn
-  supportedTypes:
-    - Structural
-    - Radiation
-    - Bloodloss
 
 - type: damageContainer
   id: Shield
