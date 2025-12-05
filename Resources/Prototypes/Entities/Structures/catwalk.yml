@@ -56,3 +56,19 @@
     cost: 2
     delay: 2
     fx: EffectRCDDeconstruct2
+
+# START COYOTE
+- type: entity
+  parent: Catwalk
+  id: MonoCatwalk
+  name: catwalk
+  description: A catwalk for easier EVA maneuvering and cable placement.
+  components:
+  - type: Sprite
+    sprite: _Mono/Structures/catwalk.rsi
+    drawdepth: FloorTiles
+  - type: Icon
+    sprite: _Mono/Structures/catwalk.rsi
+    state: catwalk_preview
+
+# END COYOTE
