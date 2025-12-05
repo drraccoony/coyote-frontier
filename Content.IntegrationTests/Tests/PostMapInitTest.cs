@@ -69,6 +69,7 @@ namespace Content.IntegrationTests.Tests
             // End Frontier
             // Coyote
             "/Maps/_NF/Shuttles/Nfsd/malinois.yml", // Contains EXP-2100g "Duster"
+            "/Maps/_NF/Shuttles/Expedition/decadedove.yml", // Contains PTK-1500e "Matter Dematerializer"
             // End Coyote
         };
 
