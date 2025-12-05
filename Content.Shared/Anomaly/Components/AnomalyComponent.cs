@@ -20,6 +20,10 @@ namespace Content.Shared.Anomaly.Components;
 [Access(typeof(SharedAnomalySystem), typeof(SharedInnerBodyAnomalySystem))]
 public sealed partial class AnomalyComponent : Component
 {
+    private float _stability = 0f;
+    private float _severity = 0f;
+    private float _health = 1f;
+
     /// <summary>
     /// How likely an anomaly is to grow more dangerous. Moves both up and down.
     /// Ranges from 0 to 1.
@@ -31,7 +35,11 @@ public sealed partial class AnomalyComponent : Component
     /// value that only matters in relation to the <see cref="GrowthThreshold"/> and <see cref="DecayThreshold"/>
     /// </remarks>
     [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-    public float Stability = 0f;
+    public float Stability
+    {
+        get => _stability;
+        set => _stability = Math.Clamp(value, 0f, 1f);
+    }
 
     /// <summary>
     /// How severe the effects of an anomaly are. Moves only upwards.
@@ -43,7 +51,11 @@ public sealed partial class AnomalyComponent : Component
     /// Wacky-Stability scale lives on in my heart. - emo
     /// </remarks>
     [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-    public float Severity = 0f;
+    public float Severity
+    {
+        get => _severity;
+        set => _severity = Math.Clamp(value, 0f, 1f);
+    }
 
     #region Health
     /// <summary>
@@ -53,7 +65,11 @@ public sealed partial class AnomalyComponent : Component
     /// reaching a supercritical point.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-    public float Health = 1f;
+    public float Health
+    {
+        get => _health;
+        set => _health = Math.Clamp(value, 0f, 1f);
+    }
 
     /// <summary>
     /// If the <see cref="Stability"/> of the anomaly exceeds this value, it
