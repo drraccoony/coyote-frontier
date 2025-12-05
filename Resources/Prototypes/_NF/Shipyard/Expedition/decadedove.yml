@@ -6,16 +6,23 @@
 # GitHub: crystalHex (https://github.com/crystalHex)
 # Discord: ???
 
+# Coyote Modifications
+# Github: R3N0mon
+# Discord: r3n0mon
+
 # Shuttle Notes:
-# Archetypes = Cargo/Salvage
+# Archetypes = Cargo/Salvage/Merc
 # Halftypes = Engineering
 # Domestic Areas = Moderate
+# Coyote - Updated Piping, Updated Air Alarms, Moved Hardsuit Storage, Moved Gas Tank Dispensor, Moved Medicine Wall Locker, Moved Defib Cabinet, Replaced Plastic Plants with Real Plants, Replaced 1 Salvage Suit with Private Security Suit
+# Added Right Facing Thruster, Added Shower, Added 5 Cargo Racks, Added Scrap Processor, Added Salvage Techfab, Added Merc Techfab, Added Emu, Added Gaslock, Added Mining Canons, Added Rear Exterior Lights, Added Wallmounted Freezer
+
 - type: vessel
   id: DecadeDove
   parent: BaseVessel
-  name: LL2 Dove
+  name: LL3 Dove
   description: Versatile expedition-capable multi-purpose light freighter.
-  price: 163000 #66485, +50k(exped) LL2 x1.4 = 163079
+  price: 329000 # Coyote pricing GridAppraisal 61604.86 + LL3 x2.5 + TileCost 124800(416x300) + Exped (50k) = 328812.15
   category: Medium
   group: Expedition
   shuttlePath: /Maps/_NF/Shuttles/Expedition/decadedove.yml
