@@ -36,7 +36,7 @@ namespace Content.Client.PDA
 
         private string _balance = Loc.GetString("comp-pda-ui-unknown"); // Frontier
         private string _shuttleDeed = Loc.GetString("comp-pda-ui-unknown"); // Frontier
-        
+
         private TimeSpan? _shiftEndTime = null; // Time remaining until shift end
 
         private int _currentView;

@@ -48,7 +48,7 @@ namespace Content.Server.GameTicking.Commands
             // Use RealTime to avoid drift issues during long shifts
             var endTime = _timing.RealTime + TimeSpan.FromHours(hours);
             ticker.ShiftEndTime = endTime;
-            
+
             shell.WriteLine($"Shift end time set to {hours} hours from now (server real time: {endTime}).");
         }
     }
