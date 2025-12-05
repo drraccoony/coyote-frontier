@@ -211,7 +211,7 @@
   materials:
     Steel: 250
     Plastic: 100
-  result: RepairPatch
+  result: RepairPatch1
   categories:
   - Engineering
   completetime: 5
