@@ -119,7 +119,7 @@
       - state: inhand-right
         color: "#a12349"
   - type: Construction
-    graph: toys
+    graph: PaperLanternRed
     node: lantern-red
 
 - type: entity
@@ -143,7 +143,7 @@
       - state: inhand-right
         color: "#425d7d"
   - type: Construction
-    graph: toys
+    graph: PaperLanternBlue
     node: lantern-blue
 
 # - type: entity
@@ -188,7 +188,7 @@
       - state: inhand-right
         color: "#5d997e"
   - type: Construction
-    graph: toys
+    graph: PaperLanternGreen
     node: lantern-green
 
 - type: entity
@@ -212,7 +212,7 @@
       - state: inhand-right
         color: "#984aa1"
   - type: Construction
-    graph: toys
+    graph: PaperLanternPurple
     node: lantern-purple
 
 #Infinite Health Paper Lantern, will not burn to ash.
