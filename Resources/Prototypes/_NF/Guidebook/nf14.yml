@@ -5,6 +5,7 @@
   priority: -1
   children: # note: children may be in other files. When adding to this, update the priority of anything after.
   - Bank
+  - ShiftsAndPersistence
   - Hiring
   - Piloting
   - Survival # Moved out from Station and Shifts section (upstream file)
@@ -20,10 +21,16 @@
   priority: 0
 
 - type: guideEntry
+  id: ShiftsAndPersistence
+  name: guide-entry-shifts-and-persistence
+  text: "/ServerInfo/_NF/Guidebook/ShiftsAndPersistence.xml"
+  priority: 1
+
+- type: guideEntry
   id: Hiring
   name: guide-entry-hiring
   text: "/ServerInfo/_NF/Guidebook/Hiring.xml"
-  priority: 1
+  priority: 2
   children:
   - Interviews
 
@@ -31,7 +38,7 @@
   id: Piloting
   name: guide-entry-piloting
   text: "/ServerInfo/_NF/Guidebook/Piloting.xml"
-  priority: 2
+  priority: 3
 
 - type: guideEntry
   id: SectorTopology

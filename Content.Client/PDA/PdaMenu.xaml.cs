@@ -36,6 +36,8 @@ namespace Content.Client.PDA
 
         private string _balance = Loc.GetString("comp-pda-ui-unknown"); // Frontier
         private string _shuttleDeed = Loc.GetString("comp-pda-ui-unknown"); // Frontier
+        
+        private TimeSpan? _shiftEndTime = null; // Time remaining until shift end
 
         private int _currentView;
 
@@ -192,6 +194,27 @@ namespace Content.Client.PDA
 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
                 ("time", stationTime.ToString("d\\:hh\\:mm\\:ss"))));
+
+            // Store the absolute shift end time (server RealTime) for calculating remaining time
+            _shiftEndTime = state.ShiftEndTime;
+            if (_shiftEndTime.HasValue)
+            {
+                var timeRemaining = _shiftEndTime.Value - _gameTiming.RealTime;
+                if (timeRemaining > TimeSpan.Zero)
+                {
+                    ShiftEndTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-shift-end-time",
+                        ("time", timeRemaining.ToString("d\\:hh\\:mm\\:ss"))));
+                    ShiftEndTimeLabel.Visible = true;
+                }
+                else
+                {
+                    ShiftEndTimeLabel.Visible = false;
+                }
+            }
+            else
+            {
+                ShiftEndTimeLabel.Visible = false;
+            }
 
             var alertLevel = state.PdaOwnerInfo.StationAlertLevel;
             var alertColor = state.PdaOwnerInfo.StationAlertColor;
@@ -366,6 +389,23 @@ namespace Content.Client.PDA
 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
                 ("time", stationTime.ToString("d\\:hh\\:mm\\:ss"))));
+
+            // Calculate and update remaining time until shift end in real-time
+            if (_shiftEndTime.HasValue)
+            {
+                var timeRemaining = _shiftEndTime.Value - _gameTiming.RealTime;
+                if (timeRemaining > TimeSpan.Zero)
+                {
+                    ShiftEndTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-shift-end-time",
+                        ("time", timeRemaining.ToString("d\\:hh\\:mm\\:ss"))));
+                    ShiftEndTimeLabel.Visible = true;
+                }
+                else
+                {
+                    // Shift has ended, hide the label
+                    ShiftEndTimeLabel.Visible = false;
+                }
+            }
         }
     }
 }
