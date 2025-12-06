@@ -1,0 +1,62 @@
+- type: entity
+  parent: Airlock
+  id: AirlockAdvanced
+  name: advanced airlock
+  suffix: Advanced
+  description: An advanced airlock with ownership and access control features. The first person to interact with it using an ID card becomes the owner.
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/basic.rsi
+  - type: AdvancedAirlock
+  - type: UserInterface
+    interfaces:
+      enum.AdvancedAirlockUiKey.Key:
+        type: AdvancedAirlockBoundUserInterface
+  - type: ActivatableUI
+    key: enum.AdvancedAirlockUiKey.Key
+    singleUser: true
+    closeOnHandDeselect: false
+
+- type: entity
+  parent: AirlockAdvanced
+  id: AirlockAdvancedGlass
+  suffix: Advanced, Glass
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Glass/glass.rsi
+  - type: Door
+    occludes: false
+  - type: Occluder
+    enabled: false
+
+- type: entity
+  parent: AirlockAdvanced
+  id: AirlockAdvancedCommand
+  suffix: Advanced, Command
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/command.rsi
+
+- type: entity
+  parent: AirlockAdvancedGlass
+  id: AirlockAdvancedCommandGlass
+  suffix: Advanced, Command, Glass
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Glass/command.rsi
+
+- type: entity
+  parent: AirlockAdvanced
+  id: AirlockAdvancedSecurity
+  suffix: Advanced, Security
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/security.rsi
+
+- type: entity
+  parent: AirlockAdvancedGlass
+  id: AirlockAdvancedSecurityGlass
+  suffix: Advanced, Security, Glass
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Glass/security.rsi
