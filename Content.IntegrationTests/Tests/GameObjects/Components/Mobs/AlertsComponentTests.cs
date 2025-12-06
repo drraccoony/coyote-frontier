@@ -1,7 +1,9 @@
 using System.Linq;
 using Content.Client.UserInterface.Systems.Alerts.Controls;
 using Content.Client.UserInterface.Systems.Alerts.Widgets;
+using Content.Server.Preferences.Managers;
 using Content.Shared.Alert;
+using Content.Shared.Preferences;
 using Robust.Client.UserInterface;
 using Robust.Server.Player;
 using Robust.Shared.GameObjects;
@@ -29,6 +31,18 @@ namespace Content.IntegrationTests.Tests.GameObjects.Components.Mobs
             var entManager = server.ResolveDependency<IEntityManager>();
             var serverPlayerManager = server.ResolveDependency<IPlayerManager>();
             var alertsSystem = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<AlertsSystem>();
+            var serverPrefManager = server.ResolveDependency<IServerPreferencesManager>();
+
+            // Ensure the player spawns as a human (not a random species like IPC)
+            // IPCs have BorgHealth/BorgBattery alerts instead of HumanHealth
+            await server.WaitAssertion(() =>
+            {
+                var session = serverPlayerManager.Sessions.Single();
+                var humanProfile = HumanoidCharacterProfile.RandomWithSpecies("Human");
+                serverPrefManager.SetProfile(session.UserId, 0, humanProfile).Wait();
+            });
+
+            await pair.RunTicksSync(5);
 
             EntityUid playerUid = default;
             await server.WaitAssertion(() =>
