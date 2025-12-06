@@ -14,6 +14,10 @@
   - type: Clickable
   - type: InteractionOutline
   - type: Actions
+  - type: RadarBlip # COYOTE: Gives turrets radar blips
+    scale: 3
+    shape: Diamond
+    visibleFromOtherGrids: true
   - type: Fixtures
     fixtures:
       fix1:
