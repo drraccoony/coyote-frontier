@@ -33,7 +33,7 @@ public sealed class AdvancedAirlockSystem : SharedAdvancedAirlockSystem
         SubscribeLocalEvent<AdvancedAirlockComponent, AdvancedAirlockAddUserMessage>(OnAddUserMessage);
         SubscribeLocalEvent<AdvancedAirlockComponent, AdvancedAirlockRemoveUserMessage>(OnRemoveUserMessage);
         SubscribeLocalEvent<AdvancedAirlockComponent, AdvancedAirlockResetMessage>(OnResetMessage);
-        
+
         // Override BeforeDoorOpenedEvent to inject our custom access check
         SubscribeLocalEvent<AdvancedAirlockComponent, BeforeDoorOpenedEvent>(OnBeforeDoorOpened, before: new[] { typeof(SharedDoorSystem) });
     }
@@ -52,16 +52,16 @@ public sealed class AdvancedAirlockSystem : SharedAdvancedAirlockSystem
         if (!CheckAdvancedAirlockAccess(ent, args.User.Value))
         {
             args.Cancel();
-            
+
             // Show deny animation and popup (rate-limited to prevent spam)
             var now = _gameTiming.CurTime;
             if (!_lastDenyTime.TryGetValue(args.User.Value, out var lastTime) || (now - lastTime).TotalSeconds >= 0.5)
             {
                 _lastDenyTime[args.User.Value] = now;
-                
+
                 if (TryComp<DoorComponent>(ent, out var door))
                     _doorSystem.Deny(ent, door, args.User.Value);
-                    
+
                 _popupSystem.PopupEntity(Loc.GetString("advanced-airlock-access-denied"), ent, args.User.Value);
             }
         }
@@ -124,11 +124,11 @@ public sealed class AdvancedAirlockSystem : SharedAdvancedAirlockSystem
         var xformQuery = GetEntityQuery<TransformComponent>();
         var xform = xformQuery.GetComponent(ent);
         var idCardQuery = AllEntityQuery<IdCardComponent, TransformComponent>();
-        
+
         IdCardComponent? targetIdCard = null;
         while (idCardQuery.MoveNext(out var targetId, out var targetComp, out var targetXform))
         {
-            if (targetComp.FullName == args.UserName && 
+            if (targetComp.FullName == args.UserName &&
                 targetXform.Coordinates.InRange(EntityManager, xform.Coordinates, 2f))
             {
                 targetIdCard = targetComp;
@@ -197,7 +197,7 @@ public sealed class AdvancedAirlockSystem : SharedAdvancedAirlockSystem
     {
         // Check if the actor is the owner
         var isOwner = false;
-        if (_idCardSystem.TryFindIdCard(actor, out var idCard) && 
+        if (_idCardSystem.TryFindIdCard(actor, out var idCard) &&
             TryComp<IdCardComponent>(idCard, out var idCardComp))
         {
             isOwner = IsOwner(ent, idCardComp.FullName);

@@ -143,11 +143,11 @@ public sealed class AdvancedAirlockWindow : DefaultWindow
         if (state.OwnerName != null)
         {
             _ownerLabel.Visible = true;
-            var jobTitle = string.IsNullOrEmpty(state.OwnerJobTitle) 
+            var jobTitle = string.IsNullOrEmpty(state.OwnerJobTitle)
                 ? Loc.GetString("advanced-airlock-no-job")
                 : state.OwnerJobTitle;
-            _ownerLabel.Text = Loc.GetString("advanced-airlock-owner-label", 
-                ("name", state.OwnerName), 
+            _ownerLabel.Text = Loc.GetString("advanced-airlock-owner-label",
+                ("name", state.OwnerName),
                 ("job", jobTitle));
         }
         else
@@ -160,7 +160,7 @@ public sealed class AdvancedAirlockWindow : DefaultWindow
 
         // Update authorized users list
         _authorizedListContainer.RemoveAllChildren();
-        
+
         if (state.IsOwner && state.IsClaimed)
         {
             // Show management controls for owner

@@ -19,7 +19,7 @@ public sealed class AdvancedAirlockBoundUserInterface : BoundUserInterface
 
         _window = this.CreateWindow<AdvancedAirlockWindow>();
         _window.Title = Loc.GetString("advanced-airlock-window-title");
-        
+
         _window.OnClaimPressed += () => SendMessage(new AdvancedAirlockClaimMessage());
         _window.OnAddUserPressed += (name) => SendMessage(new AdvancedAirlockAddUserMessage(name));
         _window.OnRemoveUserPressed += (name) => SendMessage(new AdvancedAirlockRemoveUserMessage(name));
@@ -39,7 +39,7 @@ public sealed class AdvancedAirlockBoundUserInterface : BoundUserInterface
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
-        
+
         if (disposing)
         {
             _window?.Close();
