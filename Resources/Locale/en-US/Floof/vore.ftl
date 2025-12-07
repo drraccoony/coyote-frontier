@@ -4,6 +4,8 @@ vore-devour = [color=red]Devour[/color]
 vore-release = Release {CAPITALIZE($entity)}
 vore-digest = Digest {CAPITALIZE($entity)}
 vore-stop-digest = Stop digesting {CAPITALIZE($entity)}
+vore-show-examine-on = Show On Examine: YES
+vore-show-examine-off = Show On Examine: NO
 
 vore-attempt-devour = {CAPITALIZE($entity)} is trying to devour {CAPITALIZE($prey)}!
 vore-devoured = {CAPITALIZE($entity)} devoured {CAPITALIZE($prey)}
