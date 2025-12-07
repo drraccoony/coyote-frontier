@@ -66,7 +66,7 @@ public sealed partial class ShiftSettingsWindow : DefaultWindow
     private void UpdateCurrentShiftEndLabel(double hours)
     {
         var endTime = _gameTiming.RealTime + TimeSpan.FromHours(hours);
-        CurrentShiftEndLabel.Text = Loc.GetString("administration-shift-settings-shift-end-set", 
+        CurrentShiftEndLabel.Text = Loc.GetString("administration-shift-settings-shift-end-set",
             ("time", endTime.ToString(@"d\:hh\:mm\:ss")));
     }
 }

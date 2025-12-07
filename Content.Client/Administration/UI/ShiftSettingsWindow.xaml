@@ -4,22 +4,22 @@
     <BoxContainer Orientation="Vertical" SeparationOverride="8" Margin="8">
         <!-- Shift End Time Settings -->
         <Label Text="{Loc administration-shift-settings-duration-label}" StyleClasses="LabelBig" />
-        
+
         <BoxContainer Orientation="Horizontal" SeparationOverride="4">
             <Label Text="{Loc administration-shift-settings-duration-label}" MinSize="150 0" />
-            <LineEdit Name="ShiftEndTimeInput" 
-                      HorizontalExpand="True" 
+            <LineEdit Name="ShiftEndTimeInput"
+                      HorizontalExpand="True"
                       PlaceHolder="{Loc administration-shift-settings-duration-placeholder}" />
             <Button Name="SetShiftEndTimeButton" Text="{Loc administration-shift-settings-set-button}" MinSize="80 0" />
             <Button Name="ClearShiftEndTimeButton" Text="{Loc administration-shift-settings-clear-button}" MinSize="80 0" />
         </BoxContainer>
-        
+
         <BoxContainer Orientation="Horizontal" SeparationOverride="4">
             <Label Text="{Loc administration-shift-settings-auto-call-label}" MinSize="150 0" />
             <CheckBox Name="ShiftEndAutoCallCheckbox" />
             <Label Name="ShiftEndAutoCallStatus" Text="{Loc administration-shift-settings-auto-call-enabled}" />
         </BoxContainer>
-        
+
         <BoxContainer Orientation="Horizontal" SeparationOverride="4">
             <Label Text="{Loc administration-shift-settings-current-shift-end}" MinSize="150 0" />
             <Label Name="CurrentShiftEndLabel" Text="{Loc administration-shift-settings-no-shift-end}" />

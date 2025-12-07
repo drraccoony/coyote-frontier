@@ -356,10 +356,10 @@ namespace Content.Server.RoundEnd
         public override void Update(float frameTime)
         {
             // Check if we should auto-call based on shift end time (30 minutes remaining)
-            if (_gameTicker.ShiftEndAutoCallEnabled && 
-                _gameTicker.ShiftEndTime.HasValue && 
+            if (_gameTicker.ShiftEndAutoCallEnabled &&
+                _gameTicker.ShiftEndTime.HasValue &&
                 !_shiftEndAutoCalledBefore &&
-                !_shuttle.EmergencyShuttleArrived && 
+                !_shuttle.EmergencyShuttleArrived &&
                 ExpectedCountdownEnd is null)
             {
                 var timeRemaining = _gameTicker.ShiftEndTime.Value - _gameTiming.RealTime;
@@ -368,10 +368,10 @@ namespace Content.Server.RoundEnd
                     // Send announcement about shift ending
                     _chatSystem.DispatchGlobalAnnouncement(
                         Loc.GetString("round-end-system-shift-ending-announcement"),
-                        Loc.GetString("round-end-system-shuttle-sender-announcement"), 
-                        false, 
+                        Loc.GetString("round-end-system-shuttle-sender-announcement"),
+                        false,
                         colorOverride: Color.Orange);
-                    
+
                     // Call shuttle with 30 minute ETA to align with shift end time
                     RequestRoundEnd(TimeSpan.FromMinutes(30), null, false, "round-end-system-shuttle-auto-called-announcement");
                     _shiftEndAutoCalledBefore = true;
