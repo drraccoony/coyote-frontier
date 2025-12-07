@@ -9,6 +9,7 @@ namespace Content.Client.Administration.UI.Tabs
     public sealed partial class RoundTab : Control
     {
         [Dependency] private readonly IClientConsoleHost _console = default!;
+        [Dependency] private readonly IUserInterfaceManager _userInterface = default!;
 
         public RoundTab()
         {
@@ -19,6 +20,14 @@ namespace Content.Client.Administration.UI.Tabs
             EndRound.OnPressed += _ => _console.ExecuteCommand("endround");
             RestartRound.OnPressed += _ => _console.ExecuteCommand("restartround");
             RestartRoundNow.OnPressed += _ => _console.ExecuteCommand("restartroundnow");
+
+            ShiftSettingsButton.OnPressed += _ => OpenShiftSettingsWindow();
+        }
+
+        private void OpenShiftSettingsWindow()
+        {
+            var window = new ShiftSettingsWindow();
+            window.OpenCentered();
         }
     }
 }

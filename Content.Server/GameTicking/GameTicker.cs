@@ -82,6 +82,12 @@ namespace Content.Server.GameTicking
         [ViewVariables]
         public TimeSpan? ShiftEndTime { get; set; }
 
+        /// <summary>
+        /// Whether the emergency shuttle should be automatically called when 30 minutes remain in the shift.
+        /// </summary>
+        [ViewVariables]
+        public bool ShiftEndAutoCallEnabled { get; set; } = true;
+
         public override void Initialize()
         {
             base.Initialize();
