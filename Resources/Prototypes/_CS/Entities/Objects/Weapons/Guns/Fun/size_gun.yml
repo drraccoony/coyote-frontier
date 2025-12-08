@@ -47,3 +47,13 @@
   - type: Wires
     boardName: wires-board-name-sizemanipulator
     layoutId: SizeManipulator
+  - type: FireOnSignal
+  - type: DeviceLinkSink
+    ports:
+    - GrowTrigger
+    - ShrinkTrigger
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
