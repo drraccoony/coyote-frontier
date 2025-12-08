@@ -5,14 +5,29 @@
     ClothingNeckCollarBlack: 4294967295 # Infinite
     ClothingNeckCollarBlue: 4294967295 # Infinite
     ClothingNeckCollarPink: 4294967295 # Infinite
+    ClothingNeckCollarEpi: 4294967295 # Infinite
+    ClothingNeckCollarEngi: 4294967295 # Infinite
+    ClothingNeckCollarLogi: 4294967295 # Infinite
+    ClothingNeckCollarMed: 4294967295 # Infinite
     ClothingNeckBellCollar: 4294967295 # Infinite
     ClothingNeckShockCollar: 4294967295 # Infinite
+    RemoteSignaller: 4294967295
     # Restraints
     FuzzycuffsBlack: 4294967295 # Infinite
     FuzzycuffsBlue: 4294967295 # Infinite
     FuzzycuffsPink: 4294967295 # Infinite
     FuzzycuffsPurple: 4294967295 # Infinite
     FuzzycuffsRed: 4294967295 # Infinite
+    # Bondage
+    BondageHarness: 4294967295 # Infinite
+    BondageLegSleeve: 4294967295 # Infinite
+    BondageArmSleeve: 4294967295 # Infinite
+    BondageMitts: 4294967295 # Infinite
+    AnkleCuffs: 4294967295 # Infinite
+    WristCuffs: 4294967295 # Infinite
+    RingGag: 4294967295 # Infinite
+    BallGag: 4294967295 # Infinite
+    BlindfoldBDSM: 4294967295 # Infinite
     # Handcuffs: 4294967295 # Infinite
     Zipties: 4294967295 # Infinite
     TwistTies: 4294967295 # Infinite
@@ -76,7 +91,7 @@
     # Snacks
     FoodTinPeachesMaint: 8
     # Weapons
-    WeaponSizeManipulator: 10 # Removed for rollback
+    WeaponSizeManipulator: 15 # Removed for rollback
   contrabandInventory:
     # Coder Items
     ClothingUnderSocksCoder: 4294967295 # Infinite
