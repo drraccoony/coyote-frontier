@@ -12,6 +12,7 @@
     - Maintenance
     - NuclearOperative
     - SyndicateAgent
+    - BlackMarket
   - type: Sprite
     layers:
     - state: default
