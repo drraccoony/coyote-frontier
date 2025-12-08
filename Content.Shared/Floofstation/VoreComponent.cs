@@ -17,6 +17,9 @@ public sealed partial class VoreComponent : Component
         Params = AudioParams.Default.WithVolume(-3f),
     };
     public Container Stomach = default!;
+
+    [DataField]
+    public bool ShowOnExamine = true;
 }
 
 [Serializable, NetSerializable]
