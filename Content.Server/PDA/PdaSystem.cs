@@ -2,6 +2,7 @@ using Content.Server.Access.Systems;
 using Content.Server.AlertLevel;
 using Content.Server.CartridgeLoader;
 using Content.Server.Chat.Managers;
+using Content.Server.GameTicking;
 using Content.Server.Instruments;
 using Content.Server.PDA.Ringer;
 using Content.Server.Station.Systems;
@@ -21,6 +22,7 @@ using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared._NF.Bank.Components; // Frontier
 using Content.Shared._NF.Shipyard.Components; // Frontier
@@ -42,6 +44,8 @@ namespace Content.Server.PDA
         [Dependency] private readonly ContainerSystem _containerSystem = default!;
         [Dependency] private readonly IdCardSystem _idCard = default!;
         [Dependency] private readonly SectorServiceSystem _sectorService = default!;
+        [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private readonly GameTicker _gameTicker = default!;
 
         public override void Initialize()
         {
@@ -215,6 +219,13 @@ namespace Content.Server.PDA
                 ownedShipName = ShipyardSystem.GetFullName(shuttleDeedComp);
             // End Frontier: balance & ship deeds
 
+            // Send the absolute shift end time (server RealTime) so client can calculate remaining time
+            TimeSpan? shiftEndTime = null;
+            if (_gameTicker.ShiftEndTime.HasValue)
+            {
+                shiftEndTime = _gameTicker.ShiftEndTime.Value;
+            }
+
             var state = new PdaUpdateState(
                 programs,
                 GetNetEntity(loader.ActiveProgram),
@@ -235,7 +246,8 @@ namespace Content.Server.PDA
                 pda.StationName,
                 showUplink,
                 hasInstrument,
-                address);
+                address,
+                shiftEndTime);
 
             _ui.SetUiState(uid, PdaUiKey.Key, state);
         }
