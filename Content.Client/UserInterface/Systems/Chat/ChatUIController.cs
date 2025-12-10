@@ -838,6 +838,9 @@ public sealed partial class ChatUIController : UIController
 
     public void ProcessChatMessage(ChatMessage msg, bool speechBubble = true)
     {
+        // DEBUG: Log all incoming messages with subtle status
+        _sawmill.Info($"ProcessChatMessage - Channel: {msg.Channel}, Message: {msg.Message}, SenderEntity: {msg.SenderEntity}, IsSubtle: {msg.IsSubtle}");
+
         // color the name unless it's something like "the old man"
         if ((msg.Channel == ChatChannel.Local || msg.Channel == ChatChannel.Whisper) && _chatNameColorsEnabled)
         {
@@ -870,6 +873,38 @@ public sealed partial class ChatUIController : UIController
             if (!isOwnMessage && isAllowedChannel)
             {
                 _audio.PlayGlobal("/Audio/_COYOTE/UserInterface/mention.ogg", Filter.Local(), false);
+            }
+        }
+
+        // Play LOOC sound notification if enabled and on cooldown
+        if (_loocSoundEnabled && _audio != null && (msg.Channel == ChatChannel.LOOC || msg.Channel == ChatChannel.SubtleLOOC))
+        {
+            var isOwnMessage = _player.LocalEntity != null && _ent.GetEntity(msg.SenderEntity) == _player.LocalEntity;
+            var currentTime = _timing.CurTime;
+
+            _sawmill.Info($"LOOC message detected. Enabled: {_loocSoundEnabled}, IsOwnMessage: {isOwnMessage}, Channel: {msg.Channel}");
+
+            if (!isOwnMessage && (currentTime - _lastLoocSoundTime) >= SoundCooldown)
+            {
+                _sawmill.Info("Playing LOOC notification sound!");
+                _audio.PlayGlobal("/Audio/_COYOTE/UserInterface/looc_sound.ogg", Filter.Local(), false);
+                _lastLoocSoundTime = currentTime;
+            }
+        }
+
+        // Play Subtle sound notification if enabled (for subtle emotes)
+        if (_subtleSoundEnabled && _audio != null && msg.IsSubtle)
+        {
+            var isOwnMessage = _player.LocalEntity != null && _ent.GetEntity(msg.SenderEntity) == _player.LocalEntity;
+            var currentTime = _timing.CurTime;
+
+            _sawmill.Info($"Subtle Emote message detected. Enabled: {_subtleSoundEnabled}, IsOwnMessage: {isOwnMessage}");
+
+            if (!isOwnMessage && (currentTime - _lastSubtleSoundTime) >= SoundCooldown)
+            {
+                _sawmill.Info("Playing Subtle notification sound!");
+                _audio.PlayGlobal("/Audio/_COYOTE/UserInterface/subtle_sound.ogg", Filter.Local(), false);
+                _lastSubtleSoundTime = currentTime;
             }
         }
 

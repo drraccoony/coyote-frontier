@@ -42,6 +42,8 @@ ui-options-event-music = Event Music
 ui-options-admin-sounds = Play Admin Sounds
 ui-options-bwoink-sound = Play AHelp Notification Sound
 ui-options-mention-sound = Play Mention Sound
+ui-options-looc-sound = Play LOOC Notification Sound
+ui-options-subtle-sound = Play Subtle Notification Sound
 ui-options-volume-label = Volume
 
 ## Graphics menu
