@@ -32,7 +32,7 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
     private bool _subtleSoundEnabled;
     private TimeSpan _lastLoocSoundTime;
     private TimeSpan _lastSubtleSoundTime;
-    private static readonly TimeSpan SoundCooldown = TimeSpan.FromMinutes(2);
+    private static readonly TimeSpan SoundCooldown = TimeSpan.FromMinutes(1);
 
     /// <summary>
     ///     The boolean that keeps track of the 'OnCharacterUpdated' event, whenever it's a player attaching or opening the character info panel.

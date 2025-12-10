@@ -884,10 +884,14 @@ public sealed partial class ChatUIController : UIController
 
             _sawmill.Info($"LOOC message detected. Enabled: {_loocSoundEnabled}, IsOwnMessage: {isOwnMessage}, Channel: {msg.Channel}");
 
-            if (!isOwnMessage && (currentTime - _lastLoocSoundTime) >= SoundCooldown)
+            if (!isOwnMessage)
             {
-                _sawmill.Info("Playing LOOC notification sound!");
-                _audio.PlayGlobal("/Audio/_COYOTE/UserInterface/looc_sound.ogg", Filter.Local(), false);
+                if ((currentTime - _lastLoocSoundTime) >= SoundCooldown)
+                {
+                    _sawmill.Info("Playing LOOC notification sound!");
+                    _audio.PlayGlobal("/Audio/_COYOTE/UserInterface/looc_sound.ogg", Filter.Local(), false);
+                }
+                // Reset cooldown timer on each message to avoid interrupting conversations
                 _lastLoocSoundTime = currentTime;
             }
         }
@@ -900,10 +904,14 @@ public sealed partial class ChatUIController : UIController
 
             _sawmill.Info($"Subtle Emote message detected. Enabled: {_subtleSoundEnabled}, IsOwnMessage: {isOwnMessage}");
 
-            if (!isOwnMessage && (currentTime - _lastSubtleSoundTime) >= SoundCooldown)
+            if (!isOwnMessage)
             {
-                _sawmill.Info("Playing Subtle notification sound!");
-                _audio.PlayGlobal("/Audio/_COYOTE/UserInterface/subtle_sound.ogg", Filter.Local(), false);
+                if ((currentTime - _lastSubtleSoundTime) >= SoundCooldown)
+                {
+                    _sawmill.Info("Playing Subtle notification sound!");
+                    _audio.PlayGlobal("/Audio/_COYOTE/UserInterface/subtle_sound.ogg", Filter.Local(), false);
+                }
+                // Reset cooldown timer on each message to avoid interrupting conversations
                 _lastSubtleSoundTime = currentTime;
             }
         }
