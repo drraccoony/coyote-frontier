@@ -77,6 +77,17 @@
     - EncryptionKeyFreelance
     - EncryptionKeyMedical
 
+- type: chameleonOutfit
+  id: RipperDocChameleonOutfit
+  job: RipperDoc
+  equipment:
+    head: ClothingHeadNurseHat
+    eyes: ClothingEyesHudMedical
+    mask: ClothingMaskSterile
+    neck: ClothingNeckStethoscope
+    outerClothing: ClothingOuterCoatLab
+    gloves: ClothingHandsGlovesLatex
+
 - type: roleLoadout
   id: JobRipperDoc
   groups:
