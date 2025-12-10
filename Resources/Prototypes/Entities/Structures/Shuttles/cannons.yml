@@ -40,9 +40,9 @@
 # naming: LSE (Laser) + conventional power + suffix (c for PowerCage, e for wired energy) + Name
 # example: LSE-100e "Clown destroyer" (powered by the wiring, very weak)
 
-- type: entity
+- type: entity #coyote
   id: ShuttleGunSvalinnMachineGun
-  parent: [ ShuttleGunBase, ConstructibleMachine]
+  parent: [ ShuttleGunBase, ConstructibleMachine, BaseC2ExpeditionContraband ]
   name: LSE-400c "Svalinn machine gun"
   description: Basic stationary laser unit. Effective against live targets and electronics. Uses regular power cells to fire, and has an extremely high rate of fire.
   categories: [ DoNotMap ]

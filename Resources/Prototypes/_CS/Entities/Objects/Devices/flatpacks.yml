@@ -29,3 +29,22 @@
   - type: StaticPrice
     price: 1500
     vendPrice: 15000
+
+- type: entity
+  parent: [ BaseFlatpack, BaseC2ExpeditionContraband ]
+  id: ShuttleGunSvalinnMachineGunFlatpack
+  name: LSE-400c "Svalinn machine gun" flatpack
+  description: A flatpack used for deploying a LSE-400c "Svalinn machine gun".
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay
+      color: "#A46106"
+      map: ["enum.FlatpackVisualLayers.Overlay"]
+    - state: icon-default
+  - type: Flatpack
+    entity: ShuttleGunSvalinnMachineGun
+  - type: StaticPrice
+    price: 1000
+    vendPrice: 10000
