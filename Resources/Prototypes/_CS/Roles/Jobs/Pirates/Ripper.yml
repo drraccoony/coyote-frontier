@@ -4,7 +4,7 @@
   id: RipperDoc
   name: job-name-ripperdoc
   description: job-description-ripperdoc
-  playTimeTracker: JobRipperdoc
+  playTimeTracker: JobRipperDoc
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 43200 # frontier: 24 hrs / 4 shifts | CS: 12 hours / 2 shifts
