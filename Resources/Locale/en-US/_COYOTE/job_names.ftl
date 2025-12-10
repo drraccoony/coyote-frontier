@@ -30,5 +30,5 @@ job-description-smuggler = Run illicit cargo, sell illicit goods, keep the pirat
 job-name-escort = Escort
 job-description-escort = Engage in the age-old profession of providing companionship and pleasure to those willing to pay. As a pirate prostitute, you navigate the fringes of society, offering your services to a diverse clientele. Your role is both lucrative and adventurous, allowing you to explore the depths of human desire while earning a handsome income. You also receive a bonus to your Payward Incentive for your daring profession!
 
-job-name-ripper = Ripper
-job-description-ripper = Practice, for lack of a better word, medicine on anyone who will let you. Patch up your fellow freelancers, and maybe hold a contractor or two hostage till they pay you for reviving them.
+job-name-ripperdoc = RipperDoc
+job-description-ripperdoc = Practice, for lack of a better word, medicine on anyone who will let you. Patch up your fellow freelancers, and maybe hold a contractor or two hostage till they pay you for reviving them.

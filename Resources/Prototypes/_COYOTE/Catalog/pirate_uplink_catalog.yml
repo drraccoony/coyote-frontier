@@ -180,7 +180,7 @@
       - PirateUplink
   - !type:BuyerJobCondition
     whitelist:
-    - Ripper
+    - RipperDoc
 
 - type: listing #Coyote
   id: UplinkChemicalsCrateP
@@ -199,7 +199,7 @@
       - PirateUplink
   - !type:BuyerJobCondition
     whitelist:
-    - Ripper
+    - RipperDoc
 
 - type: listing #Coyote
   id: UplinkChemicalsCrateS
@@ -218,4 +218,4 @@
       - PirateUplink
   - !type:BuyerJobCondition
     whitelist:
-    - Ripper
+    - RipperDoc

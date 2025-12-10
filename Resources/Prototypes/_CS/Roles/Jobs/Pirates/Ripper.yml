@@ -1,10 +1,10 @@
 # The job itself
 # Freelancer + Medic + Crime
 - type: job
-  id: Ripper
-  name: job-name-ripper
-  description: job-description-ripper
-  playTimeTracker: JobRipper
+  id: RipperDoc
+  name: job-name-ripperdoc
+  description: job-description-ripperdoc
+  playTimeTracker: JobRipperdoc
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 43200 # frontier: 24 hrs / 4 shifts | CS: 12 hours / 2 shifts
@@ -53,7 +53,7 @@
 
 #play time tracker
 - type: playTimeTracker
-  id: JobRipper
+  id: JobRipperDoc
 
 - type: entity
   id: SpawnPointRipper
@@ -62,7 +62,7 @@
   suffix: Frontier
   components:
   - type: SpawnPoint
-    job_id: Ripper
+    job_id: RipperDoc
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner-red
@@ -78,7 +78,7 @@
     - EncryptionKeyMedical
 
 - type: roleLoadout
-  id: JobRipper
+  id: JobRipperDoc
   groups:
   - PilotHead
   #  - NFPirateNeck
