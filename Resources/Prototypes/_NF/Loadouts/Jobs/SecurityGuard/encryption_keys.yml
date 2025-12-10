@@ -1,11 +1,11 @@
 #T0
 - type: loadout
-  id: ContractorEncryptionKeyTraffic
+  id: SecurityGuardEncryptionKeyTraffic
   encryptionKeys:
   - EncryptionKeyTraffic
 
 - type: loadout
-  id: ContractorEncryptionKeyMedical
+  id: SecurityGuardEncryptionKeyMedical
   hideEffects:
   - !type:GroupLoadoutEffect
     proto: NFNotDoc
@@ -14,13 +14,13 @@
   - EncryptionKeyMedical
 
 - type: loadout
-  id: ContractorEncryptionKeyCargo
+  id: SecurityGuardEncryptionKeyCargo
   price: 20
   encryptionKeys:
   - EncryptionKeyCargo
 
 - type: loadout
-  id: ContractorEncryptionKeyEngineering
+  id: SecurityGuardEncryptionKeyEngineering
   price: 20
   hideEffects:
   - !type:GroupLoadoutEffect
@@ -29,20 +29,19 @@
   - EncryptionKeyEngineering
 
 - type: loadout
-  id: ContractorEncryptionKeyScience
+  id: SecurityGuardEncryptionKeyScience
   price: 20
   encryptionKeys:
   - EncryptionKeyScience
 
 - type: loadout
-  id: ContractorEncryptionKeySecurity
+  id: SecurityGuardEncryptionKeySecurity
   price: 20
   encryptionKeys:
   - EncryptionKeySecurity
 
-- type: loadout # Coyote Edit
-  id: ContractorEncryptionKeyCommon
+- type: loadout
+  id: SecurityGuardEncryptionKeyCommon
   price: 20
   encryptionKeys:
   - EncryptionKeyCommon
-  

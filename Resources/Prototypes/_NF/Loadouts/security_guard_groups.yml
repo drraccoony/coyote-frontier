@@ -95,3 +95,18 @@
   - SecurityClothingMaskGasSecurity
   fallbacks:
   - SecurityClothingMaskGasSecurity
+
+- type: loadoutGroup
+  id: SecurityGuardEncryptionKey
+  name: loadout-group-security-guard-encryption-key
+  minLimit: 0
+  maxLimit: 5
+  loadouts:
+  - SecurityGuardEncryptionKeyTraffic
+  - SecurityGuardEncryptionKeyMedical
+  - SecurityGuardEncryptionKeyCargo
+  - SecurityGuardEncryptionKeyEngineering
+  - SecurityGuardEncryptionKeyScience
+  - SecurityGuardEncryptionKeySecurity
+  fallbacks:
+  - SecurityGuardEncryptionKeyTraffic

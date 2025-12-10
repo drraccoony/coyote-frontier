@@ -204,7 +204,7 @@
   - ContractorWallet
   - ContractorCartridge
   - ContractorImplanter
-  - ContractorEncryptionKey
+  - SecurityGuardEncryptionKey
   - ContractorBackpackItems
   - ContractorHandItems
   - NFSpeciesSpecific
