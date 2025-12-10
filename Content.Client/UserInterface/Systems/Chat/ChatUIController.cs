@@ -838,9 +838,6 @@ public sealed partial class ChatUIController : UIController
 
     public void ProcessChatMessage(ChatMessage msg, bool speechBubble = true)
     {
-        // DEBUG: Log all incoming messages with subtle status
-        _sawmill.Info($"ProcessChatMessage - Channel: {msg.Channel}, Message: {msg.Message}, SenderEntity: {msg.SenderEntity}, IsSubtle: {msg.IsSubtle}");
-
         // color the name unless it's something like "the old man"
         if ((msg.Channel == ChatChannel.Local || msg.Channel == ChatChannel.Whisper) && _chatNameColorsEnabled)
         {
@@ -882,13 +879,10 @@ public sealed partial class ChatUIController : UIController
             var isOwnMessage = _player.LocalEntity != null && _ent.GetEntity(msg.SenderEntity) == _player.LocalEntity;
             var currentTime = _timing.CurTime;
 
-            _sawmill.Info($"LOOC message detected. Enabled: {_loocSoundEnabled}, IsOwnMessage: {isOwnMessage}, Channel: {msg.Channel}");
-
             if (!isOwnMessage)
             {
                 if ((currentTime - _lastLoocSoundTime) >= SoundCooldown)
                 {
-                    _sawmill.Info("Playing LOOC notification sound!");
                     _audio.PlayGlobal("/Audio/_COYOTE/UserInterface/looc_sound.ogg", Filter.Local(), false);
                 }
                 // Reset cooldown timer on each message to avoid interrupting conversations
@@ -902,13 +896,10 @@ public sealed partial class ChatUIController : UIController
             var isOwnMessage = _player.LocalEntity != null && _ent.GetEntity(msg.SenderEntity) == _player.LocalEntity;
             var currentTime = _timing.CurTime;
 
-            _sawmill.Info($"Subtle Emote message detected. Enabled: {_subtleSoundEnabled}, IsOwnMessage: {isOwnMessage}");
-
             if (!isOwnMessage)
             {
                 if ((currentTime - _lastSubtleSoundTime) >= SoundCooldown)
                 {
-                    _sawmill.Info("Playing Subtle notification sound!");
                     _audio.PlayGlobal("/Audio/_COYOTE/UserInterface/subtle_sound.ogg", Filter.Local(), false);
                 }
                 // Reset cooldown timer on each message to avoid interrupting conversations
