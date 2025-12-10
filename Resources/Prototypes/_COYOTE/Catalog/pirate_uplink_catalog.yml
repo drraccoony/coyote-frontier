@@ -143,3 +143,79 @@
     whitelist:
       tags:
       - PirateUplink
+
+- type: listing #Coyote
+  id: UplinkSvalinnMachineGun
+  name:  uplink-svalinn-machinegun-name
+  description: uplink-svalinn-machinegun-desc
+  productEntity: ShuttleGunSvalinnMachineGunFlatpack
+  icon: { sprite: Objects/Weapons/Guns/Shuttles/laser.rsi, state: lse-400c }
+  cost:
+    Doubloon: 10
+  categories:
+  - UplinkPirateWeapons
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - PirateUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Smuggler
+
+- type: listing #Coyote
+  id: UplinkChemicalsCrateD
+  name:  uplink-chemicals-crate-d-name
+  description: uplink-chemicals-crate-d-name
+  productEntity: CrateChemistryD
+  icon: { sprite: Structures/Storage/Crates/medicalcrate_secure.rsi, state: base }
+  cost:
+    Doubloon: 4
+  categories:
+  - UplinkPirateMedical
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - PirateUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - RipperDoc
+
+- type: listing #Coyote
+  id: UplinkChemicalsCrateP
+  name:  uplink-chemicals-crate-p-name
+  description: uplink-chemicals-crate-p-name
+  productEntity: CrateChemistryP
+  icon: { sprite: Structures/Storage/Crates/medicalcrate_secure.rsi, state: base }
+  cost:
+    Doubloon: 4
+  categories:
+  - UplinkPirateMedical
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - PirateUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - RipperDoc
+
+- type: listing #Coyote
+  id: UplinkChemicalsCrateS
+  name:  uplink-chemicals-crate-s-name
+  description: uplink-chemicals-crate-s-name
+  productEntity: CrateChemistryS
+  icon: { sprite: Structures/Storage/Crates/medicalcrate_secure.rsi, state: base }
+  cost:
+    Doubloon: 4
+  categories:
+  - UplinkPirateMedical
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - PirateUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - RipperDoc

@@ -14,7 +14,7 @@ job-name-medical-nurse  = Medical Nurse
 job-description-medical-nurse = Assist in providing medical care and support to patients. Your responsibilities include monitoring vital signs, administering medications, and ensuring the overall well-being of those under your care. As a medical nurse, you play a vital role in the healthcare team, contributing to the recovery and health of the crew and passengers. You also receive a bonus to your Payward Incentive for being in such an important role!
 job-supervisors-medical-nurse = the Frontier Wellness Council, and horny people everywhere
 
-job-supervisors-chaplain = your chosen God. 
+job-supervisors-chaplain = your chosen God.
 
 job-name-curator = Curator
 job-description-curator = Explore, preserve, and showcase the rich cool history and artifacts of the frontier. Your role is to manage collections, organize exhibitions, and educate the public about the cultural heritage of the region. As a curator, you have access to exclusive historical information and artifacts, and you receive a bonus to your Payward Incentive for your dedication to preserving history!
@@ -29,3 +29,6 @@ job-description-smuggler = Run illicit cargo, sell illicit goods, keep the pirat
 
 job-name-escort = Escort
 job-description-escort = Engage in the age-old profession of providing companionship and pleasure to those willing to pay. As a pirate prostitute, you navigate the fringes of society, offering your services to a diverse clientele. Your role is both lucrative and adventurous, allowing you to explore the depths of human desire while earning a handsome income. You also receive a bonus to your Payward Incentive for your daring profession!
+
+job-name-ripperdoc = RipperDoc
+job-description-ripperdoc = Practice, for lack of a better word, medicine on anyone who will let you. Patch up your fellow freelancers, and maybe hold a contractor or two hostage till they pay you for reviving them.

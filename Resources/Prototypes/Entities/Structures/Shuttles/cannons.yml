@@ -40,12 +40,11 @@
 # naming: LSE (Laser) + conventional power + suffix (c for PowerCage, e for wired energy) + Name
 # example: LSE-100e "Clown destroyer" (powered by the wiring, very weak)
 
-- type: entity
+- type: entity #coyote
   id: ShuttleGunSvalinnMachineGun
-  parent: [ ShuttleGunBase, ConstructibleMachine]
+  parent: [ ShuttleGunBase, ConstructibleMachine, BaseC2ExpeditionContraband ]
   name: LSE-400c "Svalinn machine gun"
   description: Basic stationary laser unit. Effective against live targets and electronics. Uses regular power cells to fire, and has an extremely high rate of fire.
-  categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/laser.rsi
@@ -103,7 +102,6 @@
   parent: [ ShuttleGunBase, ConstructibleMachine]
   name: LSE-1200c "Perforator"
   description: Advanced stationary laser unit. Annihilates electronics and is extremely dangerous to health! Uses the power cage to fire.
-  categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/laser.rsi
@@ -163,7 +161,6 @@
   parent: [ShuttleGunBase] # Frontier: Removed ConstructibleMachine
   name: EXP-320g "Friendship"
   description: A small stationary grenade launcher that holds 2 grenades.
-  categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/launcher.rsi
@@ -218,7 +215,6 @@
   parent: [ShuttleGunBase, ConstructibleMachine]
   name: EXP-2100g "Duster"
   description: A powerful stationary grenade launcher. A cartridge is required for use.
-  categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/launcher.rsi
@@ -347,7 +343,6 @@
   parent: [ ShuttleGunBase, ConstructibleMachine]
   name: PTK-1500e "Matter Dematerializer" # Frontier: "800"<"1500e" (consistent with naming scheme)
   description: Mining turret, effective for blasting hardened targets, but overpowered for softer rock. Gradually accumulates charges on its own. # Frontier: description changed
-  categories: [ DoNotMap ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/kinetic.rsi

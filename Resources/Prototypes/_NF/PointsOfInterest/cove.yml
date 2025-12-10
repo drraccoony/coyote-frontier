@@ -47,6 +47,7 @@
             NFPirate: [ 12, 12 ]
             Smuggler: [ 9, 9 ] #Coyote
             Escort: [ 12, 12 ]
+            RipperDoc: [ 12, 12 ]
         - type: StationDeadDropReporting
           messageSet: Pirate
         - type: StationDeadDropHintExempt

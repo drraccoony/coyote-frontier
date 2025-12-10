@@ -42,5 +42,6 @@
             Smuggler: [-1, -1] #Coyote
             Escort: [-1, -1] #Coyote
             Prisoner: [ -1, -1] #Coyote
+            RipperDoc: [ -1, -1] #Coyote
         - type: StationDeadDrop
           maxDeadDrops: 20 # Testing

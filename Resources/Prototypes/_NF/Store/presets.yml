@@ -51,6 +51,7 @@
     - UplinkPirateAmmo
     - UplinkPirateUtility
     - UplinkPirateExplosives
+    - UplinkPirateMedical #coyote
     currencyWhitelist:
     - Doubloon
     balance:

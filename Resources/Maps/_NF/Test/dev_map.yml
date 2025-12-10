@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/04/2025 23:43:01
-  entityCount: 1822
+  time: 12/09/2025 23:47:19
+  entityCount: 1823
 maps:
 - 1814
 grids:
@@ -8362,6 +8362,13 @@ entities:
 - proto: SpawnPointPublicAffairsLiaison
   entities:
   - uid: 1489
+    components:
+    - type: Transform
+      pos: -3.5,2.5
+      parent: 179
+- proto: SpawnPointRipper
+  entities:
+  - uid: 1823
     components:
     - type: Transform
       pos: -3.5,2.5
