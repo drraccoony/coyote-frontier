@@ -1,11 +1,18 @@
 <controls:FancyWindow xmlns="https://spacestation14.io"
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                       xmlns:ui="clr-namespace:Content.Client.Shuttles.UI"
+                      xmlns:cc="clr-namespace:Robust.Client.UserInterface.Controls;assembly=Robust.Client"
                       Title="{Loc 'radar-console-window-title'}"
-                      SetSize="648 672"
+                      SetSize="648 750"
                       MinSize="256 256">
-    <ui:ShuttleNavControl Name="RadarScreen"
-                     Margin="4"
-                     HorizontalExpand = "True"
-                     VerticalExpand = "True"/>
+    <cc:BoxContainer Orientation="Vertical">
+        <cc:BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="8 8 8 20">
+            <cc:Label Text="{Loc 'radar-console-iff-search'}" Margin="0 0 0 4"/>
+            <cc:LineEdit Name="IffSearchCriteria" Access="Public" HorizontalExpand="True"/>
+        </cc:BoxContainer>
+        <ui:ShuttleNavControl Name="RadarScreen"
+                         Margin="8 0 8 8"
+                         HorizontalExpand = "True"
+                         VerticalExpand = "True"/>
+    </cc:BoxContainer>
 </controls:FancyWindow>
