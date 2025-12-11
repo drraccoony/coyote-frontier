@@ -873,6 +873,40 @@ public sealed partial class ChatUIController : UIController
             }
         }
 
+        // Play LOOC sound notification if enabled and on cooldown
+        if (_loocSoundEnabled && _audio != null && (msg.Channel == ChatChannel.LOOC || msg.Channel == ChatChannel.SubtleLOOC))
+        {
+            var isOwnMessage = _player.LocalEntity != null && _ent.GetEntity(msg.SenderEntity) == _player.LocalEntity;
+            var currentTime = _timing.CurTime;
+
+            if (!isOwnMessage)
+            {
+                if ((currentTime - _lastLoocSoundTime) >= SoundCooldown)
+                {
+                    _audio.PlayGlobal("/Audio/_COYOTE/UserInterface/looc_sound.ogg", Filter.Local(), false);
+                }
+                // Reset cooldown timer on each message to avoid interrupting conversations
+                _lastLoocSoundTime = currentTime;
+            }
+        }
+
+        // Play Subtle sound notification if enabled (for subtle emotes)
+        if (_subtleSoundEnabled && _audio != null && msg.IsSubtle)
+        {
+            var isOwnMessage = _player.LocalEntity != null && _ent.GetEntity(msg.SenderEntity) == _player.LocalEntity;
+            var currentTime = _timing.CurTime;
+
+            if (!isOwnMessage)
+            {
+                if ((currentTime - _lastSubtleSoundTime) >= SoundCooldown)
+                {
+                    _audio.PlayGlobal("/Audio/_COYOTE/UserInterface/subtle_sound.ogg", Filter.Local(), false);
+                }
+                // Reset cooldown timer on each message to avoid interrupting conversations
+                _lastSubtleSoundTime = currentTime;
+            }
+        }
+
         // Color any codewords for minds that have roles that use them
         if (_player.LocalUser != null && _mindSystem != null && _roleCodewordSystem != null)
         {

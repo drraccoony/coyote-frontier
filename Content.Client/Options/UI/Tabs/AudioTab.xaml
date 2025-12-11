@@ -22,6 +22,8 @@
                 <CheckBox Name="AdminSoundsCheckBox" Text="{Loc 'ui-options-admin-sounds'}" />
                 <CheckBox Name="BwoinkSoundCheckBox" Text="{Loc 'ui-options-bwoink-sound'}" />
                 <CheckBox Name="MentionSoundCheckBox" Text="{Loc 'ui-options-mention-sound'}" />
+                <CheckBox Name="LoocSoundCheckBox" Text="{Loc 'ui-options-looc-sound'}" />
+                <CheckBox Name="SubtleSoundCheckBox" Text="{Loc 'ui-options-subtle-sound'}" />
             </BoxContainer>
         </BoxContainer>
         <ui:OptionsTabControlRow Name="Control" Access="Public" />

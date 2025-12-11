@@ -813,7 +813,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             if (MessageRangeCheck(session, data, range) == MessageRangeCheckResult.Disallowed)
                 continue;
             numHeareded++;
-            _chatManager.ChatMessageToOne(ChatChannel.Emotes, action, wrappedMessage, source, false, session.Channel);
+            _chatManager.ChatMessageToOne(ChatChannel.Emotes, action, wrappedMessage, source, false, session.Channel, isSubtle: true);
         }
         SendRPIncentive(source, ChatChannel.Subtle, action, numHeareded);
 
