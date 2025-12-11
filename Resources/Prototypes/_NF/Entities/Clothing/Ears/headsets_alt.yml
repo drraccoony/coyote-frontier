@@ -138,12 +138,6 @@
   parent: [ClothingHeadsetCommon, ClothingHeadsetAltSecurity]
   id: ClothingHeadsetAltSecurityCommon
   categories: [ HideSpawnMenu ]
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeySecurity
-      - EncryptionKeyCommon
 
 - type: entity
   parent: [ClothingHeadsetCommon, ClothingHeadsetAltScience]
