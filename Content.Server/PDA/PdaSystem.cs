@@ -68,6 +68,7 @@ namespace Content.Server.PDA
             SubscribeLocalEvent<EntityRenamedEvent>(OnEntityRenamed, after: new[] { typeof(IdCardSystem) });
             SubscribeLocalEvent<AlertLevelChangedEvent>(OnAlertLevelChanged);
             SubscribeLocalEvent<PdaComponent, InventoryRelayedEvent<ChameleonControllerOutfitSelectedEvent>>(ChameleonControllerOutfitItemSelected);
+            SubscribeLocalEvent<PlayerAttachedEvent>(OnPlayerAttached);
         }
 
         private void ChameleonControllerOutfitItemSelected(Entity<PdaComponent> ent, ref InventoryRelayedEvent<ChameleonControllerOutfitSelectedEvent> args)
@@ -75,6 +76,20 @@ namespace Content.Server.PDA
             // Relay it to your ID so it can update as well.
             if (ent.Comp.ContainedId != null)
                 RaiseLocalEvent(ent.Comp.ContainedId.Value, args);
+        }
+
+        private void OnPlayerAttached(PlayerAttachedEvent args)
+        {
+            // When a player reconnects, update all PDAs that have open UIs for this player.
+            // This ensures the shift remaining timer and other dynamic data are refreshed.
+            var query = EntityQueryEnumerator<PdaComponent>();
+            while (query.MoveNext(out var uid, out var pda))
+            {
+                if (_ui.IsUiOpen(uid, PdaUiKey.Key, args.Entity))
+                {
+                    UpdatePdaUi(uid, pda, args.Entity);
+                }
+            }
         }
 
         private void OnEntityRenamed(ref EntityRenamedEvent ev)
@@ -219,11 +234,18 @@ namespace Content.Server.PDA
                 ownedShipName = ShipyardSystem.GetFullName(shuttleDeedComp);
             // End Frontier: balance & ship deeds
 
-            // Send the absolute shift end time (server RealTime) so client can calculate remaining time
+            // Send the remaining duration until shift end
+            // The client will calculate the absolute end time using its own RealTime
+            // This avoids clock synchronization issues between client and server
             TimeSpan? shiftEndTime = null;
             if (_gameTicker.ShiftEndTime.HasValue)
             {
-                shiftEndTime = _gameTicker.ShiftEndTime.Value;
+                var timeRemaining = _gameTicker.ShiftEndTime.Value - _timing.RealTime;
+                if (timeRemaining > TimeSpan.Zero)
+                {
+                    // Send duration, client will add to its own RealTime
+                    shiftEndTime = timeRemaining;
+                }
             }
 
             var state = new PdaUpdateState(

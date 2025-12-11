@@ -37,7 +37,7 @@ namespace Content.Client.PDA
         private string _balance = Loc.GetString("comp-pda-ui-unknown"); // Frontier
         private string _shuttleDeed = Loc.GetString("comp-pda-ui-unknown"); // Frontier
 
-        private TimeSpan? _shiftEndTime = null; // Time remaining until shift end
+        private TimeSpan? _shiftEndTime = null; // Absolute client RealTime when shift ends (calculated from server duration)
 
         private int _currentView;
 
@@ -195,24 +195,19 @@ namespace Content.Client.PDA
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
                 ("time", stationTime.ToString("d\\:hh\\:mm\\:ss"))));
 
-            // Store the absolute shift end time (server RealTime) for calculating remaining time
-            _shiftEndTime = state.ShiftEndTime;
-            if (_shiftEndTime.HasValue)
+            // Server sends duration remaining; calculate absolute end time using client's RealTime
+            // This avoids clock synchronization issues between client and server
+            if (state.ShiftEndTime.HasValue && state.ShiftEndTime.Value > TimeSpan.Zero)
             {
-                var timeRemaining = _shiftEndTime.Value - _gameTiming.RealTime;
-                if (timeRemaining > TimeSpan.Zero)
-                {
-                    ShiftEndTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-shift-end-time",
-                        ("time", timeRemaining.ToString("d\\:hh\\:mm\\:ss"))));
-                    ShiftEndTimeLabel.Visible = true;
-                }
-                else
-                {
-                    ShiftEndTimeLabel.Visible = false;
-                }
+                _shiftEndTime = _gameTiming.RealTime + state.ShiftEndTime.Value;
+                var timeRemaining = state.ShiftEndTime.Value;
+                ShiftEndTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-shift-end-time",
+                    ("time", timeRemaining.ToString("d\\:hh\\:mm\\:ss"))));
+                ShiftEndTimeLabel.Visible = true;
             }
             else
             {
+                _shiftEndTime = null;
                 ShiftEndTimeLabel.Visible = false;
             }
 

@@ -19,7 +19,7 @@ namespace Content.Shared.PDA
         public string? Address;
         public int Balance; // Frontier
         public string? OwnedShipName; // Frontier
-        public TimeSpan? ShiftEndTime; // Absolute server RealTime when shift ends, if set by admin
+        public TimeSpan? ShiftEndTime; // Duration remaining until shift ends (client will add to its own RealTime)
 
         public PdaUpdateState(
             List<NetEntity> programs,
