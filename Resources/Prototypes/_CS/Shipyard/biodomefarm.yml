@@ -17,7 +17,7 @@
   name: LL0 Biodome - Farm
   description: A fragile glass dome housing animal pens and a farmhouse.
   price: 105000 # 43000 * 1.05 + 554 * 100
-  category: Small
+  category: Medium
   group: Shipyard
   shuttlePath: /Maps/_CS/Shuttles/biodomefarm.yml
   guidebookPage: Null

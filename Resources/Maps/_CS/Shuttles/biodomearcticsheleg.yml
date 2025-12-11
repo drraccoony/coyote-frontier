@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 12/10/2025 01:30:33
-  entityCount: 1099
+  time: 12/11/2025 06:48:49
+  entityCount: 1101
 maps: []
 grids:
 - 1
@@ -96,6 +96,7 @@ entities:
           decals:
             203: 7,-4
             204: 2,2
+            224: 1,-8
         - node:
             color: '#FFFFFFFF'
             id: Basalt3
@@ -205,9 +206,15 @@ entities:
             212: 8,2
         - node:
             color: '#FFFFFFFF'
+            id: grasssnowb2
+          decals:
+            222: 1,-7
+        - node:
+            color: '#FFFFFFFF'
             id: grasssnowb3
           decals:
             211: -2,8
+            223: -1,-8
         - node:
             color: '#FFFFFFFF'
             id: grasssnowc1
@@ -4646,79 +4653,67 @@ entities:
     - type: Transform
       pos: 5.5,4.5
       parent: 1
-- proto: hydroponicsSoil
+- proto: HydroponicsSoilNutritionFlatpack
   entities:
   - uid: 751
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -0.5,-7.5
+      pos: -2.6945534,-14.567483
       parent: 1
   - uid: 752
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -1.5,-7.5
+      pos: -2.6945534,-14.567483
       parent: 1
   - uid: 753
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -0.5,-6.5
+      pos: -2.6945534,-14.567483
       parent: 1
   - uid: 754
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -1.5,-6.5
+      pos: -2.6945534,-14.567483
       parent: 1
   - uid: 755
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,-6.5
+      pos: -2.6945534,-14.567483
       parent: 1
   - uid: 756
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,-6.5
+      pos: -2.6945534,-14.567483
       parent: 1
   - uid: 757
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,-7.5
+      pos: -2.6945534,-14.567483
       parent: 1
   - uid: 758
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,-7.5
+      pos: -2.6945534,-14.567483
       parent: 1
   - uid: 759
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,-5.5
+      pos: -2.6945534,-14.567483
       parent: 1
   - uid: 760
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,-5.5
+      pos: -2.6945534,-14.567483
       parent: 1
   - uid: 761
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -0.5,-5.5
+      pos: -2.6945534,-14.567483
       parent: 1
   - uid: 762
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -1.5,-5.5
+      pos: -2.6945534,-14.567483
       parent: 1
 - proto: LiquidNitrogenCanister
   entities:
@@ -5102,6 +5097,11 @@ entities:
     components:
     - type: Transform
       pos: -2.4566813,5.462077
+      parent: 1
+  - uid: 1101
+    components:
+    - type: Transform
+      pos: -2.5226784,-14.551858
       parent: 1
 - proto: SignalButton
   entities:
@@ -5995,6 +5995,13 @@ entities:
     components:
     - type: Transform
       pos: 0.5,-18.5
+      parent: 1
+- proto: WaterTankFull
+  entities:
+  - uid: 1100
+    components:
+    - type: Transform
+      pos: -1.5,-13.5
       parent: 1
 - proto: Window
   entities:
