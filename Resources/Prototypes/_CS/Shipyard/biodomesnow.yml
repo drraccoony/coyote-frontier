@@ -17,7 +17,7 @@
   name: LL0 Biodome - Winter
   description: A fragile glass dome housing a snowy cabin.
   price: 105000 # 43000 * 1.05 + 554 * 100
-  category: Small
+  category: Medium
   group: Shipyard
   shuttlePath: /Maps/_CS/Shuttles/biodomesnow.yml
   guidebookPage: Null

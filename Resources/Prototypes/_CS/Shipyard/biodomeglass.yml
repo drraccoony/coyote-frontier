@@ -12,14 +12,14 @@
 # please stick to the same nomenclature: biodome [name]
 
 - type: vessel
-  id: Biodomebeach
+  id: Biodomeglass
   parent: BaseVessel
-  name: LL0 Biodome - Beach
-  description: A fragile glass dome housing a sunny beach and gazebo.
+  name: LL0 Biodome - Glass
+  description: A fragile glass dome housing an empty glass floor.
   price: 105000 # 43000 * 1.05 + 554 * 100
   category: Medium
   group: Shipyard
-  shuttlePath: /Maps/_CS/Shuttles/biodomebeach.yml
+  shuttlePath: /Maps/_CS/Shuttles/biodomeglass.yml
   guidebookPage: Null
   class:
   - Botany
@@ -27,12 +27,12 @@
   - Plasma
 
 - type: gameMap
-  id: Biodomebeach
-  mapName: 'Biodomebeach'
-  mapPath: /Maps/_CS/Shuttles/biodomebeach.yml
+  id: Biodomeglass
+  mapName: 'Biodomeglass'
+  mapPath: /Maps/_CS/Shuttles/biodomeglass.yml
   minPlayers: 0
   stations:
-    Biodomebeach:
+    Biodomeglass:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
