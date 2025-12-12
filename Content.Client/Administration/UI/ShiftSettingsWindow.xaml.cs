@@ -23,7 +23,7 @@ public sealed partial class ShiftSettingsWindow : DefaultWindow
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
-        
+
         _gameTicker = _entitySystem.GetEntitySystem<ClientGameTicker>();
 
         // Set up the button group for radio button behavior
@@ -51,7 +51,7 @@ public sealed partial class ShiftSettingsWindow : DefaultWindow
             // Determine which mode is selected
             var fromNow = HoursFromNowCheckbox.Pressed;
             var mode = fromNow ? "now" : "roundstart";
-            
+
             _console.ExecuteCommand($"setshiftendtime {hours} {mode}");
             ShiftEndTimeInput.Text = string.Empty;
             UpdateCurrentShiftEndLabel(hours, fromNow);
@@ -91,7 +91,7 @@ public sealed partial class ShiftSettingsWindow : DefaultWindow
             var roundStartRealTime = _gameTiming.RealTime - (_gameTiming.CurTime - _gameTicker.RoundStartTimeSpan);
             endTime = roundStartRealTime + TimeSpan.FromHours(hours);
         }
-        
+
         CurrentShiftEndLabel.Text = Loc.GetString("administration-shift-settings-shift-end-set",
             ("time", endTime.ToString(@"d\:hh\:mm\:ss")));
     }
