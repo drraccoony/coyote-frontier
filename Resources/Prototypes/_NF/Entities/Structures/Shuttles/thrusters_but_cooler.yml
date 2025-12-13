@@ -307,6 +307,7 @@
     prototype: SlowWeakThruster
     requirements: # Frontier
       Capacitor: 3 # Frontier stackRequirements<requirements
+    stackRequirements: {}
 
 - type: latheRecipe
   parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory, BaseGeneralMachineRecipeCategory]
@@ -327,6 +328,7 @@
     prototype: SlowStrongThruster
     requirements: # Frontier
       Capacitor: 3 # Frontier stackRequirements<requirements
+    stackRequirements: {}
 
 - type: latheRecipe
   parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory, BaseGeneralMachineRecipeCategory]
