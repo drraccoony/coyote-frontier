@@ -39,7 +39,8 @@
         mask:
         - SmallMobMask #this is so they can go under plastic flaps
         layer:
-        - MachineLayer
+        - MidImpassable
+        - LowImpassable
   - type: StaticPrice
     price: 100
   - type: Machine
@@ -86,7 +87,8 @@
         mask:
         - SmallMobMask #this is so they can go under plastic flaps
         layer:
-        - MachineLayer
+        - MidImpassable
+        - LowImpassable
   - type: StaticPrice
     price: 250
   - type: Machine
@@ -136,7 +138,8 @@
         mask:
         - SmallMobMask #this is so they can go under plastic flaps
         layer:
-        - MachineLayer
+        - MidImpassable
+        - LowImpassable
   - type: StaticPrice
     price: 250
   - type: Machine
@@ -183,7 +186,8 @@
         mask:
         - SmallMobMask #this is so they can go under plastic flaps
         layer:
-        - MachineLayer
+        - MidImpassable
+        - LowImpassable
   - type: StaticPrice
     price: 250
   - type: Machine
@@ -230,7 +234,8 @@
         mask:
         - SmallMobMask #this is so they can go under plastic flaps
         layer:
-        - MachineLayer
+        - MidImpassable
+        - LowImpassable
   - type: StaticPrice
     price: 250
   - type: Machine
@@ -277,7 +282,8 @@
         mask:
         - SmallMobMask #this is so they can go under plastic flaps
         layer:
-        - MachineLayer
+        - MidImpassable
+        - LowImpassable
   - type: StaticPrice
     price: 250
   - type: Machine
