@@ -81,6 +81,12 @@ namespace Content.Shared.Preferences
         public string FlavorText { get; set; } = string.Empty;
 
         /// <summary>
+        /// Character-specific consent preferences and boundaries.
+        /// </summary>
+        [DataField]
+        public string ConsentText { get; set; } = string.Empty;
+
+        /// <summary>
         /// Associated <see cref="SpeciesPrototype"/> for this profile.
         /// </summary>
         [DataField]
@@ -163,10 +169,12 @@ namespace Content.Shared.Preferences
             PreferenceUnavailableMode preferenceUnavailable,
             HashSet<ProtoId<AntagPrototype>> antagPreferences,
             HashSet<ProtoId<TraitPrototype>> traitPreferences,
-            Dictionary<string, RoleLoadout> loadouts)
+            Dictionary<string, RoleLoadout> loadouts,
+            string consentText = "")
         {
             Name = name;
             FlavorText = flavortext;
+            ConsentText = consentText;
             Species = species;
             Customspeciesname = customspeciesname;
             Height = height;
@@ -207,7 +215,8 @@ namespace Content.Shared.Preferences
                 other.PreferenceUnavailable,
                 antagPreferences,
                 traitPreferences,
-                loadouts)
+                loadouts,
+                other.ConsentText)
         {
         }
 
@@ -229,7 +238,8 @@ namespace Content.Shared.Preferences
                 other.PreferenceUnavailable,
                 new HashSet<ProtoId<AntagPrototype>>(other.AntagPreferences),
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
-                new Dictionary<string, RoleLoadout>(other.Loadouts))
+                new Dictionary<string, RoleLoadout>(other.Loadouts),
+                other.ConsentText)
         {
         }
 
@@ -321,6 +331,11 @@ namespace Content.Shared.Preferences
         public HumanoidCharacterProfile WithFlavorText(string flavorText)
         {
             return new(this) { FlavorText = flavorText };
+        }
+
+        public HumanoidCharacterProfile WithConsentText(string consentText)
+        {
+            return new(this) { ConsentText = consentText };
         }
 
         public HumanoidCharacterProfile WithAge(int age)
@@ -546,6 +561,7 @@ namespace Content.Shared.Preferences
             if (!_traitPreferences.SequenceEqual(other._traitPreferences)) return false;
             if (!Loadouts.SequenceEqual(other.Loadouts)) return false;
             if (FlavorText != other.FlavorText) return false;
+            if (ConsentText != other.ConsentText) return false;
             return Appearance.MemberwiseEquals(other.Appearance);
         }
 
@@ -629,6 +645,16 @@ namespace Content.Shared.Preferences
                 flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText);
             }
 
+            string consenttext;
+            if (ConsentText.Length > MaxDescLength)
+            {
+                consenttext = FormattedMessage.RemoveMarkupOrThrow(ConsentText)[..MaxDescLength];
+            }
+            else
+            {
+                consenttext = FormattedMessage.RemoveMarkupOrThrow(ConsentText);
+            }
+
             // Frontier
             //make sure theres no funny bank stuff going on
             var bankBalance = BankBalance;
@@ -694,6 +720,7 @@ namespace Content.Shared.Preferences
 
             Name = name;
             FlavorText = flavortext;
+            ConsentText = consenttext;
             Age = age;
             Height = height;
             Width = width;

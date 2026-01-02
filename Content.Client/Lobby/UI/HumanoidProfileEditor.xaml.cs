@@ -518,6 +518,14 @@ namespace Content.Client.Lobby.UI
 
             #endregion Markings
 
+            #region Consent Preferences
+
+            TabContainer.SetTabTitle(4, Loc.GetString("humanoid-profile-editor-consent-tab"));
+
+            ConsentPreferencesTab.OnConsentChanged += OnConsentChanged;
+
+            #endregion Consent Preferences
+
             RefreshFlavorText();
 
             #region Dummy
@@ -958,6 +966,7 @@ namespace Content.Client.Lobby.UI
             RefreshSpecies();
             RefreshTraits();
             RefreshFlavorText();
+            UpdateConsentTextEdit();
             ReloadPreview();
 
             if (Profile != null)
@@ -1257,6 +1266,16 @@ namespace Content.Client.Lobby.UI
             SetDirty();
         }
 
+        private void OnConsentChanged()
+        {
+            if (Profile is null)
+                return;
+
+            var consentText = ConsentPreferencesTab.GetCharacterFreetext();
+            Profile = Profile.WithConsentText(consentText);
+            SetDirty();
+        }
+
         private void OnMarkingChange(MarkingSet markings)
         {
             if (Profile is null)
@@ -1506,6 +1525,14 @@ namespace Content.Client.Lobby.UI
             if (_flavorTextEdit != null)
             {
                 _flavorTextEdit.TextRope = new Rope.Leaf(Profile?.FlavorText ?? "");
+            }
+        }
+
+        private void UpdateConsentTextEdit()
+        {
+            if (Profile != null)
+            {
+                ConsentPreferencesTab.SetCharacterFreetext(Profile.ConsentText);
             }
         }
 

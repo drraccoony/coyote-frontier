@@ -228,6 +228,8 @@
                     <humanoid:MarkingPicker IgnoreCategories="Hair,FacialHair" Name="Markings" />
                 </ScrollContainer>
             </BoxContainer>
+            <!--  Consent Preferences  -->
+            <ui:ConsentPreferencesTab Name="ConsentPreferencesTab" />
         </TabContainer>
     </BoxContainer>
     <!--  Right side  -->

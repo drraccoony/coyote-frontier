@@ -1,0 +1,52 @@
+<BoxContainer xmlns="https://spacestation14.io"
+              xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+              Orientation="Vertical"
+              HorizontalExpand="True"
+              VerticalExpand="True">
+    <ScrollContainer VerticalExpand="True" HScrollEnabled="False" VScrollEnabled="True">
+        <BoxContainer Orientation="Vertical" Margin="10" HorizontalExpand="True">
+
+            <!-- Character Specific Freetext Section -->
+            <Label Text="{Loc consent-prefs-character-freetext-label}" StyleClasses="LabelHeading" />
+            <Label Text="{Loc consent-prefs-character-freetext-desc}" Modulate="#AAAAAA" />
+            <PanelContainer HorizontalExpand="True" MinHeight="80" Margin="0 5">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+                </PanelContainer.PanelOverride>
+                <TextEdit
+                    Name="CharacterConsentFreetext"
+                    Access="Public"
+                    MinHeight="80"
+                    VerticalExpand="False" />
+            </PanelContainer>
+
+            <Control MinHeight="15" />
+
+            <!-- Account Consent Freetext Section (Editable) -->
+            <Label Text="{Loc consent-prefs-account-freetext-label}" StyleClasses="LabelHeading" />
+            <Label Text="{Loc consent-prefs-account-freetext-desc}" Modulate="#AAAAAA" />
+            <PanelContainer HorizontalExpand="True" MinHeight="80" Margin="0 5">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+                </PanelContainer.PanelOverride>
+                <TextEdit
+                    Name="AccountConsentFreetext"
+                    Access="Public"
+                    MinHeight="80"
+                    VerticalExpand="False" />
+            </PanelContainer>
+
+            <Control MinHeight="15" />
+
+            <!-- Consent Toggles Section -->
+            <Label Text="{Loc consent-prefs-toggles-label}" StyleClasses="LabelHeading" />
+            <Label Text="{Loc consent-prefs-toggles-desc}" Modulate="#AAAAAA" Margin="0 0 0 5" />
+
+            <!-- 2 Column Grid for Toggles with better scaling -->
+            <GridContainer Name="ConsentTogglesGrid" Access="Public" Columns="2" HorizontalExpand="True" HSeparationOverride="5" VSeparationOverride="5">
+                <!-- Toggles will be added programmatically here -->
+            </GridContainer>
+
+        </BoxContainer>
+    </ScrollContainer>
+</BoxContainer>
